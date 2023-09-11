@@ -8,6 +8,8 @@ use App\Models\Sponsor;
 use App\Models\Type;
 use App\Models\User;
 use App\Models\Map;
+use App\Models\Photo;
+use App\Models\Service;
 
 class Apartment extends Model
 {
@@ -29,5 +31,14 @@ class Apartment extends Model
     public function owner()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function services(){
+        return $this->belongsToMany(Service::class);
+    }
+
+    public function photos()
+    {
+        return $this->hasMany(Photo::class);
     }
 }
