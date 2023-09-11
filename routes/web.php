@@ -4,6 +4,10 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ApartmentController;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Admin\DashboardController;
+
+
+use App\Models\Type;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,15 +20,16 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function(){
     Route::resource('apartments', ApartmentController::class);
+    Route::get('/', [DashboardController::class,'index'])->name('dashboard');
 });
 
 Route::middleware('auth')->group(function () {
