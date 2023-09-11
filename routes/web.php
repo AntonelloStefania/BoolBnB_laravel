@@ -3,6 +3,11 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ApartmentController;
+use App\Http\Controllers\Admin\TypeController;
+use App\Http\Controllers\Admin\MapController;
+use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\SponsorController;
+use App\Http\Controllers\Admin\PhotoController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\DashboardController;
 
@@ -28,8 +33,13 @@ Route::get('/', function () {
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function(){
-    Route::resource('apartments', ApartmentController::class);
     Route::get('/', [DashboardController::class,'index'])->name('dashboard');
+    Route::resource('apartments', ApartmentController::class);
+    Route::resource('types', TypeController::class);
+    Route::resource('photos', PhotoController::class);
+    Route::resource('services', ServiceController::class);
+    Route::resource('sponsors', SponsorController::class);
+    Route::resource('maps', MapController::class);
 });
 
 Route::middleware('auth')->group(function () {

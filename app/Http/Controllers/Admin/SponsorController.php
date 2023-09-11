@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreSponsorRequest;
+use App\Http\Requests\UpdateSponsorRequest;
 use Illuminate\Http\Request;
 use App\Models\Sponsor;
 
