@@ -44,7 +44,12 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
+                            @auth
+                            <a class="nav-link" href="{{route('admin.apartments.index')}}">Home</a>
+                            @endauth
+                            @guest
+                            <a class="nav-link" href="{{route('apartments.index')}}">Home</a>
+                            @endguest
                         </li>
                     </ul>
 

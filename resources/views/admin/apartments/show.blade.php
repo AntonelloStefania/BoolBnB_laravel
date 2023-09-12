@@ -10,7 +10,12 @@
                             <span> {{ $apartment->mq }} </span>
                         </div>
                         <div>
+                            @auth
                             <a href="{{ route('admin.apartments.index') }} " class="btn btn-sm btn-primary">Tutti gli appartamenti</a>
+                            @endauth
+                            @guest
+                            <a href="{{ route('apartments.index') }} " class="btn btn-sm btn-primary">Tutti gli appartamenti</a>
+                            @endguest
                         </div>
                     </div>
                 </div>
@@ -23,7 +28,9 @@
                             </a>
                         @endif
                     @endforeach
+                    @auth
                     <span><a href="{{route('admin.apartments.photos.create', $apartment->id)}}" class="btn btn-primary btn-sm">Aggiungi foto</a></span>
+                    @endauth
                 </div>
             </div>
         </div>

@@ -44,7 +44,12 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
+                            @auth
+                            <a class="nav-link" href="{{route('admin.apartments.index')}}">Home</a>
+                            @endauth
+                            @guest
+                            <a class="nav-link" href="{{route('apartments.index')}}">Home</a>
+                            @endguest
                         </li>
                     </ul>
 
@@ -73,7 +78,8 @@
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
-                                <a href="{{route('admin.apartments.create')}}" class="dropdown-item">AO</a>
+                                <a href="{{route('admin.apartments.create')}}" class="dropdown-item">Create</a>
+                                <a href="{{route('admin.apartments.index')}}" class="dropdown-item">index</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
