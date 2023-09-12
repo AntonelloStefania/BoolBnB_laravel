@@ -72,8 +72,11 @@ class ApartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Apartment $apartment)
-    {
-        return view('admin.apartments.show', compact('apartment'));
+    {   
+        $photos=Photo::all();
+        
+       
+        return view('admin.apartments.show', compact('apartment','photos'));
     }
 
     /**

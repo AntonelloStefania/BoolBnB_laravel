@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Models\Photo;
 use App\Models\Apartment;
 
+use App\Http\Controllers\Admin\ApartmentController;
+
 use Illuminate\Support\Facades\Storage;
 
 class PhotoController extends Controller
@@ -28,10 +30,10 @@ class PhotoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($apartmentId)
     {
-
-       return view('admin.photos.create');
+        $apartment = Apartment::findOrFail($apartmentId);
+       return view('admin.photos.create', compact('apartment'));
     }
 
     /**
@@ -40,19 +42,20 @@ class PhotoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $apartmentId)
     {   
 
-        $form_data= $request->all();
-        $photo=new Photo();
-       
-       
-        if($request->hasFile('photo_1')){
-            $path=Storage::put('apartment_photos',$request->photo_1);
-            $form_data['photo_1']=$path;
+        $form_data = $request->all();
+        $apartment = Apartment::findOrFail($apartmentId);
+        $photo = new Photo();
+
+        if ($request->hasFile('photo_1')) {
+            $path = Storage::put('apartment_photos', $request->photo_1);
+            $form_data['photo_1'] = $path;
         }
+
         $photo->fill($form_data);
-        $photo->save();
+        $apartment->photos()->save($photo);
 
         return redirect()->route('admin.dashboard');
     }
