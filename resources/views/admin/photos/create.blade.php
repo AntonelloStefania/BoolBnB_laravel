@@ -21,6 +21,7 @@
                 <label class="control-label mb-2 fw-bold me-3">Photos</label>
                 <input type="file" name="photo_1[]" id="photo" multiple>
             </div>
+           
             <button class="btn btn-success" type="submit">Submit</button>
         </div>
         
@@ -33,26 +34,6 @@
    </div>
 </div>
 
-{{-- SCRIPT --}}
-<script>
-   // Funzione per applicare l'autocapitalizzazione delle parole a un input
-   function applyAutoCapitalize(inputId) {
-       var inputElement = document.getElementById(inputId);
 
-       inputElement.addEventListener('input', function() {
-           var inputValue = inputElement.value;
-           var formattedValue = inputValue.replace(/\b\w/g, function(match) {
-               return match.toUpperCase();
-           });
-           inputElement.value = formattedValue;
-       });
-   }
-
-   // Applica l'autocapitalizzazione agli input desiderati
-   applyAutoCapitalize('name');
-   applyAutoCapitalize('specie');
-   applyAutoCapitalize('owner');
-   applyAutoCapitalize('notes');
-</script>
 @endsection
 

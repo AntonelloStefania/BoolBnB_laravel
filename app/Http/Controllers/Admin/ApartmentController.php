@@ -59,10 +59,15 @@ class ApartmentController extends Controller
             $path=Storage::put('apartment_photos',$request->photo);
             $form_data['photo']=$path;
         }
+
+        
         $apartment->fill($form_data);
         $apartment->save();
-
-        return redirect()->route('admin.dashboard');
+        
+        if($request->has('service_1')){
+            $apartment->services()->attach($request->service_1);
+        }
+        return redirect()->route('admin.apartments.index');
     }
 
     /**
@@ -118,6 +123,10 @@ class ApartmentController extends Controller
         
         $apartment->update($form_data);
         $apartment->save();
+
+        if($request->has('service_1')){
+            $apartment->services()->sync($request->service_1);
+        }
 
         return redirect()->route('admin.apartments.index');
     }

@@ -45,6 +45,13 @@
                     </select>
                 </div>
            </div>
+           <div class="d-flex align-items-center">
+                <label class="control-label mb-2 fw-bold me-3">Servizi aggiuntivi</label>
+                @foreach($services as $service)
+                    <input class="form-check-input" type="checkbox" role="switch" name="service_1[]" value="{{$service->id}}" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">{{$service->service_1}}</label>
+                @endforeach
+            </div>
            <div class="form-group my-4 d-flex justify-content-around my-5">
             <div class="d-flex align-items-center">
                 <label class="control-label mb-2 fw-bold me-3">Sponsor</label>
