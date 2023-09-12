@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\DashboardController;
 
 
-use App\Models\Type;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
