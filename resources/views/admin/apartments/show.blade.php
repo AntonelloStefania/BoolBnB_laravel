@@ -16,9 +16,11 @@
                 </div>
                 <div class="col-12">
                     <img src=" {{ asset('storage/'.$apartment->photo) }} ">
-                   @foreach($photos as $photo)
+                    @foreach($photos as $photo)
                         @if($photo->apartment_id === $apartment->id)
-                            <img src=" {{ asset('storage/'.$photo->photo_1) }} ">
+                            <a href="{{route('admin.apartments.photos.edit', ['apartment' => $apartment->id, 'photo' => $photo->id])}}">
+                                <img src=" {{ asset('storage/'.$photo->photo_1) }} ">
+                            </a>
                         @endif
                     @endforeach
                     <span><a href="{{route('admin.apartments.photos.create', $apartment->id)}}" class="btn btn-primary btn-sm">Aggiungi foto</a></span>

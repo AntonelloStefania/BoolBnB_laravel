@@ -60,7 +60,7 @@ class PhotoController extends Controller
         $photo->fill($form_data);
         $apartment->photos()->save($photo);
     }
-        return redirect()->route('admin.dashboard');
+        return redirect()->route('admin.apartments.show', $apartment->id);
     }
 
     /**
@@ -80,9 +80,10 @@ class PhotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, $id_2)
     {
-        //
+        
+        return view('admin.photos.edit', compact('id','id_2'));
     }
 
     /**
@@ -92,9 +93,19 @@ class PhotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id,Photo $photo)
     {
-        //
+       $form_data=$request->all();
+       if ($request->hasFile('photo_1')) {
+        $path = Storage::put('apartment_photos', $request->photo_1);
+        $form_data['photo_1'] = $path;
+        }
+
+        $photo->update($form_data);
+
+        return redirect()->route('admin.apartments.show',$id);
+        
+
     }
 
     /**
