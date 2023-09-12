@@ -23,9 +23,14 @@
                     <img src=" {{ asset('storage/'.$apartment->photo) }} ">
                     @foreach($photos as $photo)
                         @if($photo->apartment_id === $apartment->id)
+                        @auth
                             <a href="{{route('admin.apartments.photos.edit', ['apartment' => $apartment->id, 'photo' => $photo->id])}}">
                                 <img src=" {{ asset('storage/'.$photo->photo_1) }} ">
                             </a>
+                        @endauth
+                        @guest
+                        <img src=" {{ asset('storage/'.$photo->photo_1) }} ">
+                        @endguest
                         @endif
                     @endforeach
                     @auth
