@@ -23,11 +23,15 @@ use App\Http\Controllers\Admin\DashboardController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('home');
+// Route::get('/apartments/{apartment}', [ApartmentController::class, 'show'])->name('apartments.show');
+Route::group([], function () {
+    // Inserisci qui le tue route
+    // Route::get('/', function () {
+    //     return view('home');
+    // });
+   
+    Route::get('/', [ApartmentController::class, 'index']); 
 });
-
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
