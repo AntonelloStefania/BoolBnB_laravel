@@ -73,7 +73,7 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
-        //
+        return view('admin.apartments.show', compact('apartment'));
     }
 
     /**
@@ -100,7 +100,23 @@ class ApartmentController extends Controller
      */
     public function update(UpdateApartmentRequest $request, Apartment $apartment)
     {
-        //
+        $form_data = $request->all(); 
+
+        if($request->hasFile('photo')){
+            if($apartment->photo){
+                Storage::delete($apartment->photo);
+            }
+
+            $path = Storage::put('apartment_photos', $request->photo);
+
+            $form_data['photo'] = $path;
+        }
+
+        
+        $apartment->update($form_data);
+        $apartment->save();
+
+        return redirect()->route('admin.apartments.index');
     }
 
     /**

@@ -74,7 +74,7 @@
                                     {{ __('Logout') }}
                                 </a>
                                 <a href="{{route('admin.apartments.create')}}" class="dropdown-item">AO</a>
-
+                                <a href="{{route('admin.apartments.edit')}}" class="dropdown-item">Edit</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
