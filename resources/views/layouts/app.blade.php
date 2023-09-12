@@ -73,7 +73,8 @@
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
-                                <a href="{{route('admin.apartments.create')}}" class="dropdown-item">AO</a>
+                                <a href="{{route('admin.apartments.create')}}" class="dropdown-item">Create</a>
+                                <a href="{{route('admin.apartments.index')}}" class="dropdown-item">index</a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf

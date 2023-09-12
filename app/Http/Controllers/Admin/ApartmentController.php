@@ -26,7 +26,8 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        //
+        $apartments= Apartment::all();
+        return view('admin.apartments.index', compact('apartments'));
     }
 
     /**
@@ -40,8 +41,7 @@ class ApartmentController extends Controller
         $services= Service::all();
         $sponsors=Sponsor::all();
         $user=Auth::user();
-       
-       
+
         return view('admin.apartments.create', compact('types','services','sponsors','user'));
     }
 
@@ -51,7 +51,7 @@ class ApartmentController extends Controller
      * @param  \App\Http\Requests\StoreApartmentRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreApartmentRequest $request)
+    public function store(StoreApartmentRequest $request, User $user)
     {
         $form_data = $request->all();
         $apartment = new Apartment();
@@ -59,7 +59,6 @@ class ApartmentController extends Controller
             $path=Storage::put('apartment_photos',$request->photo);
             $form_data['photo']=$path;
         }
-       
         $apartment->fill($form_data);
         $apartment->save();
 
@@ -85,7 +84,11 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
-        //
+        $types=Type::all();
+        $services= Service::all();
+        $sponsors=Sponsor::all();
+        $user=Auth::user();
+        return view('admin.apartments.edit', compact('apartment','types','services','sponsors','user'));
     }
 
     /**
