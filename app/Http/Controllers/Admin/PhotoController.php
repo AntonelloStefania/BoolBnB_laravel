@@ -47,16 +47,19 @@ class PhotoController extends Controller
 
         $form_data = $request->all();
         $apartment = Apartment::findOrFail($apartmentId);
+        
+        foreach($form_data['photo_1'] as $file){
         $photo = new Photo();
 
         if ($request->hasFile('photo_1')) {
-            $path = Storage::put('apartment_photos', $request->photo_1);
+            // $path = Storage::put('apartment_photos', $request->photo_1);
+            $path = $file->store('apartment_photos');
             $form_data['photo_1'] = $path;
         }
-
+        
         $photo->fill($form_data);
         $apartment->photos()->save($photo);
-
+    }
         return redirect()->route('admin.dashboard');
     }
 

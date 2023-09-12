@@ -19,7 +19,7 @@
           
             <div class="d-flex align-items-center">
                 <label class="control-label mb-2 fw-bold me-3">Photos</label>
-                <input type="file" name="photo_1" id="photo">
+                <input type="file" name="photo_1[]" id="photo" multiple>
             </div>
             <button class="btn btn-success" type="submit">Submit</button>
         </div>
