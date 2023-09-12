@@ -36,7 +36,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::get('/', [DashboardController::class,'index'])->name('dashboard');
     Route::resource('apartments', ApartmentController::class);
     Route::resource('types', TypeController::class);
-    Route::resource('photos', PhotoController::class);
+    Route::resource('apartments.photos', PhotoController::class);
     Route::resource('services', ServiceController::class);
     Route::resource('sponsors', SponsorController::class);
     Route::resource('maps', MapController::class);
