@@ -12,7 +12,7 @@
      </div>
       
        <div class="col-12">
-          <form action="{{ route('admin.apartments.store') }}" method="POST">
+          <form action="{{ route('admin.apartments.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             {{-- id del proprietario --}}
             <input type="hidden" name="owner_id" id="owner_id" class="form-control"  value="{{ $user->id }}"> 
@@ -54,12 +54,18 @@
                      @endforeach
                 </select>
             </div>
+            <div class="d-flex align-items-center">
+                <label class="control-label mb-2 fw-bold me-3">Photos</label>
+                <input type="file" name="photo" id="photo">
+            </div>
             <button class="btn btn-success" type="submit">Submit</button>
-       </div>
-
-           
-               
-         </form>
+        </div>
+        
+        
+        
+    </form>
+        
+          
       </div>
    </div>
 </div>

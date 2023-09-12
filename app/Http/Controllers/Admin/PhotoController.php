@@ -7,6 +7,9 @@ use App\Http\Requests\StorePhotoRequest;
 use App\Http\Requests\UpdatePhotoRequest;
 use Illuminate\Http\Request;
 use App\Models\Photo;
+use App\Models\Apartment;
+
+use Illuminate\Support\Facades\Storage;
 
 class PhotoController extends Controller
 {
@@ -27,7 +30,8 @@ class PhotoController extends Controller
      */
     public function create()
     {
-        //
+
+       return view('admin.photos.create');
     }
 
     /**
@@ -37,8 +41,20 @@ class PhotoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+
+        $form_data= $request->all();
+        $photo=new Photo();
+       
+       
+        if($request->hasFile('photo_1')){
+            $path=Storage::put('apartment_photos',$request->photo_1);
+            $form_data['photo_1']=$path;
+        }
+        $photo->fill($form_data);
+        $photo->save();
+
+        return redirect()->route('admin.dashboard');
     }
 
     /**

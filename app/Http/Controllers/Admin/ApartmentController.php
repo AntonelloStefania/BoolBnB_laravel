@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Apartment;
 use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+
+use App\Models\Apartment;
 use App\Models\Service;
 use App\Models\Sponsor;
-
 use App\Models\Photo;
 use App\Models\Type;
 use App\Models\User;
@@ -36,8 +39,8 @@ class ApartmentController extends Controller
         $types=Type::all();
         $services= Service::all();
         $sponsors=Sponsor::all();
+        $user=Auth::user();
        
-        $user=User::first();
        
         return view('admin.apartments.create', compact('types','services','sponsors','user'));
     }
@@ -51,12 +54,15 @@ class ApartmentController extends Controller
     public function store(StoreApartmentRequest $request)
     {
         $form_data = $request->all();
-
-
-
         $apartment = new Apartment();
+        if($request->hasFile('photo')){
+            $path=Storage::put('apartment_photos',$request->photo);
+            $form_data['photo']=$path;
+        }
+       
         $apartment->fill($form_data);
         $apartment->save();
+
         return redirect()->route('admin.dashboard');
     }
 

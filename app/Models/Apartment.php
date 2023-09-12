@@ -15,7 +15,7 @@ class Apartment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['n_rooms', 'n_wc' ,'mq', 'owner_id', 'type_id','sponsor_id','sponsor_start','sponsor_end'];
+    protected $fillable = ['n_rooms', 'n_wc' ,'mq', 'owner_id', 'type_id','sponsor_id','sponsor_start','sponsor_end','photo'];
 
     public function type(){
         return $this->belongsTo(Type::class);
