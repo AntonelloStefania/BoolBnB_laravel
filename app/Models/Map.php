@@ -11,6 +11,8 @@ class Map extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['lat', 'lon'];
+
     public function apartment(){
         return $this->hasOne(Apartment::class);
     }

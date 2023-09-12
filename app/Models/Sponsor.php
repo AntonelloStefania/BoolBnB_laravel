@@ -12,6 +12,8 @@ class Sponsor extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['sponsor_type', 'sponsor_time'];
+
     public function apartments()
     {
         return $this->hasMany(Apartment::class);
