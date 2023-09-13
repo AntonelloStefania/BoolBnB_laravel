@@ -22,7 +22,7 @@ return new class extends Migration
             $table->text('cover');
             $table->double('price', 7,2);
             $table->boolean('visibility');
-            $table->string('description');
+            $table->text('description');
             $table->tinyInteger('n_rooms');
             $table->tinyInteger('n_wc');
             $table->tinyInteger('mq');
