@@ -20,16 +20,16 @@
                     </div>
                 </div>
                 <div class="col-12">
-                    <img src=" {{ asset('storage/'.$apartment->photo) }} ">
+                    <img src=" {{ asset('storage/'.$apartment->cover) }} ">
                     @foreach($photos as $photo)
                         @if($photo->apartment_id === $apartment->id)
                         @auth
                             <a href="{{route('admin.apartments.photos.edit', ['apartment' => $apartment->id, 'photo' => $photo->id])}}">
-                                <img src=" {{ asset('storage/'.$photo->photo_1) }} ">
+                                <img src=" {{ asset('storage/'.$photo->url) }} ">
                             </a>
                         @endauth
                         @guest
-                        <img src=" {{ asset('storage/'.$photo->photo_1) }} ">
+                        <img src=" {{ asset('storage/'.$photo->url) }} ">
                         @endguest
                         @endif
                     @endforeach
