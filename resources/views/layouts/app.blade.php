@@ -45,7 +45,7 @@
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             
-                            <a class="nav-link" href="{{route('admin.apartments.index')}}">Home</a>
+                            <a class="nav-link" href="http://127.0.0.1:8000/">Home</a>
           
                         </li>
                     </ul>
