@@ -16,15 +16,16 @@ class SponsorSeeder extends Seeder
     public function run()
     {
         $sponsors = [
-            ['sponsor_type' => 'giornaliero', 'sponsor_time' => '1'],
-            ['sponsor_type' => 'settimanale', 'sponsor_time' => '7'],
-            ['sponsor_type' => 'mensile', 'sponsor_time' => '30'],
+            ['name' => 'base', 'time' => '24','price'=>'2.99'],
+            ['name' => 'avanzato', 'time' => '72','price'=>'5.99'],
+            ['name' => 'pro', 'time' => '144','price'=>'9.99'],
         ];
 
         foreach ($sponsors as $sponsorData) {
             $sponsor = new Sponsor();
-            $sponsor->sponsor_type = $sponsorData['sponsor_type'];
-            $sponsor->sponsor_time = $sponsorData['sponsor_time'];
+            $sponsor->name = $sponsorData['name'];
+            $sponsor->time = $sponsorData['time'];
+            $sponsor->price = $sponsorData['price'];
             $sponsor->save();
         }
        }

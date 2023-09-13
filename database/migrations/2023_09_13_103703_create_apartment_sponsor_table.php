@@ -13,10 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('maps', function (Blueprint $table) {
+        Schema::create('apartment_sponsor', function (Blueprint $table) {
             $table->id();
-            $table->string('lat');
-            $table->string('lon');
+            $table->unsignedBigInteger('apartment_id');
+            $table->foreign('apartment_id')->references('id')->on('apartments');
+            $table->unsignedBigInteger('sponsor_id');
+            $table->foreign('sponsor_id')->references('id')->on('sponsors');
+            $table->date('start');
+            $table->date('end');
             $table->timestamps();
         });
     }
@@ -28,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('maps');
+        Schema::dropIfExists('apartment_sponsor');
     }
 };

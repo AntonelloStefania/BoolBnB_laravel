@@ -15,22 +15,18 @@ class Apartment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['n_rooms', 'n_wc' ,'mq', 'owner_id', 'type_id','sponsor_id','sponsor_start','sponsor_end','photo'];
+    protected $fillable = ['n_rooms', 'n_wc' ,'mq', 'user_id', 'type_id','cover','title','lat','long','address','price','visibility','description','slug'];
 
     public function type(){
         return $this->belongsTo(Type::class);
     }
-
-    public function map(){
-        return $this->belongsTo(Map::class);
-    }
-
+   
     public function sponsor()
     {
-        return $this->belongsTo(Sponsor::class);
+        return $this->belongsToMany(Sponsor::class);
     }
 
-    public function owner()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
@@ -42,5 +38,10 @@ class Apartment extends Model
     public function photos()
     {
         return $this->hasMany(Photo::class);
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
     }
 }

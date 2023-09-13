@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\SponsorController;
 use App\Http\Controllers\Admin\PhotoController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\GeoLocationController;
 
 
 
@@ -30,13 +31,13 @@ Route::get('/apartments', [ApartmentController::class, 'index'])->name('apartmen
 //     // Route::get('/', function () {
 //     //     return view('home');
 //     // });
-   
-//     Route::get('/', [ApartmentController::class, 'index']); 
+   Route::get('/', [ApartmentController::class, 'index']);  //<------SERVE PER ATTERRARE SULL'INDEX ALL'APERTURA DEL PROGETTO
 // });
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/get-coordinates', 'GeoLocationController@getCoordinates');
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function(){
     Route::get('/', [DashboardController::class,'index'])->name('dashboard');
     Route::resource('apartments', ApartmentController::class);
