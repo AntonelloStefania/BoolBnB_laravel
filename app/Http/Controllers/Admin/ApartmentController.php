@@ -61,7 +61,7 @@ class ApartmentController extends Controller
             $form_data['cover']=$path;
         }
         // dd($form_data);
-        $visibility = $request->has('visibility') ? 1 : 0;
+        // $visibility = $request->has('visibility') ? 1 : 0;
         $form_data['slug'] = Str::slug($form_data['title'],'-'); 
         $apartment->fill($form_data);
         $apartment->save();

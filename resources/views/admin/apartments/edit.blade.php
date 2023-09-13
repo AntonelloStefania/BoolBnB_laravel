@@ -18,16 +18,32 @@
              @method('PUT')
             <div class="col-12">
                 <input type="hidden" name="user_id" id="user_id" class="form-control"  value="{{ $user->id }}"> 
-                <div class="form-group "> 
-                    {{-- TIPOLOGIA APPARTAMENTO --}}
-                    <div class="">
-                        <label class="control-label fw-bold">Tipologia di alloggio</label>
-                        <select name="type_id" id="" class="form-control " style="width:12rem">
-                            @foreach($types as $type)
-                             <option value="{{$type->id}}">{{$type->name}}</option>
-                             @endforeach
-                        </select>
+                <div class="form-group my-4 d-flex justify-content-around my-5">
+                    <div class="d-flex align-items-center">
+                        <label class="control-label mb-2 fw-bold me-3">titolo</label>
+                        <input type="text" id="title" name="title" class="form-control">
                     </div>
+                </div> 
+                <div class="form-group my-4 d-flex justify-content-around my-5">
+                    <div class="d-flex align-items-center">
+                        <label class="control-label mb-2 fw-bold me-3">Prezzo</label>
+                        <input type="text" id="price" name="price" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group my-4 d-flex justify-content-around my-5">
+                    <div class="d-flex align-items-center">
+                        <label class="control-label mb-2 fw-bold me-3">visibilità</label>
+                       <span class="me-2">visibile</span> <input type="radio" id="visibility" name="visibility" value="1" class="me-3">
+                       <span class="me-2">invisibile</span> <input type="radio" id="visibility" name="visibility" value="0" class="me-3">
+                    </div>
+                </div>   
+                <div class="form-group my-4 d-flex justify-content-around my-5">
+                    <div class="d-flex align-items-center">
+                        <label class="control-label mb-2 fw-bold me-3">Indirizzo</label>
+                        <input type="ratio" id="address" name="address" class="form-control">
+                    </div>
+                </div>   
+               
                     {{-- METRI QUADRI APPARTAMENTO --}}
                     <div class=" ">
                       <label class="control-label fw-bold " for="name">Metri quadri alloggio: </label>

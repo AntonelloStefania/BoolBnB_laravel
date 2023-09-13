@@ -9,7 +9,6 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            
                             <th scope="col">Copertina</th>
                             <th scope="col">Titolo Annuncio</th>
                             <th scope="col">Indirizzo</th>

@@ -31,7 +31,8 @@
             <div class="form-group my-4 d-flex justify-content-around my-5">
                 <div class="d-flex align-items-center">
                     <label class="control-label mb-2 fw-bold me-3">visibilità</label>
-                    <input type="radio" id="visibility" name="visibility" value="1" >
+                   <span class="me-2">visibile</span> <input type="radio" id="visibility" name="visibility" value="1" class="me-3">
+                   <span class="me-2">invisibile</span> <input type="radio" id="visibility" name="visibility" value="0" class="me-3">
                 </div>
             </div>   
             <div class="form-group my-4 d-flex justify-content-around my-5">
@@ -42,33 +43,22 @@
             </div>   
            
              
-              <div class="form-group d-flex justify-content-around"> 
-                <div class="d-flex me-3">
-                    <label class="control-label fw-bold mb-2 me-2" for="name">Mq: </label>
-                    <input type="number" id="mq" name="mq" class="form-control">
-                </div>
-                <div class="d-flex me-3">
-                    <label class="control-label mb-2 fw-bold me-2">n° bagni: </label>
-                    <input type="number" id="n_wc" name="n_wc" class="form-control">
-                </div>
-
-           </div>
-           <div class="form-group my-4 d-flex justify-content-around my-5">
-               <div class="d-flex align-items-center">
-                   <label class="control-label mb-2 fw-bold me-3">n° stanze</label>
-                   <input type="number" id="n_rooms" name="n_rooms" class="form-control">
-               </div>
-           </div>  
-           <div class="form-group my-4 d-flex justify-content-around my-5">
-                <div class="d-flex align-items-center">
-                    <label class="control-label mb-2 fw-bold me-3">Type</label>
-                    <select name="type_id" id="">
-                        @foreach($types as $type)
-                         <option value="{{$type->id}}">{{$type->name}}</option>
-                         @endforeach
-                    </select>
-                </div>
-           </div>
+              
+                    {{-- METRI QUADRI APPARTAMENTO --}}
+                    <div class=" ">
+                        <label class="control-label fw-bold " for="name">Metri quadri alloggio: </label>
+                        <input type="number" id="mq" name="mq" class="form-control" style="width:4.25rem">
+                      </div>
+                      {{-- NUMERO BAGNI --}}
+                      <div class=" ">
+                          <label class="control-label fw-bold ">Numero di bagni: </label>
+                          <input type="number" id="n_wc" name="n_wc" class="form-control" style="width:4.25rem">
+                      </div>
+                      {{-- NUMERO STANZE --}}
+                      <div class=" ">
+                          <label class="control-label fw-bold ">Numero di stanze</label>
+                          <input type="number" id="n_rooms" name="n_rooms" class="form-control" style="width:4.25rem">
+                      </div>
            <div class="d-flex align-items-center">
                 <label class="control-label mb-2 fw-bold me-3">Servizi aggiuntivi</label>
                 @foreach($services as $service)
