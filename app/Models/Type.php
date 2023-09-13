@@ -19,7 +19,7 @@ class Type extends Model
         return $this->hasMany(Apartment::class);
     }
 
-    public static function generateSlug($title){
-        return Str::slug($title, '-');
+    public static function generateSlug($name){
+        return Str::slug($name, '-');
     }
 }

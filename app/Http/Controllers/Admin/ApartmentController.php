@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 use App\Models\Apartment;
 use App\Models\Service;
@@ -59,8 +60,9 @@ class ApartmentController extends Controller
             $path=Storage::put('apartment_photos',$request->cover);
             $form_data['cover']=$path;
         }
-
-        $form_data['slug'] = $apartment->generateSlug($form_data['title']); 
+        // dd($form_data);
+        $visibility = $request->has('visibility') ? 1 : 0;
+        $form_data['slug'] = Str::slug($form_data['title'],'-'); 
         $apartment->fill($form_data);
         $apartment->save();
         
@@ -140,7 +142,7 @@ class ApartmentController extends Controller
     public function destroy(Apartment $apartment)
     {
         Storage::delete($apartment->cover);
-
+        $apartment->services()->detach();
         $apartment->delete();
 
         return redirect()->route('admin.apartments.index');

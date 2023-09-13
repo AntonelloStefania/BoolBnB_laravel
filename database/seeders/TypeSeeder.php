@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Type;
+use Illuminate\Support\Str;
 
 class TypeSeeder extends Seeder
 {
@@ -19,7 +20,7 @@ class TypeSeeder extends Seeder
         foreach($types as $type){
             $name = new Type();
             $name->name = $type;
-            $type->slug = $type->generateSlug($type->name);
+            $name->slug = Str::slug($name->name);
             $name->save();
         }
     }

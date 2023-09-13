@@ -37,7 +37,7 @@ Route::get('/apartments', [ApartmentController::class, 'index'])->name('apartmen
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/get-coordinates', 'GeoLocationController@getCoordinates');
+
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function(){
     Route::get('/', [DashboardController::class,'index'])->name('dashboard');
     Route::resource('apartments', ApartmentController::class);

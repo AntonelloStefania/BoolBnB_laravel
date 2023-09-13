@@ -16,7 +16,31 @@
             @csrf
             {{-- id del proprietario --}}
             <input type="hidden" name="user_id" id="user_id" class="form-control"  value="{{ $user->id }}"> 
-          
+            <div class="form-group my-4 d-flex justify-content-around my-5">
+                <div class="d-flex align-items-center">
+                    <label class="control-label mb-2 fw-bold me-3">titolo</label>
+                    <input type="text" id="title" name="title" class="form-control">
+                </div>
+            </div> 
+            <div class="form-group my-4 d-flex justify-content-around my-5">
+                <div class="d-flex align-items-center">
+                    <label class="control-label mb-2 fw-bold me-3">Prezzo</label>
+                    <input type="text" id="price" name="price" class="form-control">
+                </div>
+            </div>
+            <div class="form-group my-4 d-flex justify-content-around my-5">
+                <div class="d-flex align-items-center">
+                    <label class="control-label mb-2 fw-bold me-3">visibilità</label>
+                    <input type="radio" id="visibility" name="visibility" value="1" >
+                </div>
+            </div>   
+            <div class="form-group my-4 d-flex justify-content-around my-5">
+                <div class="d-flex align-items-center">
+                    <label class="control-label mb-2 fw-bold me-3">Indirizzo</label>
+                    <input type="ratio" id="address" name="address" class="form-control">
+                </div>
+            </div>   
+           
              
               <div class="form-group d-flex justify-content-around"> 
                 <div class="d-flex me-3">
