@@ -18,7 +18,7 @@ class TypeSeeder extends Seeder
         $types = ['appartamento', 'villa monofamiliare','casa a sbarre', 'casa a schiera', 'attico', 'chalet', 'bungalow', 'storica', 'loft'];
         foreach($types as $type){
             $name = new Type();
-            $name->type = $type;
+            $name->name = $type;
             $name->save();
         }
     }
