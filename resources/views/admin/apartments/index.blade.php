@@ -12,6 +12,7 @@
                             <th scope="col">Copertina</th>
                             <th scope="col">Titolo Annuncio</th>
                             <th scope="col">Indirizzo</th>
+                            <th scope="col">Tipologia</th>
                             <th scope="col">Prezzo pernottamento</th>
                             <th scope="col">Modifica</th>
                             <th scope="col">Mostra altro</th>
@@ -25,6 +26,7 @@
                             <td><img src="{{ asset('storage/'.$apartment->cover) }} " alt="" width="60px"></td>
                             <td>{{$apartment->title}}</td>
                             <td>{{$apartment->address}}</td>
+                            <td class="d-flex flex-column align-items-center"><img src="{{$apartment->type->icons}}" width="25px" alt=""><span style="font-size:10px">{{$apartment->type->name}}</span></td>
                             <td>{{$apartment->price}}€</td>
                             <td><a href="{{route('admin.apartments.edit', $apartment->id)}}" class="btn btn-warning btn-sm"><i class="fas fa-pencil"></i></a></td>
                             <td><a href="{{route('admin.apartments.show', $apartment->id)}}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a></td>
