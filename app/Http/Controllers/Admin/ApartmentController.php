@@ -55,17 +55,17 @@ class ApartmentController extends Controller
     {
         $form_data = $request->all();
         $apartment = new Apartment();
-        if($request->hasFile('photo')){
-            $path=Storage::put('apartment_photos',$request->photo);
-            $form_data['photo']=$path;
+        if($request->hasFile('cover')){
+            $path=Storage::put('apartment_photos',$request->cover);
+            $form_data['cover']=$path;
         }
 
         $form_data['slug'] = $apartment->generateSlug($form_data['title']); 
         $apartment->fill($form_data);
         $apartment->save();
         
-        if($request->has('service_1')){
-            $apartment->services()->attach($request->service_1);
+        if($request->has('name')){
+            $apartment->services()->attach($request->name);
         }
         return redirect()->route('admin.apartments.index');
     }
@@ -110,22 +110,22 @@ class ApartmentController extends Controller
     {
         $form_data = $request->all(); 
 
-        if($request->hasFile('photo')){
-            if($apartment->photo){
-                Storage::delete($apartment->photo);
+        if($request->hasFile('cover')){
+            if($apartment->cover){
+                Storage::delete($apartment->cover);
             }
 
-            $path = Storage::put('apartment_photos', $request->photo);
+            $path = Storage::put('apartment_photos', $request->cover);
 
-            $form_data['photo'] = $path;
+            $form_data['cover'] = $path;
         }
 
         $form_data['slug'] = $apartment->generateSlug($form_data['title']); 
         $apartment->update($form_data);
         $apartment->save();
 
-        if($request->has('service_1')){
-            $apartment->services()->sync($request->service_1);
+        if($request->has('name')){
+            $apartment->services()->sync($request->name);
         }
 
         return redirect()->route('admin.apartments.index');
@@ -139,7 +139,7 @@ class ApartmentController extends Controller
      */
     public function destroy(Apartment $apartment)
     {
-        Storage::delete($apartment->photo);
+        Storage::delete($apartment->cover);
 
         $apartment->delete();
 

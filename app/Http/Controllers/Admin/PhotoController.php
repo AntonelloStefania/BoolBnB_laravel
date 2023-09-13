@@ -48,13 +48,13 @@ class PhotoController extends Controller
         $form_data = $request->all();
         $apartment = Apartment::findOrFail($apartmentId);
         
-        foreach($form_data['photo_1'] as $file){
+        foreach($form_data['url'] as $file){
         $photo = new Photo();
 
-        if ($request->hasFile('photo_1')) {
-            // $path = Storage::put('apartment_photos', $request->photo_1);
+        if ($request->hasFile('url')) {
+            // $path = Storage::put('apartment_photos', $request->url);
             $path = $file->store('apartment_photos');
-            $form_data['photo_1'] = $path;
+            $form_data['url'] = $path;
         }
         
         $photo->fill($form_data);
@@ -96,9 +96,9 @@ class PhotoController extends Controller
     public function update(Request $request, $id,Photo $photo)
     {
        $form_data=$request->all();
-       if ($request->hasFile('photo_1')) {
-        $path = Storage::put('apartment_photos', $request->photo_1);
-        $form_data['photo_1'] = $path;
+       if ($request->hasFile('url')) {
+        $path = Storage::put('apartment_photos', $request->url);
+        $form_data['url'] = $path;
         }
 
         $photo->update($form_data);
