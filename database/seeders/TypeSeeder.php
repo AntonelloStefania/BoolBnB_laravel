@@ -19,6 +19,7 @@ class TypeSeeder extends Seeder
         foreach($types as $type){
             $name = new Type();
             $name->name = $type;
+            $type->slug = $type->generateSlug($type->name);
             $name->save();
         }
     }
