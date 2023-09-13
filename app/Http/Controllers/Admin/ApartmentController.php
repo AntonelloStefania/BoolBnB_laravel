@@ -60,7 +60,7 @@ class ApartmentController extends Controller
             $form_data['photo']=$path;
         }
 
-        
+        $form_data['slug'] = $apartment->generateSlug($form_data['title']); 
         $apartment->fill($form_data);
         $apartment->save();
         
@@ -120,7 +120,7 @@ class ApartmentController extends Controller
             $form_data['photo'] = $path;
         }
 
-        
+        $form_data['slug'] = $apartment->generateSlug($form_data['title']); 
         $apartment->update($form_data);
         $apartment->save();
 
