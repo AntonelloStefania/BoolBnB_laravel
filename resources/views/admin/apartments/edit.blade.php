@@ -4,48 +4,52 @@
 
 <div class="container">
    <div class="my-4 d-flex justify-content-start">
-      <a href="{{route('admin.dashboard')}}" class="btn btn-sm back-button"><i class="fa-regular fa-circle-left fa-l me-2" style="color: #ad4e1a;"></i>Dashboard</a>
+      <a href="{{route('admin.apartments.index')}}" class="btn btn-sm back-button"><i class="fa-regular fa-circle-left fa-l me-2" style="color: #161616;"></i>Torna agli annunci</a>
   </div>
    <div class="row">
       <div class="col my-4 text-center">
-         <h2 class="">Add <span style="color: #1f615f">Pet</span><i class="fas fa-paw ms-2 " style="color: #1f615f"></i> Record</h2>
+         <h2 class="">Aggiungi un nuovo annuncio</h2>
      </div>
       
        <div class="col-12">
-          <form action="{{ route('admin.apartments.update', $apartment->id) }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-            {{-- id del proprietario --}}
-            <input type="hidden" name="user_id" id="user_id" class="form-control"  value="{{ $user->id }}"> 
+            <h2>Caratteristiche alloggio</h2>
+           <form action="{{ route('admin.apartments.update', $apartment->id) }}" method="POST" enctype="multipart/form-data">
+             @csrf
+             @method('PUT')
+            <div class="col-12">
+                <input type="hidden" name="user_id" id="user_id" class="form-control"  value="{{ $user->id }}"> 
+                <div class="form-group "> 
+                    {{-- TIPOLOGIA APPARTAMENTO --}}
+                    <div class="">
+                        <label class="control-label fw-bold">Tipologia di alloggio</label>
+                        <select name="type_id" id="" class="form-control " style="width:12rem">
+                            @foreach($types as $type)
+                             <option value="{{$type->id}}">{{$type->name}}</option>
+                             @endforeach
+                        </select>
+                    </div>
+                    {{-- METRI QUADRI APPARTAMENTO --}}
+                    <div class=" ">
+                      <label class="control-label fw-bold " for="name">Metri quadri alloggio: </label>
+                      <input type="number" id="mq" name="mq" class="form-control" style="width:4.25rem">
+                    </div>
+                    {{-- NUMERO BAGNI --}}
+                    <div class=" ">
+                        <label class="control-label fw-bold ">Numero di bagni: </label>
+                        <input type="number" id="n_wc" name="n_wc" class="form-control" style="width:4.25rem">
+                    </div>
+                    {{-- NUMERO STANZE --}}
+                    <div class=" ">
+                        <label class="control-label fw-bold ">Numero di stanze</label>
+                        <input type="number" id="n_rooms" name="n_rooms" class="form-control" style="width:4.25rem">
+                    </div>
+                </div>  
+            </div>
           
-             
-              <div class="form-group d-flex justify-content-around"> 
-                <div class="d-flex me-3">
-                    <label class="control-label fw-bold mb-2 me-2" for="name">Mq: </label>
-                    <input type="number" id="mq" name="mq" class="form-control">
-                </div>
-                <div class="d-flex me-3">
-                    <label class="control-label mb-2 fw-bold me-2">n° bagni: </label>
-                    <input type="number" id="n_wc" name="n_wc" class="form-control">
-                </div>
 
-           </div>
-           <div class="form-group my-4 d-flex justify-content-around my-5">
-               <div class="d-flex align-items-center">
-                   <label class="control-label mb-2 fw-bold me-3">n° stanze</label>
-                   <input type="number" id="n_rooms" name="n_rooms" class="form-control">
-               </div>
-           </div>  
-           <div class="form-group my-4 d-flex justify-content-around my-5">
-                <div class="d-flex align-items-center">
-                    <label class="control-label mb-2 fw-bold me-3">Type</label>
-                    <select name="type_id" id="">
-                        @foreach($types as $type)
-                         <option value="{{$type->id}}">{{$type->name}}</option>
-                         @endforeach
-                    </select>
-                </div>
-           </div>
+           
+           
+           
            <div class="d-flex align-items-center">
             <label class="control-label mb-2 fw-bold me-3">Servizi aggiuntivi</label>
                 @foreach($services as $service)
@@ -80,3 +84,6 @@
 
 @endsection
 
+<script lang="scss">
+
+</script>
