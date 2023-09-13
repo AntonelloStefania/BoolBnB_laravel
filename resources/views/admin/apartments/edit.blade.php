@@ -16,7 +16,7 @@
             @csrf
             @method('PUT')
             {{-- id del proprietario --}}
-            <input type="hidden" name="owner_id" id="owner_id" class="form-control"  value="{{ $user->id }}"> 
+            <input type="hidden" name="user_id" id="user_id" class="form-control"  value="{{ $user->id }}"> 
           
              
               <div class="form-group d-flex justify-content-around"> 
@@ -41,7 +41,7 @@
                     <label class="control-label mb-2 fw-bold me-3">Type</label>
                     <select name="type_id" id="">
                         @foreach($types as $type)
-                         <option value="{{$type->id}}">{{$type->type}}</option>
+                         <option value="{{$type->id}}">{{$type->name}}</option>
                          @endforeach
                     </select>
                 </div>
@@ -49,8 +49,8 @@
            <div class="d-flex align-items-center">
             <label class="control-label mb-2 fw-bold me-3">Servizi aggiuntivi</label>
                 @foreach($services as $service)
-                    <input class="form-check-input" type="checkbox" role="switch" name="service_1[]" value="{{$service->id}}" id="flexSwitchCheckDefault">
-                    <label class="form-check-label" for="flexSwitchCheckDefault">{{$service->service_1}}</label>
+                    <input class="form-check-input" type="checkbox" role="switch" name="name[]" value="{{$service->id}}" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">{{$service->name}}</label>
                 @endforeach
             </div>
            <div class="form-group my-4 d-flex justify-content-around my-5">
@@ -58,13 +58,13 @@
                 <label class="control-label mb-2 fw-bold me-3">Sponsor</label>
                 <select name="sponsor_id" id="">
                     @foreach($sponsors as $sponsor)
-                     <option value="{{$sponsor->id}}">{{$sponsor->sponsor_type}} - {{$sponsor->sponsor_time}}</option>
+                     <option value="{{$sponsor->id}}">{{$sponsor->name}} - {{$sponsor->time}}</option>
                      @endforeach
                 </select>
             </div>
             <div class="d-flex align-items-center">
                 <label class="control-label mb-2 fw-bold me-3">Photos</label>
-                <input type="file" name="photo" id="photo">
+                <input type="file" name="cover" id="cover">
             </div>
             <button class="btn btn-success" type="submit">Submit</button>
         </div>
