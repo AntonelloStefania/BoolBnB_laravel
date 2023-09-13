@@ -28,10 +28,10 @@ Route::get('/apartments/{apartment}', [ApartmentController::class, 'show'])->nam
 Route::get('/apartments', [ApartmentController::class, 'index'])->name('apartments.index');
 // Route::group([], function () {
 //     // Inserisci qui le tue route
-//     // Route::get('/', function () {
-//     //     return view('home');
-//     // });
-   Route::get('/', [ApartmentController::class, 'index']);  //<------SERVE PER ATTERRARE SULL'INDEX ALL'APERTURA DEL PROGETTO
+      Route::get('/', function () {
+          return view('home');
+      });
+  // Route::get('/', [ApartmentController::class, 'index']);  //<------SERVE PER ATTERRARE SULL'INDEX ALL'APERTURA DEL PROGETTO
 // });
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

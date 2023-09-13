@@ -44,12 +44,9 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            @auth
+                            
                             <a class="nav-link" href="{{route('admin.apartments.index')}}">Home</a>
-                            @endauth
-                            @guest
-                            <a class="nav-link" href="{{route('apartments.index')}}">Home</a>
-                            @endguest
+          
                         </li>
                     </ul>
 
@@ -74,9 +71,9 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{  route('admin.dashboard')  }}">{{__('Dashboard')}}</a>
                                 <a class="dropdown-item" href="{{ url('profile') }}">{{__('Profile')}}</a>
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                <a class="dropdown-item" href="http://localhost:5174/" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    Logout
                                 </a>
                                 <a href="{{route('admin.apartments.create')}}" class="dropdown-item">Create</a>
                                 <a href="{{route('admin.apartments.index')}}" class="dropdown-item">index</a>

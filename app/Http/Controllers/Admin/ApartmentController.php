@@ -26,9 +26,18 @@ class ApartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $apartments= Apartment::all();
-        return view('admin.apartments.index', compact('apartments'));
+    {   
+        if (Auth::check()){
+            $userId = Auth::id();
+            $apartments= Apartment::where('user_id', $userId)->get();
+
+            if(!$apartments->isEmpty()){
+                return view('admin.apartments.index', compact('apartments'));
+            }
+        }
+            $apartments= Apartment::all();
+            return view('admin.apartments.index', compact('apartments'));
+       
     }
 
     /**

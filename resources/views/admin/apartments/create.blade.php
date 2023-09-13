@@ -42,6 +42,15 @@
                 </div>
             </div>   
            
+                {{-- TIPOLOGIA APPARTAMENTO --}}
+                <div class="">
+                    <label class="control-label fw-bold">Tipologia di alloggio</label>
+                    <select name="type_id" id="" class="form-control " style="width:12rem">
+                        @foreach($types as $type)
+                         <option value="{{$type->id}}">{{$type->name}}</option>
+                         @endforeach
+                    </select>
+                </div>
              
               
                     {{-- METRI QUADRI APPARTAMENTO --}}
