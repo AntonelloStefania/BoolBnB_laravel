@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use App\Models\Sponsor;
 use App\Models\Type;
 use App\Models\User;
@@ -43,5 +44,9 @@ class Apartment extends Model
     public function messages()
     {
         return $this->hasMany(Message::class);
+    }
+
+    public static function generateSlug($title){
+        return Str::slug($title, '-');
     }
 }

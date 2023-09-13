@@ -7,6 +7,7 @@ use App\Http\Requests\StoreTypeRequest;
 use App\Http\Requests\UpdateTypeRequest;
 use Illuminate\Http\Request;
 use App\Models\Type;
+use App\Models\Apartment;
 
 class TypeController extends Controller
 {
@@ -38,7 +39,15 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $form_data = $request->all();
+        
+
+        $form_data['slug'] = $apartment->generateSlug($form_data['name']); 
+        $type->fill($form_data);
+        $type->save();
+        
+        return redirect()->route('admin.apartments.index');
+        
     }
 
     /**
@@ -72,7 +81,14 @@ class TypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $form_data = $request->all(); 
+
+
+        $form_data['slug'] = $apartment->generateSlug($form_data['name']); 
+        $type->update($form_data);
+        $type->save();
+
+        return redirect()->route('admin.apartments.index');
     }
 
     /**
