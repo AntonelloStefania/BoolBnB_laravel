@@ -33,6 +33,8 @@ class ApartmentController extends Controller
 
             if(!$apartments->isEmpty()){
                 return view('admin.apartments.index', compact('apartments'));
+            }else{
+                return view('home');
             }
         }
             $apartments= Apartment::all();
