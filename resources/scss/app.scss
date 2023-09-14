@@ -1,2 +1,12 @@
 @import '~bootstrap/scss/bootstrap';
 @import '/node_modules/@fortawesome/fontawesome-free/css/all.min.css';
+
+.change-cursor {
+    cursor: pointer;
+}
+
+.change-cursor:hover {
+    background-color: rgba(94, 94, 94, 0.425);
+    border-radius: 5rem;
+
+}
