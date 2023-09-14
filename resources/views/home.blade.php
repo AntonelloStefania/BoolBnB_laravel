@@ -1,52 +1,131 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="jumbotron p-5 mb-4 bg-light rounded-3">
-    <div class="container py-5">
+<div>
+    <a href="http://localhost:5174/" class="btn btn-success">Torna agli annunci</a>
+</div>
+@guest
+<div class="jumbotron p-5  bg-beige rounded-3">
+    <div class="container ">
         
-        <div>
-            <a href="http://localhost:5174/" class="btn btn-success">Torna agli annunci</a>
-        </div>
-        @guest
-        <div class="col-6 offset-3">
-            <h1>
-                Benvenuti su BoolBnB - Scopri il Tuo Rifugio Perfetto!
+        <div class="col-12 home-text ">
+            <h1 class="text-center">
+                Benvenuto su <span class="brand">BoolBnB</span>: La Tua Porta di Accesso alle Avventure!
             </h1>
-            <p>BoolBnB è il luogo ideale per iniziare il tuo viaggio alla scoperta di alloggi unici in tutto il mondo. Con una vasta selezione di opzioni per il tuo soggiorno, dalla tranquillità di una casa rurale alla comodità di un appartamento nel cuore della città, BoolBnB è qui per offrirti un'esperienza di viaggio senza pari.
-
-                Siamo appassionati di offrire una varietà di alloggi straordinari che si adattano alle tue esigenze, al tuo stile e al tuo budget. Che tu stia pianificando una fuga romantica, una vacanza in famiglia o un viaggio d'affari, troverai sicuramente la soluzione perfetta su BoolBnB.
-                
-                I nostri alloggi sono accuratamente selezionati per garantire comfort, autenticità e un'ospitalità eccezionale. Ogni soggiorno su BoolBnB è un'opportunità per creare ricordi indimenticabili in luoghi straordinari.
-                
-                Esplora il nostro sito, prenota con facilità e preparati a vivere un'esperienza di viaggio senza paragoni. BoolBnB è qui per farti sentire a casa, ovunque tu vada. Scegli il tuo destino e inizia a creare ricordi straordinari con noi.
+            <p class="text-center">
+                Sei pronto a intraprendere un viaggio straordinario alla scoperta del mondo? Benvenuto su <span class="brand">BoolBnB</span>, la tua piattaforma di viaggio di fiducia che ti apre le porte a un'ampia varietà di avventure uniche e indimenticabili. Prima di iniziare questo emozionante percorso, permettici di condividere con te un assaggio di ciò che puoi aspettarti.            
             </p>
+            <div class="col-12 d-flex flex-column flex-lg-row justify-content-around my-5 home-text">
+                <div class="col-12 col-md-8 mt-md-4 col-lg-6 align-self-center text-center text-lg-start">
+                    <h2 class="mb-3">Ospitalità Autentica</h2>
+                    <p>
+                        Prenotando con <span class="brand">BoolBnB</span>, non stai solo cercando un luogo dove riposare la testa. Stai cercando un'esperienza autentica, un'opportunità di immergerti nella cultura locale e di incontrare persone straordinarie. I nostri host sono appassionati di condividere le loro case e le loro storie con gli ospiti, rendendo ogni soggiorno un'esperienza unica e indimenticabile.
+                    </p>
+                </div>
+                <div class="col-12 col-md-auto d-flex justify-content-center">
+                    <img src="{{asset('homepage_3.jpg')}}" class="home-img " alt="">
+                </div>
+            </div>
           
         </div>
-        @endguest
+    </div>
+</div>
 
-        @auth
-        <div class="col-6 offset-3">
-            <h1>
-                Condividi il Tuo Spazio, Guadagna di Più!
-            </h1>
-            <div>
-                <p>
-                    Se hai un appartamento, una casa, una stanza in più o qualsiasi altra proprietà che potresti mettere in affitto, è il momento ideale per farlo con BoolBnB. Offriamo un modo semplice e sicuro per monetizzare il tuo spazio extra e iniziare a guadagnare. 
-                </p>
+<div class="jumbotron p-5 rounded-3">
+    <div class="container ">
+        
+        <div class="col-12">
+            <div class="col-12 d-flex flex-column flex-lg-row justify-content-around my-5 home-text">
+                <div class="col-12 col-md-auto d-flex justify-content-center">
+                    <img src="{{asset('home_5.jpg')}}" class="home-img " alt="">
+                </div>
+                <div class="col-12 col-md-8 mt-md-4 col-lg-6 align-self-center text-center text-lg-start">
+                    <h2 class="mb-3">Una Vasta Scelta di Alloggi</h2>
+                    <p>
+                        <span class="brand">BoolBnB</span> ti offre accesso a una vasta selezione di alloggi in tutto il mondo, ciascuno con la sua personalità e storia uniche. Che tu stia cercando un'accogliente casa vacanza, un appartamento di lusso, una romantica casa galleggiante o persino un avventuroso camper, su BoolBnB troverai sempre il posto perfetto per il tuo soggiorno. Siamo qui per rendere i tuoi sogni di viaggio una realtà.
+                    </p>
+                </div>
             </div>
-            <div>
-               <p>
-                Con BoolBnB, mettere in affitto il tuo alloggio è facile e conveniente. Inizia oggi stesso a condividere il tuo spazio con viaggiatori in cerca di esperienze autentiche. Un mondo di opportunità ti aspetta.
-               </p>
-            </div>
-            <div style="width:50px">
-                <svg id="l_d_2230" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 45 45" width="45" height="45" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%; transform: translate3d(0px, 0px, 0px); content-visibility: visible;"><defs id="l_d_2231"><clipPath id="__lottie_element_1013"><rect id="l_d_2234" width="45" height="45" x="0" y="0"></rect></clipPath></defs><g id="l_d_2232" clip-path="url(#__lottie_element_1013)"><g id="l_d_2240" transform="matrix(1,0,0,1,2,8.5)" opacity="1" style="display: block;"><g id="l_d_2244" opacity="1" transform="matrix(1,0,0,1,14,14)"><path id="l_d_2245" fill="rgb(34,34,34)" fill-opacity="1" d=" M12,-9 C12,-9 4,-9 4,-9 C4,-9 4,-12 4,-12 C3.999000072479248,-12.529999732971191 3.7880001068115234,-13.038999557495117 3.4130001068115234,-13.413999557495117 C3.0390000343322754,-13.788000106811523 2.5299999713897705,-13.99899959564209 2,-14 C2,-14 -12,-14 -12,-14 C-12.529999732971191,-13.99899959564209 -13.038999557495117,-13.788999557495117 -13.413999557495117,-13.413999557495117 C-13.788999557495117,-13.038999557495117 -13.99899959564209,-12.529999732971191 -14,-12 C-14,-12 -14,12 -14,12 C-13.99899959564209,12.529999732971191 -13.788000106811523,13.038999557495117 -13.413999557495117,13.413000106811523 C-13.038999557495117,13.788000106811523 -12.529999732971191,13.99899959564209 -12,14 C-12,14 12,14 12,14 C12.529999732971191,13.99899959564209 13.038000106811523,13.788000106811523 13.413000106811523,13.413000106811523 C13.788000106811523,13.038000106811523 13.99899959564209,12.529999732971191 14,12 C14,12 14,-7 14,-7 C13.99899959564209,-7.53000020980835 13.788000106811523,-8.038999557495117 13.413000106811523,-8.413999557495117 C13.038999557495117,-8.788000106811523 12.529999732971191,-8.99899959564209 12,-9z M-3,12 C-3,12 -7,12 -7,12 C-7,12 -7,7 -7,7 C-7,7 -3,7 -3,7 C-3,7 -3,12 -3,12z M2,12 C2,12 -1,12 -1,12 C-1,12 -1,7 -1,7 C-1.0010000467300415,6.46999979019165 -1.2120000123977661,5.960999965667725 -1.5870000123977661,5.586999893188477 C-1.9609999656677246,5.211999893188477 -2.4700000286102295,5.000999927520752 -3,5 C-3,5 -7,5 -7,5 C-7.53000020980835,5.000999927520752 -8.038999557495117,5.211999893188477 -8.413999557495117,5.586999893188477 C-8.788000106811523,5.960999965667725 -8.99899959564209,6.46999979019165 -9,7 C-9,7 -9,12 -9,12 C-9,12 -12,12 -12,12 C-12,12 -12.00100040435791,-12 -12.00100040435791,-12 C-12.00100040435791,-12 2,-12 2,-12 C2,-12 2,12 2,12z M12,12 C12,12 4,12 4,12 C4,12 4,-7 4,-7 C4,-7 12,-7 12,-7 C12,-7 12,12 12,12z M9,0 C9,0.1979999989271164 8.940999984741211,0.39100000262260437 8.831000328063965,0.5559999942779541 C8.722000122070312,0.7200000286102295 8.5649995803833,0.8479999899864197 8.383000373840332,0.9240000247955322 C8.199999809265137,1 7.999000072479248,1.0190000534057617 7.804999828338623,0.9810000061988831 C7.611000061035156,0.9419999718666077 7.433000087738037,0.847000002861023 7.293000221252441,0.7070000171661377 C7.1529998779296875,0.5669999718666077 7.058000087738037,0.3889999985694885 7.019000053405762,0.19499999284744263 C6.980999946594238,0.0010000000474974513 7,-0.20000000298023224 7.076000213623047,-0.382999986410141 C7.1519999504089355,-0.5649999976158142 7.28000020980835,-0.722000002861023 7.443999767303467,-0.8309999704360962 C7.609000205993652,-0.9409999847412109 7.802000045776367,-1 8,-1 C8.265000343322754,-1 8.520000457763672,-0.8949999809265137 8.706999778747559,-0.7070000171661377 C8.895000457763672,-0.5199999809265137 9,-0.26499998569488525 9,0z M7,-4 C7,-4.197999954223633 7.059000015258789,-4.390999794006348 7.169000148773193,-4.556000232696533 C7.2779998779296875,-4.71999979019165 7.434999942779541,-4.8480000495910645 7.617000102996826,-4.923999786376953 C7.800000190734863,-5 8.00100040435791,-5.019000053405762 8.194999694824219,-4.980999946594238 C8.388999938964844,-4.941999912261963 8.567000389099121,-4.8470001220703125 8.706999778747559,-4.706999778747559 C8.847000122070312,-4.566999912261963 8.942000389099121,-4.388999938964844 8.980999946594238,-4.195000171661377 C9.019000053405762,-4.000999927520752 9,-3.799999952316284 8.923999786376953,-3.617000102996826 C8.847999572753906,-3.434999942779541 8.720000267028809,-3.2780001163482666 8.555999755859375,-3.1689999103546143 C8.390999794006348,-3.059000015258789 8.197999954223633,-3 8,-3 C7.735000133514404,-3 7.480000019073486,-3.1050000190734863 7.293000221252441,-3.2929999828338623 C7.105000019073486,-3.4800000190734863 7,-3.734999895095825 7,-4z M-1,0 C-1,0.1979999989271164 -1.059000015258789,0.39100000262260437 -1.1690000295639038,0.5559999942779541 C-1.277999997138977,0.7200000286102295 -1.434999942779541,0.8479999899864197 -1.6169999837875366,0.9240000247955322 C-1.7999999523162842,1 -2.000999927520752,1.0190000534057617 -2.194999933242798,0.9810000061988831 C-2.3889999389648438,0.9419999718666077 -2.566999912261963,0.847000002861023 -2.7070000171661377,0.7070000171661377 C-2.8469998836517334,0.5669999718666077 -2.941999912261963,0.3889999985694885 -2.9809999465942383,0.19499999284744263 C-3.0190000534057617,0.0010000000474974513 -3,-0.20000000298023224 -2.9240000247955322,-0.382999986410141 C-2.8480000495910645,-0.5649999976158142 -2.7200000286102295,-0.722000002861023 -2.555999994277954,-0.8309999704360962 C-2.3910000324249268,-0.9409999847412109 -2.197999954223633,-1 -2,-1 C-1.7350000143051147,-1 -1.4800000190734863,-0.8949999809265137 -1.2929999828338623,-0.7070000171661377 C-1.1050000190734863,-0.5199999809265137 -1,-0.26499998569488525 -1,0z M-1,-4 C-1,-3.802000045776367 -1.059000015258789,-3.6089999675750732 -1.1690000295639038,-3.444000005722046 C-1.277999997138977,-3.2799999713897705 -1.434999942779541,-3.1519999504089355 -1.6169999837875366,-3.0759999752044678 C-1.7999999523162842,-3 -2.000999927520752,-2.9809999465942383 -2.194999933242798,-3.0190000534057617 C-2.3889999389648438,-3.058000087738037 -2.566999912261963,-3.1530001163482666 -2.7070000171661377,-3.2929999828338623 C-2.8469998836517334,-3.433000087738037 -2.941999912261963,-3.6110000610351562 -2.9809999465942383,-3.805000066757202 C-3.0190000534057617,-3.999000072479248 -3,-4.199999809265137 -2.9240000247955322,-4.382999897003174 C-2.8480000495910645,-4.565000057220459 -2.7200000286102295,-4.7220001220703125 -2.555999994277954,-4.830999851226807 C-2.3910000324249268,-4.940999984741211 -2.197999954223633,-5 -2,-5 C-1.7350000143051147,-5 -1.4800000190734863,-4.894999980926514 -1.2929999828338623,-4.706999778747559 C-1.1050000190734863,-4.519999980926514 -1,-4.264999866485596 -1,-4z M-1,-8 C-1,-7.802000045776367 -1.059000015258789,-7.609000205993652 -1.1690000295639038,-7.443999767303467 C-1.277999997138977,-7.28000020980835 -1.434999942779541,-7.1519999504089355 -1.6169999837875366,-7.076000213623047 C-1.7999999523162842,-7 -2.000999927520752,-6.980999946594238 -2.194999933242798,-7.019000053405762 C-2.3889999389648438,-7.058000087738037 -2.566999912261963,-7.1529998779296875 -2.7070000171661377,-7.293000221252441 C-2.8469998836517334,-7.433000087738037 -2.941999912261963,-7.611000061035156 -2.9809999465942383,-7.804999828338623 C-3.0190000534057617,-7.999000072479248 -3,-8.199999809265137 -2.9240000247955322,-8.383000373840332 C-2.8480000495910645,-8.5649995803833 -2.7200000286102295,-8.722000122070312 -2.555999994277954,-8.831000328063965 C-2.3910000324249268,-8.940999984741211 -2.197999954223633,-9 -2,-9 C-1.7350000143051147,-9 -1.4800000190734863,-8.895000457763672 -1.2929999828338623,-8.706999778747559 C-1.1050000190734863,-8.520000457763672 -1,-8.265000343322754 -1,-8z M-7,0 C-7,0.1979999989271164 -7.059000015258789,0.39100000262260437 -7.169000148773193,0.5559999942779541 C-7.2779998779296875,0.7200000286102295 -7.434999942779541,0.8479999899864197 -7.617000102996826,0.9240000247955322 C-7.800000190734863,1 -8.00100040435791,1.0190000534057617 -8.194999694824219,0.9810000061988831 C-8.388999938964844,0.9419999718666077 -8.567000389099121,0.847000002861023 -8.706999778747559,0.7070000171661377 C-8.847000122070312,0.5669999718666077 -8.942000389099121,0.3889999985694885 -8.980999946594238,0.19499999284744263 C-9.019000053405762,0.0010000000474974513 -9,-0.20000000298023224 -8.923999786376953,-0.382999986410141 C-8.847999572753906,-0.5649999976158142 -8.720000267028809,-0.722000002861023 -8.555999755859375,-0.8309999704360962 C-8.390999794006348,-0.9409999847412109 -8.197999954223633,-1 -8,-1 C-7.735000133514404,-1 -7.480000019073486,-0.8949999809265137 -7.293000221252441,-0.7070000171661377 C-7.105000019073486,-0.5199999809265137 -7,-0.26499998569488525 -7,0z M-7,-4 C-7,-3.802000045776367 -7.059000015258789,-3.6089999675750732 -7.169000148773193,-3.444000005722046 C-7.2779998779296875,-3.2799999713897705 -7.434999942779541,-3.1519999504089355 -7.617000102996826,-3.0759999752044678 C-7.800000190734863,-3 -8.00100040435791,-2.9809999465942383 -8.194999694824219,-3.0190000534057617 C-8.388999938964844,-3.058000087738037 -8.567000389099121,-3.1530001163482666 -8.706999778747559,-3.2929999828338623 C-8.847000122070312,-3.433000087738037 -8.942000389099121,-3.6110000610351562 -8.980999946594238,-3.805000066757202 C-9.019000053405762,-3.999000072479248 -9,-4.199999809265137 -8.923999786376953,-4.382999897003174 C-8.847999572753906,-4.565000057220459 -8.720000267028809,-4.7220001220703125 -8.555999755859375,-4.830999851226807 C-8.390999794006348,-4.940999984741211 -8.197999954223633,-5 -8,-5 C-7.735000133514404,-5 -7.480000019073486,-4.894999980926514 -7.293000221252441,-4.706999778747559 C-7.105000019073486,-4.519999980926514 -7,-4.264999866485596 -7,-4z M-7,-8 C-7,-7.802000045776367 -7.059000015258789,-7.609000205993652 -7.169000148773193,-7.443999767303467 C-7.2779998779296875,-7.28000020980835 -7.434999942779541,-7.1519999504089355 -7.617000102996826,-7.076000213623047 C-7.800000190734863,-7 -8.00100040435791,-6.980999946594238 -8.194999694824219,-7.019000053405762 C-8.388999938964844,-7.058000087738037 -8.567000389099121,-7.1529998779296875 -8.706999778747559,-7.293000221252441 C-8.847000122070312,-7.433000087738037 -8.942000389099121,-7.611000061035156 -8.980999946594238,-7.804999828338623 C-9.019000053405762,-7.999000072479248 -9,-8.199999809265137 -8.923999786376953,-8.383000373840332 C-8.847999572753906,-8.5649995803833 -8.720000267028809,-8.722000122070312 -8.555999755859375,-8.831000328063965 C-8.390999794006348,-8.940999984741211 -8.197999954223633,-9 -8,-9 C-7.735000133514404,-9 -7.480000019073486,-8.895000457763672 -7.293000221252441,-8.706999778747559 C-7.105000019073486,-8.520000457763672 -7,-8.265000343322754 -7,-8z"></path></g></g><g id="l_d_2235" style="display: none;"><rect id="l_d_2239" width="120" height="120" fill="#ffffff"></rect></g></g></svg>
-            </div>
+          
+        </div>
+        
+    </div>
+</div>
 
+<div class="jumbotron p-5 rounded-3 bg-beige">
+    <div class="container ">
+        
+        <div class="col-12">
+            <div class="col-12 d-flex flex-column flex-lg-row justify-content-around my-5 home-text">
+                <div class="col-12 col-md-8 mt-md-4 col-lg-6 align-self-center text-center text-lg-start order-2 order-lg-1">
+                    <h2 class="mb-3">Flessibilità e Controllo Personalizzato</h2>
+                    <p>
+                        Con <span class="brand">BoolBnB</span>, hai il pieno controllo del tuo viaggio. Puoi personalizzare ogni aspetto, dalle date al prezzo e allo spazio in cui soggiorni. Vuoi avere un'intera casa a tua disposizione o preferisci una stanza condivisa? Hai bisogno di un alloggio per una notte o per un mese intero? Scegli le opzioni che meglio si adattano alle tue esigenze e desideri. La tua avventura è nelle tue mani.
+                    </p>
+                </div>
+                <div class="col-12 col-md-auto d-flex justify-content-center order-1 order-lg-2">
+                    <img src="{{asset('homepage_control.jpg')}}" class="home-img " alt="">
+                </div>
+            </div>
+          
+        </div>
+        
+    </div>
+</div>
+<div class="jumbotron p-5   rounded-3">
+    <div class="container ">
+        
+        <div class="col-12 home-text ">
+            <h2 class="text-center">
+                Iscriviti e Scopri di Più
+            </h2>
+            <p class="text-center">
+                Se tutto ciò suona come un'esperienza che desideri vivere, non esitare a unirti a <span class="brand">BoolBnB</span>. L'iscrizione è semplice, gratuita e veloce. Una volta registrato, potrai esplorare ulteriormente la nostra piattaforma, prenotare i tuoi primi soggiorni e iniziare a creare ricordi che dureranno per sempre.          
+            </p>
+        </div>
+        <div class="col-12 d-flex justify-content-center my-5">
+            <a href="{{route('register')}}" class="beige-btn">Registrati</a>
         </div>
         <div class="col-12 text-center">
-            <a href="{{route('admin.apartments.create')}}" class="btn btn-success">inserisci il tuo primo annuncio</a>
+            <p>
+                Sei pronto per iniziare il tuo viaggio con <span class="brand">BoolBnB</span>? Clicca su "Registrati" ora e unisciti a noi nell'esplorare il mondo delle avventure autentiche e dell'ospitalità condivisa. Siamo entusiasti di darti il benvenuto a bordo e di aiutarti a creare ricordi straordinari in tutto il mondo.
+            </p>
         </div>
-        @endauth
+    </div>
 </div>
+@endguest
+
+
+{{-- sezione auth --}}
+@auth
+<div class="col-6 offset-3 home-text">
+    <h1>
+        Iscriviti e Scopri di Più
+    </h1>
+    <div>
+        <p>
+            Se hai un appartamento, una casa, una stanza in più o qualsiasi altra proprietà che potresti mettere in affitto, è il momento ideale per farlo con BoolBnB. Offriamo un modo semplice e sicuro per monetizzare il tuo spazio extra e iniziare a guadagnare. 
+        </p>
+    </div>
+    <div>
+       <p>
+        Con BoolBnB, mettere in affitto il tuo alloggio è facile e conveniente. Inizia oggi stesso a condividere il tuo spazio con viaggiatori in cerca di esperienze autentiche. Un mondo di opportunità ti aspetta.
+       </p>
+    </div>
+
+</div>
+<div class="col-12 text-center">
+    <a href="{{route('admin.apartments.create')}}" class="btn blue-btn">inserisci il tuo annuncio</a>
+</div>
+@endauth
 @endsection
+
+<style lang="scss">
+    .home-img{
+        width: 500px;
+        height: 250px;
+        border-radius: 2rem;
+        object-fit: cover;
+    }
+
+</style>

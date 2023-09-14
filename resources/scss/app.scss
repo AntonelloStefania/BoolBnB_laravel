@@ -10,3 +10,51 @@
     border-radius: 5rem;
 
 }
+
+//pulsante BLU
+.blue-btn {
+    background-color: #718dd8;
+    color: white;
+    font-weight: bold;
+}
+
+.blue-btn:hover {
+    background-color: #5375d1;
+    color: white;
+}
+
+//pulsante BEIGE
+.beige-btn {
+    background-color: #ffd465;
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 2rem;
+    color: rgb(68, 68, 68);
+    font-weight: bold;
+}
+
+.beige-btn:hover {
+    background-color: #f7e4b4;
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 2rem;
+    color: rgb(68, 68, 68);
+    font-weight: bold;
+}
+
+//background beige
+
+.bg-beige {
+    background-color: #f7ecd1;
+
+}
+
+.home-text {
+    color: rgb(68, 68, 68);
+}
+
+//BRAND NAME
+.brand {
+    color: #718dd8;
+    font-weight: bold;
+}
