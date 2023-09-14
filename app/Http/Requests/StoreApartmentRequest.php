@@ -24,18 +24,18 @@ class StoreApartmentRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'title' => 'required|max:50',
-            // 'address'=> 'required|max:255',
+             'title' => 'required|max:50',
+             'address'=> 'required|max:255',
             // 'lat'=> 'nullable|max:255',
             // 'lon'=> 'nullable|max:255',
-            // 'cover'=> 'required|url:http,https',
-            //  'price'=> 'required|double(7,2)',
-            // 'visibility' => 'required|tinyint',
-            // 'description' => 'nullable',
-            // 'n_rooms' => 'required|tinyint',
-            // 'n_wc' => 'required|tinyint',
-            // 'mq' => 'required|tinyint',
-            // 'type_id'=> 'required|exists:types,id',
+             'cover'=> 'required|url:http,https',
+             'price'=> ['required', 'regex:/^\d{1,5}(\.\d{1,2})?$/'],
+             'visibility' => 'required|integer',
+             'description' => 'nullable',
+             'n_rooms' => 'required|integer',
+             'n_wc' => 'required|integer',
+             'mq' => 'required|integer',
+             'type_id'=> 'required|exists:types,id',
         ];
     }
     public function messages(){
