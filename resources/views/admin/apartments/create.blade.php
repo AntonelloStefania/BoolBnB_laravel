@@ -56,29 +56,37 @@
                     </div>
                    
                     {{-- seconda sezione --}}
-                    <div class="carousel-item"  style="min-height: 500px; max-height:750px;">
-                        <div class="">
-                            <label class="control-label fw-bold">Tipologia di alloggio</label>
-                            <select name="type_id" id="" class="form-control " style="width:12rem" required>
-                                @foreach($types as $type)
-                                <option value="{{$type->id}}">{{$type->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                            {{-- METRI QUADRI APPARTAMENTO --}}
-                        <div class=" ">
-                            <label class="control-label fw-bold " for="name">Metri quadri alloggio: </label>
-                            <input type="number" id="mq" name="mq" class="form-control" style="width:4.25rem" required>
-                        </div>
-                        {{-- NUMERO BAGNI --}}
-                        <div class=" ">
-                            <label class="control-label fw-bold ">Numero di bagni: </label>
-                            <input type="number" id="n_wc" name="n_wc" class="form-control" style="width:4.25rem" required>
-                        </div>
-                        {{-- NUMERO STANZE --}}
-                        <div class=" ">
-                            <label class="control-label fw-bold ">Numero di stanze</label>
-                            <input type="number" id="n_rooms" name="n_rooms" class="form-control" style="width:4.25rem" required>
+                    <div class="carousel-item "  style="min-height: 500px; max-height:750px;">
+                        <div class="d-flex align-items-center w-100 flex-column">
+
+                            <div class="">
+                                <label class="control-label fw-bold">Tipologia di alloggio</label>
+                                <select name="type_id" id="" class="form-control " style="width:12rem" required>
+                                    @foreach($types as $type)
+                                    <option value="{{$type->id}}">{{$type->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            {{-- PROVA CHECKBOX CON ICONA --}}
+                            <div style="width:50px; height:50px;" class="position-relative cursor-pointer">
+                                <input type="checkbox" style="width:50px; height:50px;"   class="position-absolute " name="" id="">
+                                {{-- <img src="{{$type->icons}}" class="e position-absolute " alt="" style="width: 50px">  --}}
+                            </div>
+                                {{-- METRI QUADRI APPARTAMENTO --}}
+                            <div class=" ">
+                                <label class="control-label fw-bold " for="name">Metri quadri alloggio: </label>
+                                <input type="number" id="mq" name="mq" class="form-control" style="width:4.25rem" required>
+                            </div>
+                            {{-- NUMERO BAGNI --}}
+                            <div class=" ">
+                                <label class="control-label fw-bold ">Numero di bagni: </label>
+                                <input type="number" id="n_wc" name="n_wc" class="form-control" style="width:4.25rem" required>
+                            </div>
+                            {{-- NUMERO STANZE --}}
+                            <div class=" ">
+                                <label class="control-label fw-bold ">Numero di stanze</label>
+                                <input type="number" id="n_rooms" name="n_rooms" class="form-control" style="width:4.25rem" required>
+                            </div>
                         </div>
                        
                     </div>
