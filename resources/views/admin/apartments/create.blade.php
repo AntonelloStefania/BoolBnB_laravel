@@ -65,7 +65,7 @@
                         <div class="form-group my-4 d-flex justify-content-around my-5">
                             <div class="">
                                 <label class="control-label mb-2 fw-bold me-3">titolo</label>
-                                <input type="text" id="title" name="title" class="form-control" >
+                                <input type="text" id="title" name="title" class="form-control">
                             </div>
                         </div>
                         @error('title')
@@ -117,7 +117,7 @@
                                                 @foreach($types as $type)
                                                 <div class="col-3 m-2 d-flex flex-column align-items-center">
                                                     <label for="{{$type->id}}" class="position-relative d-flex change-cursor justify-content-center align-items-center" style="width:75px; height:75px;">
-                                                        <input type="radio"  name="type_id"  style="width:65px; height:65px; appearance:none" class="radio-icons" value="{{$type->id}}"  id="{{$type->id}}" required />
+                                                        <input type="radio"  name="type_id"  style="width:65px; height:65px; appearance:none" class="radio-icons" value="{{$type->id}}"  id="{{$type->id}}"  />
                                                         <img src="{{$type->icons}}"  style="width:50px; height:50px;" alt="" class=" type-icons position-absolute" >
                                                     </label>
                                                     <span class="fw-bold">{{$type->name}}</span>
@@ -201,7 +201,7 @@
                                @enderror
                                <div class="">
                                    <label class="control-label mb-2 fw-bold me-3">Photos</label>
-                                   <input type="file" name="cover" id="cover" required>
+                                   <input type="file" name="cover" id="cover" >
                                </div>
                                @error('cover')
                                <div class="text-danger">{{ $message }}</div>
