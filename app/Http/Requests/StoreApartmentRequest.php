@@ -28,7 +28,7 @@ class StoreApartmentRequest extends FormRequest
              'address'=> 'required|max:255',
             // 'lat'=> 'nullable|max:255',
             // 'lon'=> 'nullable|max:255',
-             'cover'=> 'required|url:http,https',
+             'cover'=> 'required',
              'price'=> ['required', 'regex:/^\d{1,5}(\.\d{1,2})?$/'],
              'visibility' => 'required|integer',
              'description' => 'nullable',

@@ -65,7 +65,7 @@
                         <div class="form-group my-4 d-flex justify-content-around my-5">
                             <div class="">
                                 <label class="control-label mb-2 fw-bold me-3">titolo</label>
-                                <input type="text" id="title" name="title" class="form-control" required>
+                                <input type="text" id="title" name="title" class="form-control">
                             </div>
                         </div>
                         @error('title')
@@ -74,7 +74,7 @@
                         <div class="form-group my-4 d-flex justify-content-around my-5">
                             <div class="d-flex align-items-center">
                                 <label class="control-label mb-2 fw-bold me-3">Prezzo</label>
-                                <input type="text" id="price" name="price" class="form-control" required>
+                                <input type="text" id="price" name="price" class="form-control" >
                             </div>
                         </div>
                         @error('price')
@@ -93,7 +93,7 @@
                         <div class="form-group my-4 d-flex justify-content-around my-5">
                             <div class="d-flex align-items-center">
                                 <label class="control-label mb-2 fw-bold me-3">Indirizzo</label>
-                                <input type="ratio" id="address" name="address" class="form-control" required>
+                                <input type="ratio" id="address" name="address" class="form-control" >
                             </div>
                         </div>
                         @error('address')
@@ -117,7 +117,7 @@
                                                 @foreach($types as $type)
                                                 <div class="col-3 m-2 d-flex flex-column align-items-center">
                                                     <label for="{{$type->id}}" class="position-relative d-flex change-cursor justify-content-center align-items-center" style="width:75px; height:75px;">
-                                                        <input type="radio"  name="type_id"  style="width:65px; height:65px; appearance:none" class="radio-icons" value="{{$type->id}}"  id="{{$type->id}}" required />
+                                                        <input type="radio"  name="type_id"  style="width:65px; height:65px; appearance:none" class="radio-icons" value="{{$type->id}}"  id="{{$type->id}}"  />
                                                         <img src="{{$type->icons}}"  style="width:50px; height:50px;" alt="" class=" type-icons position-absolute" >
                                                     </label>
                                                     <span class="fw-bold">{{$type->name}}</span>
@@ -144,17 +144,17 @@
                                 {{-- METRI QUADRI APPARTAMENTO --}}
                             <div class=" ">
                                 <label class="control-label fw-bold " for="name">Metri quadri alloggio: </label>
-                                <input type="number" id="mq" name="mq" class="form-control" style="width:4.25rem" required>
+                                <input type="number" id="mq" name="mq" class="form-control" style="width:4.25rem" >
                             </div>
                             {{-- NUMERO BAGNI --}}
                             <div class=" ">
                                 <label class="control-label fw-bold ">Numero di bagni: </label>
-                                <input type="number" id="n_wc" name="n_wc" class="form-control" style="width:4.25rem" required>
+                                <input type="number" id="n_wc" name="n_wc" class="form-control" style="width:4.25rem" >
                             </div>
                             {{-- NUMERO STANZE --}}
                             <div class=" ">
                                 <label class="control-label fw-bold ">Numero di stanze</label>
-                                <input type="number" id="n_rooms" name="n_rooms" class="form-control" style="width:4.25rem" required>
+                                <input type="number" id="n_rooms" name="n_rooms" class="form-control" style="width:4.25rem" >
                             </div>
                         </div>
                             </div>
@@ -186,7 +186,7 @@
                                </div>
                                <div class="">
                                    <label class="control-label mb-2 fw-bold me-3">Photos</label>
-                                   <input type="file" name="cover" id="cover" required>
+                                   <input type="file" name="cover" id="cover" >
                                </div>
                            </div>
     
