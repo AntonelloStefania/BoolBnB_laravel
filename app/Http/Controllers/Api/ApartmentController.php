@@ -10,7 +10,7 @@ use App\Models\Apartment;
 class ApartmentController extends Controller
 {
     public function index(){
-        $apartment = Apartment::all();
+        $apartment = Apartment::with('type')->get();
         return response()->json([
             'success' => true,
             'results' => $apartment
