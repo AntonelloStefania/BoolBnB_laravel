@@ -10,20 +10,23 @@
         <div class="col my-4 text-center">
             <h2 class="">Add <span style="color: #1f615f">Pet</span><i class="fas fa-paw ms-2 " style="color: #1f615f"></i> Record</h2>
         </div>
-       <div class="col-12 bg-dark text-white" style="min-height: 500px; max-height:750px;">
-          <form action="{{ route('admin.apartments.store') }}" method="POST" enctype="multipart/form-data" >
+       <div class="col-12 bg-dark text-white  position-relative">
+          <form action="{{ route('admin.apartments.store') }}" class="bg-dark"  style="min-height: 500px; max-height:750px;" method="POST" enctype="multipart/form-data" >
             @csrf
          
-            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="false">
-                <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            <div id="carouselExampleIndicators" class="carousel slide  " data-bs-ride="false">
+                <div class="position-absolute bottom-0 col-12">
+
+                    <div class="carousel-indicators ">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                    </div>
                 </div>
                 <div class="carousel-inner">
                     {{-- prima sezione --}}
-                    <div class="carousel-item active">
+                    <div class="carousel-item active"  style="min-height: 500px; max-height:750px;">
                         <input type="hidden" name="user_id" id="user_id" class="form-control"  value="{{ $user->id }}"> 
                         <div class="form-group my-4 d-flex justify-content-around my-5">
                             <div class="">
@@ -53,7 +56,7 @@
                     </div>
                    
                     {{-- seconda sezione --}}
-                    <div class="carousel-item">
+                    <div class="carousel-item"  style="min-height: 500px; max-height:750px;">
                         <div class="">
                             <label class="control-label fw-bold">Tipologia di alloggio</label>
                             <select name="type_id" id="" class="form-control " style="width:12rem" required>
@@ -63,26 +66,28 @@
                             </select>
                         </div>
                             {{-- METRI QUADRI APPARTAMENTO --}}
-                            <div class=" ">
-                                <label class="control-label fw-bold " for="name">Metri quadri alloggio: </label>
-                                <input type="number" id="mq" name="mq" class="form-control" style="width:4.25rem" required>
-                            </div>
-                            {{-- NUMERO BAGNI --}}
-                            <div class=" ">
-                                <label class="control-label fw-bold ">Numero di bagni: </label>
-                                <input type="number" id="n_wc" name="n_wc" class="form-control" style="width:4.25rem" required>
-                            </div>
-                            {{-- NUMERO STANZE --}}
-                            <div class=" ">
-                                <label class="control-label fw-bold ">Numero di stanze</label>
-                                <input type="number" id="n_rooms" name="n_rooms" class="form-control" style="width:4.25rem" required>
-                            </div>
+                        <div class=" ">
+                            <label class="control-label fw-bold " for="name">Metri quadri alloggio: </label>
+                            <input type="number" id="mq" name="mq" class="form-control" style="width:4.25rem" required>
                         </div>
+                        {{-- NUMERO BAGNI --}}
+                        <div class=" ">
+                            <label class="control-label fw-bold ">Numero di bagni: </label>
+                            <input type="number" id="n_wc" name="n_wc" class="form-control" style="width:4.25rem" required>
+                        </div>
+                        {{-- NUMERO STANZE --}}
+                        <div class=" ">
+                            <label class="control-label fw-bold ">Numero di stanze</label>
+                            <input type="number" id="n_rooms" name="n_rooms" class="form-control" style="width:4.25rem" required>
+                        </div>
+                       
                     </div>
                  
                     {{-- terza sezione --}}
-                    <div class="carousel-item">
-                        <div class="d-flex align-items-center">
+                    <div class="carousel-item "  style="min-height: 500px; max-height:750px;">
+                       
+
+                        <div class="">
                             <label class="control-label mb-2 fw-bold me-3">Servizi aggiuntivi</label>
                             @foreach($services as $service)
                                 <input class="form-check-input" type="checkbox" role="switch" name="name[]" value="{{$service->id}}" id="flexSwitchCheckDefault" >
@@ -99,16 +104,20 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="d-flex align-items-center">
+                        <div class="">
                             <label class="control-label mb-2 fw-bold me-3">Photos</label>
                             <input type="file" name="cover" id="cover" required>
                         </div>
                         
+                        
                     </div>
 
                     {{-- QUARTA SEZIONE --}}
-                    <div class="carousel-item">
-                        <button class="btn btn-success" type="submit">Submit</button>
+                    <div class="carousel-item "  style="min-height: 500px; max-height:750px;">
+                        <div>
+
+                            <button class="btn btn-success" type="submit">Submit</button>
+                        </div>
                     </div>
                 </div>
             </div>
