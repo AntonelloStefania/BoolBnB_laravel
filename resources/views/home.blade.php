@@ -20,6 +20,7 @@
                 
                 Esplora il nostro sito, prenota con facilità e preparati a vivere un'esperienza di viaggio senza paragoni. BoolBnB è qui per farti sentire a casa, ovunque tu vada. Scegli il tuo destino e inizia a creare ricordi straordinari con noi.
             </p>
+          
         </div>
         @endguest
 

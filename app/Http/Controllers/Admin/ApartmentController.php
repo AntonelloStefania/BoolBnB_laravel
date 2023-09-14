@@ -27,6 +27,7 @@ class ApartmentController extends Controller
      */
     public function index()
     {   
+        
         if (Auth::check()){
             $userId = Auth::id();
             $apartments= Apartment::where('user_id', $userId)->get();
@@ -38,7 +39,7 @@ class ApartmentController extends Controller
             }
         }
             $apartments= Apartment::all();
-            return view('admin.apartments.index', compact('apartments'));
+            return view('admin.apartments.index', compact('apartments','types'));
        
     }
 
