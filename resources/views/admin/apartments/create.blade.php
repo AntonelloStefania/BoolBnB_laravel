@@ -66,39 +66,42 @@
                             <div class="">
                                 <label class="control-label mb-2 fw-bold me-3">titolo</label>
                                 <input type="text" id="title" name="title" class="form-control">
+                                @error('title')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror 
                             </div>
                         </div>
-                        @error('title')
-                        <div class="text-danger">{{ $message }}</div>
-                        @enderror 
                         <div class="form-group my-4 d-flex justify-content-around my-5">
-                            <div class="d-flex align-items-center">
-                                <label class="control-label mb-2 fw-bold me-3">Prezzo</label>
-                                <input type="text" id="price" name="price" class="form-control" >
+                            <div class="d-flex flex-column">
+
+                                <div class="">
+                                    <label class="control-label mb-2 fw-bold me-3">Prezzo</label>
+                                    <input type="text" id="price" name="price" class="form-control" >
+                                </div>
+                                @error('price')
+                                 <span class="text-danger d-block">{{ $message }}</span>
+                                @enderror 
                             </div>
                         </div>
-                        @error('price')
-                        <div class="text-danger">{{ $message }}</div>
-                        @enderror 
                         <div class="form-group my-4 d-flex justify-content-around my-5">
                             <div class="d-flex align-items-center">
                                 <label class="control-label mb-2 fw-bold me-3">visibilità</label>
                             <span class="me-2">visibile</span> <input type="radio" id="visibility" name="visibility" value="1" class="me-3">
                             <span class="me-2">invisibile</span> <input type="radio" id="visibility" name="visibility" value="0" class="me-3" >
+                            @error('visibility')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror    
                             </div>
                         </div>
-                        @error('visibility')
-                        <div class="text-danger">{{ $message }}</div>
-                        @enderror    
                         <div class="form-group my-4 d-flex justify-content-around my-5">
                             <div class="d-flex align-items-center">
                                 <label class="control-label mb-2 fw-bold me-3">Indirizzo</label>
                                 <input type="ratio" id="address" name="address" class="form-control" >
+                                @error('address')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror 
                             </div>
                         </div>
-                        @error('address')
-                        <div class="text-danger">{{ $message }}</div>
-                        @enderror 
                     </div>
                    
                     {{-- terza sezione --}}
@@ -123,10 +126,10 @@
                                                     <span class="fw-bold">{{$type->name}}</span>
                                                 </div>
                                                 @endforeach
+                                                @error('type_id')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror 
                                             </form>
-                                            @error('type_id')
-                                            <div class="text-danger">{{ $message }}</div>
-                                            @enderror 
                                         </div>
                                     </div>
                                 </div>
@@ -139,25 +142,25 @@
                     <div  class="col-12">
 
                         <div class="carousel-item " style="min-height: 700px; max-height:750px;">
-                            <div class="d-flex justify-content-center">
+                                <div class="d-flex justify-content-center">
 
-                                {{-- METRI QUADRI APPARTAMENTO --}}
-                            <div class=" ">
-                                <label class="control-label fw-bold " for="name">Metri quadri alloggio: </label>
-                                <input type="number" id="mq" name="mq" class="form-control" style="width:4.25rem" >
-                            </div>
-                            {{-- NUMERO BAGNI --}}
-                            <div class=" ">
-                                <label class="control-label fw-bold ">Numero di bagni: </label>
-                                <input type="number" id="n_wc" name="n_wc" class="form-control" style="width:4.25rem" >
-                            </div>
-                            {{-- NUMERO STANZE --}}
-                            <div class=" ">
-                                <label class="control-label fw-bold ">Numero di stanze</label>
-                                <input type="number" id="n_rooms" name="n_rooms" class="form-control" style="width:4.25rem" >
-                            </div>
+                                    {{-- METRI QUADRI APPARTAMENTO --}}
+                                <div class=" ">
+                                    <label class="control-label fw-bold " for="name">Metri quadri alloggio: </label>
+                                    <input type="number" id="mq" name="mq" class="form-control" style="width:4.25rem" >
+                                </div>
+                                {{-- NUMERO BAGNI --}}
+                                <div class=" ">
+                                    <label class="control-label fw-bold ">Numero di bagni: </label>
+                                    <input type="number" id="n_wc" name="n_wc" class="form-control" style="width:4.25rem" >
+                                </div>
+                                {{-- NUMERO STANZE --}}
+                                <div class=" ">
+                                    <label class="control-label fw-bold ">Numero di stanze</label>
+                                    <input type="number" id="n_rooms" name="n_rooms" class="form-control" style="width:4.25rem" >
+                                </div>
                         </div>
-                            </div>
+                            
                     </div>
                  {{-- quinta sezione --}}                   
                     <div class="col-12">
@@ -178,11 +181,11 @@
                                    <div class="d-flex align-items-center">
                                        <label class="control-label mb-2 fw-bold me-3">Sponsor</label>
                                        <select name="sponsor_id" id="">
-                                           @foreach($sponsors as $sponsor)
-                                           <option value="{{$sponsor->id}}">{{$sponsor->name}} - {{$sponsor->time}}</option>
-                                           @endforeach
-                                       </select>
-                                   </div>
+                                    </select>
+                                </div>
+                                @foreach($sponsors as $sponsor)
+                                  <option value="{{$sponsor->id}}">{{$sponsor->name}} - {{$sponsor->time}}</option>
+                                @endforeach
                                </div>
                                <div class="">
                                    <label class="control-label mb-2 fw-bold me-3">Photos</label>
@@ -219,15 +222,6 @@
     </div>
 
 </div>
-
-{{-- SCRIPT --}}
-<script>
-
-
-
-
-  
-</script>
 
 @endsection
 
