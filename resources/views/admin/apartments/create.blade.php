@@ -22,6 +22,7 @@
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
                     </div>
                 </div>
                 <div class="carousel-inner">
@@ -56,65 +57,98 @@
                     </div>
                    
                     {{-- seconda sezione --}}
-                    <div class="carousel-item"  style="min-height: 500px; max-height:750px;">
-                        <div class="">
-                            <label class="control-label fw-bold">Tipologia di alloggio</label>
-                            <select name="type_id" id="" class="form-control " style="width:12rem" required>
-                                @foreach($types as $type)
-                                <option value="{{$type->id}}">{{$type->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                            {{-- METRI QUADRI APPARTAMENTO --}}
-                        <div class=" ">
-                            <label class="control-label fw-bold " for="name">Metri quadri alloggio: </label>
-                            <input type="number" id="mq" name="mq" class="form-control" style="width:4.25rem" required>
-                        </div>
-                        {{-- NUMERO BAGNI --}}
-                        <div class=" ">
-                            <label class="control-label fw-bold ">Numero di bagni: </label>
-                            <input type="number" id="n_wc" name="n_wc" class="form-control" style="width:4.25rem" required>
-                        </div>
-                        {{-- NUMERO STANZE --}}
-                        <div class=" ">
-                            <label class="control-label fw-bold ">Numero di stanze</label>
-                            <input type="number" id="n_rooms" name="n_rooms" class="form-control" style="width:4.25rem" required>
-                        </div>
-                       
-                    </div>
-                 
-                    {{-- terza sezione --}}
-                    <div class="carousel-item "  style="min-height: 500px; max-height:750px;">
-                       
+                    <div class="col-12">
 
-                        <div class="">
-                            <label class="control-label mb-2 fw-bold me-3">Servizi aggiuntivi</label>
-                            @foreach($services as $service)
-                                <input class="form-check-input" type="checkbox" role="switch" name="name[]" value="{{$service->id}}" id="flexSwitchCheckDefault" >
-                                <label class="form-check-label" for="flexSwitchCheckDefault">{{$service->name}}</label>
-                            @endforeach
-                        </div>
-                        <div class="form-group my-4 d-flex justify-content-around my-5">
-                            <div class="d-flex align-items-center">
-                                <label class="control-label mb-2 fw-bold me-3">Sponsor</label>
-                                <select name="sponsor_id" id="">
-                                    @foreach($sponsors as $sponsor)
-                                    <option value="{{$sponsor->id}}">{{$sponsor->name}} - {{$sponsor->time}}</option>
-                                    @endforeach
-                                </select>
+                        <div class="carousel-item "  style="min-height: 500px; max-height:750px;">
+                            <div class="d-flex align-items-center w-100 flex-column">
+                                {{-- PROVA CHECKBOX-2 --}}
+                                <div class="card col-8">
+                                    <div class="rating-container">
+                                      <div class="rating-text text-center">
+                                        <p>TIPOLOGIA ALLOGGI</p>
+                                      </div>
+                                        <div class="rating d-flex flex-wrap justify-content-center">
+                                            <form class="rating-form">
+                                                @foreach($types as $type)
+                                                <div class="col-3 m-2">
+                                                    <label for="{{$type->id}}" class="position-relative d-flex" style="width:50px; height:50px;">
+                                                        <input type="radio"  name="type_id"  style="width:45px; height:45px; appearance:none" class="radio-icons" value="{{$type->id}}"  id="{{$type->id}}" required />
+                                                        <img src="{{$type->icons}}"  style="width:50px; height:50px;" alt="" class=" type-icons position-absolute" >
+                                                    </label>
+                                                </div>
+                                                @endforeach
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- FINE PROVA CHECKBOX-2 --}}
+                                
                             </div>
                         </div>
-                        <div class="">
-                            <label class="control-label mb-2 fw-bold me-3">Photos</label>
-                            <input type="file" name="cover" id="cover" required>
+                    </div>
+                    {{-- terza sezione --}}
+                    <div  class="col-12">
+
+                        <div class="carousel-item " style="min-height: 500px; max-height:750px;">
+                            <div class="d-flex justify-content-center">
+
+                                {{-- METRI QUADRI APPARTAMENTO --}}
+                            <div class=" ">
+                                <label class="control-label fw-bold " for="name">Metri quadri alloggio: </label>
+                                <input type="number" id="mq" name="mq" class="form-control" style="width:4.25rem" required>
+                            </div>
+                            {{-- NUMERO BAGNI --}}
+                            <div class=" ">
+                                <label class="control-label fw-bold ">Numero di bagni: </label>
+                                <input type="number" id="n_wc" name="n_wc" class="form-control" style="width:4.25rem" required>
+                            </div>
+                            {{-- NUMERO STANZE --}}
+                            <div class=" ">
+                                <label class="control-label fw-bold ">Numero di stanze</label>
+                                <input type="number" id="n_rooms" name="n_rooms" class="form-control" style="width:4.25rem" required>
+                            </div>
                         </div>
-                        
-                        
+                            </div>
+                    </div>
+                 {{-- quarta sezione --}}                   
+                    <div class="col-12">
+
+                        <div class="carousel-item "  style="min-height: 500px; max-height:750px;">
+                           <div class="d-flex flex-column align-items-center col-12 ">
+                               <div class="d-flex flex-wrap justify-content-center">
+                                    <div class="col-4">
+
+                                        <label class="control-label  mb-2 fw-bold me-3">Servizi aggiuntivi</label>
+                                        @foreach($services as $service)
+                                            <input class="form-check-input" type="checkbox" role="switch" name="name[]" value="{{$service->id}}" id="flexSwitchCheckDefault" >
+                                            <label class="form-check-label" for="flexSwitchCheckDefault">{{$service->name}}</label>
+                                        @endforeach
+                                    </div>
+                               </div>
+                               <div class="form-group my-4  my-5">
+                                   <div class="d-flex align-items-center">
+                                       <label class="control-label mb-2 fw-bold me-3">Sponsor</label>
+                                       <select name="sponsor_id" id="">
+                                           @foreach($sponsors as $sponsor)
+                                           <option value="{{$sponsor->id}}">{{$sponsor->name}} - {{$sponsor->time}}</option>
+                                           @endforeach
+                                       </select>
+                                   </div>
+                               </div>
+                               <div class="">
+                                   <label class="control-label mb-2 fw-bold me-3">Photos</label>
+                                   <input type="file" name="cover" id="cover" required>
+                               </div>
+                           </div>
+    
+                            
+                            
+                        </div>
                     </div>
 
                     {{-- QUARTA SEZIONE --}}
-                    <div class="carousel-item "  style="min-height: 500px; max-height:750px;">
-                        <div>
+                    <div class="carousel-item col-12 text-center "  style="min-height: 500px; max-height:750px;">
+                        <div class="col-12 justify-content-center">
 
                             <button class="btn btn-success" type="submit">Submit</button>
                         </div>
@@ -151,8 +185,8 @@
        });
    }
 
-   // Applica l'autocapitalizzazione agli input desiderati
- 
+  
 </script>
+
 @endsection
 
