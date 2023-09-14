@@ -11,7 +11,7 @@
             <h2 class="">Add <span style="color: #1f615f">Pet</span><i class="fas fa-paw ms-2 " style="color: #1f615f"></i> Record</h2>
         </div>
        <div class="col-12 bg-dark text-white  position-relative">
-          <form action="{{ route('admin.apartments.store') }}" class="bg-dark"  style="min-height: 600px; max-height:750px;" method="POST" enctype="multipart/form-data" >
+          <form action="{{ route('admin.apartments.store') }}" class="bg-dark"  style="min-height: 700px; max-height:750px;" method="POST" enctype="multipart/form-data" >
             @csrf
          {{-- slider --}}
             <div id="carouselExampleIndicators" class="carousel slide  " data-bs-ride="false">
@@ -28,7 +28,7 @@
                 </div>
                 <div class="carousel-inner">
                      {{-- prima sezione --}}
-                    <div class="carousel-item active" style="min-height: 600px; max-height:750px;">
+                    <div class="carousel-item active" style="min-height: 700px; max-height:750px;">
                         <div class="col-12 d-flex flex-column  align-items-center">
                             <div class="my-3">
                                 <h3>descrivici il tuo appartamento</h3>
@@ -61,7 +61,7 @@
                     {{-- da inserire nel button info --}}
                     
                     {{-- seconda sezione --}}
-                    <div class="carousel-item "  style="min-height: 600px; max-height:750px;">
+                    <div class="carousel-item "  style="min-height: 700px; max-height:750px;">
                         <div class="form-group my-4 d-flex justify-content-around my-5">
                             <div class="">
                                 <label class="control-label mb-2 fw-bold me-3">titolo</label>
@@ -104,22 +104,23 @@
                     {{-- terza sezione --}}
                     <div class="col-12">
 
-                        <div class="carousel-item "  style="min-height: 600px; max-height:750px;">
+                        <div class="carousel-item "  style="min-height: 700px; max-height:750px;">
                             <div class="d-flex align-items-center w-100 flex-column">
                                 {{-- PROVA CHECKBOX-2 --}}
-                                <div class="card col-8">
+                                <div class="card col-8 my-5">
                                     <div class="rating-container">
-                                      <div class="rating-text text-center">
-                                        <p>TIPOLOGIA ALLOGGI</p>
+                                      <div class="rating-text text-center my-4">
+                                        <h3>Scegli la tipologia di alloggio da affittare</h3>
                                       </div>
                                         <div class="rating d-flex flex-wrap justify-content-center">
                                             <form class="rating-form">
                                                 @foreach($types as $type)
-                                                <div class="col-3 m-2">
-                                                    <label for="{{$type->id}}" class="position-relative d-flex cursor-pointer" style="width:50px; height:50px;">
-                                                        <input type="radio"  name="type_id"  style="width:45px; height:45px; appearance:none" class="radio-icons" value="{{$type->id}}"  id="{{$type->id}}" required />
+                                                <div class="col-3 m-2 d-flex flex-column align-items-center">
+                                                    <label for="{{$type->id}}" class="position-relative d-flex change-cursor justify-content-center align-items-center" style="width:75px; height:75px;">
+                                                        <input type="radio"  name="type_id"  style="width:65px; height:65px; appearance:none" class="radio-icons" value="{{$type->id}}"  id="{{$type->id}}" required />
                                                         <img src="{{$type->icons}}"  style="width:50px; height:50px;" alt="" class=" type-icons position-absolute" >
                                                     </label>
+                                                    <span class="fw-bold">{{$type->name}}</span>
                                                 </div>
                                                 @endforeach
                                             </form>
@@ -137,7 +138,7 @@
                     {{-- quarta sezione --}}
                     <div  class="col-12">
 
-                        <div class="carousel-item " style="min-height: 600px; max-height:750px;">
+                        <div class="carousel-item " style="min-height: 700px; max-height:750px;">
                             <div class="d-flex justify-content-center">
 
                                 {{-- METRI QUADRI APPARTAMENTO --}}
@@ -161,7 +162,7 @@
                  {{-- quinta sezione --}}                   
                     <div class="col-12">
 
-                        <div class="carousel-item "  style="min-height: 600px; max-height:750px;">
+                        <div class="carousel-item "  style="min-height: 700px; max-height:750px;">
                            <div class="d-flex flex-column align-items-center col-12 ">
                                <div class="d-flex flex-wrap justify-content-center">
                                     <div class="col-4">
@@ -195,7 +196,7 @@
                     </div>
 
                     {{-- sesta --}}
-                    <div class="carousel-item col-12 text-center "  style="min-height: 600px; max-height:750px;">
+                    <div class="carousel-item col-12 text-center "  style="min-height: 700px; max-height:750px;">
                         <div class="col-12 justify-content-center">
 
                             <button class="btn btn-success" type="submit">Submit</button>
