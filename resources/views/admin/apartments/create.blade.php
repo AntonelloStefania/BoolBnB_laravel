@@ -11,9 +11,9 @@
             <h2 class="">Add <span style="color: #1f615f">Pet</span><i class="fas fa-paw ms-2 " style="color: #1f615f"></i> Record</h2>
         </div>
        <div class="col-12 bg-dark text-white  position-relative">
-          <form action="{{ route('admin.apartments.store') }}" class="bg-dark"  style="min-height: 500px; max-height:750px;" method="POST" enctype="multipart/form-data" >
+          <form action="{{ route('admin.apartments.store') }}" class="bg-dark"  style="min-height: 600px; max-height:750px;" method="POST" enctype="multipart/form-data" >
             @csrf
-         
+         {{-- slider --}}
             <div id="carouselExampleIndicators" class="carousel slide  " data-bs-ride="false">
                 <div class="position-absolute bottom-0 col-12">
 
@@ -23,12 +23,45 @@
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 6"></button>
                     </div>
                 </div>
                 <div class="carousel-inner">
-                    {{-- prima sezione --}}
-                    <div class="carousel-item active"  style="min-height: 500px; max-height:750px;">
-                        <input type="hidden" name="user_id" id="user_id" class="form-control"  value="{{ $user->id }}"> 
+                     {{-- prima sezione --}}
+                    <div class="carousel-item active" style="min-height: 600px; max-height:750px;">
+                        <div class="col-12 d-flex flex-column  align-items-center">
+                            <div class="my-3">
+                                <h3>descrivici il tuo appartamento</h3>
+                            </div>
+                            <div class="col-6 text-center ">
+                                <p>
+                                    Benvenuto nella tua opportunità di creare un'esperienza unica per i futuri ospiti! La tua descrizione dell'alloggio è la prima impressione che gli ospiti avranno del loro soggiorno. Ecco come puoi rendere questa impressione davvero indimenticabile:
+                                </p>
+                            </div>
+                            <div class="col-6 mb-2 text-end ">
+                                <button type="button" class="rounded-circle " data-bs-placement="right" data-bs-html="true" style="width:1.75rem" data-bs-toggle="popover" title="Consigli per la descrizione" data-bs-content="
+                                <ul>
+                                    <li>Inizia dalla <strong>passione</strong>: Condividi il tuo entusiasmo per il tuo spazio. Cosa lo rende speciale? Quali dettagli ami di più? Fai emergere la personalità unica del tuo alloggio.</li>
+                                    <li>Menziona i <strong>comfort e le comodità</strong>: Elenca tutte le comodità disponibili, come Wi-Fi, cucina attrezzata, lavatrice, e come questi renderanno il soggiorno dei tuoi ospiti più piacevole.</li>
+                                    <li>Includi i tuoi <strong>consigli locali</strong>: Se conosci ristoranti fantastici, luoghi da visitare o segreti nascosti nella zona, condividili con i tuoi ospiti. Questo può rendere il soggiorno ancora più memorabile.</li>
+                                    <li>Sii <strong>onesto e trasparente</strong>: La sincerità è la base della fiducia. Assicurati di rappresentare il tuo alloggio in modo accurato e di comunicare le regole chiaramente.</li>
+                                </ul>"><i class="fas fa-info"></i></button>
+                            </div>
+                            <div class="col-12 " >
+                                <input type="hidden" name="user_id" id="user_id" class="form-control"  value="{{ $user->id }}"> 
+                                <textarea class="col-8 col-md-6 offset-md-3 p-3 offset-2 " name="description" id="" cols="30" rows="10"></textarea>
+                            </div>
+                            <div class="col-6 text-center mb-4 mt-3">
+                                <p>
+                                    Ricorda che una buona descrizione non deve essere lunga o noiosa; deve essere coinvolgente e informativa. Cerca di far emergere la personalità del tuo spazio e di trasmettere l'entusiasmo che hai nell'accogliere ospiti. Buona scrittura!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- da inserire nel button info --}}
+                    
+                    {{-- seconda sezione --}}
+                    <div class="carousel-item "  style="min-height: 600px; max-height:750px;">
                         <div class="form-group my-4 d-flex justify-content-around my-5">
                             <div class="">
                                 <label class="control-label mb-2 fw-bold me-3">titolo</label>
@@ -56,10 +89,10 @@
                         </div>
                     </div>
                    
-                    {{-- seconda sezione --}}
+                    {{-- terza sezione --}}
                     <div class="col-12">
 
-                        <div class="carousel-item "  style="min-height: 500px; max-height:750px;">
+                        <div class="carousel-item "  style="min-height: 600px; max-height:750px;">
                             <div class="d-flex align-items-center w-100 flex-column">
                                 {{-- PROVA CHECKBOX-2 --}}
                                 <div class="card col-8">
@@ -71,7 +104,7 @@
                                             <form class="rating-form">
                                                 @foreach($types as $type)
                                                 <div class="col-3 m-2">
-                                                    <label for="{{$type->id}}" class="position-relative d-flex" style="width:50px; height:50px;">
+                                                    <label for="{{$type->id}}" class="position-relative d-flex cursor-pointer" style="width:50px; height:50px;">
                                                         <input type="radio"  name="type_id"  style="width:45px; height:45px; appearance:none" class="radio-icons" value="{{$type->id}}"  id="{{$type->id}}" required />
                                                         <img src="{{$type->icons}}"  style="width:50px; height:50px;" alt="" class=" type-icons position-absolute" >
                                                     </label>
@@ -86,10 +119,10 @@
                             </div>
                         </div>
                     </div>
-                    {{-- terza sezione --}}
+                    {{-- quarta sezione --}}
                     <div  class="col-12">
 
-                        <div class="carousel-item " style="min-height: 500px; max-height:750px;">
+                        <div class="carousel-item " style="min-height: 600px; max-height:750px;">
                             <div class="d-flex justify-content-center">
 
                                 {{-- METRI QUADRI APPARTAMENTO --}}
@@ -110,10 +143,10 @@
                         </div>
                             </div>
                     </div>
-                 {{-- quarta sezione --}}                   
+                 {{-- quinta sezione --}}                   
                     <div class="col-12">
 
-                        <div class="carousel-item "  style="min-height: 500px; max-height:750px;">
+                        <div class="carousel-item "  style="min-height: 600px; max-height:750px;">
                            <div class="d-flex flex-column align-items-center col-12 ">
                                <div class="d-flex flex-wrap justify-content-center">
                                     <div class="col-4">
@@ -146,14 +179,15 @@
                         </div>
                     </div>
 
-                    {{-- QUARTA SEZIONE --}}
-                    <div class="carousel-item col-12 text-center "  style="min-height: 500px; max-height:750px;">
+                    {{-- sesta --}}
+                    <div class="carousel-item col-12 text-center "  style="min-height: 600px; max-height:750px;">
                         <div class="col-12 justify-content-center">
 
                             <button class="btn btn-success" type="submit">Submit</button>
                         </div>
                     </div>
                 </div>
+                {{-- fine slider --}}
             </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -172,18 +206,9 @@
 
 {{-- SCRIPT --}}
 <script>
-   // Funzione per applicare l'autocapitalizzazione delle parole a un input
-   function applyAutoCapitalize(inputId) {
-       var inputElement = document.getElementById(inputId);
 
-       inputElement.addEventListener('input', function() {
-           var inputValue = inputElement.value;
-           var formattedValue = inputValue.replace(/\b\w/g, function(match) {
-               return match.toUpperCase();
-           });
-           inputElement.value = formattedValue;
-       });
-   }
+
+
 
   
 </script>
