@@ -39,7 +39,7 @@ class LeadController extends Controller
     
 
         return response()->json([
-            'success' => true,
+            'success' => true
         ]);
         
     }

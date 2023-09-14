@@ -18,7 +18,7 @@ class ApartmentController extends Controller
     }
 
     public function show($slug){
-        $apartment = Apartment::all()->where('slug', $slug);
+        $apartment = Apartment::all()->where('slug', $slug)->first();
 
         if($apartment){
             
@@ -31,7 +31,7 @@ class ApartmentController extends Controller
 
             return response()->json([
                 'success' => false,
-                'error' => 'Nessun progetto trovato'
+                'error' => 'Nessun bnb trovato'
             ]);
         }
     }
