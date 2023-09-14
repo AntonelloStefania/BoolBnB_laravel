@@ -67,26 +67,38 @@
                                 <label class="control-label mb-2 fw-bold me-3">titolo</label>
                                 <input type="text" id="title" name="title" class="form-control" required>
                             </div>
-                        </div> 
+                        </div>
+                        @error('title')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror 
                         <div class="form-group my-4 d-flex justify-content-around my-5">
                             <div class="d-flex align-items-center">
                                 <label class="control-label mb-2 fw-bold me-3">Prezzo</label>
                                 <input type="text" id="price" name="price" class="form-control" required>
                             </div>
                         </div>
+                        @error('price')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror 
                         <div class="form-group my-4 d-flex justify-content-around my-5">
                             <div class="d-flex align-items-center">
                                 <label class="control-label mb-2 fw-bold me-3">visibilità</label>
                             <span class="me-2">visibile</span> <input type="radio" id="visibility" name="visibility" value="1" class="me-3">
                             <span class="me-2">invisibile</span> <input type="radio" id="visibility" name="visibility" value="0" class="me-3" >
                             </div>
-                        </div>   
+                        </div>
+                        @error('visibility')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror    
                         <div class="form-group my-4 d-flex justify-content-around my-5">
                             <div class="d-flex align-items-center">
                                 <label class="control-label mb-2 fw-bold me-3">Indirizzo</label>
                                 <input type="ratio" id="address" name="address" class="form-control" required>
                             </div>
                         </div>
+                        @error('address')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror 
                     </div>
                    
                     {{-- terza sezione --}}
@@ -111,6 +123,9 @@
                                                 </div>
                                                 @endforeach
                                             </form>
+                                            @error('type_id')
+                                            <div class="text-danger">{{ $message }}</div>
+                                            @enderror 
                                         </div>
                                     </div>
                                 </div>
