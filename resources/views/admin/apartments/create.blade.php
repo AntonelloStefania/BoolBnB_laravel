@@ -11,7 +11,7 @@
             <h2 class="">Add <span style="color: #1f615f">Pet</span><i class="fas fa-paw ms-2 " style="color: #1f615f"></i> Record</h2>
         </div>
        <div class="col-12 bg-dark text-white  position-relative">
-          <form action="{{ route('admin.apartments.store') }}" class="bg-dark"  style="min-height: 700px; max-height:750px;" method="POST" enctype="multipart/form-data" >
+          <form action="{{ route('admin.apartments.store') }}" id="form" class="bg-dark"  style="min-height: 700px; max-height:750px;" method="POST" enctype="multipart/form-data" >
             @csrf
          {{-- slider --}}
             <div id="carouselExampleIndicators" class="carousel slide  " data-bs-ride="false">
@@ -168,6 +168,9 @@
                             @error('n_rooms')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
+                            {{-- INPUT LON LAT --}}
+                            <input type="hidden" name="lon" id="lon" class="form-control"  value="">
+                            <input type="hidden" name="lat" id="lat" class="form-control"  value="">
                         </div>
                             
                     </div>
@@ -209,6 +212,7 @@
                                @error('cover')
                                <div class="text-danger">{{ $message }}</div>
                                @enderror
+
                            </div>
     
                             
@@ -220,7 +224,7 @@
                     <div class="carousel-item col-12 text-center "  style="min-height: 700px; max-height:750px;">
                         <div class="col-12 justify-content-center">
 
-                            <button class="btn btn-success" type="submit">Submit</button>
+                            <button id="createSubmit" class="btn btn-success" type="submit">Submit</button>
                         </div>
                     </div>
  
