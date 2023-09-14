@@ -11,7 +11,7 @@
             <h2 class="">Add <span style="color: #1f615f">Pet</span><i class="fas fa-paw ms-2 " style="color: #1f615f"></i> Record</h2>
         </div>
        <div class="col-12 bg-dark text-white  position-relative">
-          <form action="{{ route('admin.apartments.store') }}" class="bg-dark"  style="height:700px" method="POST" enctype="multipart/form-data" >
+          <form action="{{ route('admin.apartments.store') }}" class="bg-dark"  style="min-height: 700px; max-height:750px;" method="POST" enctype="multipart/form-data" >
             @csrf
          {{-- slider --}}
             <div id="carouselExampleIndicators" class="carousel slide  " data-bs-ride="false">
@@ -28,7 +28,7 @@
                 </div>
                 <div class="carousel-inner">
                      {{-- prima sezione --}}
-                    <div class="carousel-item active" style="height:700px">
+                    <div class="carousel-item active" style="min-height: 700px; max-height:750px;">
                         <div class="col-12 d-flex flex-column  align-items-center">
                             <div class="my-3">
                                 <h3>descrivici il tuo appartamento</h3>
@@ -61,7 +61,7 @@
                     {{-- da inserire nel button info --}}
                     
                     {{-- seconda sezione --}}
-                    <div class="carousel-item "  style="height:700px">
+                    <div class="carousel-item "  style="min-height: 700px; max-height:750px;">
                         <div class="form-group my-4 d-flex justify-content-around my-5">
                             <div class="">
                                 <label class="control-label mb-2 fw-bold me-3">titolo</label>
@@ -102,9 +102,9 @@
                     </div>
                    
                     {{-- terza sezione --}}
-                    <div class="col-12" >
+                    <div class="col-12">
 
-                        <div class="carousel-item "  style="height:700px;">
+                        <div class="carousel-item "  style="min-height: 700px; max-height:750px;">
                             <div class="d-flex align-items-center w-100 flex-column">
                                 {{-- PROVA CHECKBOX-2 --}}
                                 <div class="card col-8 my-5">
@@ -138,7 +138,7 @@
                     {{-- quarta sezione --}}
                     <div  class="col-12">
 
-                        <div class="carousel-item " style="height:700px;"></div>
+                        <div class="carousel-item " style="min-height: 700px; max-height:750px;">
                             <div class="d-flex justify-content-center">
 
                                 {{-- METRI QUADRI APPARTAMENTO --}}
@@ -162,7 +162,7 @@
                  {{-- quinta sezione --}}                   
                     <div class="col-12">
 
-                        <div class="carousel-item "  style="height:700px">
+                        <div class="carousel-item "  style="min-height: 700px; max-height:750px;">
                            <div class="d-flex flex-column align-items-center col-12 ">
                                <div class="d-flex flex-wrap justify-content-center">
                                     <div class="col-4">
@@ -196,7 +196,7 @@
                     </div>
 
                     {{-- sesta --}}
-                    <div class="carousel-item col-12 text-center "  style="height:700px">
+                    <div class="carousel-item col-12 text-center "  style="min-height: 700px; max-height:750px;">
                         <div class="col-12 justify-content-center">
 
                             <button class="btn btn-success" type="submit">Submit</button>
