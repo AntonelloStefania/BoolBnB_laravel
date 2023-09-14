@@ -65,7 +65,7 @@
                         <div class="form-group my-4 d-flex justify-content-around my-5">
                             <div class="">
                                 <label class="control-label mb-2 fw-bold me-3">titolo</label>
-                                <input type="text" id="title" name="title" class="form-control" required>
+                                <input type="text" id="title" name="title" class="form-control" >
                             </div>
                         </div>
                         @error('title')
@@ -74,7 +74,7 @@
                         <div class="form-group my-4 d-flex justify-content-around my-5">
                             <div class="d-flex align-items-center">
                                 <label class="control-label mb-2 fw-bold me-3">Prezzo</label>
-                                <input type="text" id="price" name="price" class="form-control" required>
+                                <input type="text" id="price" name="price" class="form-control" >
                             </div>
                         </div>
                         @error('price')
@@ -93,7 +93,7 @@
                         <div class="form-group my-4 d-flex justify-content-around my-5">
                             <div class="d-flex align-items-center">
                                 <label class="control-label mb-2 fw-bold me-3">Indirizzo</label>
-                                <input type="ratio" id="address" name="address" class="form-control" required>
+                                <input type="ratio" id="address" name="address" class="form-control" >
                             </div>
                         </div>
                         @error('address')
@@ -144,18 +144,27 @@
                                 {{-- METRI QUADRI APPARTAMENTO --}}
                             <div class=" ">
                                 <label class="control-label fw-bold " for="name">Metri quadri alloggio: </label>
-                                <input type="number" id="mq" name="mq" class="form-control" style="width:4.25rem" required>
+                                <input type="number" id="mq" name="mq" class="form-control" style="width:4.25rem" >
                             </div>
+                            @error('mq')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                             {{-- NUMERO BAGNI --}}
                             <div class=" ">
                                 <label class="control-label fw-bold ">Numero di bagni: </label>
-                                <input type="number" id="n_wc" name="n_wc" class="form-control" style="width:4.25rem" required>
+                                <input type="number" id="n_wc" name="n_wc" class="form-control" style="width:4.25rem" >
                             </div>
+                            @error('n_wc')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                             {{-- NUMERO STANZE --}}
                             <div class=" ">
                                 <label class="control-label fw-bold ">Numero di stanze</label>
-                                <input type="number" id="n_rooms" name="n_rooms" class="form-control" style="width:4.25rem" required>
+                                <input type="number" id="n_rooms" name="n_rooms" class="form-control" style="width:4.25rem" >
                             </div>
+                            @error('n_rooms')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                             </div>
                     </div>
@@ -174,6 +183,9 @@
                                         @endforeach
                                     </div>
                                </div>
+                               @error('service')
+                               <div class="text-danger">{{ $message }}</div>
+                               @enderror
                                <div class="form-group my-4  my-5">
                                    <div class="d-flex align-items-center">
                                        <label class="control-label mb-2 fw-bold me-3">Sponsor</label>
@@ -184,10 +196,16 @@
                                        </select>
                                    </div>
                                </div>
+                               @error('sponsor')
+                               <div class="text-danger">{{ $message }}</div>
+                               @enderror
                                <div class="">
                                    <label class="control-label mb-2 fw-bold me-3">Photos</label>
                                    <input type="file" name="cover" id="cover" required>
                                </div>
+                               @error('cover')
+                               <div class="text-danger">{{ $message }}</div>
+                               @enderror
                            </div>
     
                             
@@ -202,6 +220,7 @@
                             <button class="btn btn-success" type="submit">Submit</button>
                         </div>
                     </div>
+ 
                 </div>
                 {{-- fine slider --}}
             </div>
