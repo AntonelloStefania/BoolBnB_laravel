@@ -19,36 +19,50 @@
             <div class="col-12">
                 <input type="hidden" name="user_id" id="user_id" class="form-control"  value="{{ $user->id }}"> 
                 <div class="form-group "> 
+                    {{-- TITOLO ANNUNCIO --}}
+                    <div class="form-group my-4 d-flex justify-content-around my-5">
+                        <div class="">
+                            <label class="control-label mb-2 fw-bold me-3">titolo</label>
+                            <input type="text" id="title" name="title" class="form-control" value="{{old('title') ?? $apartment->title}}">
+                            @error('title')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror 
+                        </div>
+                    </div>
                     {{-- TIPOLOGIA APPARTAMENTO --}}
                     <div class="">
                         <label class="control-label fw-bold">Tipologia di alloggio</label>
                         <select name="type_id" id="" class="form-control " style="width:12rem">
                             @foreach($types as $type)
-                             <option value="{{$type->id}}"> {{$type->name}}</option>
+                             <option value="{{$type->id}}" {{ $type->id == old('type_id', $apartment->type_id) ? 'selected' : ''}}> {{$type->name}}</option>
                              @endforeach
                         </select>
                     </div>
                     {{-- METRI QUADRI APPARTAMENTO --}}
                     <div class=" ">
                       <label class="control-label fw-bold " for="name">Metri quadri alloggio: </label>
-                      <input type="number" id="mq" name="mq" class="form-control" style="width:4.25rem">
+                      <input type="number" id="mq" name="mq" class="form-control" style="width:4.25rem" value="{{old('mq') ?? $apartment->mq}}">
                     </div>
                     {{-- NUMERO BAGNI --}}
                     <div class=" ">
                         <label class="control-label fw-bold ">Numero di bagni: </label>
-                        <input type="number" id="n_wc" name="n_wc" class="form-control" style="width:4.25rem">
+                        <input type="number" id="n_wc" name="n_wc" class="form-control" style="width:4.25rem" value="{{old('n_wc') ?? $apartment->n_wc}}">
                     </div>
                     {{-- NUMERO STANZE --}}
                     <div class=" ">
                         <label class="control-label fw-bold ">Numero di stanze</label>
-                        <input type="number" id="n_rooms" name="n_rooms" class="form-control" style="width:4.25rem">
+                        <input type="number" id="n_rooms" name="n_rooms" class="form-control" style="width:4.25rem" value="{{old('n_rooms') ?? $apartment->n_rooms}}">
                     </div>
                 </div>  
+            </div>
+            <div class="col-12">
+                <label class="control-label fw-bold ">Descrizione</label>
+                <textarea class="col-8 col-md-6 offset-md-3 p-3 offset-2 " name="description" id="" cols="30" rows="10">{{old('description') ?? $apartment->description }}</textarea>
             </div>
            <div class="d-flex align-items-center">
             <label class="control-label mb-2 fw-bold me-3">Servizi aggiuntivi</label>
                 @foreach($services as $service)
-                    <input class="form-check-input" type="checkbox" role="switch" name="name[]" value="{{$service->id}}" id="flexSwitchCheckDefault">
+                    <input class="form-check-input" type="checkbox" role="switch" name="name[]" value='{{ $service->id }}' {{$errors->any() ? (in_array($service->id, old('services', [])) ? 'checked' : '') : ($apartment->services->contains($service) ? 'checked' : '') }} id="flexSwitchCheckDefault" >
                     <label class="form-check-label" for="flexSwitchCheckDefault">{{$service->name}}</label>
                 @endforeach
             </div>
@@ -57,7 +71,7 @@
                 <label class="control-label mb-2 fw-bold me-3">Sponsor</label>
                 <select name="sponsor_id" id="">
                     @foreach($sponsors as $sponsor)
-                     <option value="{{$sponsor->id}}">{{$sponsor->name}} - {{$sponsor->time}}</option>
+                     <option value="{{$sponsor->id}}" {{ $sponsor->id == old('sponsor_id', $apartment->sponsor_id) ? 'selected' : ''}}>{{$sponsor->name}} - {{$sponsor->time}}</option>
                      @endforeach
                 </select>
             </div>

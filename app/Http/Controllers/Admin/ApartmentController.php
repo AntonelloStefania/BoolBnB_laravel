@@ -134,7 +134,7 @@ class ApartmentController extends Controller
             $form_data['cover'] = $path;
         }
 
-        $form_data['slug'] = $apartment->generateSlug($form_data['title']); 
+        $form_data['slug'] = Str::slug($form_data['title'],'-'); 
         $apartment->update($form_data);
         $apartment->save();
 
