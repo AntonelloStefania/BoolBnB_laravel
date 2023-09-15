@@ -84,7 +84,7 @@
             </p>
         </div>
         <div class="col-12 d-flex justify-content-center my-5">
-            <a href="{{route('register')}}" class="beige-btn">Registrati</a>
+            <a href="{{route('register')}}" class="blue-btn">Registrati</a>
         </div>
         <div class="col-12 text-center">
             <p>

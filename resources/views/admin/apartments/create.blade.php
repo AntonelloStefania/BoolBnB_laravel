@@ -3,27 +3,21 @@
 @section('content')
 
 <div class="container-fluid">
-   <div class="my-4 d-flex justify-content-start">
-      <a href="{{route('admin.dashboard')}}" class="btn btn-sm back-button"><i class="fa-regular fa-circle-left fa-l me-2" style="color: #ad4e1a;"></i>Dashboard</a>
-  </div>
    <div class="row flex-column ">
-        <div class="col my-4 text-center">
-            <h2 class="">Add <span style="color: #1f615f">Pet</span><i class="fas fa-paw ms-2 " style="color: #1f615f"></i> Record</h2>
-        </div>
-       <div class="col-12 bg-dark text-white  position-relative">
-          <form action="{{ route('admin.apartments.store') }}" id="form" class="bg-dark"  style="min-height: 700px; max-height:750px;" method="POST" enctype="multipart/form-data" >
+       <div class="col-12 bg-beige  text-white  position-relative">
+          <form action="{{ route('admin.apartments.store') }}" id="form" class="bg-beige"  style="min-height: 700px; max-height:750px;" method="POST" enctype="multipart/form-data" >
             @csrf
          {{-- slider --}}
-            <div id="carouselExampleIndicators" class="carousel slide  " data-bs-ride="false">
+            <div id="carouselExampleIndicators" class="carousel slide home-text " data-bs-ride="false">
                 <div class="position-absolute bottom-0 col-12">
 
-                    <div class="carousel-indicators ">
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active carousel-btn" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" class="carousel-btn" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" class="carousel-btn" aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" class="carousel-btn" aria-label="Slide 4"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" class="carousel-btn" aria-label="Slide 5"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" class="carousel-btn" aria-label="Slide 6"></button>
                     </div>
                 </div>
                 <div class="carousel-inner">
@@ -232,11 +226,11 @@
                 {{-- fine slider --}}
             </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class=" "  aria-hidden="true"> <i class="fa-solid fa-chevron-left fa-2xl carousel-btn-icon" ></i></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
                 <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class=" "  aria-hidden="true"><i class="fa-solid fa-chevron-right fa-2xl carousel-btn-icon" ></i></span>
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>

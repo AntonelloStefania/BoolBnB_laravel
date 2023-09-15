@@ -15,12 +15,20 @@
 .blue-btn {
     background-color: #718dd8;
     color: white;
+    padding: 0.5rem;
+    border-radius: 2rem;
     font-weight: bold;
+    text-decoration: none;
 }
 
 .blue-btn:hover {
     background-color: #5375d1;
     color: white;
+    padding: 0.5rem;
+    border-radius: 2rem;
+    font-weight: bold;
+    text-decoration: none;
+
 }
 
 //pulsante BEIGE
@@ -49,6 +57,7 @@
 
 }
 
+//TESTO SCURO
 .home-text {
     color: rgb(68, 68, 68);
 }
@@ -57,4 +66,14 @@
 .brand {
     color: #718dd8;
     font-weight: bold;
+}
+
+//pulsanti carousel create
+
+.carousel-btn {
+    background-color: #718dd8 !important;
+}
+
+.carousel-btn-icon {
+    color: #718dd8 !important;
 }
