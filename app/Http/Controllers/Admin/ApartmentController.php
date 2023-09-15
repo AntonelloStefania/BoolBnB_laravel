@@ -85,7 +85,15 @@ class ApartmentController extends Controller
             $apartment->services()->attach($request->name);
         }
         if($request->has('sponsor_id')){
-            $apartment->sponsors()->attach($request->sponsor_id, ['start' => date("m-d-Y h:i:s"),'end' => date("m-d-Y h:i:s", mktime(date('h') + 24 , date("i"), date("s"), date("m"), date("d"), date("Y")))]);
+            $time= '';
+            if($request->sponsor_id == 1){
+                $time= 24;
+            } else if ($request->sponsor_id){
+                $time= 72;
+            } else {
+                $time= 144;
+            }
+            $apartment->sponsors()->attach($request->sponsor_id, ['start' => date("m-d-Y h:i:s"),'end' => date("m-d-Y h:i:s", mktime(date('h') + $time , date("i"), date("s"), date("m"), date("d"), date("Y")))]);
         }
         return redirect()->route('admin.apartments.index');
     }
@@ -99,7 +107,7 @@ class ApartmentController extends Controller
     public function show(Apartment $apartment)
     {   
         $photos=Photo::all();
-        
+
         
        
         return view('admin.apartments.show', compact('apartment','photos'));
