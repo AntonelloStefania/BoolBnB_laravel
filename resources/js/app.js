@@ -1,6 +1,5 @@
 import './bootstrap';
 import '~resources/scss/app.scss';
-import  Axios  from 'axios';
 import * as bootstrap from 'bootstrap';
 import.meta.glob([
     '../img/**'
@@ -26,7 +25,7 @@ submitForm.addEventListener('click', (event) => {
     request.open("GET", 'https://api.tomtom.com/search/2/geocode/' + addressValue + '.json?key=NvRVuGxMpACPuu2WUR93HOEvbVfg2g9A')
     request.send()
     request.onload = () => {
-        if(request.status == 200){
+        if (request.status == 200) {
             // salva in una variabile la risposta dell'API, in JSON
             let JSONresponse = JSON.parse(request.response)
             lon = JSONresponse.results[0].position.lon
@@ -34,7 +33,7 @@ submitForm.addEventListener('click', (event) => {
             console.log(JSONresponse)
             console.log(lon)
             console.log(lat)
-        }else{
+        } else {
             console.log("error:")
             console.log(request.status)
         }
@@ -46,5 +45,3 @@ submitForm.addEventListener('click', (event) => {
         form.submit();
     }
 })
-
-

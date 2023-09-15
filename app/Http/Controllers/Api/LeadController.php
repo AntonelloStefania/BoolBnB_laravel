@@ -24,7 +24,7 @@ class LeadController extends Controller
      
         if($validator->fails()){
         return response()->json([
-            'status' => false,
+            'success' => false,
             'errors' => $validator->errors()
         ]);
         }
@@ -35,7 +35,7 @@ class LeadController extends Controller
         $new_lead->save();
     
 
-        Mail::to('contact@bnb.com')->send(new NewContact($new_lead)); 
+        Mail::to('contacts@bnb.com')->send(new NewContact($new_lead)); 
     
 
         return response()->json([
