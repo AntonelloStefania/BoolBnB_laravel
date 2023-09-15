@@ -78,5 +78,3 @@ submitForm.addEventListener('click', (event) => {
 
 
 
-
-
