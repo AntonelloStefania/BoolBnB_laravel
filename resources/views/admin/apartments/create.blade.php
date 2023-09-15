@@ -22,29 +22,77 @@
                 </div>
                 <div class="carousel-inner">
                      {{-- prima sezione --}}
-                    <div class="carousel-item active" style="min-height: 700px; max-height:750px;">
+                   
+                    
+
+                    <div class="col-12">
+
+                        <div class="carousel-item active"  style="min-height: 700px; max-height:750px;">
+                            <div class="d-flex align-items-center w-100 flex-column">
+                                {{-- PROVA CHECKBOX-2 --}}
+                                <div class="card col-8 my-5">
+                                    <div class="rating-container">
+                                      <div class="rating-text text-center my-4">
+                                        <h3>Scegli la tipologia di alloggio da affittare</h3>
+                                      </div>
+                                        <div class="rating d-flex flex-wrap justify-content-center">
+                                            <form class="rating-form">
+                                                @foreach($types as $type)
+                                                <div class="col-3 m-2 d-flex flex-column align-items-center">
+                                                    <label for="type-id-{{$type->id}}" class="position-relative d-flex change-cursor justify-content-center align-items-center" style="width:75px; height:75px;">
+                                                        <input type="radio"  name="type_id"   style="width:65px; height:65px; appearance:none" class="radio-icons" value="{{$type->id}}"  id="type-id-{{$type->id}}"  />
+                                                        <img src="{{$type->icons}}"  style="width:50px; height:50px;" alt="" class=" type-icons position-absolute" >
+                                                    </label>
+                                                    <span class="fw-bold">{{$type->name}}</span>
+                                                </div>
+                                                @endforeach
+                                                @error('type_id')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror 
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- FINE PROVA CHECKBOX-2 --}}
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {{-- seconda sezione --}}
+                  
+
+                    <div class="carousel-item " style="min-height: 700px; max-height:750px;">
                         <div class="col-12 d-flex flex-column  align-items-center">
                             <div class="my-3">
-                                <h3>Descrivi il tuo alloggio su BoolBnB</h3>
+                                <h2>Descrivi il tuo alloggio su <span class="brand">BoolBnB</span></h2>
                             </div>
                             <div class="col-6 text-center ">
                                 <p>
-                                    Benvenuto nella tua opportunità di creare un'esperienza unica per i futuri ospiti su BoolBnB! La tua descrizione dell'alloggio è la prima impressione che gli ospiti avranno del loro soggiorno. Ecco come puoi rendere questa impressione davvero indimenticabile:                           
+                                    Benvenuto nella tua opportunità di creare un'esperienza unica per i futuri ospiti su <span class="brand">BoolBnB</span>! La tua descrizione dell'alloggio è la prima impressione che gli ospiti avranno del loro soggiorno. Ecco come puoi rendere questa impressione davvero indimenticabile:                           
                                 </p>
                             </div>
                            
                             <div class="col-12 d-flex flex-column align-items-center" >
-                                <div class="col-12 d-lg-flex justify-content-center d-none  ">
-                                    <img src="{{asset('homepage_2.jpg')}}" class="rounded-circle" width="250px" height="250px" alt="">
+                                <div class="col-12 d-lg-flex justify-content-center d-none align-items-center  ">
+                                    
+                                        <img src="{{asset('homepage_2.jpg')}}" class="rounded-circle" width="150px" height="150px" alt="">
+                                    
+                                    
+                                        <img src="{{asset('homepage_6.jpg')}}" class="rounded-circle mx-3" width="250px" height="250px" alt="">
+                                    
+                                    
+                                        <img src="{{asset('attico1.jpg')}}" class="rounded-circle" width="150px" height="150px" alt="">
+                                    
                                 </div>
-                                <div class="col-6 mb-2 text-end ">
-                                    <button type="button" class="rounded-circle " data-bs-placement="right" data-bs-html="true" style="width:1.75rem" data-bs-toggle="popover" title="Consigli per la descrizione" data-bs-content="
+                                <div class="col-6 mb-2 d-flex justify-content-end ">
+                                    <button type="button" class="rounded-circle blue-btn d-flex flex-end border-0 " data-bs-placement="right" data-bs-html="true" style="width:1.5rem; height:1.5rem"  data-bs-toggle="popover" title="Consigli per la descrizione" data-bs-content="
                                     <ul>
                                         <li>Inizia dalla <strong>passione</strong>: Condividi il tuo entusiasmo per il tuo spazio. Cosa lo rende speciale? Quali dettagli ami di più? Fai emergere la personalità unica del tuo alloggio.</li>
                                         <li>Menziona i <strong>comfort e le comodità</strong>: Elenca tutte le comodità disponibili, come Wi-Fi, cucina attrezzata, lavatrice, e come questi renderanno il soggiorno dei tuoi ospiti più piacevole.</li>
                                         <li>Includi i tuoi <strong>consigli locali</strong>: Se conosci ristoranti fantastici, luoghi da visitare o segreti nascosti nella zona, condividili con i tuoi ospiti. Questo può rendere il soggiorno ancora più memorabile.</li>
                                         <li>Sii <strong>onesto e trasparente</strong>: La sincerità è la base della fiducia. Assicurati di rappresentare il tuo alloggio in modo accurato e di comunicare le regole chiaramente.</li>
-                                    </ul>"><i class="fas fa-info"></i></button>
+                                    </ul>"><i class="fas fa-info align-self-center info-icon"></i></button>
                                 </div>
                                 <div class="col-12 d-flex justify-content-center mt-3 ">
                                     <input type="hidden" name="user_id" id="user_id" class="form-control"  value="{{ $user->id }}"> 
@@ -58,9 +106,8 @@
                             </div> --}}
                         </div>
                     </div>
-                    {{-- da inserire nel button info --}}
-                    
-                    {{-- seconda sezione --}}
+                   
+                    {{-- terza sezione --}}
                     <div class="carousel-item "  style="min-height: 700px; max-height:750px;">
                         <div class="form-group my-4 d-flex justify-content-around my-5">
                             <div class="">
@@ -100,41 +147,6 @@
                                 @error('address')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror 
-                            </div>
-                        </div>
-                    </div>
-                   
-                    {{-- terza sezione --}}
-                    <div class="col-12">
-
-                        <div class="carousel-item "  style="min-height: 700px; max-height:750px;">
-                            <div class="d-flex align-items-center w-100 flex-column">
-                                {{-- PROVA CHECKBOX-2 --}}
-                                <div class="card col-8 my-5">
-                                    <div class="rating-container">
-                                      <div class="rating-text text-center my-4">
-                                        <h3>Scegli la tipologia di alloggio da affittare</h3>
-                                      </div>
-                                        <div class="rating d-flex flex-wrap justify-content-center">
-                                            <form class="rating-form">
-                                                @foreach($types as $type)
-                                                <div class="col-3 m-2 d-flex flex-column align-items-center">
-                                                    <label for="{{$type->id}}" class="position-relative d-flex change-cursor justify-content-center align-items-center" style="width:75px; height:75px;">
-                                                        <input type="radio"  name="type_id"  style="width:65px; height:65px; appearance:none" class="radio-icons" value="{{$type->id}}"  id="{{$type->id}}"  />
-                                                        <img src="{{$type->icons}}"  style="width:50px; height:50px;" alt="" class=" type-icons position-absolute" >
-                                                    </label>
-                                                    <span class="fw-bold">{{$type->name}}</span>
-                                                </div>
-                                                @endforeach
-                                                @error('type_id')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror 
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                {{-- FINE PROVA CHECKBOX-2 --}}
-                                
                             </div>
                         </div>
                     </div>
@@ -249,10 +261,15 @@
 @endsection
 
 <style class="scss">
+    .info-icon{
+        padding-left: 0.1rem
+    }
     textarea{
         height:170px;
         width: 50%;
         border-radius: 1rem;
     }
+
+
 
 </style>
