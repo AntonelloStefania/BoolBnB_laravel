@@ -9,7 +9,7 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th scope="col">Copertina</th>
+                            <th scope="col" class="home-text">Copertina</th>
                             <th scope="col">Titolo Annuncio</th>
                             <th scope="col">Indirizzo</th>
                             <th scope="col">Tipologia</th>
@@ -49,8 +49,42 @@
             </div>
             
         </div>
+        {{-- card-1 --}}
+        @foreach($apartments as $apartment)
+        <article class="postcard light blue">
+			<a class="postcard__img_link" href="#">
+				<img class="postcard__img" src="{{ asset('storage/'.$apartment->cover) }} " alt="" width="60px">
+			</a>
+			<div class="postcard__text t-dark">
+				<h1 class="postcard__title blue"><a href="#">{{$apartment->title}}</a></h1>
+				<div class="postcard__subtitle small">
+					{{$apartment->address}}
+				</div>
+				<div>
+                    <img src="{{$apartment->type->icons}}" width="25px" alt="">
+                    <span style="font-size:10px">{{$apartment->type->name}}</span>
+                    <span>{{$apartment->price}}€ a notte</span>
+                </div>
+				<div class="postcard__preview-txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, fugiat asperiores inventore beatae accusamus odit minima enim, commodi quia, doloribus eius! Ducimus nemo accusantium maiores velit corrupti tempora reiciendis molestiae repellat vero. Eveniet ipsam adipisci illo iusto quibusdam, sunt neque nulla unde ipsum dolores nobis enim quidem excepturi, illum quos!</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item"><i class="fas fa-tag mr-2"></i>Podcast</li>
+					<li class="tag__item"><i class="fas fa-clock mr-2"></i>55 mins.</li>
+					<li class="tag__item play blue">
+						<a href="#"><i class="fas fa-play mr-2"></i>Play Episode</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+        @endforeach
+
+        
+        
     </div>
 @endsection
+
+<style lang="scss">
+    
+</style>
 
 
 
