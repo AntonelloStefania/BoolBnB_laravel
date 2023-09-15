@@ -2,7 +2,7 @@
 @section('content')
 
 <div>
-    <a href="http://localhost:5174/" class="btn btn-success">Torna agli annunci</a>
+    <a href="http://localhost:5174/" class="btn blue-btn">Torna agli annunci</a>
 </div>
 @guest
 <div class="jumbotron p-5  bg-beige rounded-3">
@@ -98,25 +98,81 @@
 
 {{-- sezione auth --}}
 @auth
-<div class="col-6 offset-3 home-text">
-    <h1>
-        Iscriviti e Scopri di Più
-    </h1>
-    <div>
-        <p>
-            Se hai un appartamento, una casa, una stanza in più o qualsiasi altra proprietà che potresti mettere in affitto, è il momento ideale per farlo con BoolBnB. Offriamo un modo semplice e sicuro per monetizzare il tuo spazio extra e iniziare a guadagnare. 
-        </p>
+<div class="jumbotron p-5  bg-beige rounded-3">
+    <div class="container ">
+        
+        <div class="col-12 home-text ">
+            <h1 class="text-center">
+                Pubblica il Tuo Annuncio e Condividi la Tua Ospitalità
+            </h1>
+            <p class="text-center">
+                Sei pronto a far parte della nostra community di host eccezionali? <span class="brand">BoolBnB</span>
+                è il luogo perfetto per iniziare a condividere il tuo annuncio unico con viaggiatori provenienti da tutto il mondo. Clicca sul pulsante qui sotto per pubblicare il tuo annuncio ora!           
+            </p>
+            <div class="col-12 text-center my-5">
+                <a href="{{route('admin.apartments.create')}}" class="btn blue-btn">inserisci il tuo annuncio</a>
+            </div>
+            <div class="col-12 d-flex flex-column flex-lg-row justify-content-around my-5 home-text">
+                <div class="col-12 col-md-8 mt-md-4 col-lg-6 align-self-center text-center text-lg-start">
+                    <h2 class="mb-3">Condividi la Tua Casa o Proprietà Unica</h2>
+                    <p>
+                        Hai una casa accogliente, un appartamento elegante, una casa galleggiante affascinante o persino un camper avventuroso? Con <span class="brand">BoolBnB</span>
+                        , hai la piattaforma perfetta per condividere la tua struttura unica con ospiti desiderosi di nuove avventure. Che tu stia offrendo un alloggio completo o una stanza in affitto, c'è sempre qualcuno in cerca del posto perfetto per il suo soggiorno.
+                    </p>
+                </div>
+                <div class="col-12 col-md-auto d-flex justify-content-center">
+                    <img src="{{asset('homepage_camper.jpg')}}" class="home-img " alt="">
+                </div>
+            </div>
+          
+        </div>
     </div>
-    <div>
-       <p>
-        Con BoolBnB, mettere in affitto il tuo alloggio è facile e conveniente. Inizia oggi stesso a condividere il tuo spazio con viaggiatori in cerca di esperienze autentiche. Un mondo di opportunità ti aspetta.
-       </p>
-    </div>
+</div>
 
+<div class="jumbotron p-5 rounded-3 my-5">
+    <div class="container ">
+        
+        <div class="col-12 ">
+            <div class="col-12 d-flex flex-column flex-lg-row justify-content-around my-5 home-text">
+                <div class="col-12 col-md-auto d-flex justify-content-center">
+                    <img src="{{asset('homepage_money.jpg')}}" class="home-img " alt="">
+                </div>
+                <div class="col-12 col-md-8 mt-md-4 col-lg-6 align-self-center text-center text-lg-start">
+                    <h2 class="mb-3">Guadagna con la Tua Ospitalità</h2>
+                    <p>
+                        Diventare un host <span class="brand">BoolBnB</span>
+                        è anche un'opportunità per guadagnare con la tua ospitalità. Mettendo a disposizione la tua struttura, hai la possibilità di generare reddito extra. Che tu voglia utilizzare questi guadagni per finanziare i tuoi viaggi o per migliorare la tua casa, <span class="brand">BoolBnB</span>
+                        è qui per supportarti.
+                    </p>
+                </div>
+            </div>
+        
+        </div>
+        
+    </div>
 </div>
-<div class="col-12 text-center">
-    <a href="{{route('admin.apartments.create')}}" class="btn blue-btn">inserisci il tuo annuncio</a>
+
+<div class="jumbotron p-5 rounded-3 bg-beige">
+    <div class="container ">
+        
+        <div class="col-12">
+            <div class="col-12 d-flex flex-column flex-lg-row justify-content-around my-5 home-text">
+                <div class="col-12 col-md-8 mt-md-4 col-lg-6 align-self-center text-center text-lg-start order-2 order-lg-1">
+                    <h2 class="mb-3">Facile e Gratuito</h2>
+                    <p>
+                        Pubblicare il tuo annuncio su <span class="brand">BoolBnB</span>
+                        è facile e gratuito. Ci occupiamo di tutto, dalla promozione del tuo annuncio alla gestione delle prenotazioni. Tutto quello che devi fare è condividere la tua ospitalità e accogliere i tuoi ospiti.
+                    </p>
+                </div>
+                <div class="col-12 col-md-auto d-flex justify-content-center order-1 order-lg-2">
+                    <img src="{{asset('homepage_easy.webp')}}" class="home-img " alt="">
+                </div>
+            </div>
+        
+        </div>
+    </div>
 </div>
+
 @endauth
 @endsection
 
