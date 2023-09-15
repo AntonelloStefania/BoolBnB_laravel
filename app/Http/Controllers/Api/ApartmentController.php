@@ -35,4 +35,19 @@ class ApartmentController extends Controller
             ]);
         }
     }
+
+    
+    //funzione recupero coordinate per marker su mappa
+    public function recuperaCoordinate()
+    {
+        // Recupera le coordinate lat e lon degli appartamenti dal tuo database
+        $coordinate = Apartment::select('lat', 'lon')->get();
+
+        // Restituisci i dati come risposta JSON
+        return response()->json([
+            'success'=>true,
+            'results'=>$coordinate
+        ]);
+        
+    }
 }
