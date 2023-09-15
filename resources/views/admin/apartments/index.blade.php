@@ -65,16 +65,16 @@
                     <span style="font-size:10px">{{$apartment->type->name}}</span> <br>
                     <span>{{$apartment->price}}€ a notte</span>
                 </div>
-				<div class="postcard__preview-txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, fugiat asperiores inventore beatae accusamus odit minima enim, commodi quia, doloribus eius! Ducimus nemo accusantium maiores velit corrupti tempora reiciendis molestiae repellat vero. Eveniet ipsam adipisci illo iusto quibusdam, sunt neque nulla unde ipsum dolores nobis enim quidem excepturi, illum quos!</div>
+				<div class="postcard__preview-txt">{{$apartment->description}}</div>
 				<ul class="postcard__tagbox">
-					<li class="tag__item"><a href="{{route('admin.apartments.edit', $apartment->id)}}" class="btn btn-sm edit"><i class="fas fa-pencil"></i></a></li>
-					<li class="tag__item"><a href="{{route('admin.apartments.show', $apartment->id)}}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a></li>
+					<li class="tag__item"><a href="{{route('admin.apartments.edit', $apartment->id)}}" class="btn btn-sm blue-btn"><i class="fas fa-pencil"></i>  modifica</a></li>
+					<li class="tag__item"><a href="{{route('admin.apartments.show', $apartment->id)}}" class="btn blue-btn btn-sm"><i class="fas fa-eye"></i>  visualizza</a></li>
 					<li class="tag__item play blue">
 						<form class="d-inline-block" action=" {{route('admin.apartments.destroy', $apartment->id)}} " onsubmit="return confirm('Sei sicuro di voler cancellare questo post?')" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-danger btn-sm">
-                                <i class="fa-solid fa-trash"></i>
+                            <button class="btn blue-btn btn-sm">
+                                <i class="fa-solid fa-trash"></i>  elimina
                             </button>
                         </form> 
 					</li>
@@ -89,12 +89,7 @@
 @endsection
 
 <style lang="scss">
-/* TASTI EDIT SHOW DELETE */
 
-.edit{
-    background-color: #718dd8;
-    color: white;
-}
 
 /* COSE CARD DA VEDERE */
 
@@ -204,8 +199,8 @@ a, a:hover {
     right: 0;
     bottom: 0;
     left: 0;
-    background-image: linear-gradient(-70deg, #424242, transparent 50%);
-    opacity: 1;
+    background-image: linear-gradient(-60deg, #f5b1ea, transparent 40%);
+    opacity: 0.7;
     border-radius: 10px;
   }
 
