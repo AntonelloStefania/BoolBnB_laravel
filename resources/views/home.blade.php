@@ -2,7 +2,7 @@
 @section('content')
 
 <div>
-    <a href="http://localhost:5174/" class="btn blue-btn">Torna agli annunci</a>
+    <a href="http://localhost:5174" class="btn blue-btn">Torna agli annunci</a>
 </div>
 @guest
 <div class="jumbotron p-5  bg-beige rounded-3">

@@ -54,6 +54,7 @@ class ApartmentController extends Controller
         $services= Service::all();
         $sponsors=Sponsor::all();
         $user=Auth::user();
+       
 
         return view('admin.apartments.create', compact('types','services','sponsors','user'));
     }
@@ -68,20 +69,23 @@ class ApartmentController extends Controller
     {
         $form_data = $request->all();
         $apartment = new Apartment();
+        
+
         if($request->hasFile('cover')){
             $path=Storage::put('apartment_photos',$request->cover);
             $form_data['cover']=$path;
         }
-        // dd($form_data);
-        // $visibility = $request->has('visibility') ? 1 : 0;
+       
+        $visibility = $request->has('visibility') ? 1 : 0;
         $form_data['slug'] = Str::slug($form_data['title'],'-'); 
         $apartment->fill($form_data);
+       
         $apartment->save();
         
         if($request->has('name')){
             $apartment->services()->attach($request->name);
         }
-        return redirect()->route('admin.apartments.index');
+        return redirect()->route('admin.apartments.index',['selectedTypeID' => $selectedTypeID]);
     }
 
     /**
