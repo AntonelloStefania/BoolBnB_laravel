@@ -85,7 +85,7 @@ class ApartmentController extends Controller
         if($request->has('name')){
             $apartment->services()->attach($request->name);
         }
-        return redirect()->route('admin.apartments.index',['selectedTypeID' => $selectedTypeID]);
+        return redirect()->route('admin.apartments.index');
     }
 
     /**
