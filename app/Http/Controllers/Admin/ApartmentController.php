@@ -69,7 +69,6 @@ class ApartmentController extends Controller
     {
         $form_data = $request->all();
         $apartment = new Apartment();
-        
 
         if($request->hasFile('cover')){
             $path=Storage::put('apartment_photos',$request->cover);
@@ -85,6 +84,9 @@ class ApartmentController extends Controller
         if($request->has('name')){
             $apartment->services()->attach($request->name);
         }
+        if($request->has('sponsor_id')){
+            $apartment->sponsors()->attach($request->sponsor_id, ['start' => date("m-d-Y h:i:s"),'end' => date("m-d-Y h:i:s", mktime(date('h') + 24 , date("i"), date("s"), date("m"), date("d"), date("Y")))]);
+        }
         return redirect()->route('admin.apartments.index');
     }
 
@@ -97,6 +99,7 @@ class ApartmentController extends Controller
     public function show(Apartment $apartment)
     {   
         $photos=Photo::all();
+        
         
        
         return view('admin.apartments.show', compact('apartment','photos'));

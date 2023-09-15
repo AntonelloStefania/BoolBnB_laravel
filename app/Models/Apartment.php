@@ -22,9 +22,9 @@ class Apartment extends Model
         return $this->belongsTo(Type::class);
     }
    
-    public function sponsor()
+    public function sponsors()
     {
-        return $this->belongsToMany(Sponsor::class);
+        return $this->belongsToMany(Sponsor::class)->withPivot(['start', 'end']);
     }
 
     public function user()

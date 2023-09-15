@@ -8,6 +8,9 @@
                     <div class="d-flex justify-content-between align-items-center my-3">
                         <div>
                             <span> {{ $apartment->mq }} </span>
+                            <span> {{ $apartment->start }} </span>
+                            <span> {{ $apartment->end }} </span>
+
                         </div>
                         <div>
                             @auth

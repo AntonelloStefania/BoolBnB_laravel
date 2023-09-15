@@ -16,6 +16,6 @@ class Sponsor extends Model
 
     public function apartments()
     {
-        return $this->hasMany(Apartment::class);
+        return $this->belongsToMany(Apartment::class);
     }
 }

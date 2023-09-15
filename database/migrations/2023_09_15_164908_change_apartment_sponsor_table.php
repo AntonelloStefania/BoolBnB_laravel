@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('sponsors', function (Blueprint $table) {
-            $table->bigInteger('time')->change();
+        Schema::table('apartment_sponsor', function (Blueprint $table) {
+            $table->string('start')->change();
+            $table->string('end')->change();
         });
     }
 
@@ -25,7 +26,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('sponsors', function (Blueprint $table) {
+        Schema::table('Apartment_sponsor', function (Blueprint $table) {
             //
         });
     }
