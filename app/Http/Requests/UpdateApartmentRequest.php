@@ -26,7 +26,7 @@ class UpdateApartmentRequest extends FormRequest
         return [
             'title' => 'required|max:50',
             'address'=> 'required|max:255',
-            'cover'=> 'required',
+            'cover'=> 'sometimes',
             'price'=> ['required', 'regex:/^\d{1,5}(\.\d{1,2})?$/'],
             'visibility' => 'required|integer',
             'description' => 'nullable',
