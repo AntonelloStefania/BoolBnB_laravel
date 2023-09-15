@@ -22,23 +22,20 @@
                 </div>
                 <div class="carousel-inner">
                      {{-- prima sezione --}}
-                   
-                    
-
                     <div class="col-12">
 
                         <div class="carousel-item active"  style="min-height: 700px; max-height:750px;">
                             <div class="d-flex align-items-center w-100 flex-column">
                                 {{-- PROVA CHECKBOX-2 --}}
-                                <div class="card col-8 my-5">
+                                <div class="card col-6 my-5">
                                     <div class="rating-container">
                                       <div class="rating-text text-center my-4">
-                                        <h3>Scegli la tipologia di alloggio da affittare</h3>
+                                        <h2>Scegli la tipologia di alloggio da affittare</h2>
                                       </div>
                                         <div class="rating d-flex flex-wrap justify-content-center">
                                             <form class="rating-form">
                                                 @foreach($types as $type)
-                                                <div class="col-3 m-2 d-flex flex-column align-items-center">
+                                                <div class="col-4 d-flex my-3 flex-column align-items-center">
                                                     <label for="type-id-{{$type->id}}" class="position-relative d-flex change-cursor justify-content-center align-items-center" style="width:75px; height:75px;">
                                                         <input type="radio"  name="type_id"   style="width:65px; height:65px; appearance:none" class="radio-icons" value="{{$type->id}}"  id="type-id-{{$type->id}}"  />
                                                         <img src="{{$type->icons}}"  style="width:50px; height:50px;" alt="" class=" type-icons position-absolute" >
