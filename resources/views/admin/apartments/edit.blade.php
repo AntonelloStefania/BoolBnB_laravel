@@ -7,7 +7,7 @@
       <a href="{{route('admin.apartments.index')}}" class="btn btn-sm back-button"><i class="fa-regular fa-circle-left fa-l me-2" style="color: #161616;"></i>Torna agli annunci</a>
   </div>
    <div class="row">
-      <div class="col my-4 text-center">
+      <div class="col my-4 text-center bg-beige">
          <h2 class="titolo">Modifica il tuo annuncio</h2>
      </div>
       
@@ -27,9 +27,7 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror 
                         </div>
-                    </div>
-                    {{-- prezzo-indirizzo-visibilità --}}
-                    <div class="form-group my-4 d-flex justify-content-around my-5">
+                        {{-- prezzo --}}
                         <div class="d-flex flex-column">        
                             <div class="">
                                 <label class="control-label mb-2 fw-bold me-3">Prezzo</label>
@@ -40,24 +38,39 @@
                             @enderror 
                         </div>
                     </div>
+                    {{-- indirizzo--}}
                     <div class="form-group my-4 d-flex justify-content-around my-5">
-                        <div class="d-flex align-items-center">
-                            <label class="control-label mb-2 fw-bold me-3">Indirizzo</label>
-                            <input type="ratio" id="address" name="address" class="form-control" >
+                    </div>
+                    <div class="form-group my-4 d-flex justify-content-around my-5">
+                        <div class="d-flex flex-column">        
+                            <div class="">
+                                <label class="control-label mb-2 fw-bold me-3">Indirizzo</label>
+                            <input type="ratio" id="address" name="address" class="form-control" value="{{old('address') ?? $apartment->address}}" >
+                            </div>
                             @error('address')
-                                <span class="text-danger">{{ $message }}</span>
+                             <span class="text-danger d-block">{{ $message }}</span>
                             @enderror 
                         </div>
                     </div>
-                    <div class="form-group my-4 d-flex justify-content-around my-5">
+                   {{-- foto --}}
+                    <div class="form-group my-4 d-flex justify-content-around my-5 bg-beige">
                         <div class="d-flex align-items-center">
-                            <label class="control-label mb-2 fw-bold me-3">visibilità</label>
-                        <span class="me-2">visibile</span> <input type="radio" id="visibility" name="visibility" value="1" class="me-3">
-                        <span class="me-2">invisibile</span> <input type="radio" id="visibility" name="visibility" value="0" class="me-3" >
-                        @error('visibility')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror    
+                            <label class="control-label mb-2 fw-bold me-3">Photos</label>
+                            <input type="file" name="cover" id="cover" value="{{ $apartment->cover }}">
+                            @error('cover')
+                            <span class="text-danger d-block">{{ $message }}</span>
+                           @enderror 
                         </div>
+                        @if ($apartment->cover)
+                        <div class="d-flex align-items-center">
+                            <label class="control-label mb-2 fw-bold me-3">Immagine precedente</label>
+                            <img src="{{ asset('storage/' . $apartment->cover) }}" alt="Immagine precedente" style="width: 18rem;">
+                        </div>
+                    @endif
+                    </div>
+
+                    <div class="form-group my-4 d-flex justify-content-around my-5">
+
                         <div class="d-flex justify-content-center m-5 p-5">
                             {{-- TIPOLOGIA APPARTAMENTO --}}
                             <div class="px-4">
@@ -100,18 +113,18 @@
             </div>
             <div class="col-12">
                 <div class="text-center">
-                    <label class="control-label fw-bold ">Descrizione</label>
+                    <label class="control-label fw-bold mb-4">Descrizione</label>
                 </div>
                 
                 <textarea class="col-8 col-md-6 offset-md-3 p-3 offset-2 " name="description" id="" cols="30" rows="10">{{old('description') ?? $apartment->description }}</textarea>   
             </div>
             <div class="text-center my-4">
-                <label class="control-label mb-2 fw-bold me-3">Servizi aggiuntivi</label>
+                <label class="control-label mb-2 fw-bold my-3">Servizi aggiuntivi</label>
             </div>
            <div class="d-flex align-items-center ">
                 @foreach($services as $service)
-                    <input class="form-check-input mx-2" type="checkbox" role="switch" name="name[]" value='{{ $service->id }}' {{$errors->any() ? (in_array($service->id, old('services', [])) ? 'checked' : '') : ($apartment->services->contains($service) ? 'checked' : '') }} id="flexSwitchCheckDefault" >
-                    <label class="form-check-label" for="flexSwitchCheckDefault">{{$service->name}}</label>
+                    <input class="form-check-input m-1" type="checkbox" role="switch" name="name[]" value='{{ $service->id }}' {{$errors->any() ? (in_array($service->id, old('services', [])) ? 'checked' : '') : ($apartment->services->contains($service) ? 'checked' : '') }} id="flexSwitchCheckDefault" >
+                    <label class="form-check-label " for="flexSwitchCheckDefault">{{$service->name}}</label>
                 @endforeach
                 @error('services')
                 <span class="text-danger d-block">{{ $message }}</span>
@@ -130,12 +143,14 @@
                @enderror 
             </div>
             <div class="d-flex align-items-center">
-                <label class="control-label mb-2 fw-bold me-3">Photos</label>
-                <input type="file" name="cover" id="cover">
-                @error('cover')
-                <span class="text-danger d-block">{{ $message }}</span>
-               @enderror 
+                <label class="control-label mb-2 fw-bold me-3">visibilità</label>
+            <span class="me-2">visibile</span> <input type="radio" id="visibility" name="visibility" value="1" class="me-3" {{ old('visibility', $apartment->visibility) == '1' ? 'checked' : '' }}>
+            <span class="me-2">invisibile</span> <input type="radio" id="visibility" name="visibility" value="0" class="me-3" {{ old('visibility', $apartment->visibility) == '0' ? 'checked' : '' }} >
+            @error('visibility')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror    
             </div>
+           
 
             <button class="btn btn-success" type="submit">Submit</button>
         </div>

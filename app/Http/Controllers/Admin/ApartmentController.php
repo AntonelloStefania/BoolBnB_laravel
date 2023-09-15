@@ -136,6 +136,9 @@ class ApartmentController extends Controller
             $path = Storage::put('apartment_photos', $request->cover);
 
             $form_data['cover'] = $path;
+        }else {
+            // Mantieni il valore esistente del campo "cover"
+            $form_data['cover'] = $apartment->cover;
         }
 
         $form_data['slug'] = Str::slug($form_data['title'],'-'); 
