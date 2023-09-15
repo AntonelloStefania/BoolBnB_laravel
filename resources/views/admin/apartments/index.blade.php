@@ -56,21 +56,27 @@
 				<img class="postcard__img" src="{{ asset('storage/'.$apartment->cover) }} " alt="" width="60px">
 			</a>
 			<div class="postcard__text t-dark">
-				<h1 class="postcard__title blue"><a href="#">{{$apartment->title}}</a></h1>
+				<h1 class="brand"><a href="#">{{$apartment->title}}</a></h1>
 				<div class="postcard__subtitle small">
 					{{$apartment->address}}
 				</div>
 				<div>
                     <img src="{{$apartment->type->icons}}" width="25px" alt="">
-                    <span style="font-size:10px">{{$apartment->type->name}}</span>
+                    <span style="font-size:10px">{{$apartment->type->name}}</span> <br>
                     <span>{{$apartment->price}}€ a notte</span>
                 </div>
-				<div class="postcard__preview-txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, fugiat asperiores inventore beatae accusamus odit minima enim, commodi quia, doloribus eius! Ducimus nemo accusantium maiores velit corrupti tempora reiciendis molestiae repellat vero. Eveniet ipsam adipisci illo iusto quibusdam, sunt neque nulla unde ipsum dolores nobis enim quidem excepturi, illum quos!</div>
+				<div class="postcard__preview-txt">{{$apartment->description}}</div>
 				<ul class="postcard__tagbox">
-					<li class="tag__item"><i class="fas fa-tag mr-2"></i>Podcast</li>
-					<li class="tag__item"><i class="fas fa-clock mr-2"></i>55 mins.</li>
+					<li class="tag__item"><a href="{{route('admin.apartments.edit', $apartment->id)}}" class="btn btn-sm blue-btn"><i class="fas fa-pencil"></i>  modifica</a></li>
+					<li class="tag__item"><a href="{{route('admin.apartments.show', $apartment->id)}}" class="btn blue-btn btn-sm"><i class="fas fa-eye"></i>  visualizza</a></li>
 					<li class="tag__item play blue">
-						<a href="#"><i class="fas fa-play mr-2"></i>Play Episode</a>
+						<form class="d-inline-block" action=" {{route('admin.apartments.destroy', $apartment->id)}} " onsubmit="return confirm('Sei sicuro di voler cancellare questo post?')" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn blue-btn btn-sm">
+                                <i class="fa-solid fa-trash"></i>  elimina
+                            </button>
+                        </form> 
 					</li>
 				</ul>
 			</div>
@@ -83,9 +89,9 @@
 @endsection
 
 <style lang="scss">
-    .light {
-	background: #f3f5f7;
-}
+
+
+/* COSE CARD DA VEDERE */
 
 a, a:hover {
 	text-decoration: none;
@@ -99,11 +105,10 @@ a, a:hover {
 	font-size: 2.5rem;
 }
 
-/* Cards */
 .postcard {
   flex-wrap: wrap;
   display: flex;
-  
+  background-color: #f7e4b4;
   box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
   border-radius: 10px;
   margin: 0 0 2rem 0;
@@ -150,7 +155,6 @@ a, a:hover {
     height: 10px;
     margin: 10px 0;
     border-radius: 5px;
-    background-color: #424242;
     transition: width 0.2s ease;
   }
 
@@ -178,7 +182,6 @@ a, a:hover {
 
     .tag__item {
       display: inline-block;
-      background: rgba(83, 83, 83, 0.4);
       border-radius: 3px;
       padding: 2.5px 10px;
       margin: 0 5px 5px 0;
@@ -196,8 +199,8 @@ a, a:hover {
     right: 0;
     bottom: 0;
     left: 0;
-    background-image: linear-gradient(-70deg, #424242, transparent 50%);
-    opacity: 1;
+    background-image: linear-gradient(-60deg, #f5b1ea, transparent 40%);
+    opacity: 0.7;
     border-radius: 10px;
   }
 
@@ -288,8 +291,6 @@ a, a:hover {
 		}
   }
 }
-
-/* COLORS */
 .postcard .postcard__tagbox .green.play:hover {
 	background: $main-green;
 	color: black;
