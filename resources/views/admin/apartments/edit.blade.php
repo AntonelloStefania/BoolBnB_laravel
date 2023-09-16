@@ -27,7 +27,7 @@
                 @csrf
                 @method('PUT')
                 <div class="col-12">
-                    {{-- SEZ. TITOLO/DESCRIZIONE --}}
+                    {{--1 SEZ. TITOLO/DESCRIZIONE --}}
                     <div class="row bg-beige my-4 mb-5">
                         <div class="col-8">
                             <div class="">
@@ -42,7 +42,6 @@
                                 <textarea class="form-control" name="description" id="" cols="30" rows="10">{{old('description') ?? $apartment->description }}</textarea>   
                             </div>
                         </div>
-
                         <div class="col-4">
                             <p>
                               Questa sezione ti permette di aggiornare il titolo e la descrizione del tuo annuncio.
@@ -52,75 +51,90 @@
                                 Assicurati di fare modifiche accurate e interessanti in queste sezioni per massimizzare l'efficacia del tuo annuncio.
                             </p>
                         </div>
-                        {{-- INDIRIZZO --}}
-                        <div class="form-group my-4 d-flex justify-content-around my-5">
-                            <div class="d-flex flex-column">        
-                                <div class="">
-                                    <label class="control-label mb-2 fw-bold me-3">Indirizzo</label>
-                                <input type="ratio" id="address" name="address" class="form-control" value="{{old('address') ?? $apartment->address}}" >
-                                </div>
-                                @error('address')
-                                <span class="text-danger d-block">{{ $message }}</span>
-                                @enderror 
-                            </div>
-                            {{-- prezzo --}}
-                            <div class="">        
-                                <div class="">
-                                    <label class="control-label mb-2 fw-bold me-3">Prezzo</label>
-                                    <input type="text" id="price" name="price" class="form-control" value="{{old('price') ?? $apartment->price}}" >
-                                </div>
-                                @error('price')
-                                <span class="text-danger d-block">{{ $message }}</span>
-                                @enderror 
-                            </div>
-                            {{-- SPONSOR --}}
-                            <div class="d-flex align-items-center">
-                                <label class="control-label mb-2 fw-bold me-3">Sponsor</label>
-                                <select name="sponsor_id" id="">
-                                    @foreach($sponsors as $sponsor)
-                                    <option value="{{$sponsor->id}}" {{ $sponsor->id == old('sponsor_id', $apartment->sponsor_id) ? 'selected' : ''}}>{{$sponsor->name}} - {{$sponsor->time}}</option>
-                                    @endforeach
-                                </select>
-                                @error('sponsor')
-                                <span class="text-danger d-block">{{ $message }}</span>
-                            @enderror 
-                            </div>
-                        </div> 
-                            
-
                     </div>
-                    {{-- /// --}}
-
-                    {{-- TIPOLOGIA --}}
-                    <div class="mb-5 my-5">
-                        <div class="text-center">
-                            <h2>Modifica la tipologia dell'appartamento</h2>
-                            <p>
-                                Personalizza l'esperienza per i tuoi ospiti scegliendo tra una varietà di servizi aggiuntivi per la tua struttura. Questo campo ti consente di adattare la tua offerta alle esigenze dei tuoi ospiti. Seleziona i servizi che ritieni possano arricchire il loro soggiorno e migliorare la loro esperienza. Rendi la tua struttura ancora più attraente e confortevole per i futuri ospiti.
-                            </p>
-                        </div>
-                        <div class="rating d-flex flex-wrap justify-content-center">
-                            <form class="rating-form">
-                                @foreach($types as $type)
-                                <div class="col-4 d-flex my-3 flex-column align-items-center">
-                                    <label for="type-id-{{$type->id}}" class="position-relative d-flex change-cursor justify-content-center align-items-center" style="width:75px; height:75px;">
-                                        <input type="radio" name="type_id" style="width:65px; height:65px; appearance:none" class="radio-icons" value="{{$type->id}}" id="type-id-{{$type->id}}" 
-                                        >
-                                        <img src="{{$type->icons}}" style="width:50px; height:50px;" alt="" class="type-icons position-absolute" {{ $type->id == old('type_id', $apartment->type_id) ? 'selected-type-icon' : '' }}>
-                                    </label>
-                                    <span class="fw-bold">{{$type->name}}</span>
-                                </div>
-                                @endforeach
-                                @error('type_id')
-                                <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </form>
-                        </div>
+                </div>
+                {{-- 2SEZ. TIPOLOGIA --}}
+                <div class="mb-5 my-5">
+                    <div class="text-center">
+                        <h2>Modifica la tipologia dell'appartamento</h2>
+                        <p>
+                            Personalizza l'esperienza per i tuoi ospiti scegliendo tra una varietà di servizi aggiuntivi per la tua struttura. Questo campo ti consente di adattare la tua offerta alle esigenze dei tuoi ospiti. Seleziona i servizi che ritieni possano arricchire il loro soggiorno e migliorare la loro esperienza. Rendi la tua struttura ancora più attraente e confortevole per i futuri ospiti.
+                        </p>
                     </div>
-
-
-                    {{-- SEZ. IMG COPERTINA --}}
-                    <div class="row bg-beige">
+                    <div class="rating d-flex flex-wrap justify-content-center">
+                        <form class="rating-form">
+                            @foreach($types as $type)
+                            <div class="col-4 d-flex my-3 flex-column align-items-center">
+                                <label for="type-id-{{$type->id}}" class="position-relative d-flex change-cursor justify-content-center align-items-center" style="width:75px; height:75px;" {{ $type->id == old('type_id', $apartment->type_id) }}>
+                                    <input type="radio" name="type_id" style="width:65px; height:65px; appearance:none" class="radio-icons" value="{{$type->id}}" id="type-id-{{$type->id}}" 
+                                    >
+                                    <img src="{{$type->icons}}" style="width:50px; height:50px;" alt="" class="type-icons position-absolute" >
+                                </label>
+                                <span class="fw-bold">{{$type->name}}</span>
+                            </div>
+                            @endforeach
+                            @error('type_id')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </form>
+                    </div>
+                </div>                  
+                {{-- SEZ. 3 --}}
+                    <div class="">
+                         {{-- indirizzo --}}
+                        <div class="form-group my-4 d-flex justify-content-around my-5">                       
+                            <div class="d-flex justify-content-center m-5 p-5">
+                                {{-- TIPOLOGIA APPARTAMENTO --}}
+                                {{-- <div class="px-4">
+                                    <label class="control-label fw-bold">Tipologia di alloggio</label>
+                                    <select name="type_id" id="" class="form-control " style="width:12rem">
+                                        @foreach($types as $type)
+                                        <option value="{{$type->id}}" {{ $type->id == old('type_id', $apartment->type_id) ? 'selected' : ''}}> {{$type->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('type')
+                                    <span class="text-danger d-block">{{ $message }}</span>
+                                    @enderror 
+                                </div> --}}   
+                                {{-- NUMERO BAGNI --}}
+                                <div class="px-4 ">
+                                    <label class="control-label fw-bold ">Numero di bagni: </label>
+                                    <input type="number" id="n_wc" name="n_wc" class="form-control" style="width:4.25rem" value="{{old('n_wc') ?? $apartment->n_wc}}">
+                                    @error('n_wc')
+                                        <span class="text-danger d-block">{{ $message }}</span>
+                                    @enderror 
+                                </div>
+                                {{-- NUMERO STANZE --}}
+                                <div class="px-4 ">
+                                    <label class="control-label fw-bold ">Numero di stanze</label>
+                                    <input type="number" id="n_rooms" name="n_rooms" class="form-control" style="width:4.25rem" value="{{old('n_rooms') ?? $apartment->n_rooms}}">
+                                    @error('n_rooms')
+                                        <span class="text-danger d-block">{{ $message }}</span>
+                                    @enderror 
+                                </div>
+                                {{-- METRI QUADRI APPARTAMENTO --}}
+                                <div class="px-4">
+                                    <label class="control-label fw-bold " for="name">Metri quadri alloggio: </label>
+                                    <input type="number" id="mq" name="mq" class="form-control" style="width:4.25rem" value="{{old('mq') ?? $apartment->mq}}">
+                                        @error('mq')
+                                        <span class="text-danger d-block">{{ $message }}</span>
+                                    @enderror 
+                                </div>
+                                {{-- indirizzo --}}
+                                <div class="d-flex flex-column">        
+                                    <div class="px-4">
+                                        <label class="control-label mb-2 fw-bold me-3">Indirizzo</label>
+                                    <input type="ratio" id="address" name="address" class="form-control" value="{{old('address') ?? $apartment->address}}" >
+                                    </div>
+                                    @error('address')
+                                    <span class="text-danger d-block">{{ $message }}</span>
+                                    @enderror 
+                                </div>                            
+                           </div>
+                        </div>
+                    </div>                                                    
+                   {{-- 4SEZ. IMG COPERTINA --}}
+                   <div class="row bg-beige">
                         <div class="col-8 ">
                             <div class="d-flex flex-column">
                                 <label class="control-label mb-2 fw-bold me-3">Immagine di copertina</label>
@@ -141,116 +155,74 @@
                                     <label class="control-label mb-2 fw-bold me-3">Immagine precedente</label>
                                     <img src="{{ asset('storage/' . $apartment->cover) }}" alt="Immagine precedente" style="width: 18rem;">
                                 </div>
-                           @endif
-                        </div>
-                    </div>
-                    {{-- /// --}}
-
-                    
-
-
-
-
-                    {{-- <input type="hidden" name="user_id" id="user_id" class="form-control"  value="{{ $user->id }}">  --}}
-                    <div class="form-group  ">                   
-                        {{-- indirizzo--}}
-                        <div class="form-group my-4 d-flex justify-content-around my-5">
-                        </div>
-
-
-                        <div class="form-group my-4 d-flex justify-content-around my-5">
-
-                            <div class="d-flex justify-content-center m-5 p-5">
-                                {{-- TIPOLOGIA APPARTAMENTO --}}
-                                {{-- <div class="px-4">
-                                    <label class="control-label fw-bold">Tipologia di alloggio</label>
-                                    <select name="type_id" id="" class="form-control " style="width:12rem">
-                                        @foreach($types as $type)
-                                        <option value="{{$type->id}}" {{ $type->id == old('type_id', $apartment->type_id) ? 'selected' : ''}}> {{$type->name}}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('type')
-                                    <span class="text-danger d-block">{{ $message }}</span>
-                                    @enderror 
-                                </div> --}}
-                                {{-- METRI QUADRI APPARTAMENTO --}}
-                                <div class="px-4 ">
-                                    <label class="control-label fw-bold " for="name">Metri quadri alloggio: </label>
-                                    <input type="number" id="mq" name="mq" class="form-control" style="width:4.25rem" value="{{old('mq') ?? $apartment->mq}}">
-                                        @error('mq')
-                                        <span class="text-danger d-block">{{ $message }}</span>
-                                        @enderror 
-                                </div>
-                                {{-- NUMERO BAGNI --}}
-                                <div class="px-4 ">
-                                    <label class="control-label fw-bold ">Numero di bagni: </label>
-                                    <input type="number" id="n_wc" name="n_wc" class="form-control" style="width:4.25rem" value="{{old('n_wc') ?? $apartment->n_wc}}">
-                                    @error('n_wc')
-                                        <span class="text-danger d-block">{{ $message }}</span>
-                                    @enderror 
-                                </div>
-                                {{-- NUMERO STANZE --}}
-                                <div class="px-4 ">
-                                    <label class="control-label fw-bold ">Numero di stanze</label>
-                                    <input type="number" id="n_rooms" name="n_rooms" class="form-control" style="width:4.25rem" value="{{old('n_rooms') ?? $apartment->n_rooms}}">
-                                    @error('n_rooms')
-                                        <span class="text-danger d-block">{{ $message }}</span>
-                                    @enderror 
-                                </div>
-
- 
+                            @endif
                         </div>
                     </div>  
-                </div>
-
-                <div class="text-center my-4">
-                    <label class="control-label mb-2 fw-bold my-3">Servizi aggiuntivi</label>
-                    <p>
-                        Personalizza l'esperienza per i tuoi ospiti scegliendo tra una varietà di servizi aggiuntivi per la tua struttura. Questo campo ti consente di adattare la tua offerta alle esigenze dei tuoi ospiti. Seleziona i servizi che ritieni possano arricchire il loro soggiorno e migliorare la loro esperienza. Rendi la tua struttura ancora più attraente e confortevole per i futuri ospiti.      
-                    </p>
-                </div>
-            <div class="d-flex align-items-center ">
-                    @foreach($services as $service)
-                        <input class="form-check-input m-1" type="checkbox" role="switch" name="name[]" value='{{ $service->id }}' {{$errors->any() ? (in_array($service->id, old('services', [])) ? 'checked' : '') : ($apartment->services->contains($service) ? 'checked' : '') }} id="flexSwitchCheckDefault" >
-                        <label class="form-check-label " for="flexSwitchCheckDefault">{{$service->name}}</label>
-                    @endforeach
-                    @error('services')
-                    <span class="text-danger d-block">{{ $message }}</span>
-                @enderror 
-                </div>
-            <div class="form-group my-4 d-flex justify-content-around my-5">
-
-                <div class="d-flex align-items-center">
-                    <label class="control-label mb-2 fw-bold me-3">visibilità</label>
-                <span class="me-2">visibile</span> <input type="radio" id="visibility" name="visibility" value="1" class="me-3" {{ old('visibility', $apartment->visibility) == '1' ? 'checked' : '' }}>
-                <span class="me-2">invisibile</span> <input type="radio" id="visibility" name="visibility" value="0" class="me-3" {{ old('visibility', $apartment->visibility) == '0' ? 'checked' : '' }} >
-                @error('visibility')
-                    <span class="text-danger">{{ $message }}</span>
-                @enderror    
-                </div>
-
-                
-                
-            
-
-                <button class="btn btn-success" type="submit">Submit</button>
-            </div>
-            
-        
-        
-    </form>
-        
-          
-      </div>
+                   </div>
+                 {{--5SEZ. SERVIZI AGGIUNTIVI --}}
+                    <div class="col">
+                        <div>
+                            <div class="text-center my-4">
+                                <label class="control-label mb-2 fw-bold my-3">Servizi aggiuntivi</label>
+                                <p>
+                                    Personalizza l'esperienza per i tuoi ospiti scegliendo tra una varietà di servizi aggiuntivi per la tua struttura. Questo campo ti consente di adattare la tua offerta alle esigenze dei tuoi ospiti. Seleziona i servizi che ritieni possano arricchire il loro soggiorno e migliorare la loro esperienza. Rendi la tua struttura ancora più attraente e confortevole per i futuri ospiti.      
+                                </p>
+                            </div>                
+                            <div class="d-flex align-items-center ">
+                                @foreach($services as $service)
+                                    <input class="form-check-input m-1" type="checkbox" role="switch" name="name[]" value='{{ $service->id }}' {{$errors->any() ? (in_array($service->id, old('services', [])) ? 'checked' : '') : ($apartment->services->contains($service) ? 'checked' : '') }} id="flexSwitchCheckDefault" >
+                                    <label class="form-check-label " for="flexSwitchCheckDefault">{{$service->name}}</label>
+                                @endforeach
+                                @error('services')
+                                <span class="text-danger d-block">{{ $message }}</span>
+                            @enderror 
+                            </div>
+                        </div>
+                    </div>
+                 {{-- PREZZO E SPONSOR --}}
+                    <div class="col-12">
+                        {{-- prezzo --}}
+                        <div class="">        
+                            <div class="">
+                                <label class="control-label mb-2 fw-bold me-3">Prezzo</label>
+                                <input type="text" id="price" name="price" class="form-control" value="{{old('price') ?? $apartment->price}}" >
+                            </div>
+                            @error('price')
+                            <span class="text-danger d-block">{{ $message }}</span>
+                            @enderror 
+                        </div>
+                        {{-- SPONSOR --}}
+                        <div class="d-flex align-items-center">
+                            <label class="control-label mb-2 fw-bold me-3">Sponsor</label>
+                            <select name="sponsor_id" id="">
+                                @foreach($sponsors as $sponsor)
+                                <option value="{{$sponsor->id}}" {{ $sponsor->id == old('sponsor_id', $apartment->sponsor_id) ? 'selected' : ''}}>{{$sponsor->name}} - {{$sponsor->time}}</option>
+                                @endforeach
+                            </select>
+                            @error('sponsor')
+                            <span class="text-danger d-block">{{ $message }}</span>
+                           @enderror 
+                       </div>
+                    </div>
+                   {{-- visibilità --}}
+                <div class="form-group my-4 d-flex justify-content-around my-5">
+                    <div class="d-flex align-items-center">
+                        <label class="control-label mb-2 fw-bold me-3">visibilità</label>
+                    <span class="me-2">visibile</span> <input type="radio" id="visibility" name="visibility" value="1" class="me-3" {{ old('visibility', $apartment->visibility) == '1' ? 'checked' : '' }}>
+                    <span class="me-2">invisibile</span> <input type="radio" id="visibility" name="visibility" value="0" class="me-3" {{ old('visibility', $apartment->visibility) == '0' ? 'checked' : '' }} >
+                    @error('visibility')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror    
+                    </div>
+                    <button class="btn btn-success" type="submit">Submit</button>
+                </div>        
+           </form>
+        </div>
    </div>
 </div>
-
+ {{-- <input type="hidden" name="user_id" id="user_id" class="form-control"  value="{{ $user->id }}">  --}}
 @endsection
 
 <style lang="scss">
-.selected-type-icon {
-    border: 2px solid #ff0000; /* Colore di evidenziazione, puoi personalizzarlo */
-    border-radius: 50%;
-}
 
 </style>
