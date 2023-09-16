@@ -21,16 +21,16 @@
                     </div>
                 </div>
                 <div class="carousel-inner">
-                     {{-- prima sezione --}}
+                     {{-- prima sezione TIPOLOGIA DI APPARTAMENTO --}}
                     <div class="col-12">
 
                         <div class="carousel-item active"  style="min-height: 700px; max-height:750px;">
-                            <div class="d-flex align-items-center w-100 flex-column">
+                            <div class="d-flex align-items-center  w-100 flex-column">
                                 {{-- PROVA CHECKBOX-2 --}}
                                 <div class="card col-6 my-5">
                                     <div class="rating-container">
-                                      <div class="rating-text text-center my-4">
-                                        <h2>Scegli la tipologia di alloggio da affittare</h2>
+                                      <div class="rating-text home-text text-center my-4">
+                                        <h2>Che <span class="brand">Tipologia</span> di Alloggio vuoi Affittare <span class="brand">?</span></h2>
                                       </div>
                                         <div class="rating d-flex flex-wrap justify-content-center">
                                             <form class="rating-form">
@@ -40,7 +40,7 @@
                                                         <input type="radio"  name="type_id"   style="width:65px; height:65px; appearance:none" class="radio-icons" value="{{$type->id}}"  id="type-id-{{$type->id}}"  />
                                                         <img src="{{$type->icons}}"  style="width:50px; height:50px;" alt="" class=" type-icons position-absolute" >
                                                     </label>
-                                                    <span class="fw-bold">{{$type->name}}</span>
+                                                    <span class="fw-bold home-text">{{$type->name}}</span>
                                                 </div>
                                                 @endforeach
                                                 @error('type_id')
@@ -56,13 +56,13 @@
                         </div>
                     </div>
                     
-                    {{-- seconda sezione --}}
+                    {{-- seconda sezione DESCRIZIONE --}}
                   
 
                     <div class="carousel-item " style="min-height: 700px; max-height:750px;">
                         <div class="col-12 d-flex flex-column  align-items-center">
                             <div class="my-3">
-                                <h2>Descrivi il tuo alloggio su <span class="brand">BoolBnB</span></h2>
+                                <h2><span class="brand">Descrivi</span> il tuo Alloggio su <span class="brand">BoolBnB</span></h2>
                             </div>
                             <div class="col-6 text-center ">
                                 <p>
@@ -83,12 +83,12 @@
                                     
                                 </div>
                                 <div class="col-6 mb-2 d-flex justify-content-end ">
-                                    <button type="button" class="rounded-circle blue-btn d-flex flex-end border-0 " data-bs-placement="right" data-bs-html="true" style="width:1.5rem; height:1.5rem"  data-bs-toggle="popover" title="Consigli per la descrizione" data-bs-content="
+                                    <button disabled type="button" class="rounded-circle blue-btn d-flex flex-end border-0 " data-bs-placement="right" data-bs-html="true" style="width:1.5rem; height:1.5rem"  data-bs-toggle="popover" data-bs-trigger="hover focus" title="<span class='brand'>Consigli per la descrizione</span>" data-bs-content="
                                     <ul>
-                                        <li>Inizia dalla <strong>passione</strong>: Condividi il tuo entusiasmo per il tuo spazio. Cosa lo rende speciale? Quali dettagli ami di più? Fai emergere la personalità unica del tuo alloggio.</li>
-                                        <li>Menziona i <strong>comfort e le comodità</strong>: Elenca tutte le comodità disponibili, come Wi-Fi, cucina attrezzata, lavatrice, e come questi renderanno il soggiorno dei tuoi ospiti più piacevole.</li>
-                                        <li>Includi i tuoi <strong>consigli locali</strong>: Se conosci ristoranti fantastici, luoghi da visitare o segreti nascosti nella zona, condividili con i tuoi ospiti. Questo può rendere il soggiorno ancora più memorabile.</li>
-                                        <li>Sii <strong>onesto e trasparente</strong>: La sincerità è la base della fiducia. Assicurati di rappresentare il tuo alloggio in modo accurato e di comunicare le regole chiaramente.</li>
+                                        <li>Inizia dalla <strong class='brand'>passione</strong>: Condividi il tuo entusiasmo per il tuo spazio. Cosa lo rende speciale? Quali dettagli ami di più? Fai emergere la personalità unica del tuo alloggio.</li>
+                                        <li>Menziona i <strong class='brand'>comfort e le comodità</strong>: Elenca tutte le comodità disponibili, come Wi-Fi, cucina attrezzata, lavatrice, e come questi renderanno il soggiorno dei tuoi ospiti più piacevole.</li>
+                                        <li>Includi i tuoi <strong class='brand'>consigli locali</strong>: Se conosci ristoranti fantastici, luoghi da visitare o segreti nascosti nella zona, condividili con i tuoi ospiti. Questo può rendere il soggiorno ancora più memorabile.</li>
+                                        <li>Sii <strong class='brand'>onesto e trasparente</strong>: La sincerità è la base della fiducia. Assicurati di rappresentare il tuo alloggio in modo accurato e di comunicare le regole chiaramente.</li>
                                     </ul>"><i class="fas fa-info align-self-center info-icon"></i></button>
                                 </div>
                                 <div class="col-12 d-flex justify-content-center mt-3 ">
@@ -104,62 +104,69 @@
                         </div>
                     </div>
                    
-                    {{-- terza sezione --}}
+                    {{-- terza sezione TITOLO ED INDIRIZZO --}}
                     <div class="carousel-item "  style="min-height: 700px; max-height:750px;">
-                        <div class="form-group my-4 d-flex justify-content-around my-5">
-                            <div class="">
-                                <label class="control-label mb-2 fw-bold me-3">titolo</label>
-                                <input type="text" id="title" name="title" class="form-control">
-                                @error('title')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror 
+                        <div class="my-5">
+                            <div class="my-3 col-12 text-center">
+                                <h2>Un <span class="brand">Titolo</span> per un Annuncio che Sorprenda</h2>
                             </div>
-                        </div>
-                        <div class="form-group my-4 d-flex justify-content-around my-5">
-                            <div class="d-flex flex-column">
-
-                                <div class="">
-                                    <label class="control-label mb-2 fw-bold me-3">Prezzo</label>
-                                    <input type="text" id="price" name="price" class="form-control" >
+                            <div class="col-12 col-md-8 offset-md-2  text-center ">
+                                <p>
+                                    Vuoi rendere il tuo annuncio su <span class="brand">BoolBnB</span> davvero unico? Inizia con il titolo! Fai in modo che sia breve ma descrittivo, in modo che gli ospiti possano capire immediatamente cosa rende il tuo spazio speciale. E non dimenticare di inserire con orgoglio <span class="brand">BoolBnB</span> nella tua descrizione di posizione. Questi piccoli dettagli possono fare la differenza!
+                                </p>
+                            </div>
+                            <div class="form-group my-4 d-flex justify-content-around my-5">
+                                <div class="d-flex align-items-center">
+                                    <label class="control-label mb-2 fw-bold me-3">titolo: </label>
+                                    <input type="text" id="title" name="title" class="form-control">
+                                    @error('title')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror 
                                 </div>
-                                @error('price')
-                                 <span class="text-danger d-block">{{ $message }}</span>
-                                @enderror 
                             </div>
                         </div>
-                        <div class="form-group my-4 d-flex justify-content-around my-5">
-                            <div class="d-flex align-items-center">
-                                <label class="control-label mb-2 fw-bold me-3">visibilità</label>
-                            <span class="me-2">visibile</span> <input type="radio" id="visibility" name="visibility" value="1" class="me-3">
-                            <span class="me-2">invisibile</span> <input type="radio" id="visibility" name="visibility" value="0" class="me-3" >
-                            @error('visibility')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror    
-                            </div>
-                        </div>
-                        <div class="form-group my-4 d-flex justify-content-around my-5">
-                            <div class="d-flex align-items-center">
-                                <label class="control-label mb-2 fw-bold me-3">Indirizzo</label>
-                                <input type="ratio" id="address" name="address" class="form-control" >
-                                @error('address')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror 
-                            </div>
+                        <div clas="mt-5">
+                            <div class="my-3 col-12 text-center">
+                                     <h2><span class="brand">Dove</span> si Trova il Tuo Alloggio <span class="brand">?</span></span></h2>
+                                 </div>
+                                 <div class="col-12 col-md-8 offset-md-2  text-center  ">
+                                     <p>
+                                         Questa è la tua opportunità per condividere l'ubicazione esatta del tuo alloggio su <span class="brand">BoolBnB</span>. Inserisci l'indirizzo completo per garantire che i potenziali ospiti possano trovare facilmente il loro prossimo luogo ideale su <span class="brand">BoolBnB</span>. L'ubicazione è fondamentale per creare fiducia e offrire una prenotazione senza intoppi. Facci sapere dove si trova il tuo alloggio su <span class="brand">BoolBnB</span> per rendere il processo più semplice per tutti!                          
+                                     </p>
+                                 </div>
+                             
+                              <div class="form-group my-4 d-flex justify-content-around my-5">
+                                 <div class="d-flex align-items-center">
+                                     <label class="control-label mb-2 fw-bold me-3">Indirizzo:</label>
+                                     <input type="ratio" id="address" name="address" class="form-control" placeholder="es. Via Napoli, 5, Roma" >
+                                     @error('address')
+                                         <span class="text-danger">{{ $message }}</span>
+                                     @enderror 
+                                 </div>
+                             </div>
                         </div>
                     </div>
                     {{-- quarta sezione --}}
-                    <div  class="col-12">
-
-                        <div class="carousel-item " style="min-height: 700px; max-height:750px;">
-                                <div class="d-flex justify-content-center">
-
-                                {{-- METRI QUADRI APPARTAMENTO --}}
+                   
+                    <div class="carousel-item  " style="min-height: 700px; max-height:750px;">
+                        <div class="col-12">
+                            <div class="my-3 col-12 text-center">
+                                <h2>Migliora il Tuo Annuncio con <span class="brand">Dettagli</span> Importanti</h2>
+                            </div>
+                            <div class="col-12 col-md-8 offset-md-2  text-center ">
+                                <p>
+                                    Per rendere il tuo annuncio su <span class="brand">BoolBnB</span> davvero speciale, vogliamo invitarti a condividere ulteriori dettagli sull'alloggio, come la grandezza, il numero di stanze e il numero di bagni. Aggiungere questi dettagli aiuta gli ospiti a trovare la sistemazione perfetta per le loro esigenze e fa sì che il tuo annuncio risalti. Non esitare a mettere a disposizione queste informazioni per offrire una migliore esperienza agli utenti di <span class="brand">BoolBnB</span>!
+                                </p>
+                            </div>
+                            {{-- METRI QUADRI APPARTAMENTO --}}
                             <div class=" ">
                                 <label class="control-label fw-bold " for="name">Metri quadri alloggio: </label>
                                 <input type="number" id="mq" name="mq" class="form-control" style="width:4.25rem" >
                             </div>
                             @error('mq')
-                            <div class="text-danger">{{ $message }}</div>
+                            <div class="text-danger">
+                                {{ $message }}
+                            </div>
                             @enderror
                             {{-- NUMERO BAGNI --}}
                             <div class=" ">
@@ -167,7 +174,9 @@
                                 <input type="number" id="n_wc" name="n_wc" class="form-control" style="width:4.25rem" >
                             </div>
                             @error('n_wc')
-                            <div class="text-danger">{{ $message }}</div>
+                            <div class="text-danger">
+                                {{ $message }}
+                            </div>
                             @enderror
                             {{-- NUMERO STANZE --}}
                             <div class=" ">
@@ -175,18 +184,48 @@
                                 <input type="number" id="n_rooms" name="n_rooms" class="form-control" style="width:4.25rem" >
                             </div>
                             @error('n_rooms')
-                            <div class="text-danger">{{ $message }}</div>
+                            <div class="text-danger">
+                                {{ $message }}
+                            </div>
                             @enderror
                             {{-- INPUT LON LAT --}}
-                            <input type="hidden" name="lon" id="lon" class="form-control"  value="">
-                            <input type="hidden" name="lat" id="lat" class="form-control"  value="">
+                            <div>
+                                <input type="hidden" name="lon" id="lon" class="form-control"  value="">
+                                <input type="hidden" name="lat" id="lat" class="form-control"  value="">
+                            </div>
                         </div>
-                            
+
                     </div>
+                        
+                    
                  {{-- quinta sezione --}}                   
                     <div class="col-12">
 
                         <div class="carousel-item "  style="min-height: 700px; max-height:750px;">
+                            <div class="form-group my-4 d-flex justify-content-around my-5">
+                                <div class="d-flex flex-column">
+    
+                                    <div class="">
+                                        <label class="control-label mb-2 fw-bold me-3">Prezzo</label>
+                                        <input type="text" id="price" name="price" class="form-control" >
+                                    </div>
+                                    @error('price')
+                                     <span class="text-danger d-block">{{ $message }}</span>
+                                    @enderror 
+                                </div>
+                            </div>
+                            <div class="form-group my-4 d-flex justify-content-around my-5">
+                                <div class="d-flex align-items-center">
+                                    <label class="control-label mb-2 fw-bold me-3">visibilità</label>
+                                <span class="me-2">visibile</span> <input type="radio" id="visibility" name="visibility" value="1" class="me-3">
+                                <span class="me-2">invisibile</span> <input type="radio" id="visibility" name="visibility" value="0" class="me-3" >
+                                @error('visibility')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror    
+                                </div>
+                            </div>
+
+
                            <div class="d-flex flex-column align-items-center col-12 ">
                                <div class="d-flex flex-wrap justify-content-center">
                                     <div class="col-4">
