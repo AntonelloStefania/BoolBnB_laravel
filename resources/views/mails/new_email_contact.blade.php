@@ -1,12 +1,4 @@
-{{-- <h1>Nuovo contatto ricevuto da form Bnb</h1>
-<p>
-    <strong style="color:red">Hai ricevuto un nuovo messaggio</strong>
-    <strong>Utente: </strong> {{ $message->name }}
-    <strong>Utente: </strong> {{ $message->surname }}
 
-    <strong>Email: </strong>  {{ $message->email }}
-    <strong>Contenuto: </strong>  {{ $message->message }}
-</p> --}}
 
 <html>
 <head>
