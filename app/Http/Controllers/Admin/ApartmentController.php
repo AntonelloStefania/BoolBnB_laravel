@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Apartment;
 use App\Models\Service;
@@ -17,6 +19,7 @@ use App\Models\Sponsor;
 use App\Models\Photo;
 use App\Models\Type;
 use App\Models\User;
+use App\Models\Message;
 
 class ApartmentController extends Controller
 {
@@ -178,5 +181,19 @@ class ApartmentController extends Controller
         return redirect()->route('admin.apartments.index');
     }
 
+
+
+ 
+    //FUNZIONE PER VISUALIZZARE MESSAGGI  MESSAGGI
+
+    // public function messages(){
+    //     $messages= DB::table('apartments')
+    //     ->join('messages','apartments.id','=','messages.apartment_id')
+    //     ->where('apartments.user_id',Auth::id())
+    //     ->orderByDesc('message.id')
+    //     ->paginate(5);
+
+    //     return view('')
+    // }
 
 }
