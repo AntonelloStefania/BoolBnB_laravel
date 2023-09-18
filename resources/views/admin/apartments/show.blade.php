@@ -27,9 +27,19 @@
                     @foreach($photos as $photo)
                         @if($photo->apartment_id === $apartment->id)
                         @auth
-                            <a href="{{route('admin.apartments.photos.edit', ['apartment' => $apartment->id, 'photo' => $photo->id])}}">
+                            <div class="img-container">
                                 <img src=" {{ asset('storage/'.$photo->url) }} " max-width="100px" height="100px">
-                            </a>
+                                <div>
+                                    <div class="my-4 col-md-4 col-lg-12">
+                                        <a href="{{route('admin.apartments.photos.edit', [$apartment->id, $photo->id])}}" class="blue-btn"><i class="fas fa-pencil me-0 me-lg-2" style="color: #d4e1f8;"></i></a>
+                                    </div>
+                                    <form action="{{route('admin.apartments.photos.destroy', [$apartment->id, $photo->id])}}" onsubmit="return confirm('Press ok to confirm')" class="d-block" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button class="beige-btn btn" type="submit"><i class="fas fa-trash me-0 me-lg-2" style="color: #3f3f41;"></i></button>
+                                    </form>
+                                </div>
+                            </div>
                         @endauth
                         @guest
                         <img src=" {{ asset('storage/'.$photo->url) }} " max-width="100px" height="100px">
