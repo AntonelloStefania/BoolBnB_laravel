@@ -62,21 +62,20 @@
                         </p>
                     </div>
                     <div class="rating d-flex flex-wrap justify-content-center">
-                        <form class="rating-form">
-                            @foreach($types as $type)
-                            <div class="col-4 d-flex my-3 flex-column align-items-center">
-                                <label for="type-id-{{$type->id}}" class="position-relative d-flex change-cursor justify-content-center align-items-center" style="width:75px; height:75px;" {{ $type->id == old('type_id', $apartment->type_id) }}>
-                                    <input type="radio" name="type_id" style="width:65px; height:65px; appearance:none" class="radio-icons" value="{{$type->id}}" id="type-id-{{$type->id}}" 
-                                    >
-                                    <img src="{{$type->icons}}" style="width:50px; height:50px;" alt="" class="type-icons position-absolute" >
-                                </label>
-                                <span class="fw-bold">{{$type->name}}</span>
-                            </div>
-                            @endforeach
-                            @error('type_id')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </form>
+                    
+                        @foreach($types as $type)
+                        <div class="col-4 d-flex my-3 flex-column align-items-center">
+                            <label for="type-id-{{$type->id}}" class="position-relative d-flex change-cursor justify-content-center align-items-center" style="width:75px; height:75px;" {{ $type->id == old('type_id', $apartment->type_id) }}>
+                                <input type="radio" name="type_id" style="width:65px; height:65px; appearance:none" class="radio-icons" value="{{$type->id}}" id="type-id-{{$type->id}}" >
+                                <img src="{{$type->icons}}" style="width:50px; height:50px;" alt="" class="type-icons position-absolute" >
+                            </label>
+                            <span class="fw-bold">{{$type->name}}</span>
+                        </div>
+                        @endforeach
+                        @error('type_id')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                        
                     </div>
                 </div>                  
                 {{-- SEZ. 3 --}}
@@ -214,8 +213,11 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror    
                     </div>
-                    <button class="btn btn-success" type="submit">Submit</button>
-                </div>        
+                </div> 
+                <div class="col-12 text-center mb-5">
+                
+                    <button class="blue-btn btn" type="submit">Submit</button>
+                </div>       
            </form>
         </div>
    </div>
