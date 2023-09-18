@@ -29,14 +29,12 @@
                         @auth
                             <div class="img-container">
                                 <img src=" {{ asset('storage/'.$photo->url) }} " max-width="100px" height="100px">
-                                <div>
-                                    <div class="my-4 col-md-4 col-lg-12">
-                                        <a href="{{route('admin.apartments.photos.edit', [$apartment->id, $photo->id])}}" class="blue-btn"><i class="fas fa-pencil me-0 me-lg-2" style="color: #d4e1f8;"></i></a>
-                                    </div>
+                                <div class="btns">
+                                    <a href="{{route('admin.apartments.photos.edit', [$apartment->id, $photo->id])}}" class="blue-btn"><i class="fas fa-pencil" style="color: #d4e1f8;"></i></a>
                                     <form action="{{route('admin.apartments.photos.destroy', [$apartment->id, $photo->id])}}" onsubmit="return confirm('Press ok to confirm')" class="d-block" method="POST">
                                         @method('DELETE')
                                         @csrf
-                                        <button class="beige-btn btn" type="submit"><i class="fas fa-trash me-0 me-lg-2" style="color: #3f3f41;"></i></button>
+                                        <button class="beige-btn btn" type="submit"><i class="fas fa-trash" style="color: #3f3f41;"></i></button>
                                     </form>
                                 </div>
                             </div>
@@ -54,3 +52,35 @@
         </div>
     </section>
 @endsection
+
+<style lang="scss">
+.img-container{
+    position: relative;
+    aspect-ratio: 16/9;
+    height: 100px;
+}
+.img-container:hover{
+    .btns{
+        visibility: visible;
+    }
+}
+.btns{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    visibility: hidden;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.blue-btn, form{
+    align-self: center;
+    margin: 0;
+}
+.btn{
+    padding: 0;
+    margin: 0;
+}
+</style>
