@@ -173,6 +173,7 @@ class ApartmentController extends Controller
     {
         Storage::delete($apartment->cover);
         $apartment->services()->detach();
+        $apartment->sponsors()->detach();
         $apartment->delete();
 
         return redirect()->route('admin.apartments.index');
