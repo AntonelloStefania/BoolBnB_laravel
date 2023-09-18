@@ -45,8 +45,13 @@
                                         <div class="my-4 col-md-4 col-lg-12">
                                             <a href="{{route('admin.apartments.edit', $apartment->id)}}" class="blue-btn"><i class="fas fa-pencil me-0 me-lg-2" style="color: #d4e1f8;"></i><span class="d-none d-lg-inline">Modifica</span></a>
                                         </div>
+                                        
                                         <div class="col-md-4 col-lg-12">
-                                            <a href="{{route('admin.apartments.destroy', $apartment->id)}}" class="beige-btn"><i class="fas fa-trash me-0 me-lg-2" style="color: #3f3f41;"></i><span class="d-none d-lg-inline">Elimina</span></a>
+                                            <form action="{{route('admin.apartments.destroy', $apartment->id)}}" onsubmit="return confirm('Press ok to confirm')" class="d-block" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button class="beige-btn btn" type="submit"><i class="fas fa-trash me-0 me-lg-2" style="color: #3f3f41;"></i><span class="d-none d-lg-inline">Elimina</span></button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
