@@ -14,10 +14,15 @@
 </head>
 <body>
     <h1>Nuovo Messaggio da Form Bnb</h1>
-    
+{{--     
     <p>Nome: {{ $message->name }}</p>
     <p>Cognome: {{$message->surname }}</p>
     <p>Email: {{ $message->email }}</p>
-    <p>Messaggio: {{ $message->message }}</p>
+    <p>Messaggio: {{ $message->message }}</p> --}}
+    <p>Nome: {{ $message['name'] }}</p>
+<p>Cognome: {{ $message['surname'] }}</p>
+<p>Email: {{ $message['email'] }}</p>
+<p>Messaggio: {{ $message['message'] }}</p>
+<p>ID dell'appartamento: {{ $message['apartment_id'] }}</p>
 </body>
 </html>

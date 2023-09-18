@@ -32,7 +32,13 @@ public function store(Request $request) {
         $newMessage= new Message();
         $newMessage->fill($data);
         $newMessage->save();
-        Mail::to('contact@bnb.com')->send(new NewContact($newMessage));
+        Mail::to('contact@bnb.com')->send(new NewContact([
+            'name' =>$newMessage->name,
+            'surname' => $newMessage->surname,
+            'email'=>$newMessage->email,
+            'message'=>$newMessage->message,
+            'apartment_id'=>$newMessage->apartment_id,
+        ]));
 
         return response()->json([
             'success'=>true
