@@ -149,7 +149,7 @@
                     {{-- quarta sezione --}}
                    
                     <div class="carousel-item  " style="min-height: 700px; max-height:750px;">
-                        <div class="col-12">
+                        <div class="col-12 my-5">
                             <div class="my-3 col-12 text-center">
                                 <h2>Migliora il Tuo Annuncio con <span class="brand">Dettagli</span> Importanti</h2>
                             </div>
@@ -158,44 +158,55 @@
                                     Per rendere il tuo annuncio su <span class="brand">BoolBnB</span> davvero speciale, vogliamo invitarti a condividere ulteriori dettagli sull'alloggio, come la grandezza, il numero di stanze e il numero di bagni. Aggiungere questi dettagli aiuta gli ospiti a trovare la sistemazione perfetta per le loro esigenze e fa sì che il tuo annuncio risalti. Non esitare a mettere a disposizione queste informazioni per offrire una migliore esperienza agli utenti di <span class="brand">BoolBnB</span>!
                                 </p>
                             </div>
-                            {{-- METRI QUADRI APPARTAMENTO --}}
-                            <div class=" ">
-                                <label class="control-label fw-bold " for="name">Metri quadri alloggio: </label>
-                                <input type="number" id="mq" name="mq" class="form-control" style="width:4.25rem" >
-                            </div>
-                            @error('mq')
-                            <div class="text-danger">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                            {{-- NUMERO BAGNI --}}
-                            <div class=" ">
-                                <label class="control-label fw-bold ">Numero di bagni: </label>
-                                <input type="number" id="n_wc" name="n_wc" class="form-control" style="width:4.25rem" >
-                            </div>
-                            @error('n_wc')
-                            <div class="text-danger">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                            {{-- NUMERO STANZE --}}
-                            <div class=" ">
-                                <label class="control-label fw-bold ">Numero di stanze</label>
-                                <input type="number" id="n_rooms" name="n_rooms" class="form-control" style="width:4.25rem" >
-                            </div>
-                            @error('n_rooms')
-                            <div class="text-danger">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                            {{-- INPUT LON LAT --}}
-                            <div>
-                                <input type="hidden" name="lon" id="lon" class="form-control"  value="">
-                                <input type="hidden" name="lat" id="lat" class="form-control"  value="">
-                            </div>
-                        </div>
+                            <div class="col-12 d-flex flex-wrap ">
+                                <div class="col-12 col-md-6 d-flex align-items-end pe-5 flex-column">
+                                    {{-- METRI QUADRI APPARTAMENTO --}}
+                                    
 
-                    </div>
+                                    <div class="mb-4 mt-5 d-flex ">
+                                        <label class="control-label fw-bold me-2 " for="name">Metri quadri alloggio: </label>
+                                        <input type="number" id="mq" name="mq" min="0" class="form-control" style="width:4.25rem" >
+                                    </div>
+                                        
+                                    
+                                    @error('mq')
+                                    <div class="text-danger">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                    {{-- NUMERO BAGNI --}}
+                                    <div class="my-4 d-flex ">
+                                        <label class="control-label fw-bold me-2">Numero di bagni: </label>
+                                        <input type="number" id="n_wc" name="n_wc"  min="0" class="form-control" style="width:4.25rem" >
+                                    </div>
+                                    @error('n_wc')
+                                    <div class="text-danger">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                    {{-- NUMERO STANZE --}}
+                                    <div class="my-4 d-flex">
+                                        <label class="control-label fw-bold me-2">Numero di stanze</label>
+                                        <input type="number" id="n_rooms" name="n_rooms"  min="0" class="form-control" style="width:4.25rem" >
+                                    </div>
+                                    @error('n_rooms')
+                                    <div class="text-danger">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                    {{-- INPUT LON LAT --}}
+                                    <div>
+                                        <input type="hidden" name="lon" id="lon" class="form-control"  value="">
+                                        <input type="hidden" name="lat" id="lat" class="form-control"  value="">
+                                    </div>
+                                </div>
+                                <div class="col-6 d-none d-md-flex mt-4 ps-4">
+                                    <img src="{{asset('tent_2.jpg')}} " width="470px" height="350px" style="border-radius:2rem;" alt="">
+                                </div>
+                                </div>
+                            </div>
+
+                        </div>
                         
                     
                  {{-- quinta sezione --}}                   
