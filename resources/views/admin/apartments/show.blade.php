@@ -28,11 +28,11 @@
                         @if($photo->apartment_id === $apartment->id)
                         @auth
                             <a href="{{route('admin.apartments.photos.edit', ['apartment' => $apartment->id, 'photo' => $photo->id])}}">
-                                <img src=" {{ asset('storage/'.$photo->url) }} ">
+                                <img src=" {{ asset('storage/'.$photo->url) }} " max-width="100px" height="100px">
                             </a>
                         @endauth
                         @guest
-                        <img src=" {{ asset('storage/'.$photo->url) }} ">
+                        <img src=" {{ asset('storage/'.$photo->url) }} " max-width="100px" height="100px">
                         @endguest
                         @endif
                     @endforeach
