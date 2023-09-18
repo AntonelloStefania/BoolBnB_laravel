@@ -32,14 +32,23 @@ public function store(Request $request) {
         $newMessage= new Message();
         $newMessage->fill($data);
         $newMessage->save();
-        Mail::to('contact@bnb.com')->send(new NewContact([
-            'name' =>$newMessage->name,
-            'surname' => $newMessage->surname,
-            'email'=>$newMessage->email,
-            'message'=>$newMessage->message,
-            'apartment_id'=>$newMessage->apartment_id,
-        ]));
+        // Mail::to('contact@bnb.com')->send(new NewContact([
+        //     'name' =>$newMessage->name,
+        //     'surname' => $newMessage->surname,
+        //     'email'=>$newMessage->email,
+        //     'message'=>$newMessage->message,
+        //     'apartment_id'=>$newMessage->apartment_id,
+        // ]));
+            //PROVA DELLE 22.00
+            $emailData = [
+                'name' => $newMessage->name,
+                'surname' => $newMessage->surname,
+                'email' => $newMessage->email,
+                'message' => $newMessage->message,
+                'apartment_id' => $newMessage->apartment_id,
+            ];
 
+            Mail::to('contact@bnb.com')->send(new NewContact($emailData));
         return response()->json([
             'success'=>true
         ]);

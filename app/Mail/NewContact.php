@@ -58,7 +58,7 @@ class NewContact extends Mailable
     // {
     //     return [];
     // }
-    public $message;
+    public $messageData;
 
     /**
      * Create a new message instance.
@@ -66,16 +66,16 @@ class NewContact extends Mailable
      * @param  array  $messageData
      * @return void
      */
-    public function __construct(array $_message)
+    public function __construct(array $messageData)
     {
-        $this->message = $_message;
+        $this->messageData = $messageData;
     }
 
 
     public function envelope(){
         return new Envelope(
             subject: 'New Message',
-             replyTo: $this->message['email']
+             replyTo: $this->messageData['email']
         );
     }
 
