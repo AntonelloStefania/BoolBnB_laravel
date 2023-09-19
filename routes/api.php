@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\ApartmentController;
-use App\Http\Controllers\Api\LeadController;
+use App\Http\Controllers\Api\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +24,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/apartments', [ApartmentController::class, 'index']);
 Route::get('/apartments/{slug}', [ApartmentController::class, 'show']);
 Route::get('/coordinate-apartments', [ApartmentController::class,'recuperaCoordinate']);
-Route::post('/contacts/apartments/{slug}', [LeadController::class, 'store']);
-
+//Route::post('/contacts', [MessageController::class, '__invoke']);
+//Route::post('/api/contacts', 'MessageController@store');
+//Route::post('/api/contacts/{apartmentId}', 'MessageController@store');
+//Route::post('/invia-messaggio', [MessageController::class, 'inviaMessaggio']);
+Route::post('/messages',[MessageController::class,'store']); //<---ROTTA MESSAGES
