@@ -109,11 +109,12 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {   
-        $photos=Photo::all();
-
-        
-       
-        return view('admin.apartments.show', compact('apartment','photos'));
+        if($apartment->user_id === Auth::id()){
+            $photos=Photo::all();
+            return view('admin.apartments.show', compact('apartment','photos'));
+        } else {
+            return redirect()->route('admin.apartments.index');
+        }
     }
 
     /**
@@ -124,11 +125,15 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
-        $types=Type::all();
-        $services= Service::all();
-        $sponsors=Sponsor::all();
-        $user=Auth::user();
-        return view('admin.apartments.edit', compact('apartment','types','services','sponsors','user'));
+        if($apartment->user_id === Auth::id()){
+            $types=Type::all();
+            $services= Service::all();
+            $sponsors=Sponsor::all();
+            $user=Auth::user();
+            return view('admin.apartments.edit', compact('apartment','types','services','sponsors','user'));
+        } else {
+            return redirect()->route('admin.apartments.index');
+        }
     }
 
     /**
