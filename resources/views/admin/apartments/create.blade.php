@@ -36,7 +36,7 @@
                                             <form class="rating-form">
                                                 @foreach($types as $type)
                                                 <div class="col-4 d-flex my-3 flex-column align-items-center">
-                                                    <label for="type-id-{{$type->id}}" class="position-relative d-flex change-cursor justify-content-center align-items-center" style="width:75px; height:75px;">
+                                                    <label for="type-id-{{$type->id}}" class="position-relative d-flex change-cursor justify-content-center align-items-center {{ $type->id == old('type_id') ? 'type-bg' : '' }}" style="width:75px; height:75px;" >
                                                         <input type="radio"  name="type_id"   style="width:65px; height:65px; appearance:none" class="radio-icons" value="{{$type->id}}"  id="type-id-{{$type->id}}"  />
                                                         <img src="{{$type->icons}}"  style="width:50px; height:50px;" alt="" class=" type-icons position-absolute" >
                                                     </label>
@@ -118,7 +118,7 @@
                             <div class="form-group my-4 d-flex justify-content-around my-5">
                                 <div class="d-flex align-items-center">
                                     <label class="control-label mb-2 fw-bold me-3">titolo: </label>
-                                    <input type="text" id="title" name="title" class="form-control">
+                                    <input type="text" id="title" name="title" class="form-control" value="{{old('title')}}">
                                     @error('title')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror 
@@ -139,7 +139,7 @@
                                  <div class="d-flex align-items-center">
                                      <label class="control-label mb-2 fw-bold me-3">Indirizzo:</label>
                                      <div class="d-flex flex-column">
-                                         <input list="suggestions" type="ratio" id="address" name="address" class="form-control" placeholder="es. Via Napoli, 5, Roma" >
+                                         <input list="suggestions" type="ratio" id="address" name="address" class="form-control" placeholder="es. Via Napoli, 5, Roma" value="{{old('address')}}" >
                                          <datalist id="suggestions">
                                          </datalist>
                                          @error('address')
@@ -170,7 +170,7 @@
 
                                     <div class="mb-4 mt-5 d-flex ">
                                         <label class="control-label fw-bold me-2 " for="name">Metri quadri alloggio: </label>
-                                        <input type="number" id="mq" name="mq" min="0" class="form-control" style="width:4.25rem" >
+                                        <input type="number" id="mq" name="mq" min="0" class="form-control" style="width:4.25rem" value="{{old('mq')}}">
                                     </div>
                                         
                                     
@@ -182,7 +182,7 @@
                                     {{-- NUMERO BAGNI --}}
                                     <div class="my-4 d-flex ">
                                         <label class="control-label fw-bold me-2">Numero di bagni: </label>
-                                        <input type="number" id="n_wc" name="n_wc"  min="0" class="form-control" style="width:4.25rem" >
+                                        <input type="number" id="n_wc" name="n_wc"  min="0" class="form-control" style="width:4.25rem" value="{{old('n_wc')}}">
                                     </div>
                                     @error('n_wc')
                                     <div class="text-danger">
@@ -192,7 +192,7 @@
                                     {{-- NUMERO STANZE --}}
                                     <div class="my-4 d-flex">
                                         <label class="control-label fw-bold me-2">Numero di stanze</label>
-                                        <input type="number" id="n_rooms" name="n_rooms"  min="0" class="form-control" style="width:4.25rem" >
+                                        <input type="number" id="n_rooms" name="n_rooms"  min="0" class="form-control" style="width:4.25rem" value="{{old('n_rooms')}}">
                                     </div>
                                     @error('n_rooms')
                                     <div class="text-danger">
@@ -223,7 +223,7 @@
     
                                     <div class="">
                                         <label class="control-label mb-2 fw-bold me-3">Prezzo</label>
-                                        <input type="text" id="price" name="price" class="form-control" >
+                                        <input type="text" id="price" name="price" class="form-control" value="{{old('price')}}">
                                     </div>
                                     @error('price')
                                      <span class="text-danger d-block">{{ $message }}</span>
@@ -233,8 +233,8 @@
                             <div class="form-group my-4 d-flex justify-content-around my-5">
                                 <div class="d-flex align-items-center">
                                     <label class="control-label mb-2 fw-bold me-3">visibilità</label>
-                                <span class="me-2">visibile</span> <input type="radio" id="visibility" name="visibility" value="1" class="me-3">
-                                <span class="me-2">invisibile</span> <input type="radio" id="visibility" name="visibility" value="0" class="me-3" >
+                                <span class="me-2">visibile</span> <input type="radio" id="visibility" name="visibility" value="1" class="me-3"  {{ old('visibility' ) == '1' ? 'checked' : '' }}>
+                                <span class="me-2">invisibile</span> <input type="radio" id="visibility" name="visibility" value="0" class="me-3"  {{ old('visibility') == '0' ? 'checked' : '' }}>
                                 @error('visibility')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror    
@@ -248,14 +248,15 @@
 
                                         <label class="control-label  mb-2 fw-bold me-3">Servizi aggiuntivi</label>
                                         @foreach($services as $service)
-                                            <input class="form-check-input" type="checkbox" role="switch" name="name[]" value="{{$service->id}}" id="flexSwitchCheckDefault" >
+                                            <input class="form-check-input" type="checkbox" role="switch" name="service_name[]" value="{{$service->id}}" id="flexSwitchCheckDefault" {{ in_array($service->id, old('service_name', [])) ? 'checked' : '' }} id="flexSwitchCheckDefault"  >
                                             <label class="form-check-label" for="flexSwitchCheckDefault">{{$service->name}}</label>
-                                        @endforeach
+                                        @endforeach                                      
                                     </div>
+                                    @error('service_name')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                </div>
-                               @error('service')
-                               <div class="text-danger">{{ $message }}</div>
-                               @enderror
+                               
                                <div class="form-group my-4  my-5">
                                    <div class="d-flex align-items-center">
                                        <label class="control-label mb-2 fw-bold me-3">Sponsor</label>

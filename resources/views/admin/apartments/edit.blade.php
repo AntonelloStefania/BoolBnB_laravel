@@ -169,10 +169,10 @@
                             </div>                
                             <div class="d-flex align-items-center ">
                                 @foreach($services as $service)
-                                    <input class="form-check-input m-1" type="checkbox" role="switch" name="name[]" value='{{ $service->id }}' {{$errors->any() ? (in_array($service->id, old('services', [])) ? 'checked' : '') : ($apartment->services->contains($service) ? 'checked' : '') }} id="flexSwitchCheckDefault" >
+                                    <input class="form-check-input m-1" type="checkbox" role="switch" name="service_name[]" value='{{ $service->id }}' {{$errors->any() ? (in_array($service->id, old('services', [])) ? 'checked' : '') : ($apartment->services->contains($service) ? 'checked' : '') }} id="flexSwitchCheckDefault" >
                                     <label class="form-check-label " for="flexSwitchCheckDefault">{{$service->name}}</label>
                                 @endforeach
-                                @error('services')
+                                @error('service_name')
                                 <span class="text-danger d-block">{{ $message }}</span>
                             @enderror 
                             </div>

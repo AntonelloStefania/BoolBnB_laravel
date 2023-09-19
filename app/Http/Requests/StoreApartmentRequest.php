@@ -32,11 +32,17 @@ class StoreApartmentRequest extends FormRequest
              'price'=> ['required', 'regex:/^\d{1,5}(\.\d{1,2})?$/'],
              'visibility' => 'required|integer',
              'description' => 'nullable',
-             'n_rooms' => 'required|integer',
-             'n_wc' => 'required|integer',
-             'mq' => 'required|integer',
+             'n_rooms' => 'required|integer|between:1,127',
+             'n_wc' => 'required|integer|between:1,127',
+             'mq' => 'required|integer|between:1,127',
              'type_id'=> 'required|exists:types,id',
-        ];
+             'service_name' => [
+                'required',
+                'array',
+                'min:1',
+            ],
+             
+            ];
     }
     public function messages(){
         return[
@@ -49,17 +55,22 @@ class StoreApartmentRequest extends FormRequest
             'cover.required' =>'un immagine di copertina è obbligatoria',
             'cover.url' => 'un immagine deve essere un url http o https',
             'price.required' => 'il prezzo è obbligatorio',
-            'price.regex' => 'il prezzo deve avere 7 cifre totali con 2 decimali',
+            'price.regex' => 'il prezzo deve avere 7 cifre totali con massimo 2 decimali',
             'visibility.required' => 'la visibilità è obbligatoria',
             'visibility.integer' => 'il numero deve essere 0 o 1',
             'n_rooms.required' => 'il numero di stanze è obbligatorio',
             'n_rooms.integer' => 'il numero di stanze è massimo 127',
+            'n_rooms.between' =>'il numero deve essere compreso tra 1 e 127',
             'n_wc.required' => 'il numero di bagni è obbligatorio',
+            'n_wc.between' =>'il numero deve essere compreso tra 1 e 127',
             'n_wc.integer' => 'il numero di wc è massimo 127',
             'mq.required' => 'il numero di mq è obbligatorio',
             'mq.integer' => 'il numero di mq è massimo 127',
+            'mq.between' =>'il numero deve essere compreso tra 1 e 127',
             'type_id.required' => 'è obbligatorio selezionare una tipologia',
-            'type_id.exists' => 'devi scegliere una tipologia esistente',
+            'type_id.exists' => 'devi scegliere una tipologia esistente',          
+            'service_name.required' => 'Devi selezionare almeno un servizio',
+            
         ];
     }
 }
