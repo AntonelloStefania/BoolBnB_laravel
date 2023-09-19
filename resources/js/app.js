@@ -92,23 +92,20 @@ addressInput.addEventListener("keyup", function() {
     console.error(error);
     });
 });
-    // Funzione che popola la lista dei suggerimenti con gli elementi li
-    function populateSuggestionsList(results) {
-        if(!suggestionsList === ""){
-            // Svuota la lista dei suggerimenti
-            suggestionsList.innerHTML = "";
-        } else {
-            // Crea un ciclo for per ogni risultato
-            for (let i = 0; i < results.length; i++) {
-                // Crea un elemento li
-                let option = document.createElement("option");
-                // Imposta il testo dell'elemento option con il valore dell'attributo address.freeformAddress del risultato
-                option.textContent = results[i].address.freeformAddress;
-
-                suggestionsList.append(option)
-            }
-                        
-        }
+// Funzione che popola la lista dei suggerimenti con gli elementi li
+function populateSuggestionsList(results) {
+    // Svuota la lista dei suggerimenti
+    suggestionsList.innerHTML = "";
+    // Crea un ciclo for per ogni risultato
+    for (let i = 0; i < results.length; i++) {
+        // Crea un elemento li
+        let option = document.createElement("option");
+        console.log(results)
+        // Imposta il testo dell'elemento option con il valore dell'attributo address.freeformAddress del risultato
+        option.textContent = results[i].address.freeformAddress;
+        // Aggiunge i risultati all'interno del datalist
+        suggestionsList.append(option)
+    }
 };
 
 submitForm.addEventListener('click', (event) => {
