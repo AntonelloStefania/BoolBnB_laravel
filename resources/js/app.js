@@ -47,38 +47,153 @@ document.addEventListener('DOMContentLoaded', function () {
 
 //FUNZIONE E CHIAMATA PER TOMTOM
 const submitForm = document.getElementById('createSubmit');
+let suggestionsList = document.getElementById('suggestions');
 let lon = '';
 let lat = '';
+let addressInput = document.getElementById('address');
+
+addressInput.addEventListener("keyup", function() {
+    // Ottieni il valore dell'input
+    let query = addressInput.value;
+
+    console.log(query);
+    // Se il valore è vuoto, svuota la lista dei suggerimenti e nascondi i dettagli dell'indirizzo
+    if (query === "") {
+      suggestionsList.innerHTML = "";
+      return;
+    }
+
+    let url = "https://api.tomtom.com/search/2/search/" + query + ".json?key=" + 'NvRVuGxMpACPuu2WUR93HOEvbVfg2g9A' + "&typeahead=true&limit=";
+
+    // Invia la richiesta GET usando la funzione fetch
+    fetch(url)
+    .then(function(response) {
+    // Se la risposta è valida, restituisci l'oggetto JSON
+    if (response.ok) {
+        return response.json();
+    }
+    // Altrimenti, mostra un messaggio di errore
+    else {
+        throw new Error("Si è verificato un errore nella richiesta: " + response.status);
+    }
+    })
+    .then(function(data) {
+    // Se l'oggetto JSON contiene dei risultati, popola la lista dei suggerimenti
+    if (data.results.length > 0) {
+        populateSuggestionsList(data.results);
+    }
+    // Altrimenti, svuota la lista dei suggerimenti e nascondi i dettagli dell'indirizzo
+    else {
+        suggestionsList.innerHTML = "";
+    }
+    })
+    .catch(function(error) {
+    // Mostra il messaggio di errore nella console
+    console.error(error);
+    });
+});
+// Funzione che popola la lista dei suggerimenti con gli elementi li
+function populateSuggestionsList(results) {
+    // Svuota la lista dei suggerimenti
+    suggestionsList.innerHTML = "";
+    // Crea un ciclo for per ogni risultato
+    for (let i = 0; i < results.length; i++) {
+        // Crea un elemento li
+        let option = document.createElement("option");
+        // Imposta il testo dell'elemento option con il valore dell'attributo address.freeformAddress del risultato
+        option.textContent = results[i].address.freeformAddress;
+        // Aggiunge i risultati all'interno del datalist
+        suggestionsList.append(option)
+    }
+};
+
+// submitForm.addEventListener('click', (event) => {
+//     event.preventDefault();
+
+//     const addressValue = document.getElementById('address').value;
+//     console.log(addressValue);
+//     let request = new XMLHttpRequest()
+//     request.open("GET", 'https://api.tomtom.com/search/2/geocode/' + addressValue + '.json?key=NvRVuGxMpACPuu2WUR93HOEvbVfg2g9A')
+//     request.send()
+//     request.onload = () => {
+//         if (request.status == 200) {
+//             let data = JSON.parse(request.response)
+//             // addressValue === data.results[0].address.freeformAddress
+//             if(addressValue === data.results[0].address.freeformAddress){
+//                 // salva in una variabile la risposta dell'API, in JSON
+                
+//                 lon = data.results[0].position.lon
+//                 lat = data.results[0].position.lat
+
+//                 document.getElementById('lon').value = lon;
+//                 document.getElementById('lat').value = lat;
+//                 console.log(document.getElementById('lon').value)
+//                 console.log(document.getElementById('lat').value)
+//                 const form = document.getElementById('form');
+//                 form.submit();
+//             } else {
+//                 console.log('Indirizzo non valido')
+//                 document.getElementById('addressError').innerText = 'Indirizzo non valido';
+//             }
+//         } else {
+//             console.log("error:")
+//             console.log(request.status)
+//         }
+//     }
+// })
 
 submitForm.addEventListener('click', (event) => {
     event.preventDefault();
 
     const addressValue = document.getElementById('address').value;
     console.log(addressValue);
-    let request = new XMLHttpRequest()
-    request.open("GET", 'https://api.tomtom.com/search/2/geocode/' + addressValue + '.json?key=NvRVuGxMpACPuu2WUR93HOEvbVfg2g9A')
-    request.send()
-    request.onload = () => {
-        if (request.status == 200) {
-            // salva in una variabile la risposta dell'API, in JSON
-            let JSONresponse = JSON.parse(request.response)
-            lon = JSONresponse.results[0].position.lon
-            lat = JSONresponse.results[0].position.lat
-            console.log(JSONresponse)
-            console.log(lon)
-            console.log(lat)
+
+    let options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: null // non serve un corpo per una richiesta GET
+    };
+
+    fetch('https://api.tomtom.com/search/2/geocode/' + addressValue + '.json?key=NvRVuGxMpACPuu2WUR93HOEvbVfg2g9A', options)
+      .then(response => {
+        // controllare se la risposta è valida
+        if (response.ok) {
+          // convertire la risposta in JSON
+          return response.json();
         } else {
-            console.log("error:")
-            console.log(request.status)
+          // lanciare un errore se la risposta non è valida
+          throw new Error("Errore nella richiesta: " + response.status);
         }
-        document.getElementById('lon').value = lon;
-        document.getElementById('lat').value = lat;
-        console.log(document.getElementById('lon').value)
-        console.log(document.getElementById('lat').value)
-        const form = document.getElementById('form');
-        form.submit();
-    }
-})
+      })
+      .then(data => {
+        // gestire i dati ricevuti
+        // il codice qui è lo stesso della funzione onload di XMLHttpRequest
+        if(addressValue === data.results[0].address.freeformAddress){
+          // salva in una variabile la risposta dell'API, in JSON
+                
+          lon = data.results[0].position.lon
+          lat = data.results[0].position.lat
+
+          document.getElementById('lon').value = lon;
+          document.getElementById('lat').value = lat;
+          console.log(document.getElementById('lon').value)
+          console.log(document.getElementById('lat').value)
+          const form = document.getElementById('form');
+          form.submit();
+        } else {
+          console.log('Indirizzo non valido')
+          document.getElementById('addressError').innerText = 'Indirizzo non valido'
+        }
+      })
+      .catch(error => {
+        // gestire gli errori
+        console.log("Errore: " + error.message);
+      });
+});
+
+
 
 
 
