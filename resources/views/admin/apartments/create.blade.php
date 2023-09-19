@@ -96,11 +96,7 @@
                                     <textarea class=" p-3"  name="description" id="" cols="30" rows="10"></textarea>
                                 </div>
                             </div>
-                            {{-- <div class="col-6 text-center mb-4 mt-3">
-                                <p>
-                                    Ricorda che una buona descrizione non deve essere lunga o noiosa; deve essere coinvolgente e informativa. Cerca di far emergere la personalità del tuo spazio e di trasmettere l'entusiasmo che hai nell'accogliere ospiti. Buona scrittura!
-                                </p>
-                            </div> --}}
+
                         </div>
                     </div>
                    
