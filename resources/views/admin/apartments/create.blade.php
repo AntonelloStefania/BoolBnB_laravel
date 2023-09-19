@@ -138,14 +138,17 @@
                               <div class="form-group my-4 d-flex justify-content-around my-5">
                                  <div class="d-flex align-items-center">
                                      <label class="control-label mb-2 fw-bold me-3">Indirizzo:</label>
-                                     <input list="suggestions" type="ratio" id="address" name="address" class="form-control" placeholder="es. Via Napoli, 5, Roma" >
-                                     <datalist id="suggestions">
-                                     </datalist>
-                                     @error('address')
-                                         <span class="text-danger">{{ $message }}</span>
-                                     @enderror 
+                                     <div class="d-flex flex-column">
+                                         <input list="suggestions" type="ratio" id="address" name="address" class="form-control" placeholder="es. Via Napoli, 5, Roma" >
+                                         <datalist id="suggestions">
+                                         </datalist>
+                                         @error('address')
+                                             <span class="text-danger">{{ $message }}</span>
+                                         @enderror 
+                                         <div id="addressError" class="text-danger "></div>
+                                     </div>
                                  </div>
-                             </div>
+                                </div>
                         </div>
                     </div>
                     {{-- quarta sezione --}}
