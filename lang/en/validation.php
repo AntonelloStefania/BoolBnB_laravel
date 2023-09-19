@@ -32,7 +32,7 @@ return [
     ],
     'boolean' => 'The :attribute field must be true or false.',
     'confirmed' => 'The :attribute confirmation does not match.',
-    'current_password' => 'The password is incorrect.',
+    'current_password' => 'La password non è corretta.',
     'date' => 'The :attribute is not a valid date.',
     'date_equals' => 'The :attribute must be a date equal to :date.',
     'date_format' => 'The :attribute does not match the format :format.',
@@ -102,10 +102,10 @@ return [
     'not_regex' => 'The :attribute format is invalid.',
     'numeric' => 'The :attribute must be a number.',
     'password' => [
-        'letters' => 'The :attribute must contain at least one letter.',
-        'mixed' => 'The :attribute must contain at least one uppercase and one lowercase letter.',
-        'numbers' => 'The :attribute must contain at least one number.',
-        'symbols' => 'The :attribute must contain at least one symbol.',
+        'letters' => 'la password deve contenere almeno una lettera.',
+        'mixed' => 'La passsword deve contenere almeno una lettera maiuscola ed una lettera minuscola.',
+        'numbers' => 'La password deve contenere almeno un numero.',
+        'symbols' => 'La password deve contenere almeno un simbolo.',
         'uncompromised' => 'The given :attribute has appeared in a data leak. Please choose a different :attribute.',
     ],
     'present' => 'The :attribute field must be present.',
@@ -149,8 +149,9 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'password' => [
+            'regex' => 'La password deve contenere almeno un simbolo.',
+            'min' => 'La password deve contenere almeno 4 caratteri',
         ],
     ],
 
