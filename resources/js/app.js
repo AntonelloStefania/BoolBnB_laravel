@@ -6,12 +6,56 @@ import.meta.glob([
   '../img/**'
 ]);
 
+document.addEventListener('DOMContentLoaded', function () {
+  var carousel = new bootstrap.Carousel(document.getElementById("carouselExampleIndicators"));
+  console.log(carousel);
+  carousel._element.addEventListener("slide.bs.carousel", function (event) {
+    var currentSlide = carousel._element.querySelector('.carousel-item.active');
+    console.log(currentSlide);
+    var requiredInputs = currentSlide.querySelectorAll('input.required-on-next');
+    console.log(requiredInputs);
+    var isValid = true;
+    var genericErrorMessage = "Compila questo campo.";
+    var typeSpecificErrorMessage = "Inserisci un valore valido.";
+    // Verifica che tutti i campi required nella slide corrente siano compilati
+    for (var i = 0; i < requiredInputs.length; i++) {
+      if (requiredInputs[i].value.trim() === "") {
+        isValid = false;
+        // Mostra il messaggio "Compila questo campo" per il campo vuoto
+
+        var errorElement = requiredInputs[i].nextElementSibling;
+        console.log(errorElement);
+        if (errorElement) {
+          errorElement.textContent = genericErrorMessage;
+        } else {
+          console.log("Elemento di errore non trovato per l'input:", requiredInputs[i]);
+        }
+        // errorElement.textContent = genericErrorMessage;
+        // errorElement.textContent = "Compila questo campo.";
+        console.log("Evento di blocco attivato a causa di campi vuoti.");
+
+
+        // Verifica il tipo dell'input
+        if (requiredInputs[i].type === "number") {
+          // Se l'input è di tipo "number", imposta un messaggio di errore specifico
+          errorElement.textContent = typeSpecificErrorMessage;
+
+        }
+      }
+    }
+
+    // Blocca il passaggio alla slide successiva se ci sono campi vuoti
+    if (!isValid) {
+      event.preventDefault();
+    }
+  });
+});
+
 //POPOVER INFO DESCRIZIONE APPARTAMENTO IN CREATE
-let popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-let popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
   return new bootstrap.Popover(popoverTriggerEl)
 })
-
 
 //SELEZIONE TIPOLOGIA APPARTAMENTO IN CREATE (RADIO)
 document.addEventListener('DOMContentLoaded', function () {

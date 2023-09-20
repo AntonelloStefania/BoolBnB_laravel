@@ -36,13 +36,17 @@
                                             <form class="rating-form">
                                                 @foreach($types as $type)
                                                 <div class="col-4 d-flex my-3 flex-column align-items-center">
-                                                    <label for="type-id-{{$type->id}}" class="position-relative d-flex change-cursor justify-content-center align-items-center {{ $type->id == old('type_id') ? 'type-bg' : '' }}" style="width:75px; height:75px;" >
-                                                        <input type="radio"  name="type_id"   style="width:65px; height:65px; appearance:none" class="radio-icons" value="{{$type->id}}"  id="type-id-{{$type->id}}"  />
+                                                    <label for="type-id-{{$type->id}}" class="position-relative d-flex change-cursor justify-content-center align-items-center required-on-next {{ $type->id == old('type_id') ? 'type-bg' : '' }}" style="width:75px; height:75px;" required required-on-next >
+                                                        <input type="radio"  name="type_id"   style="width:65px; height:65px; appearance:none" class="radio-icons required-on-next" value="{{$type->id}}"  id="type-id-{{$type->id}}" required required-on-next />
                                                         <img src="{{$type->icons}}"  style="width:50px; height:50px;" alt="" class=" type-icons position-absolute" >
                                                     </label>
+                                                    
                                                     <span class="fw-bold home-text">{{$type->name}}</span>
                                                 </div>
                                                 @endforeach
+                                                <div class="error-message text-danger" ></div>
+                                                <div class="error-message text-danger" id="common-error"></div>
+                                                <div class="errorElement text-danger" ></div>
                                                 @error('type_id')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror 
@@ -92,7 +96,7 @@
                                     </ul>"><i class="fas fa-info align-self-center info-icon"></i></button>
                                 </div>
                                 <div class="col-12 d-flex justify-content-center mt-3 ">
-                                    <input type="hidden" name="user_id" id="user_id" class="form-control"  value="{{ $user->id }}"> 
+                                    <input type="hidden" name="user_id" id="user_id" class="form-control"  value="{{ $user->id }}" > 
                                     <textarea class=" p-3"  name="description" id="" cols="30" rows="10"></textarea>
                                 </div>
                             </div>
@@ -113,8 +117,9 @@
                             </div>
                             <div class="form-group my-4 d-flex justify-content-around my-5">
                                 <div class="d-flex align-items-center">
-                                    <label class="control-label mb-2 fw-bold me-3">titolo: </label>
-                                    <input type="text" id="title" name="title" class="form-control" value="{{old('title')}}">
+                                    <label class="control-label mb-2 fw-bold me-3">titolo: </label> 
+                                    <input type="text" id="title" name="title" class="form-control required-on-next" value="{{old('title')}}" required required-on-next>
+                                    <div class="error-message text-danger" ></div>
                                     @error('title')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror 
@@ -135,13 +140,14 @@
                                  <div class="d-flex align-items-center">
                                      <label class="control-label mb-2 fw-bold me-3">Indirizzo:</label>
                                      <div class="d-flex flex-column">
-                                         <input list="suggestions" type="ratio" id="address" name="address" class="form-control" placeholder="es. Via Napoli, 5, Roma" value="{{old('address')}}" >
+                                         <input list="suggestions" type="ratio" id="address" name="address" class="form-control required-on-next" placeholder="es. Via Napoli, 5, Roma" value="{{old('address')}}" required required-on-next>
+                                         <div class="error-message text-danger" ></div>
+
                                          <datalist id="suggestions">
                                          </datalist>
-                                         @error('address')
+                                             @error('address')
                                              <span class="text-danger">{{ $message }}</span>
-                                         @enderror 
-                                         <div id="addressError" class="text-danger "></div>
+                                         @enderror                                        
                                      </div>
                                  </div>
                                 </div>
@@ -161,15 +167,13 @@
                             </div>
                             <div class="col-12 d-flex flex-wrap ">
                                 <div class="col-12 col-md-6 d-flex align-items-end pe-5 flex-column">
-                                    {{-- METRI QUADRI APPARTAMENTO --}}
-                                    
-
+                                    {{-- METRI QUADRI APPARTAMENTO --}}                                    
                                     <div class="mb-4 mt-5 d-flex ">
                                         <label class="control-label fw-bold me-2 " for="name">Metri quadri alloggio: </label>
-                                        <input type="number" id="mq" name="mq" min="0" class="form-control" style="width:4.25rem" value="{{old('mq')}}">
+                                        <input type="number" id="mq" name="mq" min="0" class="form-control required-on-next" style="width:4.25rem" value="{{old('mq')}}" required required-on-next>
+                                        <div class="error-message text-danger" ></div>
                                     </div>
-                                        
-                                    
+                                                                       
                                     @error('mq')
                                     <div class="text-danger">
                                         {{ $message }}
@@ -178,7 +182,9 @@
                                     {{-- NUMERO BAGNI --}}
                                     <div class="my-4 d-flex ">
                                         <label class="control-label fw-bold me-2">Numero di bagni: </label>
-                                        <input type="number" id="n_wc" name="n_wc"  min="0" class="form-control" style="width:4.25rem" value="{{old('n_wc')}}">
+                                        <input type="number" id="n_wc" name="n_wc"  min="0" class="form-control required-on-next" style="width:4.25rem" value="{{old('n_wc')}}" required required-on-next>
+                                        <div class="error-message text-danger" ></div>
+
                                     </div>
                                     @error('n_wc')
                                     <div class="text-danger">
@@ -188,7 +194,9 @@
                                     {{-- NUMERO STANZE --}}
                                     <div class="my-4 d-flex">
                                         <label class="control-label fw-bold me-2">Numero di stanze</label>
-                                        <input type="number" id="n_rooms" name="n_rooms"  min="0" class="form-control" style="width:4.25rem" value="{{old('n_rooms')}}">
+                                        <input type="number" id="n_rooms" name="n_rooms"  min="0" class="form-control required-on-next" style="width:4.25rem" value="{{old('n_rooms')}}" required required-on-next>
+                                        <div class="error-message text-danger" ></div>
+
                                     </div>
                                     @error('n_rooms')
                                     <div class="text-danger">
@@ -219,7 +227,9 @@
     
                                     <div class="">
                                         <label class="control-label mb-2 fw-bold me-3">Prezzo</label>
-                                        <input type="text" id="price" name="price" class="form-control" value="{{old('price')}}">
+                                        <input type="text" id="price" name="price" class="form-control required-on-next" value="{{old('price')}}" required required-on-next>
+                                        <div class="error-message text-danger" ></div>
+
                                     </div>
                                     @error('price')
                                      <span class="text-danger d-block">{{ $message }}</span>
