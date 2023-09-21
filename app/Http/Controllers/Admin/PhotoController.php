@@ -8,6 +8,7 @@ use App\Http\Requests\UpdatePhotoRequest;
 use Illuminate\Http\Request;
 use App\Models\Photo;
 use App\Models\Apartment;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Admin\ApartmentController;
 
@@ -33,7 +34,13 @@ class PhotoController extends Controller
     public function create($apartmentId)
     {
         $apartment = Apartment::findOrFail($apartmentId);
-       return view('admin.photos.create', compact('apartment'));
+
+        if($apartment->user_id === Auth::id()){
+            $apartment = Apartment::findOrFail($apartmentId);
+            return view('admin.photos.create', compact('apartment'));
+        } else {
+            return redirect()->route('admin.apartments.index');
+        }
     }
 
     /**
@@ -82,8 +89,13 @@ class PhotoController extends Controller
      */
     public function edit($id, $id_2)
     {
-        
-        return view('admin.photos.edit', compact('id','id_2'));
+        $apartment = Apartment::findOrFail($id);
+
+        if($apartment->user_id === Auth::id()){
+            return view('admin.photos.edit', compact('id','id_2'));
+        } else {
+            return redirect()->route('admin.apartments.index');
+        }
     }
 
     /**

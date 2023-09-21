@@ -31,6 +31,9 @@ document.addEventListener('DOMContentLoaded', function () {
   var redirectionDone = false;
   createSubmit.addEventListener('click', function (event) {
     console.log('Evento di submit catturato!');
+    event.preventDefault();
+    // Impedisce il reindirizzamento standard
+    getPosition()
 
     if (!form.checkValidity()) {
 
@@ -39,8 +42,6 @@ document.addEventListener('DOMContentLoaded', function () {
       var errorInput = form.querySelector('input:invalid');
 
       if (errorInput) {
-        event.preventDefault();
-        // Impedisce il reindirizzamento standard
         //         // Calcola l'indice della slide corrispondente
         var errorSlide = parseInt(errorInput.getAttribute('data-error-slide'));
         console.log('Input non valido:', errorInput);
@@ -208,9 +209,7 @@ function populateSuggestionsList(results) {
 //     }
 // })
 
-submitForm.addEventListener('click', (event) => {
-  event.preventDefault();
-
+function getPosition() {
   const addressValue = document.getElementById('address').value;
   console.log(addressValue);
 
@@ -247,7 +246,6 @@ submitForm.addEventListener('click', (event) => {
         console.log(document.getElementById('lon').value)
         console.log(document.getElementById('lat').value)
         const form = document.getElementById('form');
-        form.submit();
       } else {
         console.log('Indirizzo non valido')
         document.getElementById('addressError').innerText = 'Indirizzo non valido'
@@ -257,7 +255,7 @@ submitForm.addEventListener('click', (event) => {
       // gestire gli errori
       console.log("Errore: " + error.message);
     });
-});
+}
 
 
 

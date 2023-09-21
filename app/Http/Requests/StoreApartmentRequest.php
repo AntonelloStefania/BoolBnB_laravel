@@ -29,7 +29,7 @@ class StoreApartmentRequest extends FormRequest
             // 'lat'=> 'nullable|max:255',
             // 'lon'=> 'nullable|max:255',
              'cover'=> 'required',
-             'price'=> ['required', 'regex:/^\d{1,5}(\.\d{1,2})?$/'],
+             'price'=> ['required', 'regex:/^\d{1,7}(\.\d{1,2})?$/'],
              'visibility' => 'required|integer',
              'description' => 'nullable',
              'n_rooms' => 'required|integer|between:1,127',
