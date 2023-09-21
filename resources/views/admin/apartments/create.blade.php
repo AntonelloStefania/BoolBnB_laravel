@@ -5,7 +5,7 @@
 <div class="container-fluid">
    <div class="row flex-column ">
        <div class="col-12 bg-beige  text-white  position-relative">
-          <form action="{{ route('admin.apartments.store') }}" id="form" class="bg-beige"  style="min-height: 700px; max-height:750px;" method="POST" enctype="multipart/form-data" >
+          <form action="{{ route('admin.apartments.store') }}" id="form" class="bg-beige"  style="min-height: 700px; max-height:750px;" method="POST" enctype="multipart/form-data" @submit.prevent="event.preventDefault()">
             @csrf
          {{-- slider --}}
             <div id="carouselExampleIndicators" class="carousel slide home-text " data-bs-ride="false">
@@ -36,19 +36,15 @@
                                             <form class="rating-form">
                                                 @foreach($types as $type)
                                                 <div class="col-4 d-flex my-3 flex-column align-items-center">
-                                                    <label for="type-id-{{$type->id}}" class="position-relative d-flex change-cursor justify-content-center align-items-center required-on-next {{ $type->id == old('type_id') ? 'type-bg' : '' }}" style="width:75px; height:75px;" required required-on-next >
-                                                        <input type="radio"  name="type_id"   style="width:65px; height:65px; appearance:none" class="radio-icons required-on-next" value="{{$type->id}}"  id="type-id-{{$type->id}}" required required-on-next />
+                                                    <label for="type-id-{{$type->id}}" class="position-relative d-flex change-cursor justify-content-center align-items-center {{ $type->id == old('type_id') ? 'type-bg' : '' }}" style="width:75px; height:75px;" required >
+                                                        <input type="radio"  name="type_id"   style="width:65px; height:65px; appearance:none" class="radio-icons" value="{{$type->id}}" data-error-slide="1"   id="type-id-{{$type->id}}" {{ old('type_id') ? 'checked' : '' }}  required />
                                                         <img src="{{$type->icons}}"  style="width:50px; height:50px;" alt="" class=" type-icons position-absolute" >
-                                                    </label>
-                                                    
+                                                    </label>                                                    
                                                     <span class="fw-bold home-text">{{$type->name}}</span>
                                                 </div>
                                                 @endforeach
-                                                <div class="error-message text-danger" ></div>
-                                                <div class="error-message text-danger" id="common-error"></div>
-                                                <div class="errorElement text-danger" ></div>
                                                 @error('type_id')
-                                                    <span class="text-danger">{{ $message }}</span>
+                                                    <span class="text-danger error-message">{{ $message }}</span>
                                                 @enderror 
                                             </form>
                                         </div>
@@ -118,17 +114,16 @@
                             <div class="form-group my-4 d-flex justify-content-around my-5">
                                 <div class="d-flex align-items-center">
                                     <label class="control-label mb-2 fw-bold me-3">titolo: </label> 
-                                    <input type="text" id="title" name="title" class="form-control required-on-next" value="{{old('title')}}" required required-on-next>
-                                    <div class="error-message text-danger" ></div>
+                                    <input type="text" id="title" name="title" class="form-control" value="{{old('title')}}" data-error-slide="3" required>
                                     @error('title')
-                                        <span class="text-danger">{{ $message }}</span>
+                                        <span class="text-danger error-message">{{ $message }}</span>
                                     @enderror 
                                 </div>
                             </div>
                         </div>
                         <div clas="mt-5">
                             <div class="my-3 col-12 text-center">
-                                     <h2><span class="brand">Dove</span> si Trova il Tuo Alloggio <span class="brand">?</span></span></h2>
+                                     <h2><span class="brand">Dove</span> si Trova il Tuo Alloggio <span class="brand" >?</span></span></h2>
                                  </div>
                                  <div class="col-12 col-md-8 offset-md-2  text-center  ">
                                      <p>
@@ -140,13 +135,11 @@
                                  <div class="d-flex align-items-center">
                                      <label class="control-label mb-2 fw-bold me-3">Indirizzo:</label>
                                      <div class="d-flex flex-column">
-                                         <input list="suggestions" type="ratio" id="address" name="address" class="form-control required-on-next" placeholder="es. Via Napoli, 5, Roma" value="{{old('address')}}" required required-on-next>
-                                         <div class="error-message text-danger" ></div>
-
+                                         <input list="suggestions" data-error-slide="3" type="ratio" id="address" name="address" class="form-control" placeholder="es. Via Napoli, 5, Roma" value="{{old('address')}}" required>
                                          <datalist id="suggestions">
                                          </datalist>
                                              @error('address')
-                                             <span class="text-danger">{{ $message }}</span>
+                                             <span class="text-danger error-message">{{ $message }}</span>
                                          @enderror                                        
                                      </div>
                                  </div>
@@ -170,36 +163,31 @@
                                     {{-- METRI QUADRI APPARTAMENTO --}}                                    
                                     <div class="mb-4 mt-5 d-flex ">
                                         <label class="control-label fw-bold me-2 " for="name">Metri quadri alloggio: </label>
-                                        <input type="number" id="mq" name="mq" min="0" class="form-control required-on-next" style="width:4.25rem" value="{{old('mq')}}" required required-on-next>
-                                        <div class="error-message text-danger" ></div>
+                                        <input type="number" id="mq" name="mq" min="0" class="form-control" style="width:4.25rem" value="{{old('mq')}}" data-error-slide="4" required >
                                     </div>
                                                                        
                                     @error('mq')
-                                    <div class="text-danger">
+                                    <div class="text-danger error-message">
                                         {{ $message }}
                                     </div>
                                     @enderror
                                     {{-- NUMERO BAGNI --}}
                                     <div class="my-4 d-flex ">
                                         <label class="control-label fw-bold me-2">Numero di bagni: </label>
-                                        <input type="number" id="n_wc" name="n_wc"  min="0" class="form-control required-on-next" style="width:4.25rem" value="{{old('n_wc')}}" required required-on-next>
-                                        <div class="error-message text-danger" ></div>
-
+                                        <input type="number" id="n_wc" name="n_wc"  min="0" class="form-control" style="width:4.25rem" value="{{old('n_wc')}}" required >
                                     </div>
                                     @error('n_wc')
-                                    <div class="text-danger">
+                                    <div class="text-danger error-message">
                                         {{ $message }}
                                     </div>
                                     @enderror
                                     {{-- NUMERO STANZE --}}
                                     <div class="my-4 d-flex">
                                         <label class="control-label fw-bold me-2">Numero di stanze</label>
-                                        <input type="number" id="n_rooms" name="n_rooms"  min="0" class="form-control required-on-next" style="width:4.25rem" value="{{old('n_rooms')}}" required required-on-next>
-                                        <div class="error-message text-danger" ></div>
-
+                                        <input type="number" id="n_rooms" name="n_rooms"  min="0" class="form-control" style="width:4.25rem" value="{{old('n_rooms')}}" required>
                                     </div>
                                     @error('n_rooms')
-                                    <div class="text-danger">
+                                    <div class="text-danger error-message">
                                         {{ $message }}
                                     </div>
                                     @enderror
@@ -227,12 +215,10 @@
     
                                     <div class="">
                                         <label class="control-label mb-2 fw-bold me-3">Prezzo</label>
-                                        <input type="text" id="price" name="price" class="form-control required-on-next" value="{{old('price')}}" required required-on-next>
-                                        <div class="error-message text-danger" ></div>
-
+                                        <input type="text" id="price" name="price" class="form-control" value="{{old('price')}}" required>
                                     </div>
                                     @error('price')
-                                     <span class="text-danger d-block">{{ $message }}</span>
+                                     <span class="text-danger error-message d-block">{{ $message }}</span>
                                     @enderror 
                                 </div>
                             </div>
@@ -242,7 +228,7 @@
                                 <span class="me-2">visibile</span> <input type="radio" id="visibility" name="visibility" value="1" class="me-3"  {{ old('visibility' ) == '1' ? 'checked' : '' }}>
                                 <span class="me-2">invisibile</span> <input type="radio" id="visibility" name="visibility" value="0" class="me-3"  {{ old('visibility') == '0' ? 'checked' : '' }}>
                                 @error('visibility')
-                                    <span class="text-danger">{{ $message }}</span>
+                                    <span class="text-danger error-message">{{ $message }}</span>
                                 @enderror    
                                 </div>
                             </div>
@@ -254,12 +240,12 @@
 
                                         <label class="control-label  mb-2 fw-bold me-3">Servizi aggiuntivi</label>
                                         @foreach($services as $service)
-                                            <input class="form-check-input" type="checkbox" role="switch" name="service_name[]" value="{{$service->id}}" id="flexSwitchCheckDefault" {{ in_array($service->id, old('service_name', [])) ? 'checked' : '' }} id="flexSwitchCheckDefault"  >
+                                            <input class="form-check-input" type="checkbox" role="switch" name="name []" value="{{$service->id}}" id="flexSwitchCheckDefault" {{ in_array($service->id, old('service_name', [])) ? 'checked' : '' }} id="flexSwitchCheckDefault"  >
                                             <label class="form-check-label" for="flexSwitchCheckDefault">{{$service->name}}</label>
                                         @endforeach                                      
                                     </div>
                                     @error('service_name')
-                                    <div class="text-danger">{{ $message }}</div>
+                                    <div class="text-danger error-message">{{ $message }}</div>
                                     @enderror
                                </div>
                                
@@ -274,14 +260,14 @@
                                     </div>
                                 </div>
                                @error('sponsor')
-                               <div class="text-danger">{{ $message }}</div>
+                               <div class="text-danger error-message">{{ $message }}</div>
                                @enderror
                                <div class="">
                                    <label class="control-label mb-2 fw-bold me-3">Photos</label>
                                    <input type="file" name="cover" id="cover" >
                                </div>
                                @error('cover')
-                               <div class="text-danger">{{ $message }}</div>
+                               <div class="text-danger error-message">{{ $message }}</div>
                                @enderror
 
                            </div>
