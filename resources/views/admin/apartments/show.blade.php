@@ -1,31 +1,40 @@
 @extends('layouts.admin')
 
 @section('content')
-    <section class="bg-white">
-        <div class="container">
-            <div class="row">
+    <section class="">
+        <div class="container-fluid">
+            <div class="row ">
                 <div class="col-12">
                     <div class="d-flex justify-content-between align-items-center my-3">
-                        
                         <div>
                             @auth
-                            <a href="{{ route('admin.apartments.index') }} " class="btn btn-sm btn-primary">Tutti gli appartamenti</a>
+                            <a href="{{ route('admin.apartments.index') }} " class="btn btn-sm blue-btn">I tuoi gli appartamenti</a>
                             @endauth
-                            @guest
-                            <a href="{{ route('apartments.index') }} " class="btn btn-sm btn-primary">Tutti gli appartamenti</a>
-                            @endguest
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 ">
-                    <div class="col-12 col-md-6 d-flex justify-content-center mb-3">
-
-                        <img src=" {{ asset('storage/'.$apartment->cover) }}" width="300px" height="500px">
+                <div class="col-8 offset-2 text-center mb-5">
+                    <h2 class="my-3"><span class="brand">Visualizza</span> il Tuo Annuncio</h2>
+                    <p class="text-center">Controlla il tuo annuncio su <span class="brand">BoolBnB</span> per assicurarti che sia completo e soddisfi tutte le tue esigenze. Qui puoi vedere ogni dettaglio e foto che hai aggiunto. Se hai dimenticato qualcosa o desideri apportare modifiche, è il momento giusto per farlo. Un annuncio accurato e completo attira più ospiti, quindi assicurati che il tuo annuncio su <span class="brand">BoolBnB</span> sia perfetto</p>
+                </div>
+                <div class="container-fluid bg-beige py-3 ">
+                    <div class="container">
+                        <div class="col-12 d-flex flex-column flex-md-row ">
+                            <div class="col-12  col-md-6 d-flex order-2 order-md-1 justify-content-center mb-3">
+                                <img src=" {{ asset('storage/'.$apartment->cover) }}" style="border-radius:2rem;" width="300px" height="500px">
+                            </div>
+                            <div class="col-12 m-0  text-center order-1 order-md-2  col-md-6  justify-content-center mb-3" >
+                               <h3> {{$apartment->title}}</h3>
+                               <p class="mt-3">{{$apartment->description}}</p>
+                            </div>
+                        </div>
                     </div>
+
+                </div>
+                <div class="row p">
                     <div class="col-12 d-flex mb-3">
                         @foreach($photos as $photo)
                             @if($photo->apartment_id === $apartment->id)
-                            @auth
                         
                                 <div class="img-container mx-1 ">
                                         <img src=" {{ asset('storage/'.$photo->url) }} " width="180px" style="object-fit: cover" height="100px">
@@ -39,18 +48,13 @@
                                         </form>
                                     </div>
                                 </div>
-                        
-                            @endauth
-                            @guest
-                            <img src=" {{ asset('storage/'.$photo->url) }} " max-width="100px" height="100px">
-                            @endguest
                             @endif
                         @endforeach
                     </div>
-                    @auth
+                   
                     <span><a href="{{route('admin.apartments.photos.create', $apartment->id)}}" class="btn btn-primary btn-sm">Aggiungi foto</a></span>
-                    @endauth
-                </div>
+                </div>    
+                
             </div>
         </div>
     </section>
