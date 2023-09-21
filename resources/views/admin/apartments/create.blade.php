@@ -245,7 +245,7 @@
                                         @endforeach                                      
                                     </div>
                                     @error('name')
-                                    <div class="text-danger error-message">{{ $message }}</div>
+                                        <div class="text-danger error-message">{{ $message }}</div>
                                     @enderror
                                </div>
                                

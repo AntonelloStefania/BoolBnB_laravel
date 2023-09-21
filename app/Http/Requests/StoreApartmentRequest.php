@@ -36,10 +36,10 @@ class StoreApartmentRequest extends FormRequest
              'n_wc' => 'required|integer|between:1,127',
              'mq' => 'required|integer|between:1,127',
              'type_id'=> 'required|exists:types,id',
-             'name' => [
-              'required',  
-                'array',             
-                'min:1',
+              'name' => [
+                 'required',
+                 'array',
+                 'min:1',
              ],
              
             ];
@@ -69,7 +69,7 @@ class StoreApartmentRequest extends FormRequest
             'mq.between' =>'il numero deve essere compreso tra 1 e 127',
             'type_id.required' => 'è obbligatorio selezionare una tipologia',
             'type_id.exists' => 'devi scegliere una tipologia esistente',          
-             'name.required' => 'Devi selezionare almeno un servizio',
+            'name.required' => 'Devi selezionare almeno un servizio',
             
         ];
     }

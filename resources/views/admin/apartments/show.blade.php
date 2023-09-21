@@ -26,14 +26,14 @@
                         </div>
                         <div class="col-12 d-flex flex-column flex-md-row ">
                             <div class="col-12  col-md-4 d-flex align-items-center order-2 order-md-1 mx-md-3 mb-3">
-                                <img src=" {{ asset('storage/'.$apartment->cover) }}" style="border-radius:2rem;" width="100%" height="500px">
+                                <img src=" {{ asset('storage/'.$apartment->cover) }}" style="border-radius:2rem; border:2px solid rgb(64, 64, 66)" width="100%" height="500px">
                             </div>
-                            <div class="col-12 m-0 col-md-8  text-center order-1 order-md-2  justify-content-center mb-3" >
+                            <div class="col-12 m-0 col-md-8  text-center order-2 order-md-2  justify-content-center mb-3 " >
                                 <div class="container gal-container ">
                                     <div class="gal-item d-flex flex-wrap justify-content-center">
                                         @foreach($photos as $photo)
                                         @if($photo->apartment_id === $apartment->id)
-                                        <div class="box col-5 m-2 img-container ">
+                                        <div class="box col-12 col-md-5 m-2  img-container  ">
                                             <img src=" {{ asset('storage/'.$photo->url) }} " class="col-6" style="border-radius:1.25rem" >
                                         
                                             <div class="btns">
@@ -52,13 +52,64 @@
                             </div>
                         </div>
                     </div>
+                    
 
                     <div class="col-12 text-center mt-2 ">
                 
                         <span>Vuoi rendere il tuo annuncio ancora più <span class="brand">irresistibile?</span> Aggiungi alcune <span class="brand">foto</span> per mostrare tutti i dettagli che rendono il tuo alloggio speciale<a href="{{route('admin.apartments.photos.create', $apartment->id)}}" class="btn blue-btn btn-sm ms-3"><i class="fas fa-plus "></i></a></span>
                     </div>    
                 </div>
-                
+            </div>
+        </div>
+        {{-- FINE SEZIONE IMMAGINI --}}
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-12 col-md-6 flex-column d-flex align-items-center d-md-block  col-lg-3 my-4 my-lg-0 text-lg-start">
+                    <h5 class="mb-3 d-flex ">Il Tuo <span class="brand">Alloggio</span></h5>
+                        <ul class="list-unstyled ">
+                            <li class=" ">
+                              <img src="{{$apartment->type->icons}}" width="25rem" class="me-2" alt="">
+                              <span class="fw-bold brand">{{$apartment->type->name}}</span>
+                            </li>
+                            <li class="" >
+                                <span class="" ><span class="brand">Grandezza</span> alloggio: </span><span class="fw-bold " >{{$apartment->mq}} <span class="fs-5">&#x33A1;</span> </span>
+                            </li>
+                            <li class="">
+                                <span class="">Numero di <span class="brand">Stanze:</span> </span> <span class="ms-2 fw-bold ">{{$apartment->n_rooms}}<i class="fa-solid fa-bed ms-2" style="color: #4f5153;"></i></span>
+                            </li>
+                            <li class="">
+                                <span class="">Numero di <span class="brand">Bagni:</span> </span> <span class="ms-2 fw-bold ">{{$apartment->n_wc}}<i class="fa-solid fa-toilet-paper ms-2" style="color: #4f5153;"></i></span>
+                            </li>
+                        </ul>
+                    
+                </div>
+                <div class="col-12 col-md-6 flex-column d-flex align-items-center d-md-block  col-lg-3 my-4 my-lg-0 text-lg-start">
+                    <h5 class="mb-3">I <span class="brand">Servizi</span> che Offri</h5>
+                    <ul class="list-unstyled apartment-list " >
+                        @foreach($apartment->services as $service)
+                            <li class="">
+                                <img src="{{$service->icons}}" width="20rem" alt="">
+                                <span class="">{{$service->name}}</span>
+                            </li>
+                        @endforeach 
+                    </ul>
+                </div>
+                <div class="col-auto  col-lg-6 text-center my-4 my-lg-0 text-md-start">
+                    <h5 class="mb-3">Il <span class="brand">Pernottamento</span> che Offri</h5>
+                   
+                        <ul class="list-unstyled apartment-list ">
+                            <li class="">
+                               <span><span class="brand">Prezzo</span> per Notte: </span><span class="ms-2 fw-bold">{{$apartment->price}}&euro;</span>
+                            </li>
+                            <li class="">
+                               <span><span class="brand">Indirizzo</span>: </span><span class="ms-2 ">{{$apartment->address}} <i class="fa-solid fa-location-dot ms-1" style="color: #4f5153;"></i></span>
+                            </li>
+                            <li class="">
+                                <span><span class="brand">Descrizione</span>: </span><span class="ms-2">{{$apartment->description}}</span>
+                             </li>
+                        </ul>
+                   
+                </div>
             </div>
         </div>
     </section>
@@ -115,5 +166,8 @@
 
 .gal-container::-webkit-scrollbar {
     display: none; /* Nasconde la scrollbar in Webkit */
+}
+.apartment-list li{
+    min-height: 2.5rem
 }
 </style>
