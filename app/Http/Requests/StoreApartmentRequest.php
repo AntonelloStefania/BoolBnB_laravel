@@ -37,7 +37,8 @@ class StoreApartmentRequest extends FormRequest
              'mq' => 'required|integer|between:1,127',
              'type_id'=> 'required|exists:types,id',
              'name' => [
-              'required',               
+              'required',  
+                'array',             
                 'min:1',
              ],
              

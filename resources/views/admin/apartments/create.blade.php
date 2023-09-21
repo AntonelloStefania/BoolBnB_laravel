@@ -240,11 +240,11 @@
 
                                         <label class="control-label  mb-2 fw-bold me-3">Servizi aggiuntivi</label>
                                         @foreach($services as $service)
-                                            <input class="form-check-input" type="checkbox" role="switch" name="name []" value="{{$service->id}}" id="flexSwitchCheckDefault" {{ in_array($service->id, old('service_name', [])) ? 'checked' : '' }} id="flexSwitchCheckDefault"  >
+                                            <input class="form-check-input" type="checkbox" role="switch" name="name[]" value="{{$service->id}}" id="flexSwitchCheckDefault" {{ in_array($service->id, old('name', [])) ? 'checked' : '' }} id="flexSwitchCheckDefault"  >
                                             <label class="form-check-label" for="flexSwitchCheckDefault">{{$service->name}}</label>
                                         @endforeach                                      
                                     </div>
-                                    @error('service_name')
+                                    @error('name')
                                     <div class="text-danger error-message">{{ $message }}</div>
                                     @enderror
                                </div>
