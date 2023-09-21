@@ -21,50 +21,52 @@ import.meta.glob([
 //       // Puoi gestire l'errore qui, ad esempio mostrando un messaggio di errore all'utente.
 //     });
 // }
-document.addEventListener('DOMContentLoaded', function () {
-  var form = document.getElementById('form');
-  var createSubmit = document.getElementById('createSubmit');
-  var carousel = new bootstrap.Carousel(document.getElementById("carouselExampleIndicators"));
-  console.log('Codice JavaScript in esecuzione.');
-  var redirectionDone = false;
-  createSubmit.addEventListener('click', function (event) {
-    console.log('Evento di submit catturato!');
-
-    if (!form.checkValidity()) {
 
 
-      // Trova l'input con errore
-      var errorInput = form.querySelector('input:invalid');
+// document.addEventListener('DOMContentLoaded', function () {
+//   var form = document.getElementById('form');
+//   var createSubmit = document.getElementById('createSubmit');
+//   var carousel = new bootstrap.Carousel(document.getElementById("carouselExampleIndicators"));
+//   console.log('Codice JavaScript in esecuzione.');
+//   var redirectionDone = false;
+//   createSubmit.addEventListener('click', function (event) {
+//     console.log('Evento di submit catturato!');
 
-      if (errorInput) {
-        event.preventDefault();
-        // Impedisce il reindirizzamento standard
-        // Calcola l'indice della slide corrispondente
-        var errorSlide = parseInt(errorInput.getAttribute('data-error-slide'));
-        console.log('Input non valido:', errorInput);
-        if (!isNaN(errorSlide)) {
-          // Sposta il carousel alla slide corrispondente
-          carousel.to(errorSlide - 1); // Sottrai 1 perché l'indice della slide inizia da 0
-          form.removeEventListener('click', handleSubmit);
-          console.log('Reindirizzamento alla slide:', errorSlide - 1);
-          redirectionDone = true;
-        }
-
-      }
-
-    }
-
-    function handleSubmit(event) {
-      console.log('Submit standard del modulo.');
-      // Puoi inserire ulteriori azioni qui, se necessario.
-    }
-
-    form.addEventListener('createSubmit', handleSubmit);
+//     if (!form.checkValidity()) {
 
 
+//       // Trova l'input con errore
+//       var errorInput = form.querySelector('input:invalid');
 
-  });
-});
+//       if (errorInput) {
+//         event.preventDefault();
+//         // Impedisce il reindirizzamento standard
+//         // Calcola l'indice della slide corrispondente
+//         var errorSlide = parseInt(errorInput.getAttribute('data-error-slide'));
+//         console.log('Input non valido:', errorInput);
+//         if (!isNaN(errorSlide)) {
+//           // Sposta il carousel alla slide corrispondente
+//           carousel.to(errorSlide - 1); // Sottrai 1 perché l'indice della slide inizia da 0
+//           form.removeEventListener('click', handleSubmit);
+//           console.log('Reindirizzamento alla slide:', errorSlide - 1);
+//           redirectionDone = true;
+//         }
+
+//       }
+
+//     }
+
+//     function handleSubmit(event) {
+//       console.log('Submit standard del modulo.');
+//       // Puoi inserire ulteriori azioni qui, se necessario.
+//     }
+
+//     form.addEventListener('createSubmit', handleSubmit);
+
+
+
+//   });
+// });
 
 
 
