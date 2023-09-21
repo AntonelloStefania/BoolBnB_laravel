@@ -8,52 +8,116 @@
   </div>
    <div class="row">
     {{-- TITOLO PAGINA --}}
-      <div class="col-12 d-flex flex-column  align-items-center">
-            <h2 class="titolo">Modifica il tuo annuncio su 
-                <span class="brand">BoolBnb</span>
-            </h2>
-            <div class="col-8 offset-2 d-flex my-3">
+      <div class="col-12 text-center mb-5">
+            <h1 class="titolo">Modifica il tuo annuncio su <span class="brand">BoolBnb</span> </h1>
+            <div class="col-12 my-3">
                 <p>
-                    Benvenuto alla pagina di modifica dei tuoi annunci. Qui puoi apportare modifiche e aggiornamenti alle 
-                    informazioni e alle caratteristiche dei tuoi appartamenti. Ottimizza le descrizioni, caricate nuove foto e 
-                    assicurati che i tuoi annunci siano sempre al massimo delle prestazioni per attirare più potenziali inquilini. 
-                    Personalizza e gestisci in modo efficace le informazioni sui tuoi appartamenti per massimizzare il vostro successo nel settore immobiliare.                         
+                    Benvenuto alla pagina di <span class="brand">modifica</span> dei tuoi annunci. Qui puoi apportare modifiche e aggiornamenti alle 
+                    informazioni e alle caratteristiche dei tuoi appartamenti. <span class="brand">Ottimizza le descrizioni</span>, caricate nuove foto e 
+                    assicurati che i tuoi annunci siano sempre al massimo delle prestazioni per attirare potenziali inquilini. 
+                    <span class="brand">Personalizza</span> e gestisci in modo efficace le informazioni sui tuoi appartamenti per massimizzare il vostro successo nel settore immobiliare.                         
                 </p>
             </div>
      </div>
-       
-       <div class="col-12">
-           <form action="{{ route('admin.apartments.update', $apartment->id) }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                @method('PUT')
-                <div class="col-12">
-                    {{--1 SEZ. TITOLO/DESCRIZIONE --}}
-                    <div class="row bg-beige my-4 mb-5">
-                        <div class="col-8">
-                            <div class="">
-                                <label class="control-label mb-2 fw-bold me-3">Titolo</label>
-                                <input type="text" id="title" name="title" class="form-control" value="{{old('title') ?? $apartment->title}}">
-                                @error('title')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror 
+   </div>
+</div>
+<div class="container-fluid bg-beige">
+    <div class="row">
+
+        <div class="col-10 offset-1">
+           <div class="row">
+               <div class="col-12">
+                    <form action="{{ route('admin.apartments.update', $apartment->id) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                        
+                        {{--1 SEZ. TITOLO/DESCRIZIONE --}}
+                        <div class="row  my-5">
+                            <div class="col-12 col-lg-6">
+                                    <div class=" text-center">
+                                        <h2><span class="brand">Titolo</span> e <span class="brand">Descrizione</span></h2>
+                                    </div>
+                                <div class="col-12 ">
+                                    <label class="control-label mb-2 fw-bold"><span class="brand">Titolo</span> Annuncio:</label>
+                                    <input type="text" id="title" name="title" class="form-control" value="{{old('title') ?? $apartment->title}}">
+                                    @error('title')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror 
+                                </div>
+                                <div class="col-12 ">
+                                    <label class="control-label fw-bold mb-2 mt-5"><span class="brand">Descrizione</span> Alloggio:</label>
+                                    <textarea class="form-control" name="description" id="" cols="30" rows="10">{{old('description') ?? $apartment->description }}</textarea>   
+                                </div>
                             </div>
-                            <div class="">
-                                <label class="control-label fw-bold mb-4">Descrizione</label>
-                                <textarea class="form-control" name="description" id="" cols="30" rows="10">{{old('description') ?? $apartment->description }}</textarea>   
+                            <div class="col-12 col-lg-3 col-md-6 d-flex flex-column mt-5 mt-lg-0">
+                                <div class="col-12 text-center">
+                                    <h2><span class="brand">Generalità</span></h2>
+                                </div>
+                                {{-- METRI QUADRI APPARTAMENTO --}}
+                                <div class="col-12 mb-3 text-center">
+                                    <label class="control-label fw-bold mb-2  " for="name"><span class="brand">Grandezza</span> Alloggio: </label>
+                                    <div class="d-flex justify-content-center">
+                                        <input type="number" id="mq" name="mq" class="form-control" style="width:4.25rem" value="{{old('mq') ?? $apartment->mq}}"><span class="align-self-center fw-bold ms-2"> &#x33A1;</span>
+                                        @error('mq')
+                                            <span class="text-danger d-block">{{ $message }}</span>
+                                        @enderror 
+                                    </div>
+                                </div>
+                                {{-- NUMERO STANZE --}}
+                                <div class="col-12 mb-3 text-center">
+                                    <label class="control-label fw-bold mb-2">Numero di <span class="brand">Stanze</span></label>
+                                    <div class="d-flex justify-content-center">
+                                        <input type="number" id="n_rooms" name="n_rooms" class="form-control" style="width:4.25rem" value="{{old('n_rooms') ?? $apartment->n_rooms}}"><i class="fa-solid fa-bed ms-2 align-self-center" style="color: #4f5153;"></i>
+                                        @error('n_rooms')
+                                            <span class="text-danger d-block">{{ $message }}</span>
+                                        @enderror 
+                                    </div>
+                                </div>
+
+                                {{-- NUMERO BAGNI --}}
+                                <div class="col-12 mb-3 text-center">
+                                    <label class="control-label fw-bold mb-2">Numero di <span class="brand">Bagni</span>: </label>
+                                    <div class="d-flex justify-content-center">
+                                        <input type="number" id="n_wc" name="n_wc" class="form-control" style="width:4.25rem" value="{{old('n_wc') ?? $apartment->n_wc}}"><i class="fa-solid fa-toilet-paper ms-2 align-self-center" style="color: #4f5153;"></i>
+                                        @error('n_wc')
+                                            <span class="text-danger d-block">{{ $message }}</span>
+                                        @enderror 
+                                    </div>
+                                </div>
+
                             </div>
-                        </div>
-                        <div class="col-4">
-                            <p>
-                              Questa sezione ti permette di aggiornare il titolo e la descrizione del tuo annuncio.
-                                Ricorda che il titolo dovrebbe essere accattivante e descrittivo per attirare l'attenzione degli utenti.            
-                                Fornisci dettagli aggiuntivi sull'appartamento, come le caratteristiche uniche e le comodità offerte.
-                                Una descrizione ben scritta può aumentare l'interesse degli utenti e le probabilità di affittare l'appartamento.
-                                Assicurati di fare modifiche accurate e interessanti in queste sezioni per massimizzare l'efficacia del tuo annuncio.
-                            </p>
-                        </div>
+                            <div class="col-12 col-lg-3 col-md-6 d-flex flex-column mt-5 mt-lg-0">
+                                <div class="col-12 text-center">
+                                    <h2><span class="brand">Indirizzo</span></h2>
+                                </div>
+                                {{-- indirizzo --}}
+                                <div class="col-12 mb-3 text-center">
+                                    
+                                    <div class="d-flex justify-content-center">
+                                        <input type="ratio" id="address" name="address" class="form-control" value="{{old('address') ?? $apartment->address}}" >                                       
+                                    </div>
+                                    @error('address')
+                                     <span class="text-danger d-block">{{ $message }}</span>
+                                    @enderror 
+                                </div>
+                                <div class="col-12 text-center mt-5">
+                                    <h2><span class="brand">Prezzo</span> per Notte</h2>
+                                    
+                                    <div class="d-flex justify-content-center">
+                                        <input type="text" id="price" name="price" class="form-control" style="width:4.25rem" value="{{old('price') ?? $apartment->price}}" ><span class="fw-bold d-flex align-items-center ms-2">&euro;</span>                                    </div>
+                                    </div>
+                                </div>
+                           
+                            </div>
                     </div>
                 </div>
-                {{-- 2SEZ. TIPOLOGIA --}}
+            </div>       
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+            <div class="col-12">
                 <div class="mb-5 my-5">
                     <div class="text-center">
                         <h2>Modifica la tipologia dell'appartamento</h2>
@@ -95,40 +159,7 @@
                                     <span class="text-danger d-block">{{ $message }}</span>
                                     @enderror 
                                 </div> --}}   
-                                {{-- NUMERO BAGNI --}}
-                                <div class="px-4 ">
-                                    <label class="control-label fw-bold ">Numero di bagni: </label>
-                                    <input type="number" id="n_wc" name="n_wc" class="form-control" style="width:4.25rem" value="{{old('n_wc') ?? $apartment->n_wc}}">
-                                    @error('n_wc')
-                                        <span class="text-danger d-block">{{ $message }}</span>
-                                    @enderror 
-                                </div>
-                                {{-- NUMERO STANZE --}}
-                                <div class="px-4 ">
-                                    <label class="control-label fw-bold ">Numero di stanze</label>
-                                    <input type="number" id="n_rooms" name="n_rooms" class="form-control" style="width:4.25rem" value="{{old('n_rooms') ?? $apartment->n_rooms}}">
-                                    @error('n_rooms')
-                                        <span class="text-danger d-block">{{ $message }}</span>
-                                    @enderror 
-                                </div>
-                                {{-- METRI QUADRI APPARTAMENTO --}}
-                                <div class="px-4">
-                                    <label class="control-label fw-bold " for="name">Metri quadri alloggio: </label>
-                                    <input type="number" id="mq" name="mq" class="form-control" style="width:4.25rem" value="{{old('mq') ?? $apartment->mq}}">
-                                        @error('mq')
-                                        <span class="text-danger d-block">{{ $message }}</span>
-                                    @enderror 
-                                </div>
-                                {{-- indirizzo --}}
-                                <div class="d-flex flex-column">        
-                                    <div class="px-4">
-                                        <label class="control-label mb-2 fw-bold me-3">Indirizzo</label>
-                                    <input type="ratio" id="address" name="address" class="form-control" value="{{old('address') ?? $apartment->address}}" >
-                                    </div>
-                                    @error('address')
-                                    <span class="text-danger d-block">{{ $message }}</span>
-                                    @enderror 
-                                </div>                            
+                                                         
                            </div>
                         </div>
                     </div>                                                    
@@ -183,8 +214,8 @@
                         {{-- prezzo --}}
                         <div class="">        
                             <div class="">
-                                <label class="control-label mb-2 fw-bold me-3">Prezzo</label>
-                                <input type="text" id="price" name="price" class="form-control" value="{{old('price') ?? $apartment->price}}" >
+                                
+                                
                             </div>
                             @error('price')
                             <span class="text-danger d-block">{{ $message }}</span>

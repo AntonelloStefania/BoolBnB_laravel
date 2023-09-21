@@ -50,7 +50,7 @@
                                             <form action="{{route('admin.apartments.destroy', $apartment->id)}}" onsubmit="return confirm('Press ok to confirm')" class="d-block" method="POST">
                                                 @method('DELETE')
                                                 @csrf
-                                                <button class="beige-btn btn" type="submit"><i class="fas fa-trash me-0 me-lg-2" style="color: #3f3f41;"></i><span class="d-none d-lg-inline">Elimina</span></button>
+                                                <button class="beige-btn btn mt-3 mt-lg-0" type="submit"><i class="fas fa-trash me-0 me-lg-2" style="color: #3f3f41;"></i><span class="d-none d-lg-inline">Elimina</span></button>
                                             </form>
                                         </div>
                                     </div>

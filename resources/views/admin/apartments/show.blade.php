@@ -94,7 +94,7 @@
                         @endforeach 
                     </ul>
                 </div>
-                <div class="col-auto  col-lg-6 text-center my-4 my-lg-0 text-md-start">
+                <div class="col-12  col-lg-6 text-center my-4 my-lg-0 text-md-start">
                     <h5 class="mb-3">Il <span class="brand">Pernottamento</span> che Offri</h5>
                    
                         <ul class="list-unstyled apartment-list ">
