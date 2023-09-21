@@ -28,10 +28,11 @@ document.addEventListener('DOMContentLoaded', function () {
   var createSubmit = document.getElementById('createSubmit');
   var carousel = new bootstrap.Carousel(document.getElementById("carouselExampleIndicators"));
   console.log('Codice JavaScript in esecuzione.');
-  var redirectionDone = false;
+
   createSubmit.addEventListener('click', function (event) {
     console.log('Evento di submit catturato!');
     event.preventDefault();
+
     // Impedisce il reindirizzamento standard
     getPosition()
 
@@ -40,6 +41,76 @@ document.addEventListener('DOMContentLoaded', function () {
 
       // Trova l'input con errore
       var errorInput = form.querySelector('input:invalid');
+
+      var titleInput = document.getElementById('title');
+      var priceInput = document.getElementById('price');
+      var coverInput = document.getElementById('cover');
+      var mqInput = document.getElementById('mq');
+      var n_wcInput = document.getElementById('n_wc');
+      var n_roomsInput = document.getElementById('n_rooms');
+      var visibilityInput = document.getElementById('visibility');
+      var titleError = titleInput.parentElement.querySelector('.error-message');
+      var priceError = priceInput.parentElement.querySelector('.error-message');
+      var coverError = coverInput.parentElement.querySelector('.error-message');
+      var mqError = mqInput.parentElement.querySelector('.error-message');
+      var n_roomsError = n_roomsInput.parentElement.querySelector('.error-message');
+      var n_wcError = n_wcInput.parentElement.querySelector('.error-message');
+      var visibilityError = visibilityInput.parentElement.querySelector('.error-message');
+
+
+
+
+      
+      // Rimuovi i messaggi di errore esistenti
+      titleError.textContent = '';
+      priceError.textContent = '';
+      coverError.textContent = '';
+      mqError.textContent = '';
+      n_roomsError.textContent = '';
+      n_wcError.textContent = '';
+      visibilityError.textContent = '';
+      
+      
+          // Validazione del campo "name"
+
+          if (titleInput.validity.valueMissing) {
+
+            titleError.textContent = 'Il titolo è obbligatorio.';
+          }
+
+          if (priceInput.validity.valueMissing) {
+
+            priceError.textContent = 'Il prezzo è obbligatorio.';
+          }
+
+          let mqValue = mqInput.value.trim();
+          if (!isValidNumber(mqValue)) {
+
+            mqError.textContent = 'Il numero di mq è obbligatorio.';
+          } else if (mqValue === ''){
+            mqError.textContent = 'Il numero di mq è obbligatorio.';
+          }
+
+          if (n_roomsInput.validity.valueMissing) {
+
+            n_roomsError.textContent = 'Il numero di stanze è obbligatorio.';
+          }
+
+          if (n_wcInput.validity.valueMissing) {
+
+            n_wcError.textContent = 'Il numero di bagni è obbligatorio.';
+          }
+
+          if (visibilityInput.validity.valueMissing) {
+
+            visibilityError.textContent = 'La visibilità è obbligatoria.';
+          }
+
+          if (!coverInput.files.length) {
+
+            coverError.textContent = 'La cover è obbligatoria.';
+          }
+
 
       if (errorInput) {
         //         // Calcola l'indice della slide corrispondente
@@ -50,7 +121,6 @@ document.addEventListener('DOMContentLoaded', function () {
           carousel.to(errorSlide - 1); // Sottrai 1 perché l'indice della slide inizia da 0
           form.removeEventListener('click', handleSubmit);
           console.log('Reindirizzamento alla slide:', errorSlide - 1);
-          redirectionDone = true;
         }
 
       }
