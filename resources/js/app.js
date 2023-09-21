@@ -6,50 +6,72 @@ import.meta.glob([
   '../img/**'
 ]);
 
-document.addEventListener('DOMContentLoaded', function () {
-  var carousel = new bootstrap.Carousel(document.getElementById("carouselExampleIndicators"));
-  console.log(carousel);
-  carousel._element.addEventListener("slide.bs.carousel", function (event) {
-    var currentSlide = carousel._element.querySelector('.carousel-item.active');
-    console.log(currentSlide);
-    var requiredInputs = currentSlide.querySelectorAll('input.required-on-next');
-    console.log(requiredInputs);
-    var isValid = true;
-    var genericErrorMessage = "Compila questo campo.";
-    var typeSpecificErrorMessage = "Inserisci un valore valido.";
-    // Verifica che tutti i campi required nella slide corrente siano compilati
-    for (var i = 0; i < requiredInputs.length; i++) {
-      if (requiredInputs[i].value.trim() === "") {
-        isValid = false;
-        // Mostra il messaggio "Compila questo campo" per il campo vuoto
-
-        var errorElement = requiredInputs[i].nextElementSibling;
-        console.log(errorElement);
-        if (errorElement) {
-          errorElement.textContent = genericErrorMessage;
-        } else {
-          console.log("Elemento di errore non trovato per l'input:", requiredInputs[i]);
-        }
-        // errorElement.textContent = genericErrorMessage;
-        // errorElement.textContent = "Compila questo campo.";
-        console.log("Evento di blocco attivato a causa di campi vuoti.");
+// // Funzione per gestire l'invio della richiesta senza reindirizzamento
+// function inviaRichiesta() {
+//   // Esegui la richiesta HTTP usando Axios o un'altra libreria
+//   Axios.post('http://127.0.0.1:8000', { dati: 'da_inviare' })
+//     .then(function (response) {
+//       // La richiesta è stata completata con successo
+//       console.log('Richiesta inviata con successo:', response.data);
+//       // Puoi gestire la risposta qui, ad esempio aggiornando l'interfaccia utente con i dati ricevuti.
+//     })
+//     .catch(function (error) {
+//       // Si è verificato un errore durante la richiesta
+//       console.error('Errore durante l\'invio della richiesta:', error);
+//       // Puoi gestire l'errore qui, ad esempio mostrando un messaggio di errore all'utente.
+//     });
+// }
 
 
-        // Verifica il tipo dell'input
-        if (requiredInputs[i].type === "number") {
-          // Se l'input è di tipo "number", imposta un messaggio di errore specifico
-          errorElement.textContent = typeSpecificErrorMessage;
+// document.addEventListener('DOMContentLoaded', function () {
+//   var form = document.getElementById('form');
+//   var createSubmit = document.getElementById('createSubmit');
+//   var carousel = new bootstrap.Carousel(document.getElementById("carouselExampleIndicators"));
+//   console.log('Codice JavaScript in esecuzione.');
+//   var redirectionDone = false;
+//   createSubmit.addEventListener('click', function (event) {
+//     console.log('Evento di submit catturato!');
 
-        }
-      }
-    }
+//     if (!form.checkValidity()) {
 
-    // Blocca il passaggio alla slide successiva se ci sono campi vuoti
-    if (!isValid) {
-      event.preventDefault();
-    }
-  });
-});
+
+//       // Trova l'input con errore
+//       var errorInput = form.querySelector('input:invalid');
+
+//       if (errorInput) {
+//         event.preventDefault();
+//         // Impedisce il reindirizzamento standard
+//         // Calcola l'indice della slide corrispondente
+//         var errorSlide = parseInt(errorInput.getAttribute('data-error-slide'));
+//         console.log('Input non valido:', errorInput);
+//         if (!isNaN(errorSlide)) {
+//           // Sposta il carousel alla slide corrispondente
+//           carousel.to(errorSlide - 1); // Sottrai 1 perché l'indice della slide inizia da 0
+//           form.removeEventListener('click', handleSubmit);
+//           console.log('Reindirizzamento alla slide:', errorSlide - 1);
+//           redirectionDone = true;
+//         }
+
+//       }
+
+//     }
+
+//     function handleSubmit(event) {
+//       console.log('Submit standard del modulo.');
+//       // Puoi inserire ulteriori azioni qui, se necessario.
+//     }
+
+//     form.addEventListener('createSubmit', handleSubmit);
+
+
+
+//   });
+// });
+
+
+
+
+
 
 //POPOVER INFO DESCRIZIONE APPARTAMENTO IN CREATE
 var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
