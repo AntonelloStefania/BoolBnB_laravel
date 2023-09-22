@@ -24,8 +24,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/apartments', [ApartmentController::class, 'index']);
 Route::get('/apartments/{slug}', [ApartmentController::class, 'show']);
 Route::get('/coordinate-apartments', [ApartmentController::class,'recuperaCoordinate']);
-//Route::post('/contacts', [MessageController::class, '__invoke']);
-//Route::post('/api/contacts', 'MessageController@store');
-//Route::post('/api/contacts/{apartmentId}', 'MessageController@store');
-//Route::post('/invia-messaggio', [MessageController::class, 'inviaMessaggio']);
+Route::get('/filtered-apartments', [ApartmentController::class,'recuperaIndirizzo']); //<---ROTTA ADDRESS
 Route::post('/messages',[MessageController::class,'store']); //<---ROTTA MESSAGES
