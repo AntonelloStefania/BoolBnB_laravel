@@ -108,76 +108,76 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 //SELEZIONE SERVIZI IN EDIT (CHECKBOX)
+document.addEventListener('DOMContentLoaded', function () {
+  const checkButtons = document.querySelectorAll('input[name="name[]"]');
+  const resultDiv = document.getElementById('result');
+
+  checkButtons.forEach(function (checkButton) {
+    checkButton.addEventListener('change', function () {
+      // Recupera l'ID dell'elemento selezionato
+      const selectedID = checkButton.value;
+
+      // Rimuovi il background-color da tutti gli elementi
+      checkButtons.forEach(function (ck) {
+        const label = document.querySelector(`label[for="service-id-${ck.value}"]`);
+        // label.style.backgroundColor = 'transparent';
+      });
+
+      if (checkButton.checked) {
+        // Imposta il background-color dell'elemento selezionato
+        const selectedLabel = document.querySelector(`label[for="service-id-${selectedID}"]`);
+        selectedLabel.style.backgroundColor = '#C0C9E1';
+        selectedLabel.style.borderRadius = '1rem';
+      }
+    });
+  });
+});
+
+
 // document.addEventListener('DOMContentLoaded', function () {
-//   const checkButtons = document.querySelectorAll('input[name="name[]"]');
+//   const switchInputs = document.querySelectorAll('input[type="checkbox"][role="switch"]');
 //   const resultDiv = document.getElementById('result');
 
-//   checkButtons.forEach(function (checkButton) {
-//     checkButton.addEventListener('change', function () {
+//   // Aggiungi un gestore per ciascuno switch checkbox
+//   switchInputs.forEach(function (switchInput) {
+//     switchInput.addEventListener('change', function () {
 //       // Recupera l'ID dell'elemento selezionato
-//       const selectedID = checkButton.value;
+//       const selectedID = switchInput.dataset.serviceId;
 
-//       // Rimuovi il background-color da tutti gli elementi
-//       checkButtons.forEach(function (ck) {
-//         const label = document.querySelector(`label[for="service-id-${ck.value}"]`);
-//         // label.style.backgroundColor = 'transparent';
-//       });
-
-//       if (checkButton.checked) {
-//         // Imposta il background-color dell'elemento selezionato
-//         const selectedLabel = document.querySelector(`label[for="service-id-${selectedID}"]`);
+//       if (switchInput.checked) {
+//         //         //         // Aggiungi un'azione per quando la checkbox è attivata
+//         //         //         // Ad esempio, puoi eseguire un'azione o aggiungere stili
+//         //         //         // In questo esempio, cambieremo lo sfondo del label
+//         const selectedLabel = document.querySelector(`label[for="flexSwitchCheck-${selectedID}"]`);
 //         selectedLabel.style.backgroundColor = '#C0C9E1';
 //         selectedLabel.style.borderRadius = '1rem';
+//       } else {
+//         //         //         // Aggiungi un'azione per quando la checkbox è disattivata
+//         //         //         // Ad esempio, puoi eseguire un'azione o rimuovere stili
+//         //         //         // In questo esempio, rimuoviamo lo sfondo del label
+//         const selectedLabel = document.querySelector(`label[for="flexSwitchCheck-${selectedID}"]`);
+//         selectedLabel.style.backgroundColor = 'transparent';
 //       }
 //     });
 //   });
-// });
 
+//   //   // Aggiungi un gestore per cliccare sulle icone
+//   const serviceIcons = document.querySelectorAll('.service-icon');
+//   serviceIcons.forEach(function (serviceIcon) {
+//     serviceIcon.addEventListener('click', function () {
+//       //       // Recupera l'ID dell'elemento selezionato
+//       const selectedID = serviceIcon.dataset.serviceId;
 
-// document.addEventListener('DOMContentLoaded', function () {
-// const switchInputs = document.querySelectorAll('input[type="checkbox"][role="switch"]');
-// const resultDiv = document.getElementById('result');
+//       //       // Inverti lo stato della checkbox corrispondente quando si fa clic sull'icona
+//       const switchInput = document.getElementById(`flexSwitchCheck-${selectedID}`);
+//       switchInput.checked = !switchInput.checked;
 
-// // Aggiungi un gestore per ciascuno switch checkbox
-// switchInputs.forEach(function (switchInput) {
-//   switchInput.addEventListener('change', function () {
-//     // Recupera l'ID dell'elemento selezionato
-//     const selectedID = switchInput.dataset.serviceId;
-
-//     if (switchInput.checked) {
-//       //         //         // Aggiungi un'azione per quando la checkbox è attivata
-//       //         //         // Ad esempio, puoi eseguire un'azione o aggiungere stili
-//       //         //         // In questo esempio, cambieremo lo sfondo del label
-//       const selectedLabel = document.querySelector(`label[for="flexSwitchCheck-${selectedID}"]`);
-//       selectedLabel.style.backgroundColor = '#C0C9E1';
-//       selectedLabel.style.borderRadius = '1rem';
-//     } else {
-//       //         //         // Aggiungi un'azione per quando la checkbox è disattivata
-//       //         //         // Ad esempio, puoi eseguire un'azione o rimuovere stili
-//       //         //         // In questo esempio, rimuoviamo lo sfondo del label
-//       const selectedLabel = document.querySelector(`label[for="flexSwitchCheck-${selectedID}"]`);
-//       selectedLabel.style.backgroundColor = 'transparent';
-//     }
+//       //       // Genera un evento "change" sulla checkbox per attivare la gestione
+//       const event = new Event('change', { bubbles: true });
+//       switchInput.dispatchEvent(event);
+//     });
 //   });
 // });
-
-// //   // Aggiungi un gestore per cliccare sulle icone
-// const serviceIcons = document.querySelectorAll('.service-icon');
-// serviceIcons.forEach(function (serviceIcon) {
-//   serviceIcon.addEventListener('click', function () {
-//     //       // Recupera l'ID dell'elemento selezionato
-//     const selectedID = serviceIcon.dataset.serviceId;
-
-//     //       // Inverti lo stato della checkbox corrispondente quando si fa clic sull'icona
-//     const switchInput = document.getElementById(`flexSwitchCheck-${selectedID}`);
-//     switchInput.checked = !switchInput.checked;
-
-//     //       // Genera un evento "change" sulla checkbox per attivare la gestione
-//     const event = new Event('change', { bubbles: true });
-//     switchInput.dispatchEvent(event);
-//   });
-// });
-
 
 
 
@@ -250,69 +250,18 @@ function populateSuggestionsList(results) {
 
 
 //RECUPERO COORDINATE CON XML FETCH
-// submitForm.addEventListener('click', (event) => {
-//     event.preventDefault();
+submitForm.addEventListener('click', (event) => {
+  event.preventDefault();
 
-//     const addressValue = document.getElementById('address').value;
-//     console.log(addressValue);
-//     let request = new XMLHttpRequest()
-//     request.open("GET", 'https://api.tomtom.com/search/2/geocode/' + addressValue + '.json?key=NvRVuGxMpACPuu2WUR93HOEvbVfg2g9A')
-//     request.send()
-//     request.onload = () => {
-//         if (request.status == 200) {
-//             let data = JSON.parse(request.response)
-//             // addressValue === data.results[0].address.freeformAddress
-//             if(addressValue === data.results[0].address.freeformAddress){
-//                 // salva in una variabile la risposta dell'API, in JSON
-
-//                 lon = data.results[0].position.lon
-//                 lat = data.results[0].position.lat
-
-//                 document.getElementById('lon').value = lon;
-//                 document.getElementById('lat').value = lat;
-//                 console.log(document.getElementById('lon').value)
-//                 console.log(document.getElementById('lat').value)
-//                 const form = document.getElementById('form');
-//                 form.submit();
-//             } else {
-//                 console.log('Indirizzo non valido')
-//                 document.getElementById('addressError').innerText = 'Indirizzo non valido';
-//             }
-//         } else {
-//             console.log("error:")
-//             console.log(request.status)
-//         }
-//     }
-// })
-
-
-
-function getPosition() {
   const addressValue = document.getElementById('address').value;
   console.log(addressValue);
-
-  let options = {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: null // non serve un corpo per una richiesta GET
-  };
-
-  fetch('https://api.tomtom.com/search/2/geocode/' + addressValue + '.json?key=NvRVuGxMpACPuu2WUR93HOEvbVfg2g9A', options)
-    .then(response => {
-      // controllare se la risposta è valida
-      if (response.ok) {
-        // convertire la risposta in JSON
-        return response.json();
-      } else {
-        // lanciare un errore se la risposta non è valida
-        throw new Error("Errore nella richiesta: " + response.status);
-      }
-    })
-    .then(data => {
-      // gestire i dati ricevuti
-      // il codice qui è lo stesso della funzione onload di XMLHttpRequest
+  let request = new XMLHttpRequest()
+  request.open("GET", 'https://api.tomtom.com/search/2/geocode/' + addressValue + '.json?key=NvRVuGxMpACPuu2WUR93HOEvbVfg2g9A')
+  request.send()
+  request.onload = () => {
+    if (request.status == 200) {
+      let data = JSON.parse(request.response)
+      addressValue === data.results[0].address.freeformAddress
       if (addressValue === data.results[0].address.freeformAddress) {
         // salva in una variabile la risposta dell'API, in JSON
 
@@ -324,16 +273,68 @@ function getPosition() {
         console.log(document.getElementById('lon').value)
         console.log(document.getElementById('lat').value)
         const form = document.getElementById('form');
+        form.submit();
       } else {
         console.log('Indirizzo non valido')
-        document.getElementById('addressError').innerText = 'Indirizzo non valido'
+        document.getElementById('addressError').innerText = 'Indirizzo non valido';
       }
-    })
-    .catch(error => {
-      // gestire gli errori
-      console.log("Errore: " + error.message);
-    });
-}
+    } else {
+      console.log("error:")
+      console.log(request.status)
+    }
+  }
+});
+
+
+
+// function getPosition() {
+
+//   const addressValue = document.getElementById('address').value;
+//   console.log(addressValue);
+
+//   let options = {
+//     method: "GET",
+//     headers: {
+//       "Content-Type": "application/json"
+//     },
+//     body: null // non serve un corpo per una richiesta GET
+//   };
+
+// fetch('https://api.tomtom.com/search/2/geocode/' + addressValue + '.json?key=NvRVuGxMpACPuu2WUR93HOEvbVfg2g9A', options)
+//   .then(response => {
+//     // controllare se la risposta è valida
+//     if (response.ok) {
+//       // convertire la risposta in JSON
+//       return response.json();
+//     } else {
+//       // lanciare un errore se la risposta non è valida
+//       throw new Error("Errore nella richiesta: " + response.status);
+//     }
+//   })
+//   .then(data => {
+//     // gestire i dati ricevuti
+//     // il codice qui è lo stesso della funzione onload di XMLHttpRequest
+//     if (addressValue === data.results[0].address.freeformAddress) {
+//       // salva in una variabile la risposta dell'API, in JSON
+
+//       lon = data.results[0].position.lon
+//       lat = data.results[0].position.lat
+
+//       document.getElementById('lon').value = lon;
+//       document.getElementById('lat').value = lat;
+//       console.log(document.getElementById('lon').value)
+//       console.log(document.getElementById('lat').value)
+//       const form = document.getElementById('form');
+//     } else {
+//       console.log('Indirizzo non valido')
+//       document.getElementById('addressError').innerText = 'Indirizzo non valido'
+//     }
+//   })
+//   .catch(error => {
+//     // gestire gli errori
+//     console.log("Errore: " + error.message);
+//   });
+// }
 
 
 //DROP CONTAINER EDIT E CREATE*

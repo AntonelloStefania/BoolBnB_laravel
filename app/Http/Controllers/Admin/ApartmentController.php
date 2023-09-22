@@ -145,12 +145,15 @@ class ApartmentController extends Controller
      */
     public function update(UpdateApartmentRequest $request, Apartment $apartment)
     {
-        $form_data = $request->all(); 
-
+        $form_data = $request->all();
+        $apartment->services()->detach(); 
+        if($request->has('name')){
+            $apartment->services()->attach($request->name);}
         if($request->hasFile('cover')){
             if($apartment->cover){
                 Storage::delete($apartment->cover);
             }
+            
 
             $path = Storage::put('apartment_photos', $request->cover);
 

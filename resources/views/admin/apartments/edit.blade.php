@@ -27,7 +27,7 @@
         <div class="col-10 offset-1">
            <div class="row">
                <div class="col-12">
-                    <form action="{{ route('admin.apartments.update', $apartment->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.apartments.update', $apartment->id) }}" id="form" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                         
@@ -226,13 +226,16 @@
                         @foreach($services as $service)
                         <div class="col-6 col-md-4 d-flex my-5 flex-column align-items-center ">
                             <label class="form-check-label" for="flexSwitchCheck-{{$service->id}}">
-                                <input class="form-check-input m-1"  type="checkbox" role="switch" name="service_name[]" value='{{ $service->id }}' {{$errors->any() ? (in_array($service->id, old('name', [])) ? 'checked' : '') : ($apartment->services->contains($service) ? 'checked' : '') }} id="flexSwitchCheck-{{$service->id}}" data-service-id="{{$service->id}}" >
-                                <img src="{{$service->icons}}" alt="Service Icon" data-service-id="{{$service->id}}" class="service-icon position-absolute" style="cursor: pointer;">
+                                <input class="form-check-input m-1"  type="checkbox"  role="" name="name[]" value='{{ $service->id }}' {{$errors->any() ? (in_array($service->id, old('name', [])) ? 'checked' : '') : ($apartment->services->contains($service) ? 'checked' : '') }} id="flexSwitchCheck-{{$service->id}}" data-service-id="{{$service->id}}" >
                             </label>
                             <span>{{$service->name}}</span>
                         </div>
                     @endforeach
-                    @error('service_name')
+                    {{-- @foreach($services as $service)
+                        <input class="form-check-input" type="checkbox" role="switch" name="name[]" value="{{$service->id}}" id="flexSwitchCheckDefault" {{ in_array($service->id, old('name', [])) ? 'checked' : '' }} id="flexSwitchCheckDefault"  >
+                        <label class="form-check-label" for="flexSwitchCheckDefault">{{$service->name}}</label>
+                    @endforeach  --}}
+                    @error('name')
                         <span class="text-danger d-block">{{ $message }}</span>
                     @enderror
                        
@@ -278,7 +281,7 @@
                 </div> 
                 <div class="col-12 text-center mb-5">
                 
-                    <button class="blue-btn btn" type="submit">Submit</button>
+                    <button class="blue-btn btn" id="createSubmit" type="submit">Submit</button>
                 </div>       
            </form>
         </div>
