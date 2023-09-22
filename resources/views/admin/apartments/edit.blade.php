@@ -40,6 +40,9 @@
                                 <div class="col-12 ">
                                     <label class="control-label mb-2 fw-bold"><span class="brand">Titolo</span> Annuncio:</label>
                                     <input type="text" id="title" name="title" class="form-control" value="{{old('title') ?? $apartment->title}}">
+                                    
+                                </div>
+                                <div>
                                     @error('title')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror 
@@ -58,6 +61,9 @@
                                     <label class="control-label fw-bold mb-2  " for="name"><span class="brand">Grandezza</span> Alloggio: </label>
                                     <div class="d-flex justify-content-center">
                                         <input type="number" id="mq" name="mq" class="form-control" style="width:4.25rem" value="{{old('mq') ?? $apartment->mq}}"><span class="align-self-center fw-bold ms-2"> &#x33A1;</span>
+                                       
+                                    </div>
+                                    <div>
                                         @error('mq')
                                             <span class="text-danger d-block">{{ $message }}</span>
                                         @enderror 
@@ -68,6 +74,9 @@
                                     <label class="control-label fw-bold mb-2">Numero di <span class="brand">Stanze</span></label>
                                     <div class="d-flex justify-content-center">
                                         <input type="number" id="n_rooms" name="n_rooms" class="form-control" style="width:4.25rem" value="{{old('n_rooms') ?? $apartment->n_rooms}}"><i class="fa-solid fa-bed ms-2 align-self-center" style="color: #4f5153;"></i>
+                                       
+                                    </div>
+                                    <div>
                                         @error('n_rooms')
                                             <span class="text-danger d-block">{{ $message }}</span>
                                         @enderror 
@@ -79,9 +88,12 @@
                                     <label class="control-label fw-bold mb-2">Numero di <span class="brand">Bagni</span>: </label>
                                     <div class="d-flex justify-content-center">
                                         <input type="number" id="n_wc" name="n_wc" class="form-control" style="width:4.25rem" value="{{old('n_wc') ?? $apartment->n_wc}}"><i class="fa-solid fa-toilet-paper ms-2 align-self-center" style="color: #4f5153;"></i>
+                                        
+                                    </div>
+                                    <div>
                                         @error('n_wc')
                                             <span class="text-danger d-block">{{ $message }}</span>
-                                        @enderror 
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -98,9 +110,11 @@
                                         <datalist id="suggestions">
                                         </datalist>                                    
                                     </div>
-                                    @error('address')
-                                     <span class="text-danger d-block">{{ $message }}</span>
-                                    @enderror 
+                                    <div>
+                                        @error('address')
+                                         <span class="text-danger d-block">{{ $message }}</span>
+                                        @enderror 
+                                    </div>
                                       {{-- INPUT LON LAT --}}
                                       <div>
                                         <input type="hidden" name="lon" id="lon" class="form-control"  value="">
@@ -111,7 +125,12 @@
                                     <h2><span class="brand">Prezzo</span> per Notte</h2>
                                     
                                     <div class="d-flex justify-content-center">
-                                        <input type="text" id="price" name="price" class="form-control" style="width:4.25rem" value="{{old('price') ?? $apartment->price}}" ><span class="fw-bold d-flex align-items-center ms-2">&euro;</span>                                    </div>
+                                        <input type="text" id="price" name="price" class="form-control" style="width:4.25rem" value="{{old('price') ?? $apartment->price}}" ><span class="fw-bold d-flex align-items-center ms-2">&euro;</span>                               
+                                    </div>
+                                    <div>
+                                        @error('price')
+                                             <span class="text-danger d-block">{{ $message }}</span>
+                                        @enderror 
                                     </div>
                                 </div>
                            
@@ -215,10 +234,12 @@
                         <span>{{$service->name}}</span>
                     </div>
                     @endforeach
+                    <div class="text-center col-12 mt-3">
+                        @error('name')
+                            <span class="text-danger d-block">{{ $message }}</span>
+                        @enderror
+                    </div>
                 </div>
-                @error('name')
-                    <span class="text-danger d-block">{{ $message }}</span>
-                @enderror
             </div>
         </div>    
     </div> 
@@ -254,23 +275,12 @@
 
 
     {{-- FINE SPONSOR --}}
-                 {{-- PREZZO E SPONSOR --}}
-                    <div class="col-12">
-                        {{-- prezzo --}}
-                        <div class="">        
-                            <div class="">
-                                
-                                
-                            </div>
-                            @error('price')
-                            <span class="text-danger d-block">{{ $message }}</span>
-                            @enderror 
-                        </div>
-                        
-                           
-                       </div>
-                    </div>
-                   {{-- visibilità --}}
+    
+    
+    {{-- visibilità --}}
+    {{-- <div class="container-fluid bg-beige">
+        <div class="contoiner">
+            <div class="row">
                 <div class="form-group my-4 d-flex justify-content-around my-5">
                     <div class="d-flex align-items-center">
                         <label class="control-label mb-2 fw-bold me-3">visibilità</label>
@@ -281,11 +291,42 @@
                     @enderror    
                     </div>
                 </div> 
-                <div class="col-12 text-center mb-5">
                 
-                    <button class="blue-btn btn" id="createSubmit" type="submit">Submit</button>
-                </div>       
-           </form>
+            </div>
+        </div>
+    </div> --}}
+
+
+
+    <div class="container-fluid bg-beige">
+        <div class="contoiner">
+            <div class="row">
+                <div class="form-group my-4 d-flex justify-content-around my-5">
+                    <div class="d-flex align-items-center">
+                        <span class="form-check-label me-3">Vuoi rendere il tuo Annuncio <span class="brand">Visibile</span> al pubblico Ora?</span>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" name="visibility" id="visible"  type="checkbox" role="switch"  value="1" {{ old('visibility', $apartment->visibility) == '1' ? 'checked' : '' }} />
+                            <input type="checkbox" value="0" name="visibility" style="appearance: none" id="invisible">
+                          </div>
+                          <div>
+                              @error('visibility')
+                                  <span class="text-danger">{{ $message }}</span>
+                              @enderror    
+                          </div>
+                        </div>
+                    </div> 
+                 </div>
+                </div>
+            </div>
+        </div>
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <button class="blue-btn btn" id="createSubmit" type="submit">Accetta le Modifiche</button>
+                </div>
+            </div>
+        </div>
+    </form>
         </div>
    </div>
 </div>
@@ -421,4 +462,16 @@ textarea::-webkit-scrollbar {
     
 }
 
+
+
+
+#visible{
+    border-radius: 1rem !important;
+    height: 1.5rem !important;
+    width: 2.5rem !important;
+    border: 2px solid #7b97d4 !important
+}
+#visible:checked{
+    background-color: #7b97d4 !important;
+}
 </style>

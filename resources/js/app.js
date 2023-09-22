@@ -179,6 +179,33 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
+//FUNZIONE RECUPERO VISIBILITA' ANNUNCIO 
+
+document.addEventListener('DOMContentLoaded', function () {
+  const visibleCheckbox = document.getElementById('visible');
+  const invisibleCheckbox = document.getElementById('invisible');
+
+  visibleCheckbox.addEventListener('change', function () {
+    if (visibleCheckbox.checked) {
+      // La prima checkbox è selezionata, deseleziona la seconda
+      invisibleCheckbox.checked = false;
+    } else {
+      // La prima checkbox è deselezionata, seleziona la seconda
+      invisibleCheckbox.checked = true;
+    }
+  });
+
+  invisibleCheckbox.addEventListener('change', function () {
+    if (invisibleCheckbox.checked) {
+      // La seconda checkbox è selezionata, deseleziona la prima
+      visibleCheckbox.checked = false;
+    } else {
+      // La seconda checkbox è deselezionata, seleziona la prima
+      visibleCheckbox.checked = true;
+    }
+  });
+});
+
 
 
 
