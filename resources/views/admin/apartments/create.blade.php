@@ -253,6 +253,7 @@
                                    <div class="d-flex align-items-center">
                                        <label class="control-label mb-2 fw-bold me-3">Sponsor</label>
                                        <select name="sponsor_id" id="">
+                                       
                                            @foreach($sponsors as $sponsor)
                                              <option value="{{$sponsor->id}}">{{$sponsor->name}} - {{$sponsor->time}}</option>
                                            @endforeach

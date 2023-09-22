@@ -230,8 +230,8 @@
                     @enderror
                        
                 </div>
-               </div>
-        </div>    
+               
+            </div>    
     </div>                                                
                  {{-- PREZZO E SPONSOR --}}
                     <div class="col-12">
