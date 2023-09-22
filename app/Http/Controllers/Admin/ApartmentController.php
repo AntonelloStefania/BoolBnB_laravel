@@ -72,6 +72,7 @@ class ApartmentController extends Controller
     {
         $form_data = $request->all();
         $apartment = new Apartment();
+        $sponsors = Sponsor::all();
 
         if($request->hasFile('cover')){
             $path=Storage::put('apartment_photos',$request->cover);
@@ -89,12 +90,13 @@ class ApartmentController extends Controller
         }
         if($request->has('sponsor_id')){
             $time= '';
-            if($request->sponsor_id == 1){
-                $time= 24;
-            } else if ($request->sponsor_id){
-                $time= 72;
-            } else {
-                $time= 144;
+            $length= count($sponsors);
+            for($i=0; $i<$length;  $i++){
+                $sponsor= $sponsors[$i];
+
+                if($sponsor->id == $request->sponsor_id){
+                    $time = intval($sponsor->time);
+                }
             }
             $apartment->sponsors()->attach($request->sponsor_id, ['start' => date("m-d-Y h:i:s"),'end' => date("m-d-Y h:i:s", mktime(date('h') + $time , date("i"), date("s"), date("m"), date("d"), date("Y")))]);
         }
