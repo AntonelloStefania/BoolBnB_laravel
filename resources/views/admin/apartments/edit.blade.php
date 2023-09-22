@@ -120,15 +120,15 @@
             <div class="col-12">
                 <div class="mb-5 my-5">
                     <div class="text-center">
-                        <h2>Modifica la tipologia dell'appartamento</h2>
+                        <h2>Modifica la <span class="brand">Tipologia</span> dell'Alloggio</h2>
                         <p>
-                            Personalizza l'esperienza per i tuoi ospiti scegliendo tra una varietà di servizi aggiuntivi per la tua struttura. Questo campo ti consente di adattare la tua offerta alle esigenze dei tuoi ospiti. Seleziona i servizi che ritieni possano arricchire il loro soggiorno e migliorare la loro esperienza. Rendi la tua struttura ancora più attraente e confortevole per i futuri ospiti.
+                            Hai apportato modifiche alla tua struttura o desideri offrire una nuova tipologia di alloggio? Aggiorna il tuo annuncio su <span class="brand">BoolBnB</span> per far conoscere ai viaggiatori le tue ultime novità. Mantieni sempre aggiornate le tue offerte e attira più ospiti con le tue offerte rinnovate su <span class="brand">BoolBnB</span>!
                         </p>
                     </div>
-                    <div class="rating d-flex flex-wrap justify-content-center">
+                    <div class="rating col-12 col-md-8 offset-md-2 d-flex flex-wrap justify-content-center">
                     
                         @foreach($types as $type)
-                        <div class="col-4 d-flex my-3 flex-column align-items-center">
+                        <div class="col-6 col-md-4 d-flex my-3 flex-column align-items-center">
                             <label for="type-id-{{$type->id}}" class="position-relative d-flex change-cursor justify-content-center align-items-center {{ $type->id == old('type_id', $apartment->type_id) ? 'type-bg' : '' }}" style="width:75px; height:75px;">
                                 <input type="radio" name="type_id" style="width:65px; height:65px; appearance:none" class="radio-icons" value="{{$type->id}}" id="type-id-{{$type->id}}" {{ $type->id == old('type_id', $apartment->type_id) ? 'checked' : '' }}>
                                 <img src="{{$type->icons}}" style="width:50px; height:50px;" alt="" class="type-icons position-absolute" >
@@ -142,73 +142,97 @@
                         
                     </div>
                 </div>                  
-                {{-- SEZ. 3 --}}
-                    <div class="">
-                         {{-- indirizzo --}}
-                        <div class="form-group my-4 d-flex justify-content-around my-5">                       
-                            <div class="d-flex justify-content-center m-5 p-5">
-                                {{-- TIPOLOGIA APPARTAMENTO --}}
-                                {{-- <div class="px-4">
-                                    <label class="control-label fw-bold">Tipologia di alloggio</label>
-                                    <select name="type_id" id="" class="form-control " style="width:12rem">
-                                        @foreach($types as $type)
-                                        <option value="{{$type->id}}" {{ $type->id == old('type_id', $apartment->type_id) ? 'selected' : ''}}> {{$type->name}}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('type')
-                                    <span class="text-danger d-block">{{ $message }}</span>
-                                    @enderror 
-                                </div> --}}   
-                                                         
-                           </div>
-                        </div>
-                    </div>                                                    
-                   {{-- 4SEZ. IMG COPERTINA --}}
-                   <div class="row bg-beige">
-                        <div class="col-8 ">
-                            <div class="d-flex flex-column">
-                                <label class="control-label mb-2 fw-bold me-3">Immagine di copertina</label>
-                                <p>
-                                    L'immagine di copertina è la prima immagine che gli utenti vedranno quando visualizzeranno il tuo annuncio.
-                                    Assicurati di selezionare un'immagine di alta qualità che mostri al meglio l'aspetto dell'appartamento.
-                                    Carica un'immagine accattivante per catturare l'attenzione degli utenti e aumentare le probabilità di successo del tuo annuncio
-                                </p>
-                                <input type="file" name="cover" id="cover" value="{{ $apartment->cover }}">
-                                @error('cover')
-                                <span class="text-danger d-block">{{ $message }}</span>
-                            @enderror 
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            @if ($apartment->cover)
-                                <div class="d-flex flex-column text-center align-items-center">
-                                    <label class="control-label mb-2 fw-bold me-3">Immagine precedente</label>
-                                    <img src="{{ asset('storage/' . $apartment->cover) }}" alt="Immagine precedente" style="width: 18rem;">
-                                </div>
-                            @endif
-                        </div>
-                    </div>  
-                   </div>
-                 {{--5SEZ. SERVIZI AGGIUNTIVI --}}
-                    <div class="col">
-                        <div>
-                            <div class="text-center my-4">
-                                <label class="control-label mb-2 fw-bold my-3">Servizi aggiuntivi</label>
-                                <p>
-                                    Personalizza l'esperienza per i tuoi ospiti scegliendo tra una varietà di servizi aggiuntivi per la tua struttura. Questo campo ti consente di adattare la tua offerta alle esigenze dei tuoi ospiti. Seleziona i servizi che ritieni possano arricchire il loro soggiorno e migliorare la loro esperienza. Rendi la tua struttura ancora più attraente e confortevole per i futuri ospiti.      
-                                </p>
-                            </div>                
-                            <div class="d-flex align-items-center ">
-                                @foreach($services as $service)
-                                    <input class="form-check-input m-1" type="checkbox" role="switch" name="service_name[]" value='{{ $service->id }}' {{$errors->any() ? (in_array($service->id, old('services', [])) ? 'checked' : '') : ($apartment->services->contains($service) ? 'checked' : '') }} id="flexSwitchCheckDefault" >
-                                    <label class="form-check-label " for="flexSwitchCheckDefault">{{$service->name}}</label>
-                                @endforeach
-                                @error('service_name')
-                                <span class="text-danger d-block">{{ $message }}</span>
-                            @enderror 
-                            </div>
-                        </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-beige">
+        <div class="container ">
+            <div class="row my-5">
+
+                <div class="col-12 text-center ">
+                    
+                    <h2 class="my-5">Aggiorna l'Immagine di Copertina su <span class="brand">BoolBnB</span></h2>
+                    <p>
+                        L'immagine di copertina è la prima impressione che gli ospiti avranno del tuo alloggio su <span class="brand">BoolBnB</span>. Cambiala periodicamente per rendere il tuo annuncio sempre fresco e attraente. Cattura l'attenzione con nuove foto che mostrano al meglio le caratteristiche uniche della tua struttura e accogli i tuoi futuri ospiti con uno sguardo invitante su <span class="brand">BoolBnB</span>.
+                    </p>
+                   
+                </div>
+                <div class="col-12 d-flex my-5 flex-column flex-md-row">
+                    <div class="col-12 col-md-6 mb-5 mb-md-0 d-flex flex-column align-items-center ">
+                        <h3 class="">Copertina <span class="brand">Precedente</span></h3>
+                        @if ($apartment->cover)
+                        
+                            <img src="{{ asset('storage/' . $apartment->cover) }}" alt="Immagine precedente" class="old-cover" style="width: 18rem;">
+                        
+                        @endif
                     </div>
+                    <div class="col-12 col-md-6 d-flex flex-column align-items-center">
+    
+                        {{-- PROVA DROP-CONTAINER --}}
+                        <h3><span class="brand">Nuova</span> Copertina</h3>
+                        <label for="images" class="drop-container h-100" id="dropcontainer">
+                            
+                            <span class="drop-title">Sposta qui l'immagine</span>
+                            oppure
+                            <input type="file" id="images"  name="cover" value="{{ $apartment->cover }}" class="blue-btn" accept="image/*" >
+                            @error('cover')
+                                <span class="text-danger d-block">{{ $message }}</span>
+                            @enderror 
+                        </label>
+                    
+                    {{-- FINE DROP-CONTAINER --}}
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </div>
+    <div class="container">
+        <div class="row">
+               {{-- SERVIZI AGGIUNTIVI --}}
+               <div class="col-12">
+                   
+                    <div class="text-center my-4">
+                        <h2 class="control-label mb-2 fw-bold my-3"><span class="brand">Servizi</span> Aggiuntivi</h2>
+                        <p>
+                            Personalizza l'esperienza per i tuoi ospiti scegliendo tra una varietà di servizi aggiuntivi per la tua struttura. Questo campo ti consente di adattare la tua offerta alle esigenze dei tuoi ospiti. Seleziona i servizi che ritieni possano arricchire il loro soggiorno e migliorare la loro esperienza. Rendi la tua struttura ancora più attraente e confortevole per i futuri ospiti.      
+                        </p>
+                    </div>                
+                    {{-- <div class="d-flex align-items-center flex-wrap ">
+                        @foreach($services as $service)
+                            <input class="form-check-input m-1" type="checkbox" role="switch" name="name[]" value='{{ $service->id }}' {{$errors->any() ? (in_array($service->id, old('services', [])) ? 'checked' : '') : ($apartment->services->contains($service) ? 'checked' : '') }} id="flexSwitchCheckDefault" >
+                            <label class="form-check-label " for="flexSwitchCheckDefault">{{$service->name}}</label>
+                        @endforeach --}}
+
+                        {{-- @foreach($services as $service)
+                            <div class="col-6 col-md-4 d-flex my-3 flex-column align-items-center">
+                                <label for="service-id-{{$service->id}}" class="position-relative d-flex change-cursor justify-content-center align-items-center {{ $service->id == old('service_id', $apartment->service_id) ? 'type-bg' : '' }}" style="width:75px; height:75px;">
+                                    <input type="checkbox" name="service_name[]" role="switch" style="width:65px; height:65px; appearance:none" class="radio-icons" value="{{$service->id}}" id="service-id-{{$service->id}}"{{$errors->any() ? (in_array($service->id, old('services', [])) ? 'checked' : '') : ($apartment->services->contains($service) ? 'checked' : '') }} >
+                                    <img src="{{$service->icons}}" style="width:50px; height:50px;" alt="" class="service-icons position-absolute" >
+                                </label>
+                                <span class="fw-bold">{{$service->name}}</span>
+                            </div>
+                        @endforeach
+                        @error('service')
+                          <span class="text-danger d-block">{{ $message }}</span>
+                        @enderror  --}}
+                <div class="d-flex align-items-center flex-wrap ">
+                        @foreach($services as $service)
+                        <div class="col-6 col-md-4 d-flex my-5 flex-column align-items-center ">
+                            <label class="form-check-label" for="flexSwitchCheck-{{$service->id}}">
+                                <input class="form-check-input m-1"  type="checkbox" role="switch" name="service_name[]" value='{{ $service->id }}' {{$errors->any() ? (in_array($service->id, old('name', [])) ? 'checked' : '') : ($apartment->services->contains($service) ? 'checked' : '') }} id="flexSwitchCheck-{{$service->id}}" data-service-id="{{$service->id}}" >
+                                <img src="{{$service->icons}}" alt="Service Icon" data-service-id="{{$service->id}}" class="service-icon position-absolute" style="cursor: pointer;">
+                            </label>
+                            <span>{{$service->name}}</span>
+                        </div>
+                    @endforeach
+                    @error('service_name')
+                        <span class="text-danger d-block">{{ $message }}</span>
+                    @enderror
+                       
+                </div>
+               </div>
+        </div>    
+    </div>                                                
                  {{-- PREZZO E SPONSOR --}}
                     <div class="col-12">
                         {{-- prezzo --}}
@@ -257,5 +281,40 @@
 @endsection
 
 <style lang="scss">
+.drop-container {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px dashed #7b97d4;
+  color: #4d9cb4;
+  cursor: pointer;
+  transition: background .2s ease-in-out, border .2s ease-in-out;
+}
 
+.drop-container:hover {
+  background: #eee;
+  border-color: #111;
+}
+
+.drop-container:hover .drop-title {
+  color: #222;
+}
+
+.drop-title {
+  color: #444;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  transition: color .2s ease-in-out;
+}
+
+.old-cover{
+    border-radius:0.5rem;
+}
 </style>

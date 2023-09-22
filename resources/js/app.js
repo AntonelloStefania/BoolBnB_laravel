@@ -107,6 +107,80 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+//SELEZIONE SERVIZI IN EDIT (CHECKBOX)
+// document.addEventListener('DOMContentLoaded', function () {
+//   const checkButtons = document.querySelectorAll('input[name="name[]"]');
+//   const resultDiv = document.getElementById('result');
+
+//   checkButtons.forEach(function (checkButton) {
+//     checkButton.addEventListener('change', function () {
+//       // Recupera l'ID dell'elemento selezionato
+//       const selectedID = checkButton.value;
+
+//       // Rimuovi il background-color da tutti gli elementi
+//       checkButtons.forEach(function (ck) {
+//         const label = document.querySelector(`label[for="service-id-${ck.value}"]`);
+//         // label.style.backgroundColor = 'transparent';
+//       });
+
+//       if (checkButton.checked) {
+//         // Imposta il background-color dell'elemento selezionato
+//         const selectedLabel = document.querySelector(`label[for="service-id-${selectedID}"]`);
+//         selectedLabel.style.backgroundColor = '#C0C9E1';
+//         selectedLabel.style.borderRadius = '1rem';
+//       }
+//     });
+//   });
+// });
+
+
+// document.addEventListener('DOMContentLoaded', function () {
+// const switchInputs = document.querySelectorAll('input[type="checkbox"][role="switch"]');
+// const resultDiv = document.getElementById('result');
+
+// // Aggiungi un gestore per ciascuno switch checkbox
+// switchInputs.forEach(function (switchInput) {
+//   switchInput.addEventListener('change', function () {
+//     // Recupera l'ID dell'elemento selezionato
+//     const selectedID = switchInput.dataset.serviceId;
+
+//     if (switchInput.checked) {
+//       //         //         // Aggiungi un'azione per quando la checkbox è attivata
+//       //         //         // Ad esempio, puoi eseguire un'azione o aggiungere stili
+//       //         //         // In questo esempio, cambieremo lo sfondo del label
+//       const selectedLabel = document.querySelector(`label[for="flexSwitchCheck-${selectedID}"]`);
+//       selectedLabel.style.backgroundColor = '#C0C9E1';
+//       selectedLabel.style.borderRadius = '1rem';
+//     } else {
+//       //         //         // Aggiungi un'azione per quando la checkbox è disattivata
+//       //         //         // Ad esempio, puoi eseguire un'azione o rimuovere stili
+//       //         //         // In questo esempio, rimuoviamo lo sfondo del label
+//       const selectedLabel = document.querySelector(`label[for="flexSwitchCheck-${selectedID}"]`);
+//       selectedLabel.style.backgroundColor = 'transparent';
+//     }
+//   });
+// });
+
+// //   // Aggiungi un gestore per cliccare sulle icone
+// const serviceIcons = document.querySelectorAll('.service-icon');
+// serviceIcons.forEach(function (serviceIcon) {
+//   serviceIcon.addEventListener('click', function () {
+//     //       // Recupera l'ID dell'elemento selezionato
+//     const selectedID = serviceIcon.dataset.serviceId;
+
+//     //       // Inverti lo stato della checkbox corrispondente quando si fa clic sull'icona
+//     const switchInput = document.getElementById(`flexSwitchCheck-${selectedID}`);
+//     switchInput.checked = !switchInput.checked;
+
+//     //       // Genera un evento "change" sulla checkbox per attivare la gestione
+//     const event = new Event('change', { bubbles: true });
+//     switchInput.dispatchEvent(event);
+//   });
+// });
+
+
+
+
 
 
 
@@ -209,6 +283,8 @@ function populateSuggestionsList(results) {
 //     }
 // })
 
+
+
 function getPosition() {
   const addressValue = document.getElementById('address').value;
   console.log(addressValue);
@@ -258,6 +334,26 @@ function getPosition() {
 }
 
 
+//DROP CONTAINER EDIT E CREATE*
 
+const dropContainer = document.getElementById("dropcontainer")
+const fileInput = document.getElementById("images")
 
+dropContainer.addEventListener("dragover", (e) => {
+  // prevent default to allow drop
+  e.preventDefault()
+}, false)
 
+dropContainer.addEventListener("dragenter", () => {
+  dropContainer.classList.add("drag-active")
+})
+
+dropContainer.addEventListener("dragleave", () => {
+  dropContainer.classList.remove("drag-active")
+})
+
+dropContainer.addEventListener("drop", (e) => {
+  e.preventDefault()
+  dropContainer.classList.remove("drag-active")
+  fileInput.files = e.dataTransfer.files
+})

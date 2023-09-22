@@ -24,25 +24,25 @@ class StoreApartmentRequest extends FormRequest
     public function rules()
     {
         return [
-             'title' => 'required|max:50',
-             'address'=> 'required|max:255',
+            'title' => 'required|max:50',
+            'address'=> 'required|max:255',
             // 'lat'=> 'nullable|max:255',
             // 'lon'=> 'nullable|max:255',
-             'cover'=> 'required',
-             'price'=> ['required', 'regex:/^\d{1,7}(\.\d{1,2})?$/'],
-             'visibility' => 'required|integer',
-             'description' => 'nullable',
-             'n_rooms' => 'required|integer|between:1,127',
-             'n_wc' => 'required|integer|between:1,127',
-             'mq' => 'required|integer|between:1,127',
-             'type_id'=> 'required|exists:types,id',
-              'name' => [
-                 'required',
-                 'array',
-                 'min:1',
-             ],
+            'cover'=> 'required',
+            'price'=> ['required', 'regex:/^\d{1,7}(\.\d{1,2})?$/'],
+            'visibility' => 'required|integer',
+            'description' => 'nullable',
+            'n_rooms' => 'required|integer|between:1,127',
+            'n_wc' => 'required|integer|between:1,127',
+            'mq' => 'required|integer|between:1,127',
+            'type_id'=> 'required|exists:types,id',
+            // 'name' => [
+            //     'required',
+            //     'array',
+            //     'min:1',
+            // ],
              
-            ];
+        ];
     }
     public function messages(){
         return[
@@ -69,7 +69,7 @@ class StoreApartmentRequest extends FormRequest
             'mq.between' =>'il numero deve essere compreso tra 1 e 127',
             'type_id.required' => 'è obbligatorio selezionare una tipologia',
             'type_id.exists' => 'devi scegliere una tipologia esistente',          
-            'name.required' => 'Devi selezionare almeno un servizio',
+            // 'name.required' => 'Devi selezionare almeno un servizio',
             
         ];
     }
