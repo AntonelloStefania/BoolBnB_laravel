@@ -115,7 +115,8 @@ class ApartmentController extends Controller
             $photos=Photo::all();
             return view('admin.apartments.show', compact('apartment','photos'));
         } else {
-            return redirect()->route('admin.apartments.index');
+            $message='NON TI PERMETTERE DI TOCCARE GLI APPARTAMENTI ALTRUI';
+            return redirect()->route('admin.apartments.index', compact('message'));
         }
     }
 
@@ -134,7 +135,8 @@ class ApartmentController extends Controller
             $user=Auth::user();
             return view('admin.apartments.edit', compact('apartment','types','services','sponsors','user'));
         } else {
-            return redirect()->route('admin.apartments.index');
+            $message='NON TI PERMETTERE DI TOCCARE GLI APPARTAMENTI ALTRUI';
+            return redirect()->route('admin.apartments.index', compact('message'));
         }
     }
 
@@ -181,9 +183,20 @@ class ApartmentController extends Controller
      */
     public function destroy(Apartment $apartment)
     {
+        $photos= Photo::all();
+        $length= count($photos);
+        for($i=0; $i<$length; $i++){
+            $photo= $photos[$i];
+            if($photo->apartment_id == $apartment->id){
+                Storage::delete($photo->url);
+                $photo->delete();
+            }
+        };
+
         Storage::delete($apartment->cover);
         $apartment->services()->detach();
         $apartment->sponsors()->detach();
+
         $apartment->delete();
 
         return redirect()->route('admin.apartments.index');

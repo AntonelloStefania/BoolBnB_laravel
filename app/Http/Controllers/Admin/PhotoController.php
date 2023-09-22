@@ -39,7 +39,8 @@ class PhotoController extends Controller
             $apartment = Apartment::findOrFail($apartmentId);
             return view('admin.photos.create', compact('apartment'));
         } else {
-            return redirect()->route('admin.apartments.index');
+            $message='NON TI PERMETTERE DI TOCCARE GLI APPARTAMENTI ALTRUI';
+            return redirect()->route('admin.apartments.index', compact('message'));
         }
     }
 
@@ -94,7 +95,8 @@ class PhotoController extends Controller
         if($apartment->user_id === Auth::id()){
             return view('admin.photos.edit', compact('id','id_2'));
         } else {
-            return redirect()->route('admin.apartments.index');
+            $message='NON TI PERMETTERE DI TOCCARE GLI APPARTAMENTI ALTRUI';
+            return redirect()->route('admin.apartments.index', compact('message'));
         }
     }
 
