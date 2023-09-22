@@ -94,11 +94,18 @@
                                 <div class="col-12 mb-3 text-center">
                                     
                                     <div class="d-flex justify-content-center">
-                                        <input type="ratio" id="address" name="address" class="form-control" value="{{old('address') ?? $apartment->address}}" >                                       
+                                        <input type="ratio" list="suggestions" id="address" name="address" class="form-control" value="{{old('address') ?? $apartment->address}}" >   
+                                        <datalist id="suggestions">
+                                        </datalist>                                    
                                     </div>
                                     @error('address')
                                      <span class="text-danger d-block">{{ $message }}</span>
                                     @enderror 
+                                      {{-- INPUT LON LAT --}}
+                                      <div>
+                                        <input type="hidden" name="lon" id="lon" class="form-control"  value="">
+                                        <input type="hidden" name="lat" id="lat" class="form-control"  value="">
+                                    </div>
                                 </div>
                                 <div class="col-12 text-center mt-5">
                                     <h2><span class="brand">Prezzo</span> per Notte</h2>
