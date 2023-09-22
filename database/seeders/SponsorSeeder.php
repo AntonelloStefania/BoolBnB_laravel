@@ -16,6 +16,7 @@ class SponsorSeeder extends Seeder
     public function run()
     {
         $sponsors = [
+            ['name' =>'free', 'time'=>'0', 'price'=>'0.00'],
             ['name' => 'base', 'time' => '24','price'=>'2.99'],
             ['name' => 'avanzato', 'time' => '72','price'=>'5.99'],
             ['name' => 'pro', 'time' => '144','price'=>'9.99'],
