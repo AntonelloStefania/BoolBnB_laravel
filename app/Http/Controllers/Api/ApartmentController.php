@@ -69,6 +69,7 @@ class ApartmentController extends Controller
             // Esegui la query per recuperare gli appartamenti filtrati
             $apartments = Apartment::whereBetween('lon', [$min_lon, $max_lon])
                 ->whereBetween('lat', [$min_lat, $max_lat])
+                ->with('type')
                 ->get();
     
             // Verifica se ci sono risultati
