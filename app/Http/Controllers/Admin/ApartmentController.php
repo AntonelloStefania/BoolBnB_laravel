@@ -187,12 +187,20 @@ class ApartmentController extends Controller
     public function destroy(Apartment $apartment)
     {
         $photos= Photo::all();
+        $messages= Message::all();
         $length= count($photos);
+        $lengthMessage= count($messages);
         for($i=0; $i<$length; $i++){
             $photo= $photos[$i];
             if($photo->apartment_id == $apartment->id){
                 Storage::delete($photo->url);
                 $photo->delete();
+            }
+        };
+        for($i=0; $i<$lengthMessage; $i++){
+            $message= $messages[$i];
+            if($message->apartment_id == $apartment->id){
+                $message->delete();
             }
         };
 
