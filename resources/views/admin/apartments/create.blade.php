@@ -38,7 +38,7 @@
                                                 <div class="col-4 d-flex my-3 flex-column align-items-center">
                                                     <label for="type-id-{{$type->id}}" class="position-relative d-flex change-cursor justify-content-center align-items-center {{ $type->id == old('type_id') ? 'type-bg' : '' }}" style="width:75px; height:75px;" required >
                                                         <input type="radio"  name="type_id"   style="width:65px; height:65px; appearance:none" class="radio-icons" value="{{$type->id}}" data-error-slide="1"   id="type-id-{{$type->id}}" {{ old('type_id') ? 'checked' : '' }}  required />
-                                                        <img src="{{$type->icons}}"  style="width:50px; height:50px;" alt="" class=" type-icons position-absolute" >
+                                                        <img src="{{$type->icons}}"  style="width:50px; height:50px;" alt="" class="position-absolute" >
                                                     </label>                                                    
                                                     <span class="fw-bold home-text">{{$type->name}}</span>
                                                 </div>
@@ -315,6 +315,10 @@
         width: 50%;
         border-radius: 1rem;
     }
+
+    textarea::-webkit-scrollbar {
+   display: none;
+ }
 
 
 

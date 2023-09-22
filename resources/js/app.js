@@ -108,31 +108,73 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 //SELEZIONE SERVIZI IN EDIT (CHECKBOX)
+// document.addEventListener('DOMContentLoaded', function () {
+//   const checkButtons = document.querySelectorAll('input[name="name[]"]');
+//   const resultDiv = document.getElementById('result');
+
+//   checkButtons.forEach(function (checkButton) {
+//     checkButton.addEventListener('change', function () {
+//       // Recupera l'ID dell'elemento selezionato
+//       const selectedID = checkButton.value;
+
+//       // Rimuovi il background-color da tutti gli elementi
+//       checkButtons.forEach(function (ck) {
+//         const selectedLabel = document.querySelector(`label[for="service-id-${ck.value}"]`);
+//         // label.style.backgroundColor = 'transparent';
+//       });
+
+//       if (checkButton.checked) {
+//         // Imposta il background-color dell'elemento selezionato
+//         const selectedLabel = document.querySelector(`label[for="service-id-${selectedID}"]`);
+//         selectedLabel.style.backgroundColor = '#C0C9E1';
+//         selectedLabel.style.borderRadius = '1rem';
+//       }
+//     });
+//   });
+// });
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
-  const checkButtons = document.querySelectorAll('input[name="name[]"]');
-  const resultDiv = document.getElementById('result');
+  const clickableServices = document.querySelectorAll('.clickable-service');
 
-  checkButtons.forEach(function (checkButton) {
-    checkButton.addEventListener('change', function () {
-      // Recupera l'ID dell'elemento selezionato
-      const selectedID = checkButton.value;
+  clickableServices.forEach(function (clickableService) {
+    // Trova l'ID della checkbox associata all'immagine
+    const checkboxId = clickableService.getAttribute('data-checkbox-id');
 
-      // Rimuovi il background-color da tutti gli elementi
-      checkButtons.forEach(function (ck) {
-        const label = document.querySelector(`label[for="service-id-${ck.value}"]`);
-        // label.style.backgroundColor = 'transparent';
-      });
+    // Trova la checkbox corrispondente
+    const checkbox = document.getElementById(checkboxId);
 
-      if (checkButton.checked) {
-        // Imposta il background-color dell'elemento selezionato
-        const selectedLabel = document.querySelector(`label[for="service-id-${selectedID}"]`);
-        selectedLabel.style.backgroundColor = '#C0C9E1';
-        selectedLabel.style.borderRadius = '1rem';
+    // Controlla se la checkbox è selezionata inizialmente
+    if (checkbox && checkbox.checked) {
+      clickableService.style.backgroundColor = '#C0C9E1';
+      clickableService.style.borderRadius = '0.5rem'
+    }
+
+    clickableService.addEventListener('click', function () {
+      // Trova nuovamente la checkbox
+      const checkbox = document.getElementById(checkboxId);
+
+      if (checkbox) {
+        // Cambia lo stato della checkbox
+        checkbox.checked = !checkbox.checked;
+
+        // Simula il cambiamento dell'aspetto della checkbox
+        if (checkbox.checked) {
+          clickableService.style.backgroundColor = '#C0C9E1';
+          clickableService.style.borderRadius = '0.5rem'
+        } else {
+          clickableService.style.backgroundColor = 'transparent';
+        }
       }
+    });
+
+    // Impedisci al clic sull'immagine di attivare la checkbox direttamente
+    clickableService.addEventListener('click', function (e) {
+      e.preventDefault();
     });
   });
 });
-
 
 // document.addEventListener('DOMContentLoaded', function () {
 //   const switchInputs = document.querySelectorAll('input[type="checkbox"][role="switch"]');

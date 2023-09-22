@@ -204,45 +204,24 @@
                             Personalizza l'esperienza per i tuoi ospiti scegliendo tra una varietà di servizi aggiuntivi per la tua struttura. Questo campo ti consente di adattare la tua offerta alle esigenze dei tuoi ospiti. Seleziona i servizi che ritieni possano arricchire il loro soggiorno e migliorare la loro esperienza. Rendi la tua struttura ancora più attraente e confortevole per i futuri ospiti.      
                         </p>
                     </div>                
-                    {{-- <div class="d-flex align-items-center flex-wrap ">
+                
+                    <div class="d-flex align-items-center flex-wrap ">
                         @foreach($services as $service)
-                            <input class="form-check-input m-1" type="checkbox" role="switch" name="name[]" value='{{ $service->id }}' {{$errors->any() ? (in_array($service->id, old('services', [])) ? 'checked' : '') : ($apartment->services->contains($service) ? 'checked' : '') }} id="flexSwitchCheckDefault" >
-                            <label class="form-check-label " for="flexSwitchCheckDefault">{{$service->name}}</label>
-                        @endforeach --}}
-
-                        {{-- @foreach($services as $service)
-                            <div class="col-6 col-md-4 d-flex my-3 flex-column align-items-center">
-                                <label for="service-id-{{$service->id}}" class="position-relative d-flex change-cursor justify-content-center align-items-center {{ $service->id == old('service_id', $apartment->service_id) ? 'type-bg' : '' }}" style="width:75px; height:75px;">
-                                    <input type="checkbox" name="service_name[]" role="switch" style="width:65px; height:65px; appearance:none" class="radio-icons" value="{{$service->id}}" id="service-id-{{$service->id}}"{{$errors->any() ? (in_array($service->id, old('services', [])) ? 'checked' : '') : ($apartment->services->contains($service) ? 'checked' : '') }} >
-                                    <img src="{{$service->icons}}" style="width:50px; height:50px;" alt="" class="service-icons position-absolute" >
-                                </label>
-                                <span class="fw-bold">{{$service->name}}</span>
-                            </div>
-                        @endforeach
-                        @error('service')
-                          <span class="text-danger d-block">{{ $message }}</span>
-                        @enderror  --}}
-                <div class="d-flex align-items-center flex-wrap ">
-                        @foreach($services as $service)
-                        <div class="col-6 col-md-4 d-flex my-5 flex-column align-items-center ">
-                            <label class="form-check-label" for="flexSwitchCheck-{{$service->id}}">
-                                <input class="form-check-input m-1"  type="checkbox"  role="" name="name[]" value='{{ $service->id }}' {{$errors->any() ? (in_array($service->id, old('name', [])) ? 'checked' : '') : ($apartment->services->contains($service) ? 'checked' : '') }} id="flexSwitchCheck-{{$service->id}}" data-service-id="{{$service->id}}" >
+                        <div class="col-6 text-center col-md-4 d-flex my-3 flex-column align-items-center ">
+                            <label class="form-check-label pb-2 position-relative d-flex change-cursor justify-content-center align-items-center {{ $service->id == old('service_id', $apartment->service_id) ? 'service-bg' : '' }}" style="width:50px; height:50px;" for="flexSwitchCheck-{{$service->id}}">
+                                <input class="form-check-input m-1"  type="checkbox"  role="" name="name[]" style=" border:none; background-color:transparent; width:35px; height:35px;" value='{{ $service->id }}' {{$errors->any() ? (in_array($service->id, old('name', [])) ? 'checked' : '') : ($apartment->services->contains($service) ? 'checked' : '') }} id="flexSwitchCheck-{{$service->id}}" data-service-id="{{$service->id}}" >
+                                <img src="{{$service->icons}}" style="width:50px; height:50px; border: 2px solid transparent;" alt="" class="position-absolute clickable-service" data-checkbox-id="flexSwitchCheck-{{$service->id}}">
                             </label>
                             <span>{{$service->name}}</span>
                         </div>
-                    @endforeach
-                    {{-- @foreach($services as $service)
-                        <input class="form-check-input" type="checkbox" role="switch" name="name[]" value="{{$service->id}}" id="flexSwitchCheckDefault" {{ in_array($service->id, old('name', [])) ? 'checked' : '' }} id="flexSwitchCheckDefault"  >
-                        <label class="form-check-label" for="flexSwitchCheckDefault">{{$service->name}}</label>
-                    @endforeach  --}}
+                        @endforeach
+                    </div>
                     @error('name')
                         <span class="text-danger d-block">{{ $message }}</span>
                     @enderror
-                       
                 </div>
-               
             </div>    
-    </div>                                                
+        </div>                                                
                  {{-- PREZZO E SPONSOR --}}
                     <div class="col-12">
                         {{-- prezzo --}}
@@ -326,5 +305,18 @@
 
 .old-cover{
     border-radius:0.5rem;
+}
+
+textarea::-webkit-scrollbar {
+   display: none;
+ }
+
+ .form-check-input:checked[type=checkbox]{
+    --bs-form-check-bg-image: url() !important;
+ }
+
+ .form-check-input[type=checkbox] {
+     border-radius: 0 !important; 
+     
 }
 </style>
