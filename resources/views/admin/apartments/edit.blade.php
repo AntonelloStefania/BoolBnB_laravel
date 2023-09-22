@@ -198,30 +198,62 @@
                {{-- SERVIZI AGGIUNTIVI --}}
                <div class="col-12">
                    
-                    <div class="text-center my-4">
-                        <h2 class="control-label mb-2 fw-bold my-3"><span class="brand">Servizi</span> Aggiuntivi</h2>
-                        <p>
-                            Personalizza l'esperienza per i tuoi ospiti scegliendo tra una varietà di servizi aggiuntivi per la tua struttura. Questo campo ti consente di adattare la tua offerta alle esigenze dei tuoi ospiti. Seleziona i servizi che ritieni possano arricchire il loro soggiorno e migliorare la loro esperienza. Rendi la tua struttura ancora più attraente e confortevole per i futuri ospiti.      
-                        </p>
-                    </div>                
-                
-                    <div class="d-flex align-items-center flex-wrap ">
-                        @foreach($services as $service)
-                        <div class="col-6 text-center col-md-4 d-flex my-3 flex-column align-items-center ">
-                            <label class="form-check-label pb-2 position-relative d-flex change-cursor justify-content-center align-items-center {{ $service->id == old('service_id', $apartment->service_id) ? 'service-bg' : '' }}" style="width:50px; height:50px;" for="flexSwitchCheck-{{$service->id}}">
-                                <input class="form-check-input m-1"  type="checkbox"  role="" name="name[]" style=" border:none; background-color:transparent; width:35px; height:35px;" value='{{ $service->id }}' {{$errors->any() ? (in_array($service->id, old('name', [])) ? 'checked' : '') : ($apartment->services->contains($service) ? 'checked' : '') }} id="flexSwitchCheck-{{$service->id}}" data-service-id="{{$service->id}}" >
-                                <img src="{{$service->icons}}" style="width:50px; height:50px; border: 2px solid transparent;" alt="" class="position-absolute clickable-service" data-checkbox-id="flexSwitchCheck-{{$service->id}}">
-                            </label>
-                            <span>{{$service->name}}</span>
-                        </div>
-                        @endforeach
+                <div class="text-center my-4">
+                    <h2 class="control-label mb-2 fw-bold my-3"><span class="brand">Servizi</span> Aggiuntivi</h2>
+                    <p>
+                        Personalizza l'esperienza per i tuoi ospiti scegliendo tra una varietà di servizi aggiuntivi per la tua struttura. Questo campo ti consente di adattare la tua offerta alle esigenze dei tuoi ospiti. Seleziona i servizi che ritieni possano arricchire il loro soggiorno e migliorare la loro esperienza. Rendi la tua struttura ancora più attraente e confortevole per i futuri ospiti.      
+                    </p>
+                </div>                
+            
+                <div class="d-flex align-items-center flex-wrap ">
+                    @foreach($services as $service)
+                    <div class="col-6 text-center col-md-4 d-flex my-3 flex-column align-items-center ">
+                        <label class="form-check-label pb-2 position-relative d-flex change-cursor justify-content-center align-items-center {{ $service->id == old('service_id', $apartment->service_id) ? 'service-bg' : '' }}" style="width:50px; height:50px;" for="flexSwitchCheck-{{$service->id}}">
+                            <input class="form-check-input m-1"  type="checkbox"  role="" name="name[]" style=" border:none; background-color:transparent; width:35px; height:35px;" value='{{ $service->id }}' {{$errors->any() ? (in_array($service->id, old('name', [])) ? 'checked' : '') : ($apartment->services->contains($service) ? 'checked' : '') }} id="flexSwitchCheck-{{$service->id}}" data-service-id="{{$service->id}}" >
+                            <img src="{{$service->icons}}" style="width:50px; height:50px; border: 2px solid transparent;" alt="" class="position-absolute clickable-service" data-checkbox-id="flexSwitchCheck-{{$service->id}}">
+                        </label>
+                        <span>{{$service->name}}</span>
                     </div>
-                    @error('name')
-                        <span class="text-danger d-block">{{ $message }}</span>
-                    @enderror
+                    @endforeach
                 </div>
-            </div>    
-        </div>                                                
+                @error('name')
+                    <span class="text-danger d-block">{{ $message }}</span>
+                @enderror
+            </div>
+        </div>    
+    </div> 
+    
+    {{-- SPONSOR --}}
+
+    <div class="container sponsor-container">
+        <div class="row">
+            <div class="col-12 text-center my-5">
+                <h3 class="mb-3"><span class="brand">Sponsorizza</span> il tuo Annuncio!</h3>
+                <p>
+                    Vuoi dare una marcia in più al tuo annuncio? Ora puoi farlo con la nostra sponsorizzazione! Oltre agli abbonamenti gratuiti, offriamo opzioni di sponsorizzazione per diverse durate: Abbonamento <span class="fw-bold">Free</span>, Abbonamento <span class="fw-bold">Base</span>, Abbonamento <span class="fw-bold">Avanzato</span> e Abbonamento <span class="fw-bold">Pro</span>. Scegli la sponsorizzazione che si adatta meglio alle tue esigenze e goditi una visibilità superiore per il tuo annuncio su <span class="brand">BoolBnB</span>. Promuovi il tuo spazio ora!
+                </p>
+            </div>
+            @foreach($sponsors as $sponsor)
+            <div class="col-6 col-lg-3 cursor-pointer">
+                <div class="card {{ $sponsor->name === 'free' ? 'bg-c-blue' : ($sponsor->name === 'base' ? 'bg-c-green' : ($sponsor->name === 'avanzato' ? 'bg-c-yellow' : ($sponsor->name === 'pro' ? 'bg-c-pink' : ''))) }} order-card">
+                    <div class="card-block">
+                        <h4 class="m-b-20 fw-bold text-capitalize  mb-4">{{$sponsor->name}}</h4>
+                        <h5 class="text-right mb-3"><i class="fa-regular fa-clock me-2" style="color: #5370a2;"></i><span class="fw-bold">{{$sponsor->time}} h</span></h5>
+                        <input type="radio" style="appearance: none"  name="sponsor_id" value="{{$sponsor->id}}" required>
+                        <p class="m-b-0">Prezzo:<span class="f-right fw-bold">{{$sponsor->price}}&euro;</span></p>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+            @error('sponsor')
+            <span class="text-danger d-block">{{ $message }}</span>
+           @enderror 
+        </div>
+    </div>
+
+
+
+    {{-- FINE SPONSOR --}}
                  {{-- PREZZO E SPONSOR --}}
                     <div class="col-12">
                         {{-- prezzo --}}
@@ -234,17 +266,8 @@
                             <span class="text-danger d-block">{{ $message }}</span>
                             @enderror 
                         </div>
-                        {{-- SPONSOR --}}
-                        <div class="d-flex align-items-center">
-                            <label class="control-label mb-2 fw-bold me-3">Sponsor</label>
-                            <select name="sponsor_id" id="">
-                                @foreach($sponsors as $sponsor)
-                                <option value="{{$sponsor->id}}" {{ $sponsor->id == old('sponsor_id', $apartment->sponsor_id) ? 'selected' : ''}}>{{$sponsor->name}} - {{$sponsor->time}}</option>
-                                @endforeach
-                            </select>
-                            @error('sponsor')
-                            <span class="text-danger d-block">{{ $message }}</span>
-                           @enderror 
+                        
+                           
                        </div>
                     </div>
                    {{-- visibilità --}}
@@ -319,4 +342,83 @@ textarea::-webkit-scrollbar {
      border-radius: 0 !important; 
      
 }
+
+
+/* SPONSOR PROVA CARDS */
+.order-card {
+    color: #fff;
+}
+
+.bg-c-blue {
+    background: linear-gradient(45deg,#aed2fc,#73b4ff);
+}
+
+.c-blue{
+    color: #aed2fc
+}
+
+.bg-c-green {
+    background: linear-gradient(45deg,#9ff8e6,#73e0ca);
+}
+
+.c-green{
+    color:#9ff8e6
+}
+
+.bg-c-yellow {
+    background: linear-gradient(45deg,#fde5c3,#f5cc92);
+}
+
+.c-yellow{
+    color:#fde5c3
+}
+.bg-c-pink {
+    background: linear-gradient(45deg,#faccd4,#f895a5);
+}
+
+.c-pink{
+    color:#faccd4
+}
+
+
+.card {
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+    box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+    border: none;
+    margin-bottom: 30px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.card .card-block {
+    padding: 25px;
+}
+
+.order-card i {
+    font-size: 26px;
+}
+
+.f-left {
+    float: left;
+}
+
+.f-right {
+    float: right;
+}
+
+.sponsor-container{
+    margin:5rem 0 ;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+
+.selected-card{
+    scale: 1.15;
+    
+}
+
 </style>
