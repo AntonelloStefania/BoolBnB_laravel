@@ -248,6 +248,8 @@ function populateSuggestionsList(results) {
   }
 };
 
+
+//RECUPERO COORDINATE CON XML FETCH
 // submitForm.addEventListener('click', (event) => {
 //     event.preventDefault();
 
