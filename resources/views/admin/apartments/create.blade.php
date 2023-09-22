@@ -1,6 +1,6 @@
-@extends('layouts.admin')
+{{-- @extends('layouts.admin') --}}
 
-@section('content')
+{{-- @section('content')
 
 <div class="container-fluid">
    <div class="row flex-column ">
@@ -8,7 +8,7 @@
           <form action="{{ route('admin.apartments.store') }}" id="form" class="bg-beige"  style="min-height: 700px; max-height:750px;" method="POST" enctype="multipart/form-data" @submit.prevent="event.preventDefault()">
             @csrf
          {{-- slider --}}
-            <div id="carouselExampleIndicators" class="carousel slide home-text " data-bs-ride="false">
+            {{-- <div id="carouselExampleIndicators" class="carousel slide home-text " data-bs-ride="false">
                 <div class="position-absolute bottom-0 col-12">
 
                     <div class="carousel-indicators">
@@ -20,14 +20,14 @@
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" class="carousel-btn" aria-label="Slide 6"></button>
                     </div>
                 </div>
-                <div class="carousel-inner">
+                <div class="carousel-inner"> --}}
                      {{-- prima sezione TIPOLOGIA DI APPARTAMENTO --}}
-                    <div class="col-12">
+                    {{-- <div class="col-12">
 
                         <div class="carousel-item active"  style="min-height: 700px; max-height:750px;">
-                            <div class="d-flex align-items-center  w-100 flex-column">
+                            <div class="d-flex align-items-center  w-100 flex-column"> --}}
                                 {{-- PROVA CHECKBOX-2 --}}
-                                <div class="card col-6 my-5">
+                                {{-- <div class="card col-6 my-5">
                                     <div class="rating-container">
                                       <div class="rating-text home-text text-center my-4">
                                         <h2>Che <span class="brand">Tipologia</span> di Alloggio vuoi Affittare <span class="brand">?</span></h2>
@@ -49,17 +49,17 @@
                                             </form>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 {{-- FINE PROVA CHECKBOX-2 --}}
-                                
+{{--                                 
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     
                     {{-- seconda sezione DESCRIZIONE --}}
                   
 
-                    <div class="carousel-item " style="min-height: 700px; max-height:750px;">
+                    {{-- <div class="carousel-item " style="min-height: 700px; max-height:750px;">
                         <div class="col-12 d-flex flex-column  align-items-center">
                             <div class="my-3">
                                 <h2><span class="brand">Descrivi</span> il tuo Alloggio su <span class="brand">BoolBnB</span></h2>
@@ -98,10 +98,10 @@
                             </div>
 
                         </div>
-                    </div>
+                    </div> --}}
                    
                     {{-- terza sezione TITOLO ED INDIRIZZO --}}
-                    <div class="carousel-item "  style="min-height: 700px; max-height:750px;">
+                    {{-- <div class="carousel-item "  style="min-height: 700px; max-height:750px;">
                         <div class="my-5">
                             <div class="my-3 col-12 text-center">
                                 <h2>Un <span class="brand">Titolo</span> per un Annuncio che Sorprenda</h2>
@@ -145,10 +145,10 @@
                                  </div>
                                 </div>
                         </div>
-                    </div>
+                    </div> --}}
                     {{-- quarta sezione --}}
                    
-                    <div class="carousel-item  " style="min-height: 700px; max-height:750px;">
+                    {{-- <div class="carousel-item  " style="min-height: 700px; max-height:750px;">
                         <div class="col-12 my-5">
                             <div class="my-3 col-12 text-center">
                                 <h2>Migliora il Tuo Annuncio con <span class="brand">Dettagli</span> Importanti</h2>
@@ -159,20 +159,20 @@
                                 </p>
                             </div>
                             <div class="col-12 d-flex flex-wrap ">
-                                <div class="col-12 col-md-6 d-flex align-items-end pe-5 flex-column">
+                                <div class="col-12 col-md-6 d-flex align-items-end pe-5 flex-column"> --}}
                                     {{-- METRI QUADRI APPARTAMENTO --}}                                    
-                                    <div class="mb-4 mt-5 d-flex ">
+                                    {{-- <div class="mb-4 mt-5 d-flex ">
                                         <label class="control-label fw-bold me-2 " for="name">Metri quadri alloggio: </label>
                                         <input type="number" id="mq" name="mq" min="0" class="form-control" style="width:4.25rem" value="{{old('mq')}}" data-error-slide="4" required >
-                                    </div>
+                                    </div> --}}
                                                                        
-                                    @error('mq')
+                                    {{-- @error('mq')
                                     <div class="text-danger error-message">
                                         {{ $message }}
                                     </div>
-                                    @enderror
+                                    @enderror --}}
                                     {{-- NUMERO BAGNI --}}
-                                    <div class="my-4 d-flex ">
+                                    {{-- <div class="my-4 d-flex ">
                                         <label class="control-label fw-bold me-2">Numero di bagni: </label>
                                         <input type="number" id="n_wc" name="n_wc"  min="0" class="form-control" style="width:4.25rem" value="{{old('n_wc')}}" required >
                                     </div>
@@ -180,9 +180,9 @@
                                     <div class="text-danger error-message">
                                         {{ $message }}
                                     </div>
-                                    @enderror
+                                    @enderror --}}
                                     {{-- NUMERO STANZE --}}
-                                    <div class="my-4 d-flex">
+                                    {{-- <div class="my-4 d-flex">
                                         <label class="control-label fw-bold me-2">Numero di stanze</label>
                                         <input type="number" id="n_rooms" name="n_rooms"  min="0" class="form-control" style="width:4.25rem" value="{{old('n_rooms')}}" required>
                                     </div>
@@ -190,9 +190,9 @@
                                     <div class="text-danger error-message">
                                         {{ $message }}
                                     </div>
-                                    @enderror
+                                    @enderror --}}
                                     {{-- INPUT LON LAT --}}
-                                    <div>
+                                    {{-- <div>
                                         <input type="hidden" name="lon" id="lon" class="form-control"  value="">
                                         <input type="hidden" name="lat" id="lat" class="form-control"  value="">
                                     </div>
@@ -204,10 +204,10 @@
                             </div>
 
                         </div>
-                        
+                         --}}
                     
                  {{-- quinta sezione --}}                   
-                    <div class="col-12">
+                    {{-- <div class="col-12">
 
                         <div class="carousel-item "  style="min-height: 700px; max-height:750px;">
                             <div class="form-group my-4 d-flex justify-content-around my-5">
@@ -276,19 +276,19 @@
                             
                             
                         </div>
-                    </div>
+                    </div> --}}
 
                     {{-- sesta --}}
-                    <div class="carousel-item col-12 text-center "  style="min-height: 700px; max-height:750px;">
+                    {{-- <div class="carousel-item col-12 text-center "  style="min-height: 700px; max-height:750px;">
                         <div class="col-12 justify-content-center">
 
                             <button id="createSubmit" class="btn btn-success" type="submit">Submit</button>
                         </div>
                     </div>
  
-                </div>
+                </div> --}}
                 {{-- fine slider --}}
-            </div>
+            {{-- </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                     <span class=" "  aria-hidden="true"> <i class="fa-solid fa-chevron-left fa-2xl carousel-btn-icon" ></i></span>
                     <span class="visually-hidden">Previous</span>
@@ -304,9 +304,9 @@
 
 </div>
 
-@endsection
+@endsection --}}
 
-<style class="scss">
+{{-- <style class="scss">
     .info-icon{
         padding-left: 0.1rem
     }
@@ -322,4 +322,450 @@
 
 
 
+</style> --}}
+
+
+
+
+@extends('layouts.admin')
+
+@section('content')
+
+<div class="container">
+   <div class="my-4 d-flex justify-content-start">
+      <a href="{{route('admin.apartments.index')}}" class="btn btn-sm back-button"><i class="fa-regular fa-circle-left fa-l me-2" style="color: #161616;"></i>Torna agli annunci</a>
+  </div>
+   <div class="row">
+    {{-- TITOLO PAGINA --}}
+      <div class="col-12 text-center mb-5">
+            <h1 class="titolo">Modifica il tuo annuncio su <span class="brand">BoolBnb</span> </h1>
+            <div class="col-12 my-3">
+                <p>
+                    Benvenuto alla pagina di <span class="brand">modifica</span> dei tuoi annunci. Qui puoi apportare modifiche e aggiornamenti alle 
+                    informazioni e alle caratteristiche dei tuoi appartamenti. <span class="brand">Ottimizza le descrizioni</span>, caricate nuove foto e 
+                    assicurati che i tuoi annunci siano sempre al massimo delle prestazioni per attirare potenziali inquilini. 
+                    <span class="brand">Personalizza</span> e gestisci in modo efficace le informazioni sui tuoi appartamenti per massimizzare il vostro successo nel settore immobiliare.                         
+                </p>
+            </div>
+     </div>
+   </div>
+</div>
+<div class="container-fluid bg-beige">
+    <div class="row">
+
+        <div class="col-10 offset-1">
+           <div class="row">
+               <div class="col-12">
+                    <form action="{{ route('admin.apartments.store') }}" id="form" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    
+                        
+                        {{--1 SEZ. TITOLO/DESCRIZIONE --}}
+                        <div class="row  my-5">
+                            <div class="col-12 col-lg-6">
+                                    <div class=" text-center">
+                                        <h2><span class="brand">Titolo</span> e <span class="brand">Descrizione</span></h2>
+                                    </div>
+                                <div class="col-12 ">
+                                    <label class="control-label mb-2 fw-bold"><span class="brand">Titolo</span> Annuncio:</label>
+                                    <input type="text" id="title" name="title" class="form-control" value="{{old('title')}}">
+                                    
+                                </div>
+                                <div>
+                                    @error('title')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror 
+                                </div>
+                                <div class="col-12 ">
+                                    <label class="control-label fw-bold mb-2 mt-5"><span class="brand">Descrizione</span> Alloggio:</label>
+                                    <textarea class="form-control" name="description" id="" cols="30" rows="10">{{old('description')}}</textarea>   
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-3 col-md-6 d-flex flex-column mt-5 mt-lg-0">
+                                <div class="col-12 text-center">
+                                    <h2><span class="brand">Generalità</span></h2>
+                                </div>
+                                {{-- METRI QUADRI APPARTAMENTO --}}
+                                <div class="col-12 mb-3 text-center">
+                                    <label class="control-label fw-bold mb-2  " for="name"><span class="brand">Grandezza</span> Alloggio: </label>
+                                    <div class="d-flex justify-content-center">
+                                        <input type="number" id="mq" name="mq" class="form-control" style="width:4.25rem" value="{{old('mq')}}"><span class="align-self-center fw-bold ms-2"> &#x33A1;</span>
+                                       
+                                    </div>
+                                    <div>
+                                        @error('mq')
+                                            <span class="text-danger d-block">{{ $message }}</span>
+                                        @enderror 
+                                    </div>
+                                </div>
+                                {{-- NUMERO STANZE --}}
+                                <div class="col-12 mb-3 text-center">
+                                    <label class="control-label fw-bold mb-2">Numero di <span class="brand">Stanze</span></label>
+                                    <div class="d-flex justify-content-center">
+                                        <input type="number" id="n_rooms" name="n_rooms" class="form-control" style="width:4.25rem" value="{{old('n_rooms')}}"><i class="fa-solid fa-bed ms-2 align-self-center" style="color: #4f5153;"></i>
+                                       
+                                    </div>
+                                    <div>
+                                        @error('n_rooms')
+                                            <span class="text-danger d-block">{{ $message }}</span>
+                                        @enderror 
+                                    </div>
+                                </div>
+
+                                {{-- NUMERO BAGNI --}}
+                                <div class="col-12 mb-3 text-center">
+                                    <label class="control-label fw-bold mb-2">Numero di <span class="brand">Bagni</span>: </label>
+                                    <div class="d-flex justify-content-center">
+                                        <input type="number" id="n_wc" name="n_wc" class="form-control" style="width:4.25rem" value="{{old('n_wc')}}"><i class="fa-solid fa-toilet-paper ms-2 align-self-center" style="color: #4f5153;"></i>
+                                        
+                                    </div>
+                                    <div>
+                                        @error('n_wc')
+                                            <span class="text-danger d-block">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-12 col-lg-3 col-md-6 d-flex flex-column mt-5 mt-lg-0">
+                                <div class="col-12 text-center">
+                                    <h2><span class="brand">Indirizzo</span></h2>
+                                </div>
+                                {{-- indirizzo --}}
+                                <div class="col-12 mb-3 text-center">
+                                    
+                                    <div class="d-flex justify-content-center">
+                                        <input type="ratio" list="suggestions" id="address" name="address" class="form-control" value="{{old('address')}}" >   
+                                        <datalist id="suggestions">
+                                        </datalist>                                    
+                                    </div>
+                                    <div>
+                                        @error('address')
+                                         <span class="text-danger d-block">{{ $message }}</span>
+                                        @enderror 
+                                    </div>
+                                      {{-- INPUT LON LAT --}}
+                                      <div>
+                                        <input type="hidden" name="lon" id="lon" class="form-control"  value="">
+                                        <input type="hidden" name="lat" id="lat" class="form-control"  value="">
+                                    </div>
+                                </div>
+                                <div class="col-12 text-center mt-5">
+                                    <h2><span class="brand">Prezzo</span> per Notte</h2>
+                                    
+                                    <div class="d-flex justify-content-center">
+                                        <input type="text" id="price" name="price" class="form-control" style="width:4.25rem" value="{{old('price')}}" ><span class="fw-bold d-flex align-items-center ms-2">&euro;</span>                               
+                                    </div>
+                                    <div>
+                                        @error('price')
+                                             <span class="text-danger d-block">{{ $message }}</span>
+                                        @enderror 
+                                    </div>
+                                </div>
+                           
+                            </div>
+                    </div>
+                </div>
+            </div>       
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+            <div class="col-12">
+                <div class="mb-5 my-5">
+                    <div class="text-center">
+                        <h2>Modifica la <span class="brand">Tipologia</span> dell'Alloggio</h2>
+                        <p>
+                            Hai apportato modifiche alla tua struttura o desideri offrire una nuova tipologia di alloggio? Aggiorna il tuo annuncio su <span class="brand">BoolBnB</span> per far conoscere ai viaggiatori le tue ultime novità. Mantieni sempre aggiornate le tue offerte e attira più ospiti con le tue offerte rinnovate su <span class="brand">BoolBnB</span>!
+                        </p>
+                    </div>
+                    <div class="rating col-12 col-md-8 offset-md-2 d-flex flex-wrap justify-content-center">
+                    
+                        @foreach($types as $type)
+                        <div class="col-6 col-md-4 d-flex my-3 flex-column align-items-center">
+                            <label for="type-id-{{$type->id}}" class="position-relative d-flex change-cursor justify-content-center align-items-center {{ $type->id == old('type_id') ? 'type-bg' : '' }}" style="width:75px; height:75px;">
+                                <input type="radio" name="type_id" style="width:65px; height:65px; appearance:none" class="radio-icons" value="{{$type->id}}" id="type-id-{{$type->id}}" {{ old('type_id') ? 'checked' : '' }}>
+                                <img src="{{$type->icons}}" style="width:50px; height:50px;" alt="" class="type-icons position-absolute" >
+                            </label>
+                            <span class="fw-bold">{{$type->name}}</span>
+                        </div>
+                        @endforeach
+                        @error('type_id')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                        
+                    </div>
+                </div>                  
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-beige">
+        <div class="container ">
+            <div class="row my-5">
+
+                <div class="col-12 text-center ">
+                    
+                    <h2 class="my-5">Aggiorna l'Immagine di Copertina su <span class="brand">BoolBnB</span></h2>
+                    <p>
+                        L'immagine di copertina è la prima impressione che gli ospiti avranno del tuo alloggio su <span class="brand">BoolBnB</span>. Cambiala periodicamente per rendere il tuo annuncio sempre fresco e attraente. Cattura l'attenzione con nuove foto che mostrano al meglio le caratteristiche uniche della tua struttura e accogli i tuoi futuri ospiti con uno sguardo invitante su <span class="brand">BoolBnB</span>.
+                    </p>
+                   
+                </div>
+                        {{-- PROVA DROP-CONTAINER --}}
+                        <h3><span class="brand">Nuova</span> Copertina</h3>
+                        <label for="images" class="drop-container h-100" id="dropcontainer">
+                            
+                            <span class="drop-title">Sposta qui l'immagine</span>
+                            oppure
+                            <input type="file" id="images"  name="cover"  class="blue-btn" accept="image/*" >
+                            @error('cover')
+                                <span class="text-danger d-block">{{ $message }}</span>
+                            @enderror 
+                        </label>
+                    
+                    {{-- FINE DROP-CONTAINER --}}
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </div>
+    <div class="container">
+        <div class="row">
+               {{-- SERVIZI AGGIUNTIVI --}}
+               <div class="col-12">
+                   
+                <div class="text-center my-4">
+                    <h2 class="control-label mb-2 fw-bold my-3"><span class="brand">Servizi</span> Aggiuntivi</h2>
+                    <p>
+                        Personalizza l'esperienza per i tuoi ospiti scegliendo tra una varietà di servizi aggiuntivi per la tua struttura. Questo campo ti consente di adattare la tua offerta alle esigenze dei tuoi ospiti. Seleziona i servizi che ritieni possano arricchire il loro soggiorno e migliorare la loro esperienza. Rendi la tua struttura ancora più attraente e confortevole per i futuri ospiti.      
+                    </p>
+                </div>                
+            
+                <div class="d-flex align-items-center flex-wrap ">
+                    @foreach($services as $service)
+                    <div class="col-6 text-center col-md-4 d-flex my-3 flex-column align-items-center ">
+                        <label class="form-check-label pb-2 position-relative d-flex change-cursor justify-content-center align-items-center " style="width:50px; height:50px;" for="flexSwitchCheck-{{$service->id}}">
+                            <input class="form-check-input m-1"  type="checkbox"  role="" name="name[]" style=" border:none; background-color:transparent; width:35px; height:35px;" value='{{ $service->id }}' {{ in_array($service->id, old('name', [])) ? 'checked' : '' }} id="flexSwitchCheck-{{$service->id}}" data-service-id="{{$service->id}}" >
+                            <img src="{{$service->icons}}" style="width:50px; height:50px; border: 2px solid transparent;" alt="" class="position-absolute clickable-service" data-checkbox-id="flexSwitchCheck-{{$service->id}}">
+                        </label>
+                        <span>{{$service->name}}</span>
+                    </div>
+                    @endforeach
+                    <div class="text-center col-12 mt-3">
+                        @error('name')
+                            <span class="text-danger d-block">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div> 
+    
+    {{-- SPONSOR --}}
+
+    <div class="container sponsor-container">
+        <div class="row">
+            <div class="col-12 text-center my-5">
+                <h3 class="mb-3"><span class="brand">Sponsorizza</span> il tuo Annuncio!</h3>
+                <p>
+                    Vuoi dare una marcia in più al tuo annuncio? Ora puoi farlo con la nostra sponsorizzazione! Oltre agli abbonamenti gratuiti, offriamo opzioni di sponsorizzazione per diverse durate: Abbonamento <span class="fw-bold">Free</span>, Abbonamento <span class="fw-bold">Base</span>, Abbonamento <span class="fw-bold">Avanzato</span> e Abbonamento <span class="fw-bold">Pro</span>. Scegli la sponsorizzazione che si adatta meglio alle tue esigenze e goditi una visibilità superiore per il tuo annuncio su <span class="brand">BoolBnB</span>. Promuovi il tuo spazio ora!
+                </p>
+            </div>
+            @foreach($sponsors as $sponsor)
+            <div class="col-6 col-lg-3 cursor-pointer">
+                <div class="card {{ $sponsor->name === 'free' ? 'bg-c-blue' : ($sponsor->name === 'base' ? 'bg-c-green' : ($sponsor->name === 'avanzato' ? 'bg-c-yellow' : ($sponsor->name === 'pro' ? 'bg-c-pink' : ''))) }} order-card">
+                    <div class="card-block">
+                        <h4 class="m-b-20 fw-bold text-capitalize  mb-4">{{$sponsor->name}}</h4>
+                        <h5 class="text-right mb-3"><i class="fa-regular fa-clock me-2" style="color: #5370a2;"></i><span class="fw-bold">{{$sponsor->time}} h</span></h5>
+                        <input type="radio" style="appearance: none"  name="sponsor_id" value="{{$sponsor->id}}" required>
+                        <p class="m-b-0">Prezzo:<span class="f-right fw-bold">{{$sponsor->price}}&euro;</span></p>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+            @error('sponsor')
+            <span class="text-danger d-block">{{ $message }}</span>
+           @enderror 
+        </div>
+    </div>
+    {{-- FINE SPONSOR --}}
+
+    {{-- VISIBILITA' --}}
+    <div class="container-fluid bg-beige">
+        <div class="contoiner">
+            <div class="row">
+                <div class="form-group my-4 d-flex justify-content-around my-5">
+                    <div class="d-flex align-items-center">
+                        <span class="form-check-label me-3">Vuoi rendere il tuo Annuncio <span class="brand">Visibile</span> al pubblico Ora?</span>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" name="visibility" id="visible"  type="checkbox" role="switch"  value="1" {{ old('visibility' ) == '1' ? 'checked' : '' }} />
+                            <input type="checkbox" value="0" name="visibility" style="appearance: none" id="invisible" {{ old('visibility' ) == '0' ? 'checked' : '' }} checked >
+                          </div>
+                          <div>
+                              @error('visibility')
+                                  <span class="text-danger">{{ $message }}</span>
+                              @enderror    
+                          </div>
+                        </div>
+                    </div> 
+                 </div>
+                </div>
+            </div>
+            <input type="hidden" name="user_id" id="user_id" class="form-control"  value="{{ $user->id }}"> 
+        </div>
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <button class="blue-btn btn" id="createSubmit" type="submit">Pubblica Annuncio</button>
+                </div>
+            </div>
+        </div>
+    </form>
+        </div>
+   </div>
+</div>
+@endsection
+
+<style lang="scss">
+.drop-container {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px dashed #7b97d4;
+  color: #4d9cb4;
+  cursor: pointer;
+  transition: background .2s ease-in-out, border .2s ease-in-out;
+}
+
+.drop-container:hover {
+  background: #eee;
+  border-color: #111;
+}
+
+.drop-container:hover .drop-title {
+  color: #222;
+}
+
+.drop-title {
+  color: #444;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  transition: color .2s ease-in-out;
+}
+
+.old-cover{
+    border-radius:0.5rem;
+}
+
+textarea::-webkit-scrollbar {
+   display: none;
+ }
+
+ .form-check-input:checked[type=checkbox]{
+    --bs-form-check-bg-image: url() !important;
+ }
+
+ .form-check-input[type=checkbox] {
+     border-radius: 0 !important; 
+     
+}
+
+
+/* SPONSOR PROVA CARDS */
+.order-card {
+    color: #fff;
+}
+
+.bg-c-blue {
+    background: linear-gradient(45deg,#aed2fc,#73b4ff);
+}
+
+.c-blue{
+    color: #aed2fc
+}
+
+.bg-c-green {
+    background: linear-gradient(45deg,#9ff8e6,#73e0ca);
+}
+
+.c-green{
+    color:#9ff8e6
+}
+
+.bg-c-yellow {
+    background: linear-gradient(45deg,#fde5c3,#f5cc92);
+}
+
+.c-yellow{
+    color:#fde5c3
+}
+.bg-c-pink {
+    background: linear-gradient(45deg,#faccd4,#f895a5);
+}
+
+.c-pink{
+    color:#faccd4
+}
+
+
+.card {
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+    box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+    border: none;
+    margin-bottom: 30px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.card .card-block {
+    padding: 25px;
+}
+
+.order-card i {
+    font-size: 26px;
+}
+
+.f-left {
+    float: left;
+}
+
+.f-right {
+    float: right;
+}
+
+.sponsor-container{
+    margin:5rem 0 ;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+
+.selected-card{
+    scale: 1.15;
+    
+}
+
+
+
+
+#visible{
+    border-radius: 1rem !important;
+    height: 1.5rem !important;
+    width: 2.5rem !important;
+    border: 2px solid #7b97d4 !important
+}
+#visible:checked{
+    background-color: #7b97d4 !important;
+}
 </style>
