@@ -330,11 +330,16 @@
 @extends('layouts.admin')
 
 @section('content')
-
-<div class="container">
-   <div class="my-4 d-flex justify-content-start">
-      <a href="{{route('admin.apartments.index')}}" class="btn btn-sm back-button"><i class="fa-regular fa-circle-left fa-l me-2" style="color: #161616;"></i>Torna agli annunci</a>
-  </div>
+<div class="container-fluid navbar-container">
+    <div class="row justify-content-between w-100">
+        <div class="d-flex col-6">
+            <div class="col-6 col-lg-4 py-3 d-flex justify-content-end">
+                <a href="{{route('admin.apartments.index')}}"  class="" style="text-decoration:none; color:#3a537e;"><i class="fa-regular fa-circle-left" style="color: #3a537e;"></i> I tuoi Annunci  </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-5">
    <div class="row">
     {{-- TITOLO PAGINA --}}
       <div class="col-12 text-center mb-2">
@@ -352,7 +357,6 @@
 </div>
 <div class="container-fluid bg-beige">
     <div class="row">
-
         <div class="col-10 offset-1">
            <div class="row">
                <div class="col-12">
@@ -472,123 +476,122 @@
 </div>
 <div class="container">
     <div class="row">
-            <div class="col-12">
-                <div class="mb-5 my-5">
-                    <div class="text-center">
-                        <h2>Che <span class="brand">Tipologia</span> di Alloggio vuoi Affittare <span class="brand">?</span></h2>
-                        <p>
-                            Scegli con attenzione la tipologia che meglio si adatta al tuo alloggio e alle tue esigenze, in modo che gli ospiti possano trovare esattamente ciò che stanno cercando su <span class="brand">BoolBnB</span>.
-                        </p>
+        <div class="col-12">
+            <div class="mb-5 my-5">
+                <div class="text-center">
+                    <h2>Che <span class="brand">Tipologia</span> di Alloggio vuoi Affittare <span class="brand">?</span></h2>
+                    <p>
+                        Scegli con attenzione la tipologia che meglio si adatta al tuo alloggio e alle tue esigenze, in modo che gli ospiti possano trovare esattamente ciò che stanno cercando su <span class="brand">BoolBnB</span>.
+                    </p>
+                </div>
+                <div class="rating col-12 col-md-8 offset-md-2 d-flex flex-wrap justify-content-center">
+                
+                    @foreach($types as $type)
+                    <div class="col-6 col-md-4 d-flex my-3 flex-column align-items-center">
+                        <label for="type-id-{{$type->id}}" class="position-relative d-flex change-cursor justify-content-center align-items-center {{ $type->id == old('type_id') ? 'type-bg' : '' }}" style="width:75px; height:75px;">
+                            <input type="radio" name="type_id" style="width:65px; height:65px; appearance:none" class="radio-icons" value="{{$type->id}}" id="type-id-{{$type->id}}" {{ old('type_id') ? 'checked' : '' }}>
+                            <img src="{{$type->icons}}" style="width:50px; height:50px;" alt="" class="type-icons position-absolute" >
+                        </label>
+                        <span class="fw-bold">{{$type->name}}</span>
                     </div>
-                    <div class="rating col-12 col-md-8 offset-md-2 d-flex flex-wrap justify-content-center">
+                    @endforeach
+                    @error('type_id')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
                     
-                        @foreach($types as $type)
-                        <div class="col-6 col-md-4 d-flex my-3 flex-column align-items-center">
-                            <label for="type-id-{{$type->id}}" class="position-relative d-flex change-cursor justify-content-center align-items-center {{ $type->id == old('type_id') ? 'type-bg' : '' }}" style="width:75px; height:75px;">
-                                <input type="radio" name="type_id" style="width:65px; height:65px; appearance:none" class="radio-icons" value="{{$type->id}}" id="type-id-{{$type->id}}" {{ old('type_id') ? 'checked' : '' }}>
-                                <img src="{{$type->icons}}" style="width:50px; height:50px;" alt="" class="type-icons position-absolute" >
-                            </label>
-                            <span class="fw-bold">{{$type->name}}</span>
-                        </div>
-                        @endforeach
-                        @error('type_id')
-                        <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                        
-                    </div>
-                </div>                  
+                </div>
+            </div>                  
+        </div>
+    </div>
+</div>
+<div class="container-fluid bg-beige">
+    <div class="container ">
+        <div class="row my-5">
+            <div class="col-12 text-center ">
+                
+                <h2 class="mt-5 mb-2"> Scegli la Tua Immagine di <span class="brand">Copertina</span></h2>
+                <p>
+                    L'immagine di copertina è la prima impressione che gli ospiti avranno del tuo alloggio su <span class="brand">BoolBnB</span>. Scegli con cura un'immagine che catturi l'essenza e l'atmosfera del tuo spazio. Una bella immagine di copertina può fare la differenza e attirare l'attenzione degli ospiti.
+                </p>
+                
+            </div>
+                    {{-- PROVA DROP-CONTAINER --}}
+            <div>        
+                <label for="images" class="drop-container  col-12 col-md-6 offset-md-3 my-4" style="min-height: 250px" id="dropcontainer">
+                    
+                    <span class="drop-title ">Sposta qui l'immagine</span>
+                    oppure
+                    <input type="file" id="images"  name="cover"  class="blue-btn" accept="image/*" >
+                    @error('cover')
+                        <span class="text-danger d-block">{{ $message }}</span>
+                    @enderror 
+                </label>
+                
+                {{-- FINE DROP-CONTAINER --}}
             </div>
         </div>
     </div>
-    <div class="container-fluid bg-beige">
-        <div class="container ">
-            <div class="row my-5">
-
-                <div class="col-12 text-center ">
-                    
-                    <h2 class="mt-5 mb-2"> Scegli la Tua Immagine di <span class="brand">Copertina</span></h2>
-                    <p>
-                        L'immagine di copertina è la prima impressione che gli ospiti avranno del tuo alloggio su <span class="brand">BoolBnB</span>. Scegli con cura un'immagine che catturi l'essenza e l'atmosfera del tuo spazio. Una bella immagine di copertina può fare la differenza e attirare l'attenzione degli ospiti.
-                    </p>
-                   
-                </div>
-                        {{-- PROVA DROP-CONTAINER --}}
-                        
-                        <label for="images" class="drop-container  col-12 col-md-6 offset-md-3 my-4" style="min-height: 250px" id="dropcontainer">
-                            
-                            <span class="drop-title ">Sposta qui l'immagine</span>
-                            oppure
-                            <input type="file" id="images"  name="cover"  class="blue-btn" accept="image/*" >
-                            @error('cover')
-                                <span class="text-danger d-block">{{ $message }}</span>
-                            @enderror 
-                        </label>
-                    
-                    {{-- FINE DROP-CONTAINER --}}
-                    </div>
-                </div>
-            </div>
-        </div>  
-    </div>
-    <div class="container">
-        <div class="row">
-               {{-- SERVIZI AGGIUNTIVI --}}
-               <div class="col-12">
-                   
-                <div class="text-center my-4">
-                    <h2 class="control-label mb-2 my-3"><span class="brand">Servizi</span> Aggiuntivi</h2>
-                    <p>
-                        Personalizza l'esperienza per i tuoi ospiti scegliendo tra una varietà di servizi aggiuntivi per la tua struttura. Questo campo ti consente di adattare la tua offerta alle esigenze dei tuoi ospiti. Seleziona i servizi che ritieni possano arricchire il loro soggiorno e migliorare la loro esperienza. Rendi la tua struttura ancora più attraente e confortevole per i futuri ospiti.      
-                    </p>
-                </div>                
+</div>  
+    
+<div class="container">
+    <div class="row">
+            {{-- SERVIZI AGGIUNTIVI --}}
+        <div class="col-12">
             
-                <div class="d-flex align-items-center flex-wrap col-12 col-md-8 offset-md-2 justify-content-center ">
-                    @foreach($services as $service)
-                    <div class="col-6 text-center col-md-4 d-flex my-3 flex-column align-items-center ">
-                        <label class="form-check-label pb-2 position-relative d-flex change-cursor justify-content-center align-items-center " style="width:50px; height:50px;" for="flexSwitchCheck-{{$service->id}}">
-                            <input class="form-check-input m-1"  type="checkbox"  role="" name="name[]" style=" border:none; background-color:transparent; width:35px; height:35px;" value='{{ $service->id }}' {{ in_array($service->id, old('name', [])) ? 'checked' : '' }} id="flexSwitchCheck-{{$service->id}}" data-service-id="{{$service->id}}" >
-                            <img src="{{$service->icons}}" style="width:50px; height:50px; border: 2px solid transparent;" alt="" class="position-absolute clickable-service" data-checkbox-id="flexSwitchCheck-{{$service->id}}">
-                        </label>
-                        <span>{{$service->name}}</span>
-                    </div>
-                    @endforeach
-                    <div class="text-center col-12 mt-3">
-                        @error('name')
-                            <span class="text-danger d-block">{{ $message }}</span>
-                        @enderror
-                    </div>
+            <div class="text-center my-4">
+                <h2 class="control-label mb-2 my-3"><span class="brand">Servizi</span> Aggiuntivi</h2>
+                <p>
+                    Personalizza l'esperienza per i tuoi ospiti scegliendo tra una varietà di servizi aggiuntivi per la tua struttura. Questo campo ti consente di adattare la tua offerta alle esigenze dei tuoi ospiti. Seleziona i servizi che ritieni possano arricchire il loro soggiorno e migliorare la loro esperienza. Rendi la tua struttura ancora più attraente e confortevole per i futuri ospiti.      
+                </p>
+            </div>                
+        
+            <div class="d-flex align-items-center flex-wrap col-12 col-md-8 offset-md-2 justify-content-center ">
+                @foreach($services as $service)
+                <div class="col-6 text-center col-md-4 d-flex my-3 flex-column align-items-center ">
+                    <label class="form-check-label pb-2 position-relative d-flex change-cursor justify-content-center align-items-center " style="width:50px; height:50px;" for="flexSwitchCheck-{{$service->id}}">
+                        <input class="form-check-input m-1"  type="checkbox"  role="" name="name[]" style=" border:none; background-color:transparent; width:35px; height:35px;" value='{{ $service->id }}' {{ in_array($service->id, old('name', [])) ? 'checked' : '' }} id="flexSwitchCheck-{{$service->id}}" data-service-id="{{$service->id}}" >
+                        <img src="{{$service->icons}}" style="width:50px; height:50px; border: 2px solid transparent;" alt="" class="position-absolute clickable-service" data-checkbox-id="flexSwitchCheck-{{$service->id}}">
+                    </label>
+                    <span>{{$service->name}}</span>
+                </div>
+                @endforeach
+                <div class="text-center col-12 mt-3">
+                    @error('name')
+                        <span class="text-danger d-block">{{ $message }}</span>
+                    @enderror
                 </div>
             </div>
-        </div>    
-    </div> 
+        </div>
+    </div>    
+</div> 
     
     {{-- SPONSOR --}}
 
-    <div class="container sponsor-container">
-        <div class="row">
-            <div class="col-12 text-center my-5">
-                <h2 class="mb-3"><span class="brand">Sponsorizza</span> il tuo Annuncio!</h2>
-                <p>
-                    Vuoi dare una marcia in più al tuo annuncio? Ora puoi farlo con la nostra sponsorizzazione! Oltre agli abbonamenti gratuiti, offriamo opzioni di sponsorizzazione per diverse durate: Abbonamento <span class="fw-bold">Free</span>, Abbonamento <span class="fw-bold">Base</span>, Abbonamento <span class="fw-bold">Avanzato</span> e Abbonamento <span class="fw-bold">Pro</span>. Scegli la sponsorizzazione che si adatta meglio alle tue esigenze e goditi una visibilità superiore per il tuo annuncio su <span class="brand">BoolBnB</span>. Promuovi il tuo spazio ora!
-                </p>
-            </div>
-            @foreach($sponsors as $sponsor)
-            <div class="col-6 col-lg-3 cursor-pointer">
-                <div class="card {{ $sponsor->name === 'free' ? 'bg-c-blue' : ($sponsor->name === 'base' ? 'bg-c-green' : ($sponsor->name === 'avanzato' ? 'bg-c-yellow' : ($sponsor->name === 'pro' ? 'bg-c-pink' : ''))) }} order-card">
-                    <div class="card-block">
-                        <h4 class="m-b-20 fw-bold text-capitalize  mb-4">{{$sponsor->name}}</h4>
-                        <h5 class="text-right mb-3"><i class="fa-regular fa-clock me-2" style="color: #5370a2;"></i><span class="fw-bold">{{$sponsor->time}} h</span></h5>
-                        <input type="radio" style="appearance: none"  name="sponsor_id" class="" value="{{$sponsor->id}}" {{ $sponsor->name === 'free' ? 'checked' : '' }} required>
-                        <p class="m-b-0">Prezzo:<span class="f-right fw-bold">{{$sponsor->price}}&euro;</span></p>
-                    </div>
+<div class="container sponsor-container">
+    <div class="row">
+        <div class="col-12 text-center my-5">
+            <h2 class="mb-3"><span class="brand">Sponsorizza</span> il tuo Annuncio!</h2>
+            <p>
+                Vuoi dare una marcia in più al tuo annuncio? Ora puoi farlo con la nostra sponsorizzazione! Oltre agli abbonamenti gratuiti, offriamo opzioni di sponsorizzazione per diverse durate: Abbonamento <span class="fw-bold">Free</span>, Abbonamento <span class="fw-bold">Base</span>, Abbonamento <span class="fw-bold">Avanzato</span> e Abbonamento <span class="fw-bold">Pro</span>. Scegli la sponsorizzazione che si adatta meglio alle tue esigenze e goditi una visibilità superiore per il tuo annuncio su <span class="brand">BoolBnB</span>. Promuovi il tuo spazio ora!
+            </p>
+        </div>
+        @foreach($sponsors as $sponsor)
+        <div class="col-6 col-lg-3 cursor-pointer">
+            <div class="card {{ $sponsor->name === 'free' ? 'bg-c-blue' : ($sponsor->name === 'base' ? 'bg-c-green' : ($sponsor->name === 'avanzato' ? 'bg-c-yellow' : ($sponsor->name === 'pro' ? 'bg-c-pink' : ''))) }} order-card">
+                <div class="card-block">
+                    <h4 class="m-b-20 fw-bold text-capitalize  mb-4">{{$sponsor->name}}</h4>
+                    <h5 class="text-right mb-3"><i class="fa-regular fa-clock me-2" style="color: #5370a2;"></i><span class="fw-bold">{{$sponsor->time}} h</span></h5>
+                    <input type="radio" style="appearance: none"  name="sponsor_id" class="" value="{{$sponsor->id}}" {{ $sponsor->name === 'free' ? 'checked' : '' }} required>
+                    <p class="m-b-0">Prezzo:<span class="f-right fw-bold">{{$sponsor->price}}&euro;</span></p>
                 </div>
             </div>
-            @endforeach
-            @error('sponsor')
-            <span class="text-danger d-block">{{ $message }}</span>
-           @enderror 
         </div>
+        @endforeach
+        @error('sponsor')
+        <span class="text-danger d-block">{{ $message }}</span>
+        @enderror 
     </div>
+</div>
     {{-- FINE SPONSOR --}}
 
     {{-- VISIBILITA' --}}

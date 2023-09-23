@@ -1,9 +1,23 @@
 @extends('layouts.app')
 @section('content')
-
-<div>
-    <a href="http://localhost:5174" class="btn blue-btn">Torna agli annunci</a>
+<div class="container-fluid navbar-container">
+    <div class="row justify-content-between w-100">
+        <div class="d-flex col-6">
+            <div class="col-3 py-3 d-flex justify-content-end">
+                <a href="http://localhost:5174"  class="d-none d-lg-flex" style="text-decoration:none; color:#3a537e;"><i class="fa-regular fa-circle-left" style="color: #3a537e;"></i> Annunci in Evidenza  </a>
+            </div>
+            <div class="col-4  py-3 d-flex justify-content-end">
+                <a href="http://localhost:5174/apartments"  class="" style="text-decoration:none; color:#3a537e;"><i class="fa-regular fa-circle-left" style="color: #3a537e;"></i> Ricerca Avanzata  </a>
+            </div>
+        </div>
+        <div class="d-flex col-6 justify-content-end">
+            <div class=" col-4 py-3 d-flex justify-content-start">
+                <a href="{{route('admin.apartments.index')}}"  class="" style="text-decoration:none; color:#3a537e;">i Tuoi Annunci  <i class="fa-regular fa-circle-right" style="color: #3a537e;"></i></a>
+            </div>
+        </div>
+    </div>
 </div>
+
 @guest
 <div class="jumbotron p-5  bg-beige rounded-3">
     <div class="container ">

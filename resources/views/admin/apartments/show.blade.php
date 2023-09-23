@@ -1,18 +1,26 @@
 @extends('layouts.admin')
 
 @section('content')
-    <section class="">
+<div class="container-fluid navbar-container">
+    <div class="row justify-content-between w-100">
+        <div class="d-flex col-6">
+            <div class="col-6 col-lg-4 py-3 d-flex justify-content-end">
+                <a href="{{route('admin.apartments.index')}}"  class="" style="text-decoration:none; color:#3a537e;"><i class="fa-regular fa-circle-left" style="color: #3a537e;"></i> I tuoi Annunci  </a>
+            </div>
+        </div>
+        <div class="d-flex col-6 justify-content-end">
+            <div class=" col-6 col-lg-4 py-3 d-lg-flex justify-content-start d-none">
+                <a href="#add-photos"  class="" style="text-decoration:none; color:#3a537e;">Aggiungi Foto  <i class="fa-regular fa-circle-down" style="color: #3a537e;"></i></a>
+            </div>
+            <div class=" col-4 py-3 d-flex justify-content-start">
+                <a href="{{route('admin.apartments.edit', $apartment->id)}}"  class="" style="text-decoration:none; color:#3a537e;">Modifica Annuncio  <i class="fa-regular fa-circle-right" style="color: #3a537e;"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+    <section class="mt-5">
         <div class="container-fluid">
             <div class="row ">
-                <div class="col-12">
-                    <div class="d-flex justify-content-between align-items-center my-3">
-                        <div>
-                            @auth
-                            <a href="{{ route('admin.apartments.index') }} " class="btn btn-sm blue-btn">I tuoi gli appartamenti</a>
-                            @endauth
-                        </div>
-                    </div>
-                </div>
                 <div class="col-8 offset-2 text-center mb-5">
                     <h2 class="my-3"><span class="brand">Visualizza</span> il Tuo Annuncio</h2>
                     <p class="text-center">Controlla il tuo annuncio su <span class="brand">BoolBnB</span> per assicurarti che sia completo e soddisfi tutte le tue esigenze. Qui puoi vedere ogni dettaglio e foto che hai aggiunto. Se hai dimenticato qualcosa o desideri apportare modifiche, è il momento giusto per farlo. Un annuncio accurato e completo attira più ospiti, quindi assicurati che il tuo annuncio su <span class="brand">BoolBnB</span> sia perfetto</p>
@@ -33,7 +41,7 @@
                                     <div class="gal-item d-flex flex-wrap justify-content-center">
                                         @foreach($photos as $photo)
                                         @if($photo->apartment_id === $apartment->id)
-                                        <div class="box col-12 col-md-5 m-2  img-container  ">
+                                        <div class="box col-12 col-md-5 m-2  img-container  " id="add-photos">
                                             <img src=" {{ asset('storage/'.$photo->url) }} " class="col-6" style="border-radius:1.25rem" >
                                         
                                             <div class="btns">
@@ -57,7 +65,11 @@
                     <div class="col-12 text-center mt-2 ">
                 
                         <span>Vuoi rendere il tuo annuncio ancora più <span class="brand">irresistibile?</span> Aggiungi alcune <span class="brand">foto</span> per mostrare tutti i dettagli che rendono il tuo alloggio speciale<a href="{{route('admin.apartments.photos.create', $apartment->id)}}" class="btn blue-btn btn-sm ms-3"><i class="fas fa-plus "></i></a></span>
-                    </div>    
+                    </div>
+                    <div class="col-12 text-center mt-2 ">
+                
+                        <span style="font-size:12px"><span class="brand">Aggiungi </span>Foto al tuo annuncio e <span class="brand">Muoviti su di loro</span> per altre funzionalità</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -105,7 +117,7 @@
                                <span><span class="brand">Indirizzo</span>: </span><span class="ms-2 ">{{$apartment->address}} <i class="fa-solid fa-location-dot ms-1" style="color: #4f5153;"></i></span>
                             </li>
                             <li class="">
-                                <span><span class="brand">Descrizione</span>: </span><span class="ms-2">{{$apartment->description}}</span>
+                                <span><span class="brand">Descrizione</span>: </span><span class="ms-2 w-break">{{$apartment->description}}</span>
                              </li>
                         </ul>
                    
@@ -116,13 +128,18 @@
 @endsection
 
 <style lang="scss">
+.w-break{
+    overflow-wrap: break-word;
+}
 .img-container{
     position: relative;
     aspect-ratio: 16/9;
 }
 .img-container:hover{
+    border-radius:1.25rem;
     .btns{
         visibility: visible;
+        
     }
 }
 .btns{

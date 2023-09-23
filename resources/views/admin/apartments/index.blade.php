@@ -1,8 +1,24 @@
 @extends('layouts.admin')
 
 @section('content')
+<div class="container-fluid navbar-container">
+    <div class="row justify-content-between w-100">
+        <div class="d-flex col-6">
+            <div class="col-3 py-3 d-flex justify-content-end">
+                <a href="http://localhost:5174"  class="d-none d-lg-block" style="text-decoration:none; color:#3a537e;"><i class="fa-regular fa-circle-left" style="color: #3a537e;"></i> Annunci in Evidenza  </a>
+            </div>
+            <div class="col-3 py-3 d-flex justify-content-end">
+                <a href="http://localhost:5174/apartments"  class="" style="text-decoration:none; color:#3a537e;"><i class="fa-regular fa-circle-left" style="color: #3a537e;"></i> Ricerca Avanzata  </a>
+            </div>
+        </div>
+        <div class="d-flex col-6 justify-content-end">
+            <div class=" col-4 py-3 d-flex justify-content-start">
+                <a href="{{route('admin.apartments.create')}}"  class="" style="text-decoration:none; color:#3a537e;">Aggiungi Annuncio  <i class="fa-regular fa-circle-right" style="color: #3a537e;"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
     <div class="container-fluid">
-        <a href="http://localhost:5174/" class="btn btn-success">VITE</a>
         <div class="row mb-5 home-text">
             <div class="bg-beige">
                 <div class="col-12 text-center my-3 ">
