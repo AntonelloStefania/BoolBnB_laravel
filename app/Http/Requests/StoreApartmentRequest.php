@@ -41,6 +41,7 @@ class StoreApartmentRequest extends FormRequest
                 'array',
                 'min:1',
             ],
+            
              
         ];
     }
