@@ -337,14 +337,14 @@
   </div>
    <div class="row">
     {{-- TITOLO PAGINA --}}
-      <div class="col-12 text-center mb-5">
-            <h1 class="titolo">Modifica il tuo annuncio su <span class="brand">BoolBnb</span> </h1>
+      <div class="col-12 text-center mb-2">
+            <h1 class="titolo">Benvenuto su <span class="brand">BoolBnb</span> - Crea il Tuo Annuncio! </h1>
             <div class="col-12 my-3">
                 <p>
-                    Benvenuto alla pagina di <span class="brand">modifica</span> dei tuoi annunci. Qui puoi apportare modifiche e aggiornamenti alle 
-                    informazioni e alle caratteristiche dei tuoi appartamenti. <span class="brand">Ottimizza le descrizioni</span>, caricate nuove foto e 
-                    assicurati che i tuoi annunci siano sempre al massimo delle prestazioni per attirare potenziali inquilini. 
-                    <span class="brand">Personalizza</span> e gestisci in modo efficace le informazioni sui tuoi appartamenti per massimizzare il vostro successo nel settore immobiliare.                         
+                    Sei a un passo dal condividere il tuo spazio con il mondo. Qui potrai personalizzare ogni dettaglio del tuo annuncio e renderlo unico. Rendilo attraente per i tuoi futuri ospiti fornendo tutte le informazioni necessarie e aggiungendo foto che mettano in risalto le caratteristiche del tuo spazio.                         
+                </p>
+                <p class="mt-5">
+                    Segui i passaggi con attenzione e non esitare a inserire quante più informazioni possibili. Più dettagli fornirai, maggiore sarà l'interesse degli ospiti e la loro soddisfazione durante il soggiorno.
                 </p>
             </div>
      </div>
@@ -475,9 +475,9 @@
             <div class="col-12">
                 <div class="mb-5 my-5">
                     <div class="text-center">
-                        <h2>Modifica la <span class="brand">Tipologia</span> dell'Alloggio</h2>
+                        <h2>Che <span class="brand">Tipologia</span> di Alloggio vuoi Affittare <span class="brand">?</span></h2>
                         <p>
-                            Hai apportato modifiche alla tua struttura o desideri offrire una nuova tipologia di alloggio? Aggiorna il tuo annuncio su <span class="brand">BoolBnB</span> per far conoscere ai viaggiatori le tue ultime novità. Mantieni sempre aggiornate le tue offerte e attira più ospiti con le tue offerte rinnovate su <span class="brand">BoolBnB</span>!
+                            Scegli con attenzione la tipologia che meglio si adatta al tuo alloggio e alle tue esigenze, in modo che gli ospiti possano trovare esattamente ciò che stanno cercando su <span class="brand">BoolBnB</span>.
                         </p>
                     </div>
                     <div class="rating col-12 col-md-8 offset-md-2 d-flex flex-wrap justify-content-center">
@@ -506,17 +506,17 @@
 
                 <div class="col-12 text-center ">
                     
-                    <h2 class="my-5">Aggiorna l'Immagine di Copertina su <span class="brand">BoolBnB</span></h2>
+                    <h2 class="mt-5 mb-2"> Scegli la Tua Immagine di <span class="brand">Copertina</span></h2>
                     <p>
-                        L'immagine di copertina è la prima impressione che gli ospiti avranno del tuo alloggio su <span class="brand">BoolBnB</span>. Cambiala periodicamente per rendere il tuo annuncio sempre fresco e attraente. Cattura l'attenzione con nuove foto che mostrano al meglio le caratteristiche uniche della tua struttura e accogli i tuoi futuri ospiti con uno sguardo invitante su <span class="brand">BoolBnB</span>.
+                        L'immagine di copertina è la prima impressione che gli ospiti avranno del tuo alloggio su <span class="brand">BoolBnB</span>. Scegli con cura un'immagine che catturi l'essenza e l'atmosfera del tuo spazio. Una bella immagine di copertina può fare la differenza e attirare l'attenzione degli ospiti.
                     </p>
                    
                 </div>
                         {{-- PROVA DROP-CONTAINER --}}
-                        <h3><span class="brand">Nuova</span> Copertina</h3>
-                        <label for="images" class="drop-container h-100" id="dropcontainer">
+                        
+                        <label for="images" class="drop-container  col-12 col-md-6 offset-md-3 my-4" style="min-height: 250px" id="dropcontainer">
                             
-                            <span class="drop-title">Sposta qui l'immagine</span>
+                            <span class="drop-title ">Sposta qui l'immagine</span>
                             oppure
                             <input type="file" id="images"  name="cover"  class="blue-btn" accept="image/*" >
                             @error('cover')
@@ -536,13 +536,13 @@
                <div class="col-12">
                    
                 <div class="text-center my-4">
-                    <h2 class="control-label mb-2 fw-bold my-3"><span class="brand">Servizi</span> Aggiuntivi</h2>
+                    <h2 class="control-label mb-2 my-3"><span class="brand">Servizi</span> Aggiuntivi</h2>
                     <p>
                         Personalizza l'esperienza per i tuoi ospiti scegliendo tra una varietà di servizi aggiuntivi per la tua struttura. Questo campo ti consente di adattare la tua offerta alle esigenze dei tuoi ospiti. Seleziona i servizi che ritieni possano arricchire il loro soggiorno e migliorare la loro esperienza. Rendi la tua struttura ancora più attraente e confortevole per i futuri ospiti.      
                     </p>
                 </div>                
             
-                <div class="d-flex align-items-center flex-wrap ">
+                <div class="d-flex align-items-center flex-wrap col-12 col-md-8 offset-md-2 justify-content-center ">
                     @foreach($services as $service)
                     <div class="col-6 text-center col-md-4 d-flex my-3 flex-column align-items-center ">
                         <label class="form-check-label pb-2 position-relative d-flex change-cursor justify-content-center align-items-center " style="width:50px; height:50px;" for="flexSwitchCheck-{{$service->id}}">
@@ -567,7 +567,7 @@
     <div class="container sponsor-container">
         <div class="row">
             <div class="col-12 text-center my-5">
-                <h3 class="mb-3"><span class="brand">Sponsorizza</span> il tuo Annuncio!</h3>
+                <h2 class="mb-3"><span class="brand">Sponsorizza</span> il tuo Annuncio!</h2>
                 <p>
                     Vuoi dare una marcia in più al tuo annuncio? Ora puoi farlo con la nostra sponsorizzazione! Oltre agli abbonamenti gratuiti, offriamo opzioni di sponsorizzazione per diverse durate: Abbonamento <span class="fw-bold">Free</span>, Abbonamento <span class="fw-bold">Base</span>, Abbonamento <span class="fw-bold">Avanzato</span> e Abbonamento <span class="fw-bold">Pro</span>. Scegli la sponsorizzazione che si adatta meglio alle tue esigenze e goditi una visibilità superiore per il tuo annuncio su <span class="brand">BoolBnB</span>. Promuovi il tuo spazio ora!
                 </p>

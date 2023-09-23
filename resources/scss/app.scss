@@ -84,7 +84,19 @@
     font-size: 18px;
 }
 
-.type-bg{
+.type-bg {
     background-color: rgb(192, 201, 225);
     border-radius: 1rem;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
 }
