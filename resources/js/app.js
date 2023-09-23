@@ -70,7 +70,25 @@ import.meta.glob([
 // });
 
 
+//CONTROLLO REGISTRAZIONE
+const input1 = document.getElementById('email');
+const input2 = document.getElementById('password');
+const input3 = document.getElementById('password-confirm');
+const myButton = document.getElementById('reg-submit');
 
+// Funzione per verificare lo stato degli input e abilitare/disabilitare il pulsante
+function checkInputs() {
+  if (input1.value.trim() !== '' && input2.value.trim() !== '' && input3.value.trim() !== '') {
+    myButton.removeAttribute('disabled');
+  } else {
+    myButton.setAttribute('disabled', 'disabled');
+  }
+}
+
+// Aggiungi eventi di input agli input text
+input1.addEventListener('input', checkInputs);
+input2.addEventListener('input', checkInputs);
+input3.addEventListener('input', checkInputs);
 
 
 
@@ -153,15 +171,50 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 //SELEZIONE SPONSOR CLICCANDO SU CARDS
+// document.addEventListener('DOMContentLoaded', function () {
+//   const cards = document.querySelectorAll('.cursor-pointer');
+
+//   cards.forEach(function (card) {
+//     card.addEventListener('click', function () {
+//       // Trova il radio button all'interno della card
+//       const radio = card.querySelector('input[type="radio"]');
+
+
+
+//       // Seleziona il radio button della card cliccata
+//       radio.checked = true;
+
+//       // Aggiungi la classe .selected-card alla card selezionata
+//       card.classList.add('selected-card');
+
+//       // Rimuovi la classe .selected-card dalle altre card
+//       cards.forEach(function (otherCard) {
+//         if (otherCard !== card) {
+//           otherCard.classList.remove('selected-card');
+//         }
+//       });
+//     });
+//   });
+// });
+
 document.addEventListener('DOMContentLoaded', function () {
   const cards = document.querySelectorAll('.cursor-pointer');
+
+  // Trova il radio button inizialmente selezionato
+  const selectedRadio = document.querySelector('input[type="radio"]:checked');
+
+  // Aggiungi la classe .selected-card all'elemento padre della radio selezionata (assumendo che sia il card)
+  if (selectedRadio) {
+    const selectedCard = selectedRadio.closest('.cursor-pointer');
+    if (selectedCard) {
+      selectedCard.classList.add('selected-card');
+    }
+  }
 
   cards.forEach(function (card) {
     card.addEventListener('click', function () {
       // Trova il radio button all'interno della card
       const radio = card.querySelector('input[type="radio"]');
-
-
 
       // Seleziona il radio button della card cliccata
       radio.checked = true;
@@ -178,6 +231,10 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
+
+
+
 
 //FUNZIONE RECUPERO VISIBILITA' ANNUNCIO 
 

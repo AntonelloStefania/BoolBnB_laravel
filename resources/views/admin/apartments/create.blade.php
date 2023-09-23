@@ -578,7 +578,7 @@
                     <div class="card-block">
                         <h4 class="m-b-20 fw-bold text-capitalize  mb-4">{{$sponsor->name}}</h4>
                         <h5 class="text-right mb-3"><i class="fa-regular fa-clock me-2" style="color: #5370a2;"></i><span class="fw-bold">{{$sponsor->time}} h</span></h5>
-                        <input type="radio" style="appearance: none"  name="sponsor_id" value="{{$sponsor->id}}" required>
+                        <input type="radio" style="appearance: none"  name="sponsor_id" class="" value="{{$sponsor->id}}" {{ $sponsor->name === 'free' ? 'checked' : '' }} required>
                         <p class="m-b-0">Prezzo:<span class="f-right fw-bold">{{$sponsor->price}}&euro;</span></p>
                     </div>
                 </div>
@@ -599,7 +599,7 @@
                     <div class="d-flex align-items-center">
                         <span class="form-check-label me-3">Vuoi rendere il tuo Annuncio <span class="brand">Visibile</span> al pubblico Ora?</span>
                         <div class="form-check form-switch">
-                            <input class="form-check-input" name="visibility" id="visible"  type="checkbox" role="switch"  value="1" {{ old('visibility' ) == '1' ? 'checked' : '' }} />
+                            <input class="form-check-input" name="visibility" id="visible"    type="checkbox" role="switch"  value="1" {{ old('visibility' ) == '1' ? 'checked' : '' }} />
                             <input type="checkbox" value="0" name="visibility" style="appearance: none" id="invisible" {{ old('visibility' ) == '0' ? 'checked' : '' }} checked >
                           </div>
                           <div>
