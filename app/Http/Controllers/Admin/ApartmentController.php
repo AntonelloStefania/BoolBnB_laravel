@@ -118,6 +118,8 @@ class ApartmentController extends Controller
             $message='NON TI PERMETTERE DI TOCCARE GLI APPARTAMENTI ALTRUI';
             return redirect()->route('admin.apartments.index', compact('message'));
         }
+
+       
     }
 
     /**
@@ -169,6 +171,7 @@ class ApartmentController extends Controller
 
         $form_data['slug'] = Str::slug($form_data['title'],'-'); 
         $form_data['visibility'] = intval($form_data['visibility']);
+        
         $apartment->update($form_data);
         $apartment->save();
         
