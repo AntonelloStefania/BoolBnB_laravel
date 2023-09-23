@@ -22,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/apartments', [ApartmentController::class, 'index']);
+Route::get('/all-apartments', [ApartmentController::class, 'allIndex']);
 Route::get('/apartments/{slug}', [ApartmentController::class, 'show']);
 Route::get('/coordinate-apartments', [ApartmentController::class,'recuperaCoordinate']);
 Route::get('/filtered-apartments', [ApartmentController::class,'recuperaIndirizzo']); //<---ROTTA ADDRESS

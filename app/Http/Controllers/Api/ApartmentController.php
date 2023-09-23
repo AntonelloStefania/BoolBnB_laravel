@@ -11,31 +11,59 @@ use App\Models\Apartment;
 class ApartmentController extends Controller
 {
     
-//METODO CHE MANDA SOLO ANNUNCI VISIBILI E SPONSORIZZATI
 
-public function index(){
-$sponsorIds = [2, 3, 4]; // Sostituisci con gli ID dei sponsor desiderati
 
-$apartments = Apartment::where('visibility', 1)
-    ->whereHas('sponsors', function ($query) use ($sponsorIds) {
-        $query->whereIn('sponsor_id', $sponsorIds);
-    })
-    ->with(['type', 'sponsors' => function ($query) use ($sponsorIds) {
-        // Seleziona solo l'ultima corrispondenza per ciascun appartamento
-        $query->whereIn('sponsor_id', $sponsorIds)
-            ->orderBy('created_at', 'desc')
-            ->limit(1);
-    }])
-    ->get();
+public function index()
+{
+    $sponsorIds = [2, 3, 4]; 
 
-return response()->json([
-    'success' => true,
-    'results' => $apartments
-]);
+    $apartments = Apartment::where('visibility', 1)
+        ->whereHas('sponsors', function ($query) use ($sponsorIds) {
+            $query->whereIn('sponsor_id', $sponsorIds);
+        })
+        ->with(['type', 'sponsors' => function ($query) use ($sponsorIds) {
+            $query->whereIn('sponsor_id', $sponsorIds);
+        }])
+        ->get();
+
+    // Ordina l'array di appartamenti in base all'ID dello sponsor
+    $apartments = $apartments->sortByDesc(function ($apartment) {
+        return $apartment->sponsors->first()->id;
+    });
+
+    // Trasforma l'array ordinato in un array associativo
+    $apartments = $apartments->values()->all();
+
+    return response()->json([
+        'success' => true,
+        'results' => $apartments
+    ]);
 }
-    // In questo esempio, stiamo utilizzando whereHas per filtrare gli appartamenti che hanno una corrispondenza specifica nella tabella pivot apartment_sponsor. Poi, nella relazione sponsors, stiamo selezionando solo l'ultima corrispondenza per ciascun appartamento ordinando per created_at in ordine discendente e limitando il risultato a 1.
+
+
+//METODO PER PASSARE TUTTI GLI ALLOGGI IN ORDINE DECRESCENTE DI SPONSORS.ID
+public function allIndex(){
     
-    // Assicurati di sostituire $sponsorId con l'ID del sponsor desiderato o di implementare la logica per determinarlo dinamicamente. Questa query restituirà solo gli appartamenti che soddisfano i criteri specificati.
+
+    $apartments = Apartment::where('visibility', 1)
+     
+        ->with(['type', 'sponsors'])
+        ->get();
+
+    // Ordina l'array di appartamenti in base all'ID dello sponsor
+    $apartments = $apartments->sortByDesc(function ($apartment) {
+        return $apartment->sponsors->first()->id;
+    });
+
+    // Trasforma l'array ordinato in un array associativo
+    $apartments = $apartments->values()->all();
+
+    return response()->json([
+        'success' => true,
+        'results' => $apartments
+    ]);
+}
+    
     
     
     
