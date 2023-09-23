@@ -25,5 +25,6 @@ Route::get('/apartments', [ApartmentController::class, 'index']);
 Route::get('/all-apartments', [ApartmentController::class, 'allIndex']);
 Route::get('/apartments/{slug}', [ApartmentController::class, 'show']);
 Route::get('/coordinate-apartments', [ApartmentController::class,'recuperaCoordinate']);
-Route::get('/filtered-apartments', [ApartmentController::class,'recuperaIndirizzo']); //<---ROTTA ADDRESS
+Route::get('/all-filtered-apartments', [ApartmentController::class,'recuperaTuttiIndirizzi']); //<---ROTTA ADDRESS
+Route::get('/filtered-apartments', [ApartmentController::class,'recuperaIndirizzo']); //<---ROTTA ADDRESS HOME
 Route::post('/messages',[MessageController::class,'store']); //<---ROTTA MESSAGES

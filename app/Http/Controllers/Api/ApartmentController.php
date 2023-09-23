@@ -108,7 +108,7 @@ public function allIndex(){
 
         
     //funzione recupero indirizzo per filtro su appartamenti
-    public function recuperaIndirizzo(Request $request)
+    public function recuperaTuttiIndirizzi(Request $request)
     {
         try {
             // Ottieni tutti i dati dalla richiesta
@@ -126,6 +126,54 @@ public function allIndex(){
                 ->with('type')
                 ->get();
     
+            // Verifica se ci sono risultati
+            if ($apartments->isEmpty()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Nessun appartamento trovato con i criteri specificati.'
+                ]);
+            }
+    
+            // Restituisci i dati come risposta JSON
+            return response()->json([
+                'success' => true,
+                'results' => $apartments
+            ]);
+        } catch (\Exception $e) {
+            // Gestisci gli errori e restituisci una risposta di errore
+            return response()->json([
+                'success' => false,
+                'message' => 'Si è verificato un errore durante la ricerca degli appartamenti.'
+            ]);
+        }
+    }
+
+    //Variante con solo gli appartamenti in evidenza
+    public function recuperaIndirizzo(Request $request)
+    {
+        try {
+            // Ottieni tutti i dati dalla richiesta
+            $data = $request->all();
+            $sponsorIds = [2, 3, 4]; 
+    
+            // Estrai i parametri di latitudine e longitudine dai dati
+            $min_lat = $data['min_lat'];
+            $max_lat = $data['max_lat'];
+            $min_lon = $data['min_lon'];
+            $max_lon = $data['max_lon'];
+    
+            // Esegui la query per recuperare gli appartamenti filtrati
+            $apartments = Apartment::where('visibility', 1)
+            ->whereHas('sponsors', function ($query) use ($sponsorIds) {
+                $query->whereIn('sponsor_id', $sponsorIds);
+            })
+            ->whereBetween('lon', [$min_lon, $max_lon])
+            ->whereBetween('lat', [$min_lat, $max_lat])
+            ->with(['type', 'sponsors' => function ($query) use ($sponsorIds) {
+                $query->whereIn('sponsor_id', $sponsorIds);
+            }])
+            ->get();
+            
             // Verifica se ci sono risultati
             if ($apartments->isEmpty()) {
                 return response()->json([
