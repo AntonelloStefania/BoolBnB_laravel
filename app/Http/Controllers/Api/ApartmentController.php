@@ -113,16 +113,48 @@ public function allIndex(){
         try {
             // Ottieni tutti i dati dalla richiesta
             $data = $request->all();
+            $min_lat= null;
+            $max_lat= null;
+            $min_lon= null;
+            $max_lon= null;
+            $wc= null;
+            $mq= null;
+            $rooms= null;
     
             // Estrai i parametri di latitudine e longitudine dai dati
-            $min_lat = $data['min_lat'];
-            $max_lat = $data['max_lat'];
-            $min_lon = $data['min_lon'];
-            $max_lon = $data['max_lon'];
+            if($data['min_lat']){
+                $min_lat = $data['min_lat'];
+                $max_lat = $data['max_lat'];
+                $min_lon = $data['min_lon'];
+                $max_lon = $data['max_lon'];
+            }
+            if($data['wc']){
+                $wc = intval($data['wc']);
+            }
+            if($data['rooms']){
+                $rooms = intval($data['rooms']);
+            }
+            if($data['mq']){
+                $mq = intval($data['mq']);
+            }
     
             // Esegui la query per recuperare gli appartamenti filtrati
-            $apartments = Apartment::whereBetween('lon', [$min_lon, $max_lon])
-                ->whereBetween('lat', [$min_lat, $max_lat])
+            $apartments = Apartment::where('visibility', 1)
+                ->when($min_lon, function ($query, $min_lon, $max_lon) {
+                    return $query->whereBetween('lon', [$min_lon, $max_lon]);
+                })
+                ->when($min_lat, function ($query, $min_lat, $max_lat) {
+                    return $query->whereBetween('lat', [$min_lat, $max_lat]);
+                })
+                ->when($wc, function ($query, $wc) {
+                    return $query->where('n_wc', '<=', $wc);
+                })
+                ->when($rooms, function ($query, $rooms) {
+                    return $query->where('n_rooms', '<=', $rooms);
+                })
+                ->when($mq, function ($query, $mq) {
+                    return $query->where('mq', '<=', $mq);
+                })
                 ->with('type')
                 ->get();
     
