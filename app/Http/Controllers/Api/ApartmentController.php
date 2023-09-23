@@ -10,7 +10,9 @@ use App\Models\Apartment;
 class ApartmentController extends Controller
 {
     public function index(){
-        $apartment = Apartment::with('type')->get();
+        $apartment = Apartment::with('type')
+        ->where('visibility', 1)
+        ->get();
         return response()->json([
             'success' => true,
             'results' => $apartment
@@ -19,8 +21,7 @@ class ApartmentController extends Controller
 
     public function show($slug){
         $apartment = Apartment::with(['type','services','photos'])->where('slug', $slug)->first();
-       
-        
+ 
         if($apartment){
             
             return response()->json([

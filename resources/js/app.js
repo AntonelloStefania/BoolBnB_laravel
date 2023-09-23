@@ -70,25 +70,7 @@ import.meta.glob([
 // });
 
 
-//CONTROLLO REGISTRAZIONE
-const input1 = document.getElementById('email');
-const input2 = document.getElementById('password');
-const input3 = document.getElementById('password-confirm');
-const myButton = document.getElementById('reg-submit');
 
-// Funzione per verificare lo stato degli input e abilitare/disabilitare il pulsante
-function checkInputs() {
-  if (input1.value.trim() !== '' && input2.value.trim() !== '' && input3.value.trim() !== '') {
-    myButton.removeAttribute('disabled');
-  } else {
-    myButton.setAttribute('disabled', 'disabled');
-  }
-}
-
-// Aggiungi eventi di input agli input text
-input1.addEventListener('input', checkInputs);
-input2.addEventListener('input', checkInputs);
-input3.addEventListener('input', checkInputs);
 
 
 
