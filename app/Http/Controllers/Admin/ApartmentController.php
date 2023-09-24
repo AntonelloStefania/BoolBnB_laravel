@@ -20,6 +20,8 @@ use App\Models\Photo;
 use App\Models\Type;
 use App\Models\User;
 use App\Models\Message;
+// use Braintree_Transaction;
+// use Braintree\ClientToken;
 
 class ApartmentController extends Controller
 {
@@ -215,6 +217,7 @@ class ApartmentController extends Controller
 
         return redirect()->route('admin.apartments.index');
     }
+
 
 
 
