@@ -41,8 +41,8 @@ class Kernel extends HttpKernel
 
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            'throttle:api',
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            //'throttle:api',                                                        <--------------------------MODIFICATO PER EVITARE ERROR 429 (IN CASO DECOMMENTARE 24/09)
+           // \Illuminate\Routing\Middleware\SubstituteBindings::class,                 <--------------------------MODIFICATO PER EVITARE ERROR 429 (IN CASO DECOMMENTARE 24/09)
         ],
     ];
 
@@ -62,7 +62,7 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
-        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        //'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class, <--------------------------MODIFICATO PER EVITARE ERROR 429 (IN CASO DECOMMENTARE 24/09)
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];
 }

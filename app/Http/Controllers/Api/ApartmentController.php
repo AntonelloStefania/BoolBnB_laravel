@@ -63,13 +63,6 @@ public function allIndex(){
         'results' => $apartments
     ]);
 }
-    
-    
-    
-    
-    
-    
-    
 
 
     public function show($slug){
