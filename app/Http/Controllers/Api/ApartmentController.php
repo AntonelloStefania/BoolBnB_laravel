@@ -112,6 +112,7 @@ public function allIndex(){
             $wc = $request->input('wc', null);
             $rooms = $request->input('rooms', null);
             $mq = $request->input('mq', null);
+            $beds = $request->input('beds', null);
     
             // Esegui la query per recuperare gli appartamenti filtrati
             $apartments = Apartment::where('visibility', 1)
@@ -129,6 +130,9 @@ public function allIndex(){
                 })
                 ->when($mq !== null, function ($query) use ($mq) {
                     return $query->where('mq', '>=', $mq);
+                })
+                ->when($beds !== null, function ($query) use ($beds) {
+                    return $query->where('n_beds', '>=', $beds);
                 })
                 ->with('type')
                 ->get();
