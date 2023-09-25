@@ -46,9 +46,9 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('apartments.photos', PhotoController::class);
     Route::resource('services', ServiceController::class);
     Route::resource('sponsors', SponsorController::class);
-    Route::post('/process-payment', [BraintreeController::class, 'processPayment'])->name('processPayment');
-    
-});
+    // Route::any('/sponsor', [BraintreeController::class, 'processPayment'])->name('processPayment');
+    Route::get('/apartments/{apartmentId}/payment', [ApartmentController::class, 'showPaymentForm'])->name('apartments.braintree');
+    Route::post('/apartments/{apartmentId}/payment',[ApartmentController::class,'processPayment'])->name('braintree.processPayment');});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
