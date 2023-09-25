@@ -82,7 +82,7 @@
                                 <div class="col-12 mb-3 text-center">
                                     <label class="control-label fw-bold mb-2">Numero di <span class="brand">Stanze</span></label>
                                     <div class="d-flex justify-content-center">
-                                        <input type="number" id="n_rooms" name="n_rooms" class="form-control" style="width:4.25rem" value="{{old('n_rooms') ?? $apartment->n_rooms}}"><i class="fa-solid fa-bed ms-2 align-self-center" style="color: #4f5153;"></i>
+                                        <input type="number" id="n_rooms" name="n_rooms" class="form-control" style="width:4.25rem" value="{{old('n_rooms') ?? $apartment->n_rooms}}"><i class="fa-solid fa-building ms-2 align-self-center" style="color: #4f5153; "></i>
                                        
                                     </div>
                                     <div>
@@ -105,7 +105,18 @@
                                         @enderror
                                     </div>
                                 </div>
-
+                                {{-- NUMERO LETTI --}}
+                                <div class="col-12 mb-3 text-center">
+                                    <label class="control-label fw-bold mb-2">Numero di <span class="brand">Letti</span>: </label>
+                                    <div class="d-flex justify-content-center">
+                                        <input type="number" id="n_beds" name="n_beds" class="form-control" style="width:4.25rem" value="{{old('n_beds') ?? $apartment->n_beds}}"><i class="fa-solid fa-bed ms-2 align-self-center" style="color: #4f5153;"></i>
+                                    </div>
+                                    <div>
+                                        @error('n_beds')
+                                            <span class="text-danger d-block">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-12 col-lg-3 col-md-6 d-flex flex-column mt-5 mt-lg-0">
                                 <div class="col-12 text-center">
