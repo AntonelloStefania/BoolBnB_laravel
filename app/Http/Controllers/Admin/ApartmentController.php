@@ -303,7 +303,10 @@ class ApartmentController extends Controller
 {
     // Recupera l'appartamento in base all'ID
     $apartment = Apartment::find($apartmentId);
+   
+
     $sponsors = Sponsor::all();
+
     if (!$apartment) {
         // Gestisci il caso in cui l'appartamento non esista
     }
@@ -326,8 +329,8 @@ public function processPayment(Request $request)
     // Esegui il processo di pagamento utilizzando Braintree
     // Recupera i dati del pagamento dal form inviato
    $nonce = $request->nonce;
-     //$nonce = $request->input('payment_method_nonce');
-
+    //$nonce = $request->payment_method_nonce;
+  
     // Esegui la transazione con Braintree utilizzando $nonce
     $gateway = new Gateway([
         'environment' => env('BRAINTREE_ENV'),
@@ -335,15 +338,15 @@ public function processPayment(Request $request)
         'publicKey' => env('BRAINTREE_PUBLIC_KEY'),
         'privateKey' => env('BRAINTREE_PRIVATE_KEY')
     ]);
-
     $result = $gateway->transaction()->sale([
         'amount' => '10.00', // Importo dell'ordine
         'paymentMethodNonce' => $nonce,
         'options' => [
-        'submitForSettlement' => true
-        ]
+            'submitForSettlement' => true
+            ]
     ]);
-  
+        
+  //dd($result);
     // Gestisci la risposta da Braintree e restituisci la vista appropriata
     if ($result->success) {
         // Pagamento avvenuto con successo
@@ -356,6 +359,53 @@ public function processPayment(Request $request)
     }
 
 }
-}
+
+//PROVA CON VALORI SPONSOR
+// public function processPayment(Request $request)
+// {
+//     $selectedSponsorId = $request->input('sponsor_id');
+// dd($selectedSponsorId);
+
+// if (!$sponsor) {
+//     // Gestisci il caso in cui lo sponsor non esista
+// }
+
+// // Esegui il processo di pagamento utilizzando Braintree
+// // Recupera la nonce di pagamento dal form
+// $nonce = $request->input('nonce');
+
+// // Calcola l'importo dell'ordine utilizzando il prezzo dello sponsor
+// $amount = $sponsor->price;
+
+// // Esegui la transazione con Braintree utilizzando $nonce e $amount
+// $gateway = new Gateway([
+//     'environment' => env('BRAINTREE_ENV'),
+//     'merchantId' => env('BRAINTREE_MERCHANT_ID'),
+//     'publicKey' => env('BRAINTREE_PUBLIC_KEY'),
+//     'privateKey' => env('BRAINTREE_PRIVATE_KEY')
+// ]);
+
+// $result = $gateway->transaction()->sale([
+//     'amount' => $amount, // Importo dell'ordine basato sul prezzo dello sponsor
+//     'paymentMethodNonce' => $nonce,
+//     'options' => [
+//         'submitForSettlement' => true
+//     ]
+// ]);
+
+// dd($result);
+//     // Gestisci la risposta da Braintree e restituisci la vista appropriata
+//     if ($result->success) {
+//         // Pagamento avvenuto con successo
+//         return view('admin.apartments.payment_success'); // Personalizza con la tua vista di successo
+//     } else {
+//         // Pagamento fallito, gestisci l'errore
+//         $errorMessage = $result->message;
+//         // Esegui il reindirizzamento a una pagina di errore
+//         return redirect()->route('admin.apartments.index', ['errorMessage' => $errorMessage]);
+//     }
+// }
+ }
+
 
 

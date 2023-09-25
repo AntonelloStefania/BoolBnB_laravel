@@ -40,6 +40,7 @@
                     <h4 class="m-b-20 fw-bold text-capitalize  mb-4">{{$sponsor->name}}</h4>
                     <h5 class="text-right mb-3"><i class="fa-regular fa-clock me-2" style="color: #5370a2;"></i><span class="fw-bold">{{$sponsor->time}} h</span></h5>
                     <input type="radio" style="appearance: none"  name="sponsor_id" class="" value="{{$sponsor->id}}" {{ $sponsor->name === 'free' ? 'checked' : '' }} required>
+                    
                     <p class="m-b-0">Prezzo:<span class="f-right fw-bold">{{$sponsor->price}}&euro;</span></p>
                 </div>
             </div>
@@ -77,6 +78,7 @@
         if (!err) {
             // La nonce di pagamento è contenuta in payload.nonce
             var paymentNonce = payload.nonce;
+            console.log(paymentNonce)
             document.getElementById('payment-nonce').value = paymentNonce;
            
             
@@ -99,6 +101,7 @@
         })
     })
         });
+        
     </script>
 </div>
 
