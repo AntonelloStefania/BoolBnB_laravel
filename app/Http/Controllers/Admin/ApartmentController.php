@@ -223,17 +223,12 @@ class ApartmentController extends Controller
 
 
 
-//SECONDA PROVA PAGAMENTO <-------------------------------------------FUNZIONA MA RIMANDA SEMPRE IN VISTA ERRORE (IL DD DI ERSULT NON CONTIENE LA NONCE)
+//SECONDA PROVA PAGAMENTO <-------------------------------------------FUNZIONA 
     public function showPaymentForm($apartmentId)
 {
     // Recupera l'appartamento in base all'ID
     $apartment = Apartment::find($apartmentId);
-   
-
     $sponsors = Sponsor::all();
-    
-
-
     if (!$apartment) {
         // Gestisci il caso in cui l'appartamento non esista
     }
@@ -284,13 +279,6 @@ public function processPayment(Request $request)
             ]
     ]);
 
-   
-
-   
-
-        
-  //dd($result);
-    // Gestisci la risposta da Braintree e restituisci la vista appropriata
     if ($result->success) {
         // Pagamento avvenuto con successo
         $apartment->sponsors()->attach($sponsorId, ['start' => now(), 'end' => now()->addHours(24)]);
@@ -315,19 +303,11 @@ if($sponsorId == 3){
             ]
     ]);
 
-   
-
-   
-
-        
-  //dd($result);
-    // Gestisci la risposta da Braintree e restituisci la vista appropriata
     if ($result->success) {
         // Pagamento avvenuto con successo
         $apartment->sponsors()->attach($sponsorId, ['start' => now(), 'end' => now()->addHours(72)]);
         return redirect()->route('admin.apartments.index'); // Personalizza con la tua vista di successo
     } else {
-        // Pagamento fallito, gestisci l'errore
         $errorMessage = $result->message;
         // Esegui il reindirizzamento a una pagina di errore
         return redirect()->route('admin.home', ['errorMessage' => $errorMessage]);
@@ -346,25 +326,16 @@ if($sponsorId == 4){
             ]
     ]);
 
-   
 
-   
-
-        
-  //dd($result);
-    // Gestisci la risposta da Braintree e restituisci la vista appropriata
     if ($result->success) {
-        // Pagamento avvenuto con successo
         $apartment->sponsors()->attach($sponsorId, ['start' => now(), 'end' => now()->addHours(144)]);
         return redirect()->route('admin.apartments.index'); // Personalizza con la tua vista di successo
     } else {
         // Pagamento fallito, gestisci l'errore
         $errorMessage = $result->message;
-        // Esegui il reindirizzamento a una pagina di errore
         return redirect()->route('admin.home', ['errorMessage' => $errorMessage]);
     }
-    
-    
+  
 }
 }
 
