@@ -606,7 +606,7 @@
 </div>
     {{-- FINE SPONSOR --}}
 
-    {{-- VISIBILITA' --}}
+      {{-- VISIBILITA' --}}
     <div class="container-fluid bg-beige">
         <div class="contoiner">
             <div class="row">
@@ -640,6 +640,10 @@
         </div>
    </div>
 </div>
+
+<script>
+  
+</script>
 @endsection
 
 <style lang="scss">

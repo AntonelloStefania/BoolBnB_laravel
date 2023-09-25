@@ -7,6 +7,9 @@
             <div class="col-6 col-lg-4 py-3 d-flex justify-content-end">
                 <a href="{{route('admin.apartments.index')}}"  class="" style="text-decoration:none; color:#3a537e;"><i class="fa-regular fa-circle-left" style="color: #3a537e;"></i> I tuoi Annunci  </a>
             </div>
+            <div class="col-6 col-lg-4 py-3 d-flex justify-content-end">
+                <a href="{{route('admin.apartments.braintree', $apartment->id)}}"  class="" style="text-decoration:none; color:#3a537e;"><i class="fa-regular fa-circle-left" style="color: #3a537e;"></i> Sponsor  </a>
+            </div>
         </div>
         <div class="d-flex col-6 justify-content-end">
             <div class=" col-6 col-lg-4 py-3 d-lg-flex justify-content-start d-none">

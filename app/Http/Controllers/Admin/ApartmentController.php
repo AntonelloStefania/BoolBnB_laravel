@@ -20,6 +20,10 @@ use App\Models\Photo;
 use App\Models\Type;
 use App\Models\User;
 use App\Models\Message;
+use Braintree\Gateway as Gateway;
+use Braintree\Transaction as Transaction;
+use Braintree\ClientToken;
+
 
 class ApartmentController extends Controller
 {
@@ -218,17 +222,135 @@ class ApartmentController extends Controller
 
 
 
+
+//SECONDA PROVA PAGAMENTO <-------------------------------------------FUNZIONA 
+    public function showPaymentForm($apartmentId)
+{
+    // Recupera l'appartamento in base all'ID
+    $apartment = Apartment::find($apartmentId);
+    $sponsors = Sponsor::all();
+    if (!$apartment) {
+        // Gestisci il caso in cui l'appartamento non esista
+    }
+
+    // Genera il token di pagamento da Braintree
+    $gateway = new Gateway([
+        'environment' => env('BRAINTREE_ENV'),
+        'merchantId' => env('BRAINTREE_MERCHANT_ID'),
+        'publicKey' => env('BRAINTREE_PUBLIC_KEY'),
+        'privateKey' => env('BRAINTREE_PRIVATE_KEY')
+    ]);
+
+    $clientToken = $gateway->clientToken()->generate();
+
+    return view('admin.apartments.braintree', ['apartment' => $apartment, 'clientToken' => $clientToken, 'sponsors' => $sponsors]);}
+   
+public function processPayment(Request $request)
+{
+    // Esegui il processo di pagamento utilizzando Braintree
+    // Recupera i dati del pagamento dal form inviato
+    $form_data= $request->all();
+   $nonce = $request->nonce;
+   
+   
+   $apartmentId = $request->input('apartmentId');; // Aggiungi questa riga per recuperare l'ID dell'appartamento
+    // Recupera l'appartamento
+    $sponsorId = $request->input('sponsor_id');
+    $apartment = Apartment::find($apartmentId);
  
-    //FUNZIONE PER VISUALIZZARE MESSAGGI  MESSAGGI
+    // Esegui la transazione con Braintree utilizzando $nonce
+    $gateway = new Gateway([
+        'environment' => env('BRAINTREE_ENV'),
+        'merchantId' => env('BRAINTREE_MERCHANT_ID'),
+        'publicKey' => env('BRAINTREE_PUBLIC_KEY'),
+        'privateKey' => env('BRAINTREE_PRIVATE_KEY')
+    ]);
+    
 
-    // public function messages(){
-    //     $messages= DB::table('apartments')
-    //     ->join('messages','apartments.id','=','messages.apartment_id')
-    //     ->where('apartments.user_id',Auth::id())
-    //     ->orderByDesc('message.id')
-    //     ->paginate(5);
+    // if($form_data['sponsor_id']== 1){
+   if($sponsorId == 2){
+    
 
-    //     return view('')
-    // }
+    $result = $gateway->transaction()->sale([
+        'amount' => '2.99', // Importo dell'ordine
+        'paymentMethodNonce' =>  'fake-valid-nonce',
+        'options' => [
+            'submitForSettlement' => true
+            ]
+    ]);
+
+    if ($result->success) {
+        // Pagamento avvenuto con successo
+        $apartment->sponsors()->attach($sponsorId, ['start' => now(), 'end' => now()->addHours(24)]);
+        return redirect()->route('admin.apartments.index'); // Personalizza con la tua vista di successo
+    } else {
+        // Pagamento fallito, gestisci l'errore
+        $errorMessage = $result->message;
+        // Esegui il reindirizzamento a una pagina di errore
+        return redirect()->route('admin.home', ['errorMessage' => $errorMessage]);
+    }
+    
+    
+}
+if($sponsorId == 3){
+    
+
+    $result = $gateway->transaction()->sale([
+        'amount' => '5.99', // Importo dell'ordine
+        'paymentMethodNonce' =>  'fake-valid-nonce',
+        'options' => [
+            'submitForSettlement' => true
+            ]
+    ]);
+
+    if ($result->success) {
+        // Pagamento avvenuto con successo
+        $apartment->sponsors()->attach($sponsorId, ['start' => now(), 'end' => now()->addHours(72)]);
+        return redirect()->route('admin.apartments.index'); // Personalizza con la tua vista di successo
+    } else {
+        $errorMessage = $result->message;
+        // Esegui il reindirizzamento a una pagina di errore
+        return redirect()->route('admin.home', ['errorMessage' => $errorMessage]);
+    }
+    
+    
+}
+if($sponsorId == 4){
+    
+
+    $result = $gateway->transaction()->sale([
+        'amount' => '9.99', // Importo dell'ordine
+        'paymentMethodNonce' =>  'fake-valid-nonce',
+        'options' => [
+            'submitForSettlement' => true
+            ]
+    ]);
+
+
+    if ($result->success) {
+        $apartment->sponsors()->attach($sponsorId, ['start' => now(), 'end' => now()->addHours(144)]);
+        return redirect()->route('admin.apartments.index'); // Personalizza con la tua vista di successo
+    } else {
+        // Pagamento fallito, gestisci l'errore
+        $errorMessage = $result->message;
+        return redirect()->route('admin.home', ['errorMessage' => $errorMessage]);
+    }
+  
+}
+}
+
+
 
 }
+
+//TERZA PROVA CON DATI SPONSOR
+
+
+
+//FINE TERZA PROVA
+
+
+
+
+
+

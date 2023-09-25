@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ApartmentController;
 use App\Http\Controllers\Admin\TypeController;
+use App\Http\Controllers\Admin\BraintreeController;
 
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SponsorController;
@@ -45,7 +46,9 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('apartments.photos', PhotoController::class);
     Route::resource('services', ServiceController::class);
     Route::resource('sponsors', SponsorController::class);
-    
+    // Route::any('/sponsor', [BraintreeController::class, 'processPayment'])->name('processPayment');
+    Route::get('/apartments/{apartmentId}/payment', [ApartmentController::class, 'showPaymentForm'])->name('apartments.braintree');
+    Route::post('/apartments/{apartmentId}/payment',[ApartmentController::class,'processPayment'])->name('braintree.processPayment');
 });
 
 Route::middleware('auth')->group(function () {
