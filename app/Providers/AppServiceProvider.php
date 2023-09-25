@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 use App\Providers\Braintree_Configuration;
-
+use Braintree\Gateway;
+use Braintree_Transaction;
+use Braintree\ClientToken;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -28,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
         $merchantId = env('BRAINTREE_MERCHANT_ID');
         $publicKey = env('BRAINTREE_PUBLIC_KEY');
         $privateKey = env('BRAINTREE_PRIVATE_KEY');
-        $braintree = new \Braintree\Gateway([
+        $braintree = new Gateway([
         'environment' => $environment,
         'merchantId' => $merchantId,
         'publicKey' => $publicKey,

@@ -25,32 +25,6 @@
 </script> --}}
 
 {{-- SPONSOR --}}
-<div class="container sponsor-container">
-    <div class="row">
-        <div class="col-12 text-center my-5">
-            <h2 class="mb-3"><span class="brand">Sponsorizza</span> il tuo Annuncio!</h2>
-            <p>
-                Vuoi dare una marcia in più al tuo annuncio? Ora puoi farlo con la nostra sponsorizzazione! Oltre agli abbonamenti gratuiti, offriamo opzioni di sponsorizzazione per diverse durate: Abbonamento <span class="fw-bold">Free</span>, Abbonamento <span class="fw-bold">Base</span>, Abbonamento <span class="fw-bold">Avanzato</span> e Abbonamento <span class="fw-bold">Pro</span>. Scegli la sponsorizzazione che si adatta meglio alle tue esigenze e goditi una visibilità superiore per il tuo annuncio su <span class="brand">BoolBnB</span>. Promuovi il tuo spazio ora!
-            </p>
-        </div>
-        @foreach($sponsors as $sponsor)
-        <div class="col-6 col-lg-3 cursor-pointer">
-            <div class="card {{ $sponsor->name === 'free' ? 'bg-c-blue' : ($sponsor->name === 'base' ? 'bg-c-green' : ($sponsor->name === 'avanzato' ? 'bg-c-yellow' : ($sponsor->name === 'pro' ? 'bg-c-pink' : ''))) }} order-card">
-                <div class="card-block">
-                    <h4 class="m-b-20 fw-bold text-capitalize  mb-4">{{$sponsor->name}}</h4>
-                    <h5 class="text-right mb-3"><i class="fa-regular fa-clock me-2" style="color: #5370a2;"></i><span class="fw-bold">{{$sponsor->time}} h</span></h5>
-                    <input type="radio" style="appearance: none"  name="sponsor_id" class="" value="{{$sponsor->id}}" {{ $sponsor->name === 'free' ? 'checked' : '' }} required>
-                    
-                    <p class="m-b-0">Prezzo:<span class="f-right fw-bold">{{$sponsor->price}}&euro;</span></p>
-                </div>
-            </div>
-        </div>
-        @endforeach
-        @error('sponsor')
-        <span class="text-danger d-block">{{ $message }}</span>
-        @enderror 
-    </div>
-</div>
 
 
 
@@ -59,26 +33,58 @@
 <div class="py-12">
     <form method="POST" action="{{ route('admin.braintree.processPayment', ['apartmentId' => $apartment->id]) }}">
         @csrf
+        <div class="container sponsor-container">
+            <div class="row">
+                <div class="col-12 text-center my-5">
+                    <h2 class="mb-3"><span class="brand">Sponsorizza</span> il tuo Annuncio!</h2>
+                    <p>
+                        Vuoi dare una marcia in più al tuo annuncio? Ora puoi farlo con la nostra sponsorizzazione! Oltre agli abbonamenti gratuiti, offriamo opzioni di sponsorizzazione per diverse durate: Abbonamento <span class="fw-bold">Free</span>, Abbonamento <span class="fw-bold">Base</span>, Abbonamento <span class="fw-bold">Avanzato</span> e Abbonamento <span class="fw-bold">Pro</span>. Scegli la sponsorizzazione che si adatta meglio alle tue esigenze e goditi una visibilità superiore per il tuo annuncio su <span class="brand">BoolBnB</span>. Promuovi il tuo spazio ora!
+                    </p>
+                </div>
+                @foreach($sponsors as $sponsor)
+                <div class="col-6 col-lg-3 cursor-pointer">
+                    <div class="card {{ $sponsor->name === 'free' ? 'bg-c-blue' : ($sponsor->name === 'base' ? 'bg-c-green' : ($sponsor->name === 'avanzato' ? 'bg-c-yellow' : ($sponsor->name === 'pro' ? 'bg-c-pink' : ''))) }} order-card">
+                        <div class="card-block">
+                            <h4 class="m-b-20 fw-bold text-capitalize  mb-4">{{$sponsor->name}}</h4>
+                            <h5 class="text-right mb-3"><i class="fa-regular fa-clock me-2" style="color: #5370a2;"></i><span class="fw-bold">{{$sponsor->time}} h</span></h5>
+                            <input type="radio" style="appearance: none"  name="sponsor_price" class="sponsor-radio" value="{{$sponsor->price}}" {{ $sponsor->name === 'free' ? 'checked' : '' }} required>
+                            
+                            <p class="m-b-0">Prezzo:<span class="f-right fw-bold"  id="sponsor-price-{{$sponsor->id}}">{{$sponsor->price}}&euro;</span></p>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                @error('sponsor')
+                <span class="text-danger d-block">{{ $message }}</span>
+                @enderror 
+            </div>
+            
+        </div>
+        {{-- dropin pagamento --}}
         <div id="dropin-container" style="display: flex;justify-content: center;align-items: center;"></div>
         <input type="hidden" name="payment_method_nonce" id="payment-nonce">
-        <input type="hidden" name="apartmentId" value="{{ $apartment->id }}">
+        
+       
+        
         <div style="display: flex;justify-content: center;align-items: center; color: white">
             <button type="submit" class="btn btn-sm btn-success" id="submit-button">Submit payment</button>
         </div>
     </form>
     <script>
+
         var button = document.querySelector('#submit-button');
         braintree.dropin.create({
             authorization: '{{$clientToken}}',
             container: '#dropin-container'
         }, function (createErr, instance) {
             button.addEventListener('click', function () {
-    instance.requestPaymentMethod(function (err, payload) {
+            instance.requestPaymentMethod(function (err, payload) {
+
         console.log(instance)
         if (!err) {
             // La nonce di pagamento è contenuta in payload.nonce
             var paymentNonce = payload.nonce;
-            console.log(paymentNonce)
+            
             document.getElementById('payment-nonce').value = paymentNonce;
            
             
