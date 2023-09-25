@@ -87,10 +87,13 @@
                                 <span class="" ><span class="brand">Grandezza</span> alloggio: </span><span class="fw-bold " >{{$apartment->mq}} <span class="fs-5">&#x33A1;</span> </span>
                             </li>
                             <li class="">
-                                <span class="">Numero di <span class="brand">Stanze:</span> </span> <span class="ms-2 fw-bold ">{{$apartment->n_rooms}}<i class="fa-solid fa-bed ms-2" style="color: #4f5153;"></i></span>
+                                <span class="">Numero di <span class="brand">Stanze:</span> </span> <span class="ms-2 fw-bold ">{{$apartment->n_rooms}}<i class="fa-solid fa-building ms-2 align-self-center" style="color: #4f5153;"></i></span>
                             </li>
                             <li class="">
                                 <span class="">Numero di <span class="brand">Bagni:</span> </span> <span class="ms-2 fw-bold ">{{$apartment->n_wc}}<i class="fa-solid fa-toilet-paper ms-2" style="color: #4f5153;"></i></span>
+                            </li>
+                            <li class="">
+                                <span class="">Numero di <span class="brand">Letti:</span> </span> <span class="ms-2 fw-bold ">{{$apartment->n_beds}}<i class="fa-solid fa-bed ms-2 align-self-center" style="color: #4f5153;"></i></span>
                             </li>
                         </ul>
                     
