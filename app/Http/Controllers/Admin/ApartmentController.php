@@ -257,8 +257,12 @@ public function processPayment(Request $request)
     $form_data= $request->all();
    $nonce = $request->nonce;
    
-   $sponsorId = $request->input('sponsor_id');
-
+   
+   $apartmentId = $request->input('apartmentId');; // Aggiungi questa riga per recuperare l'ID dell'appartamento
+    // Recupera l'appartamento
+    $sponsorId = $request->input('sponsor_id');
+    $apartment = Apartment::find($apartmentId);
+ 
     // Esegui la transazione con Braintree utilizzando $nonce
     $gateway = new Gateway([
         'environment' => env('BRAINTREE_ENV'),
@@ -269,9 +273,11 @@ public function processPayment(Request $request)
     
 
     // if($form_data['sponsor_id']== 1){
-   
+   if($sponsorId == 2){
+    
+
     $result = $gateway->transaction()->sale([
-        'amount' => $form_data['sponsor_price'], // Importo dell'ordine
+        'amount' => '2.99', // Importo dell'ordine
         'paymentMethodNonce' =>  'fake-valid-nonce',
         'options' => [
             'submitForSettlement' => true
@@ -287,6 +293,7 @@ public function processPayment(Request $request)
     // Gestisci la risposta da Braintree e restituisci la vista appropriata
     if ($result->success) {
         // Pagamento avvenuto con successo
+        $apartment->sponsors()->attach($sponsorId, ['start' => now(), 'end' => now()->addHours(24)]);
         return redirect()->route('admin.apartments.index'); // Personalizza con la tua vista di successo
     } else {
         // Pagamento fallito, gestisci l'errore
@@ -295,6 +302,70 @@ public function processPayment(Request $request)
         return redirect()->route('admin.home', ['errorMessage' => $errorMessage]);
     }
     
+    
+}
+if($sponsorId == 3){
+    
+
+    $result = $gateway->transaction()->sale([
+        'amount' => '5.99', // Importo dell'ordine
+        'paymentMethodNonce' =>  'fake-valid-nonce',
+        'options' => [
+            'submitForSettlement' => true
+            ]
+    ]);
+
+   
+
+   
+
+        
+  //dd($result);
+    // Gestisci la risposta da Braintree e restituisci la vista appropriata
+    if ($result->success) {
+        // Pagamento avvenuto con successo
+        $apartment->sponsors()->attach($sponsorId, ['start' => now(), 'end' => now()->addHours(72)]);
+        return redirect()->route('admin.apartments.index'); // Personalizza con la tua vista di successo
+    } else {
+        // Pagamento fallito, gestisci l'errore
+        $errorMessage = $result->message;
+        // Esegui il reindirizzamento a una pagina di errore
+        return redirect()->route('admin.home', ['errorMessage' => $errorMessage]);
+    }
+    
+    
+}
+if($sponsorId == 4){
+    
+
+    $result = $gateway->transaction()->sale([
+        'amount' => '9.99', // Importo dell'ordine
+        'paymentMethodNonce' =>  'fake-valid-nonce',
+        'options' => [
+            'submitForSettlement' => true
+            ]
+    ]);
+
+   
+
+   
+
+        
+  //dd($result);
+    // Gestisci la risposta da Braintree e restituisci la vista appropriata
+    if ($result->success) {
+        // Pagamento avvenuto con successo
+        $apartment->sponsors()->attach($sponsorId, ['start' => now(), 'end' => now()->addHours(144)]);
+        return redirect()->route('admin.apartments.index'); // Personalizza con la tua vista di successo
+    } else {
+        // Pagamento fallito, gestisci l'errore
+        $errorMessage = $result->message;
+        // Esegui il reindirizzamento a una pagina di errore
+        return redirect()->route('admin.home', ['errorMessage' => $errorMessage]);
+    }
+    
+    
+}
 }
 
 

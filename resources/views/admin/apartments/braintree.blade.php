@@ -47,8 +47,8 @@
                         <div class="card-block">
                             <h4 class="m-b-20 fw-bold text-capitalize  mb-4">{{$sponsor->name}}</h4>
                             <h5 class="text-right mb-3"><i class="fa-regular fa-clock me-2" style="color: #5370a2;"></i><span class="fw-bold">{{$sponsor->time}} h</span></h5>
-                            <input type="radio" style="appearance: none"  name="sponsor_price" class="sponsor-radio" value="{{$sponsor->price}}" {{ $sponsor->name === 'free' ? 'checked' : '' }} required>
-                            
+                            <input type="radio" style="appearance: none"  name="sponsor_id" class="" value="{{$sponsor->id}}" class="sponsor-radio" {{ $sponsor->name === 'free' ? 'checked' : '' }} required> 
+                            {{-- SE NELLA INPUT METTO NAME SPONSOR_ID E VALUE SPONSOR->ID MI RESTITUISCE L'ID SE METTO PRICE IL PREZZO, DEVO RIUSCIRE AD AVERLE ENTRAMBE --}}
                             <p class="m-b-0">Prezzo:<span class="f-right fw-bold"  id="sponsor-price-{{$sponsor->id}}">{{$sponsor->price}}&euro;</span></p>
                         </div>
                     </div>
@@ -63,7 +63,9 @@
         {{-- dropin pagamento --}}
         <div id="dropin-container" style="display: flex;justify-content: center;align-items: center;"></div>
         <input type="hidden" name="payment_method_nonce" id="payment-nonce">
-        
+        <input type="hidden" name="apartmentId" value="{{ $apartment->id }}">
+      
+
        
         
         <div style="display: flex;justify-content: center;align-items: center; color: white">
@@ -71,6 +73,8 @@
         </div>
     </form>
     <script>
+
+
 
         var button = document.querySelector('#submit-button');
         braintree.dropin.create({
