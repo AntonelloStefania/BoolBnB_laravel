@@ -35,20 +35,20 @@
                                 {{$apartment->title}}
                             </h2>
                         </div>
-                        <div class="col-12 d-flex flex-column flex-md-row ">
-                            <div class="col-12  col-md-4 d-flex align-items-center order-2 order-md-1 mx-md-3 mb-3">
-                                <img src=" {{ asset('storage/'.$apartment->cover) }}" style="border-radius:2rem; border:2px solid rgb(64, 64, 66)" width="100%" height="500px">
+                        <div class="col-12 d-flex flex-column flex-lg-row ">
+                            <div class="col-12  col-lg-4 d-flex align-items-center order-2 order-lg-1 mx-lg-3 mb-3">
+                                <img src=" {{ asset('storage/'.$apartment->cover) }}" style="border-radius:2rem; border:2px solid rgb(64, 64, 66)" width="100%" max-height="500px">
                             </div>
-                            <div class="col-12 m-0 col-md-8  text-center order-2 order-md-2  justify-content-center mb-3 " >
+                            <div class="col-12 m-0 col-lg-8  text-center order-2 order-md-2  justify-content-center mb-3 " >
                                 <div class="container gal-container ">
                                     <div class="gal-item d-flex flex-wrap justify-content-center">
                                         @foreach($photos as $photo)
                                         @if($photo->apartment_id === $apartment->id)
                                         <div class="box col-12 col-md-5 m-2  img-container  " id="add-photos">
-                                            <img src=" {{ asset('storage/'.$photo->url) }} " class="col-6" style="border-radius:1.25rem" >
+                                            <img src=" {{ asset('storage/'.$photo->url) }} " class="col-6" style="border-radius:1.25rem" max-height="300px" >
                                         
                                             <div class="btns">
-                                                <a href="{{route('admin.apartments.photos.edit', [$apartment->id, $photo->id])}}" class="blue-btn"><i class="fas fa-pencil" style="color: #d4e1f8;"></i></a>
+                                                <button type="button" class="btn blue-btn btn-sm ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="fas fa-pencil" style="color: #d4e1f8;"></i></button>
                                                 <form action="{{route('admin.apartments.photos.destroy', [$apartment->id, $photo->id])}}" onsubmit="return confirm('Press ok to confirm')" class="d-block" method="POST">
                                                     @method('DELETE')
                                                     @csrf
@@ -63,17 +63,17 @@
                             </div>
                         </div>
                     </div>
-                    
-
+                   
                     <div class="col-12 text-center mt-2 ">
-                
-                        <span>Vuoi rendere il tuo annuncio ancora più <span class="brand">irresistibile?</span> Aggiungi alcune <span class="brand">foto</span> per mostrare tutti i dettagli che rendono il tuo alloggio speciale<a href="{{route('admin.apartments.photos.create', $apartment->id)}}" class="btn blue-btn btn-sm ms-3"><i class="fas fa-plus "></i></a></span>
+                        <span>Vuoi rendere il tuo annuncio ancora più <span class="brand">irresistibile?</span> Aggiungi alcune <span class="brand">foto</span> per mostrare tutti i dettagli che rendono il tuo alloggio speciale<button type="button" class="btn blue-btn btn-sm ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-plus "></i></button></span>
                     </div>
                     <div class="col-12 text-center mt-2 ">
-                
                         <span style="font-size:12px"><span class="brand">Aggiungi </span>Foto al tuo annuncio e <span class="brand">Muoviti su di loro</span> per altre funzionalità</span>
                     </div>
+
                 </div>
+                
+     
             </div>
         </div>
         {{-- FINE SEZIONE IMMAGINI --}}
@@ -130,8 +130,16 @@
                 </div>
             </div>
         </div>
+        @include('admin.photos.create')
+        @include('admin.photos.edit')
     </section>
+    <script>
+        
+    </script>
+    
 @endsection
+
+
 
 <style lang="scss">
 .w-break{

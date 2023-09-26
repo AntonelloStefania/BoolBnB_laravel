@@ -55,7 +55,7 @@ class PhotoController extends Controller
 
         $form_data = $request->all();
         $apartment = Apartment::findOrFail($apartmentId);
-        
+        if($request->hasFile('url')){
         foreach($form_data['url'] as $file){
         $photo = new Photo();
 
@@ -67,7 +67,7 @@ class PhotoController extends Controller
         
         $photo->fill($form_data);
         $apartment->photos()->save($photo);
-    }
+    }}
         return redirect()->route('admin.apartments.show', $apartment->id);
     }
 

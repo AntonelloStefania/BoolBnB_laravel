@@ -2,6 +2,7 @@ import './bootstrap';
 import '~resources/scss/app.scss';
 import Axios from 'axios';
 import * as bootstrap from 'bootstrap';
+import { Modal } from 'bootstrap';
 import.meta.glob([
   '../img/**'
 ]);
@@ -69,7 +70,17 @@ import.meta.glob([
 //   });
 // });
 
+//PROVA MODAL PER AGGIUNTA FOTO 
+var myModal = document.getElementById('myModal')
+var myInput = document.getElementById('myInput')
 
+myModal.addEventListener('shown.bs.modal', function () {
+  myInput.focus()
+})
+
+
+
+// FINE PROVA MODAL
 
 
 
