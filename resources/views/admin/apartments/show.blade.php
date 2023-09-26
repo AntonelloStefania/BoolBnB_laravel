@@ -66,14 +66,26 @@
                     
 
                     <div class="col-12 text-center mt-2 ">
-                
-                        <span>Vuoi rendere il tuo annuncio ancora più <span class="brand">irresistibile?</span> Aggiungi alcune <span class="brand">foto</span> per mostrare tutti i dettagli che rendono il tuo alloggio speciale<a href="{{route('admin.apartments.photos.create', $apartment->id)}}" class="btn blue-btn btn-sm ms-3"><i class="fas fa-plus "></i></a></span>
+                        <span>Vuoi rendere il tuo annuncio ancora più <span class="brand">irresistibile?</span> Aggiungi alcune <span class="brand">foto</span> per mostrare tutti i dettagli che rendono il tuo alloggio speciale<button type="button" class="btn blue-btn btn-sm ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-plus "></i></button></span>
                     </div>
                     <div class="col-12 text-center mt-2 ">
                 
                         <span style="font-size:12px"><span class="brand">Aggiungi </span>Foto al tuo annuncio e <span class="brand">Muoviti su di loro</span> per altre funzionalità</span>
                     </div>
+
                 </div>
+                <div class="col-12">
+                    <!-- Button trigger modal -->
+                  
+{{-- 
+                    <a type="button"  href="{{route('admin.apartments.photos.create', $apartment->id)}}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_2">
+                        Launch demo modal
+                    </a>
+                     --}}
+                     {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Launch demo modal
+                    </button>
+     --}}
             </div>
         </div>
         {{-- FINE SEZIONE IMMAGINI --}}
@@ -130,8 +142,15 @@
                 </div>
             </div>
         </div>
+        @include('admin.photos.create')
     </section>
+    <script>
+        
+    </script>
+    
 @endsection
+
+
 
 <style lang="scss">
 .w-break{
