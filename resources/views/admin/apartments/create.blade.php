@@ -533,7 +533,7 @@
                     
                     <span class="drop-title ">Sposta qui l'immagine</span>
                     oppure
-                    <input type="file" id="images"  name="cover"  class="blue-btn" accept="image/*" >
+                    <input type="file" id="images"  name="cover"  class="blue-btn col-8" accept="image/*" >
                     @error('cover')
                         <span class="text-danger d-block">{{ $message }}</span>
                     @enderror 
