@@ -228,7 +228,7 @@ class ApartmentController extends Controller
 {
     // Recupera l'appartamento in base all'ID
     $apartment = Apartment::find($apartmentId);
-    $sponsors = Sponsor::all();
+    $sponsors = Sponsor::where('id', '>', 1)->get();
     if (!$apartment) {
         // Gestisci il caso in cui l'appartamento non esista
     }

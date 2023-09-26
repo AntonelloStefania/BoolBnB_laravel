@@ -588,6 +588,7 @@
             </p>
         </div>
         @foreach($sponsors as $sponsor)
+     
         <div class="col-6 col-lg-3 cursor-pointer">
             <div class="card {{ $sponsor->name === 'free' ? 'bg-c-blue' : ($sponsor->name === 'base' ? 'bg-c-green' : ($sponsor->name === 'avanzato' ? 'bg-c-yellow' : ($sponsor->name === 'pro' ? 'bg-c-pink' : ''))) }} order-card">
                 <div class="card-block">
@@ -598,6 +599,7 @@
                 </div>
             </div>
         </div>
+     
         @endforeach
         @error('sponsor')
         <span class="text-danger d-block">{{ $message }}</span>
