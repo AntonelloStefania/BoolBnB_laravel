@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Facades\Support\DB;
 
 use App\Models\Apartment;
+use App\Models\Service;
 
 class ApartmentController extends Controller
 {
@@ -206,6 +207,16 @@ public function allIndex(){
                 'message' => 'Si è verificato un errore durante la ricerca degli appartamenti.'
             ]);
         }
+    }
+
+    public function recuperaServizi(){
+        $services = Service::all();
+
+        // Restituisci i dati come risposta JSON
+        return response()->json([
+            'success' => true,
+            'results' => $services,
+        ]);
     }
 
 
