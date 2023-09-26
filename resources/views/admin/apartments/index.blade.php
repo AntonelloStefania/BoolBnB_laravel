@@ -118,6 +118,7 @@
             </div>
         </div>
 
+
         
         
     </div>
@@ -191,7 +192,6 @@
     .card-container::-webkit-scrollbar {
     display: none; /* Nasconde la scrollbar in Webkit */
 }
-
 
 
 </style>

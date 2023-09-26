@@ -649,7 +649,7 @@
 		
 		<div class="footer-informazioni">
 		 <div>
-            <h1>BOOLBNB</h1>
+            <h2>BoolBnB</h2>
         </div>
 			
 		  <p class="margin-bot-15px descrizione">I valori fondamentali di BoolBnB includono l'eccellenza nell'ospitalità, la soddisfazione del cliente e la trasparenza. BoolBnB si impegna a offrire servizi di alta qualità e alloggi ben curati per garantire un'esperienza memorabile ai suoi ospiti. La compagnia promuove la fiducia attraverso recensioni autentiche e una comunicazione aperta. Inoltre, BoolBnB abbraccia la diversità e promuove la connessione tra culture, offrendo alloggi unici in tutto il mondo per un'esperienza autentica e stimolante. 
@@ -893,7 +893,6 @@ ul li{
 }
 
 html,body{
-	font-family: 'Roboto Slab', serif;
 	color:#666 /*color-text*/;
 	height:100%;
 	width:100%;
@@ -926,7 +925,7 @@ h1{
 }
 
 #footer-large a:hover{
-	color:#FFADA6; /* light seconday color*/	
+	color:#ebb098; /* light seconday color*/	
 }
 
 #footer-large .credits {
@@ -959,7 +958,7 @@ h1{
 	height: 32px;
 	width: 32px;
 	border-radius: 6em;
-	background-color:#e49c96; /* secondary-color*/
+	background-color:#ebb098; /* secondary-color*/
 }
 
 #footer-large .social-cont .social-list li img {
@@ -997,7 +996,7 @@ background:#718dd8; /* light seconday color*/
 
 #footer-large .footer-menu{
 	padding: 15px 0;
-	border-bottom: 1px solid #e49c96;
+	border-bottom: 1px solid #ebb098;
 		border-left: 10px solid #718dd8;/* primary color*/
     border-right: 10px solid #718dd8;/* primary color*/
     -moz-box-sizing: border-box;
