@@ -33,15 +33,15 @@
         </div>
         <div class="card-container container ">
             <div class="row justify-content-center">
-                <div class="col-8">
+                <div class="col-12 col-md-10 col-xlg-4">
                     @foreach($apartments as $apartment)
                     <div class="card float-right">
                         <div class="row">
-                            <div class="col-md-5 ">
+                            <div class="col-12 col-lg-5 ">
                                 <img class="d-block w-100 m-0 m-lg-3 card-img" height="350px" src="{{ asset('storage/'.$apartment->cover) }}" alt="">
                             </div>
-                          <div class="col-md-7">
-                                <div class="card-block home-text">
+                          <div class="col-lg-7 col-12 text-center text-lg-start">
+                                <div class="card-block home-text ">
                                     <div class="card-title">
                                         <h3 class="">{{$apartment->title}}</h3>
                                     </div>
