@@ -21,7 +21,7 @@
                      
                   <span class="drop-title">Sposta qui le immagini</span>
                   oppure
-                  <input type="file" name="url[]" id="photo" multiple>
+                  <input class="col-8 blue-btn" type="file" name="url[]" id="photo" multiple>
                      
                   </label>
                    
