@@ -28,3 +28,4 @@ Route::get('/coordinate-apartments', [ApartmentController::class,'recuperaCoordi
 Route::get('/all-filtered-apartments', [ApartmentController::class,'recuperaTuttiIndirizzi']); //<---ROTTA ADDRESS
 Route::get('/filtered-apartments', [ApartmentController::class,'recuperaIndirizzo']); //<---ROTTA ADDRESS HOME
 Route::post('/messages',[MessageController::class,'store']); //<---ROTTA MESSAGES
+

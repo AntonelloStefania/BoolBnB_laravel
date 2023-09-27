@@ -55,14 +55,16 @@
                                         <p><h6 class="d-inline fw-bold">Pubblicato il: </h6>{{$apartment->created_at}}</p>
                                     </div>
                                     <div class="d-flex flex-row flex-lg-column justify-content-md-center justify-content-around align-items-center">
-                                        <div class="col-md-4 col-lg-12" >
+                                        <div class="my-4 col-md-3 col-lg-12" >
+                                            <a href="{{route('admin.messages.show',  $apartment->id)}}" class="blue-btn"><i class="fa-solid fa-envelope" style="color: #d4e1f8;"></i><span class="d-none d-lg-inline ms-2">Messaggi</span></a>
+                                        </div>
+                                        <div class="col-md-3 col-lg-12" >
                                             <a href="{{route('admin.apartments.show', $apartment->id)}}" class="blue-btn"><i class="fa-regular fa-eye me-0 me-lg-2" style="color: #d4e1f8;"></i><span class="d-none d-lg-inline">Dettagli</span></a>
                                         </div>
-                                        <div class="my-4 col-md-4 col-lg-12">
-                                            <a href="{{route('admin.apartments.edit', $apartment->id)}}" class="blue-btn"><i class="fas fa-pencil me-0 me-lg-2" style="color: #d4e1f8;"></i><span class="d-none d-lg-inline">Modifica</span></a>
+                                        <div class="my-4 col-md-3 col-lg-12">
+                                            <a href="{{route('admin.apartments.edit', $apartment->id)}}" class="blue-btn"><i class="fas fa-pencil me-0 me-lg-2" style="color: #d3e1f8;"></i><span class="d-none d-lg-inline">Modifica</span></a>
                                         </div>
-                                        
-                                        <div class="col-md-4 col-lg-12">
+                                        <div class="col-md-3 col-lg-12">
                                             <form action="{{route('admin.apartments.destroy', $apartment->id)}}" onsubmit="return confirm('Press ok to confirm')" class="d-block" method="POST">
                                                 @method('DELETE')
                                                 @csrf
