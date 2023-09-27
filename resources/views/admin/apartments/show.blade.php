@@ -48,7 +48,7 @@
                                             <img src=" {{ asset('storage/'.$photo->url) }} " class="col-6" style="border-radius:1.25rem" max-height="300px" >
                                         
                                             <div class="btns">
-                                                <button type="button" class="btn blue-btn btn-sm ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="fas fa-pencil" style="color: #d4e1f8;"></i></button>
+                                                {{-- <button type="button" class="btn blue-btn btn-sm ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="fas fa-pencil" style="color: #d4e1f8;"></i></button> --}}
                                                 <form action="{{route('admin.apartments.photos.destroy', [$apartment->id, $photo->id])}}" onsubmit="return confirm('Press ok to confirm')" class="d-block" method="POST">
                                                     @method('DELETE')
                                                     @csrf
@@ -131,7 +131,7 @@
             </div>
         </div>
         @include('admin.photos.create')
-        @include('admin.photos.edit')
+        {{-- @include('admin.photos.edit') --}}
     </section>
     <script>
         

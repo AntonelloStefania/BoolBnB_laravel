@@ -70,13 +70,13 @@ import.meta.glob([
 //   });
 // });
 
-//PROVA MODAL PER AGGIUNTA FOTO 
-var myModal = document.getElementById('myModal')
-var myInput = document.getElementById('myInput')
+//PROVA MODAL PER AGGIUNTA FOTO <----------------------SE DECOMMENTATA NON PERMETTE DI SCEGLIERE SPONSOR
+// var myModal = document.getElementById('myModal')
+// var myInput = document.getElementById('myInput')
 
-myModal.addEventListener('shown.bs.modal', function () {
-  myInput.focus()
-})
+// myModal.addEventListener('shown.bs.modal', function () {
+//   myInput.focus()
+// })
 
 
 
