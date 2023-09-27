@@ -23,7 +23,7 @@ public function index()
         ->whereHas('sponsors', function ($query) use ($sponsorIds) {
             $query->whereIn('sponsor_id', $sponsorIds);
         })
-        ->with(['type', 'sponsors' => function ($query) use ($sponsorIds) {
+        ->with(['type','services', 'sponsors' => function ($query) use ($sponsorIds) {
             $query->whereIn('sponsor_id', $sponsorIds);
         }])
         ->get();
@@ -49,7 +49,7 @@ public function allIndex(){
 
     $apartments = Apartment::where('visibility', 1)
      
-        ->with(['type', 'sponsors'])
+        ->with(['type', 'sponsors','services'])
         ->get();
 
     // Ordina l'array di appartamenti in base all'ID dello sponsor
