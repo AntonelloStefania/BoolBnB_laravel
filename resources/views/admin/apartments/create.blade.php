@@ -371,7 +371,7 @@
                                     </div>
                                 <div class="col-12 ">
                                     <label class="control-label mb-2 fw-bold"><span class="brand">Titolo</span> Annuncio:</label>
-                                    <input type="text" id="title" name="title" class="form-control" value="{{old('title')}}">
+                                    <input type="text" id="title" name="title" class="form-control border-0 bg-light" value="{{old('title')}}">
                                     
                                 </div>
                                 <div>
@@ -381,7 +381,7 @@
                                 </div>
                                 <div class="col-12 ">
                                     <label class="control-label fw-bold mb-2 mt-5"><span class="brand">Descrizione</span> Alloggio:</label>
-                                    <textarea class="form-control" name="description" id="" cols="30" rows="10">{{old('description')}}</textarea>   
+                                    <textarea class="form-control border-0 bg-light" name="description" id="" cols="30" rows="10">{{old('description')}}</textarea>   
                                 </div>
                             </div>
                             <div class="col-12 col-lg-3 col-md-6 d-flex flex-column mt-5 mt-lg-0">
@@ -392,7 +392,7 @@
                                 <div class="col-12 mb-3 text-center">
                                     <label class="control-label fw-bold mb-2  " for="name"><span class="brand">Grandezza</span> Alloggio: </label>
                                     <div class="d-flex justify-content-center">
-                                        <input type="number" id="mq" name="mq" class="form-control" style="width:4.25rem" value="{{old('mq')}}"><span class="align-self-center fw-bold ms-2"> &#x33A1;</span>
+                                        <input type="number" id="mq" name="mq" class="form-control border-0 bg-light" style="width:4.25rem" value="{{old('mq')}}"><span class="align-self-center fw-bold ms-2"> &#x33A1;</span>
                                        
                                     </div>
                                     <div>
@@ -405,7 +405,7 @@
                                 <div class="col-12 mb-3 text-center">
                                     <label class="control-label fw-bold mb-2">Numero di <span class="brand">Stanze</span></label>
                                     <div class="d-flex justify-content-center">
-                                        <input type="number" id="n_rooms" name="n_rooms" class="form-control" style="width:4.25rem" value="{{old('n_rooms')}}"><i class="fa-solid fa-building ms-2 align-self-center" style="color: #4f5153;"></i>
+                                        <input type="number" id="n_rooms" name="n_rooms" class="form-control border-0 bg-light" style="width:4.25rem" value="{{old('n_rooms')}}"><i class="fa-solid fa-building ms-2 align-self-center" style="color: #4f5153;"></i>
                                        
                                     </div>
                                     <div>
@@ -419,7 +419,7 @@
                                 <div class="col-12 mb-3 text-center">
                                     <label class="control-label fw-bold mb-2">Numero di <span class="brand">Bagni</span>: </label>
                                     <div class="d-flex justify-content-center">
-                                        <input type="number" id="n_wc" name="n_wc" class="form-control" style="width:4.25rem" value="{{old('n_wc')}}"><i class="fa-solid fa-toilet-paper ms-2 align-self-center" style="color: #4f5153;"></i>
+                                        <input type="number" id="n_wc" name="n_wc" class="form-control border-0 bg-light" style="width:4.25rem" value="{{old('n_wc')}}"><i class="fa-solid fa-toilet-paper ms-2 align-self-center" style="color: #4f5153;"></i>
                                         
                                     </div>
                                     <div>
@@ -433,7 +433,7 @@
                                 <div class="col-12 mb-3 text-center">
                                     <label class="control-label fw-bold mb-2">Numero di <span class="brand">Letti</span>: </label>
                                     <div class="d-flex justify-content-center">
-                                        <input type="number" id="n_beds" name="n_beds" class="form-control" style="width:4.25rem" value="{{old('n_beds')}}"><i class="fa-solid fa-bed ms-2 align-self-center" style="color: #4f5153;"></i>
+                                        <input type="number" id="n_beds" name="n_beds" class="form-control border-0 bg-light" style="width:4.25rem" value="{{old('n_beds')}}"><i class="fa-solid fa-bed ms-2 align-self-center" style="color: #4f5153;"></i>
                                         
                                     </div>
                                     <div>
@@ -451,7 +451,7 @@
                                 <div class="col-12 mb-3 text-center">
                                     
                                     <div class="d-flex justify-content-center">
-                                        <input type="ratio" list="suggestions" id="address" name="address" class="form-control" value="{{old('address')}}" >   
+                                        <input type="ratio" list="suggestions" id="address" name="address" class="form-control border-0 bg-light" value="{{old('address')}}" >   
                                         <datalist id="suggestions">
                                         </datalist>                                    
                                     </div>
@@ -462,15 +462,15 @@
                                     </div>
                                       {{-- INPUT LON LAT --}}
                                       <div>
-                                        <input type="hidden" name="lon" id="lon" class="form-control"  value="">
-                                        <input type="hidden" name="lat" id="lat" class="form-control"  value="">
+                                        <input type="hidden" name="lon" id="lon" class="form-control border-0 bg-light"  value="">
+                                        <input type="hidden" name="lat" id="lat" class="form-control border-0 bg-light"  value="">
                                     </div>
                                 </div>
                                 <div class="col-12 text-center mt-5">
                                     <h2><span class="brand">Prezzo</span> per Notte</h2>
                                     
                                     <div class="d-flex justify-content-center">
-                                        <input type="text" id="price" name="price" class="form-control" style="width:4.25rem" value="{{old('price')}}" ><span class="fw-bold d-flex align-items-center ms-2">&euro;</span>                               
+                                        <input type="text" id="price" name="price" class="form-control border-0 bg-light" style="width:4.25rem" value="{{old('price')}}" ><span class="fw-bold d-flex align-items-center ms-2">&euro;</span>                               
                                     </div>
                                     <div>
                                         @error('price')
@@ -533,7 +533,7 @@
                     
                     <span class="drop-title ">Sposta qui l'immagine</span>
                     oppure
-                    <input type="file" id="images"  name="cover"  class="blue-btn col-8" accept="image/*" >
+                    <input type="file" id="images"  name="cover"  class="form-control border-0 bg-light col-8" accept="image/*" >
                     @error('cover')
                         <span class="text-danger d-block">{{ $message }}</span>
                     @enderror 

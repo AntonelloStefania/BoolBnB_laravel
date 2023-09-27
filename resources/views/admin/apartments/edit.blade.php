@@ -48,7 +48,7 @@
                                     </div>
                                 <div class="col-12 ">
                                     <label class="control-label mb-2 fw-bold"><span class="brand">Titolo</span> Annuncio:</label>
-                                    <input type="text" id="title" name="title" class="form-control" value="{{old('title') ?? $apartment->title}}">
+                                    <input type="text" id="title" name="title" class="form-control border-0 bg-light" value="{{old('title') ?? $apartment->title}}">
                                     
                                 </div>
                                 <div>
@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="col-12 ">
                                     <label class="control-label fw-bold mb-2 mt-5"><span class="brand">Descrizione</span> Alloggio:</label>
-                                    <textarea class="form-control" name="description" id="" cols="30" rows="10">{{old('description') ?? $apartment->description }}</textarea>   
+                                    <textarea class="form-control border-0 bg-light" name="description" id="" cols="30" rows="10">{{old('description') ?? $apartment->description }}</textarea>   
                                 </div>
                             </div>
                             <div class="col-12 col-lg-3 col-md-6 d-flex flex-column mt-5 mt-lg-0">
@@ -69,7 +69,7 @@
                                 <div class="col-12 mb-3 text-center">
                                     <label class="control-label fw-bold mb-2  " for="name"><span class="brand">Grandezza</span> Alloggio: </label>
                                     <div class="d-flex justify-content-center">
-                                        <input type="number" id="mq" name="mq" class="form-control" style="width:4.25rem" value="{{old('mq') ?? $apartment->mq}}"><span class="align-self-center fw-bold ms-2"> &#x33A1;</span>
+                                        <input type="number" id="mq" name="mq" class="form-control border-0 bg-light" style="width:4.25rem" value="{{old('mq') ?? $apartment->mq}}"><span class="align-self-center fw-bold ms-2"> &#x33A1;</span>
                                        
                                     </div>
                                     <div>
@@ -82,7 +82,7 @@
                                 <div class="col-12 mb-3 text-center">
                                     <label class="control-label fw-bold mb-2">Numero di <span class="brand">Stanze</span></label>
                                     <div class="d-flex justify-content-center">
-                                        <input type="number" id="n_rooms" name="n_rooms" class="form-control" style="width:4.25rem" value="{{old('n_rooms') ?? $apartment->n_rooms}}"><i class="fa-solid fa-building ms-2 align-self-center" style="color: #4f5153; "></i>
+                                        <input type="number" id="n_rooms" name="n_rooms" class="form-control border-0 bg-light" style="width:4.25rem" value="{{old('n_rooms') ?? $apartment->n_rooms}}"><i class="fa-solid fa-building ms-2 align-self-center" style="color: #4f5153; "></i>
                                        
                                     </div>
                                     <div>
@@ -96,7 +96,7 @@
                                 <div class="col-12 mb-3 text-center">
                                     <label class="control-label fw-bold mb-2">Numero di <span class="brand">Bagni</span>: </label>
                                     <div class="d-flex justify-content-center">
-                                        <input type="number" id="n_wc" name="n_wc" class="form-control" style="width:4.25rem" value="{{old('n_wc') ?? $apartment->n_wc}}"><i class="fa-solid fa-toilet-paper ms-2 align-self-center" style="color: #4f5153;"></i>
+                                        <input type="number" id="n_wc" name="n_wc" class="form-control border-0 bg-light" style="width:4.25rem" value="{{old('n_wc') ?? $apartment->n_wc}}"><i class="fa-solid fa-toilet-paper ms-2 align-self-center" style="color: #4f5153;"></i>
                                         
                                     </div>
                                     <div>
@@ -109,7 +109,7 @@
                                 <div class="col-12 mb-3 text-center">
                                     <label class="control-label fw-bold mb-2">Numero di <span class="brand">Letti</span>: </label>
                                     <div class="d-flex justify-content-center">
-                                        <input type="number" id="n_beds" name="n_beds" class="form-control" style="width:4.25rem" value="{{old('n_beds') ?? $apartment->n_beds}}"><i class="fa-solid fa-bed ms-2 align-self-center" style="color: #4f5153;"></i>
+                                        <input type="number" id="n_beds" name="n_beds" class="form-control border-0 bg-light" style="width:4.25rem" value="{{old('n_beds') ?? $apartment->n_beds}}"><i class="fa-solid fa-bed ms-2 align-self-center" style="color: #4f5153;"></i>
                                     </div>
                                     <div>
                                         @error('n_beds')
@@ -126,7 +126,7 @@
                                 <div class="col-12 mb-3 text-center">
                                     
                                     <div class="d-flex justify-content-center">
-                                        <input type="ratio" list="suggestions" id="address" name="address" class="form-control" value="{{old('address') ?? $apartment->address}}" >   
+                                        <input type="ratio" list="suggestions" id="address" name="address" class="form-control border-0 bg-light" value="{{old('address') ?? $apartment->address}}" >   
                                         <datalist id="suggestions">
                                         </datalist>                                    
                                     </div>
@@ -145,7 +145,7 @@
                                     <h2><span class="brand">Prezzo</span> per Notte</h2>
                                     
                                     <div class="d-flex justify-content-center">
-                                        <input type="text" id="price" name="price" class="form-control" style="width:4.25rem" value="{{old('price') ?? $apartment->price}}" ><span class="fw-bold d-flex align-items-center ms-2">&euro;</span>                               
+                                        <input type="text" id="price" name="price" class="form-control border-0 bg-light" style="width:4.25rem" value="{{old('price') ?? $apartment->price}}" ><span class="fw-bold d-flex align-items-center ms-2">&euro;</span>                               
                                     </div>
                                     <div>
                                         @error('price')
@@ -220,7 +220,7 @@
                         
                         <span class="drop-title">Sposta qui l'immagine</span>
                         oppure
-                        <input type="file" id="images"  name="cover" value="{{ $apartment->cover }}" class="blue-btn" accept="image/*" >
+                        <input type="file" id="images"  name="cover" value="{{ $apartment->cover }}" class="form-control border-0 bg-light" accept="image/*" >
                         @error('cover')
                             <span class="text-danger d-block">{{ $message }}</span>
                         @enderror 
@@ -249,6 +249,7 @@
                 <div class="col-6 text-center col-md-4 d-flex my-3 flex-column align-items-center ">
                     <label class="form-check-label pb-2 position-relative d-flex change-cursor justify-content-center align-items-center {{ $service->id == old('service_id', $apartment->service_id) ? 'service-bg' : '' }}" style="width:50px; height:50px;" for="flexSwitchCheck-{{$service->id}}">
                         <input class="form-check-input m-1"  type="checkbox"  role="" name="name[]" style=" border:none; background-color:transparent; width:35px; height:35px;" value='{{ $service->id }}' {{$errors->any() ? (in_array($service->id, old('name', [])) ? 'checked' : '') : ($apartment->services->contains($service) ? 'checked' : '') }} id="flexSwitchCheck-{{$service->id}}" data-service-id="{{$service->id}}" >
+                       
                         <img src="{{$service->icons}}" style="width:50px; height:50px; border: 2px solid transparent;" alt="" class="position-absolute clickable-service" data-checkbox-id="flexSwitchCheck-{{$service->id}}">
                     </label>
                     <span>{{$service->name}}</span>
