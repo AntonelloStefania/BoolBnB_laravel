@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Facades\Support\DB;
 
 use App\Models\Apartment;
+use App\Models\Service;
 
 class ApartmentController extends Controller
 {
@@ -103,61 +105,81 @@ public function allIndex(){
     //funzione recupero indirizzo per filtro su appartamenti
     public function recuperaTuttiIndirizzi(Request $request)
     {
+        $data = $request->all();
+        $validator= Validator::make($data,[
+            'mq'=>'min:1|max:25',
+            'rooms'=>'min:1|max:25',
+            'wc'=>'min:1|max:25',
+            'beds'=>'min:1|max:25',
+        ]);
+        if($validator->fails()){
+            return response()->json([
+                'success'=>false,
+                'error'=>$validator->errors()
+            ]);
+    
+        }else{
         try {
-            // Ottieni tutti i dati dalla richiesta
-            $min_lon = $request->input('min_lon', null);
-            $max_lon = $request->input('max_lon', null);
-            $min_lat = $request->input('min_lat', null);
-            $max_lat = $request->input('max_lat', null);
-            $wc = $request->input('wc', null);
-            $rooms = $request->input('rooms', null);
-            $mq = $request->input('mq', null);
-            $beds = $request->input('beds', null);
-    
-            // Esegui la query per recuperare gli appartamenti filtrati
-            $apartments = Apartment::where('visibility', 1)
-                ->when($min_lon !== null && $max_lon !== null, function ($query) use ($min_lon, $max_lon) {
-                    return $query->whereBetween('lon', [$min_lon, $max_lon]);
-                })
-                ->when($min_lat !== null && $max_lat !== null, function ($query) use ($min_lat, $max_lat) {
-                    return $query->whereBetween('lat', [$min_lat, $max_lat]);
-                })
-                ->when($wc !== null, function ($query) use ($wc) {
-                    return $query->where('n_wc', '>=', $wc);
-                })
-                ->when($rooms !== null, function ($query) use ($rooms) {
-                    return $query->where('n_rooms', '>=', $rooms);
-                })
-                ->when($mq !== null, function ($query) use ($mq) {
-                    return $query->where('mq', '>=', $mq);
-                })
-                ->when($beds !== null, function ($query) use ($beds) {
-                    return $query->where('n_beds', '>=', $beds);
-                })
-                ->with('type')
-                ->get();
-    
-            // Verifica se ci sono risultati
-            if ($apartments->isEmpty()) {
+                // Ottieni tutti i dati dalla richiesta
+                $min_lon = $request->input('min_lon', null);
+                $max_lon = $request->input('max_lon', null);
+                $min_lat = $request->input('min_lat', null);
+                $max_lat = $request->input('max_lat', null);
+                $wc = $request->input('wc', null);
+                $rooms = $request->input('rooms', null);
+                $mq = $request->input('mq', null);
+                $beds = $request->input('beds', null);
+                $services = $request->input('services', null);
+        
+                // Esegui la query per recuperare gli appartamenti filtrati
+                $apartments = Apartment::where('visibility', 1)
+                    ->when($min_lon !== null && $max_lon !== null, function ($query) use ($min_lon, $max_lon) {
+                        return $query->whereBetween('lon', [$min_lon, $max_lon]);
+                    })
+                    ->when($min_lat !== null && $max_lat !== null, function ($query) use ($min_lat, $max_lat) {
+                        return $query->whereBetween('lat', [$min_lat, $max_lat]);
+                    })
+                    ->when($wc !== null, function ($query) use ($wc) {
+                        return $query->where('n_wc', '>=', $wc);
+                    })
+                    ->when($rooms !== null, function ($query) use ($rooms) {
+                        return $query->where('n_rooms', '>=', $rooms);
+                    })
+                    ->when($mq !== null, function ($query) use ($mq) {
+                        return $query->where('mq', '>=', $mq);
+                    })
+                    ->when($beds !== null, function ($query) use ($beds) {
+                        return $query->where('n_beds', '>=', $beds);
+                    })
+                    ->when($services !== null, function ($query) use ($services) {
+                        $query->whereHas('services', function ($query) use ($services) {
+                            return $query->whereIn('service_id', $services);
+                        }, '>=', count($services)); // aggiungi questo parametro
+                    })
+                    ->with('type', 'services')
+                    ->get();
+        
+                // Verifica se ci sono risultati
+                if ($apartments->isEmpty()) {
+                    return response()->json([
+                        'success' => true,
+                        'message' => 'Nessun appartamento trovato con i criteri specificati.'
+                    ]);
+                }
+        
+                // Restituisci i dati come risposta JSON
                 return response()->json([
                     'success' => true,
-                    'message' => 'Nessun appartamento trovato con i criteri specificati.'
+                    'results' => $apartments
+                ]);
+            } catch (\Exception $e) {
+                // Gestisci gli errori e restituisci una risposta di errore
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Si è verificato un errore durante la ricerca degli appartamenti.',
                 ]);
             }
-    
-            // Restituisci i dati come risposta JSON
-            return response()->json([
-                'success' => true,
-                'results' => $apartments
-            ]);
-        } catch (\Exception $e) {
-            // Gestisci gli errori e restituisci una risposta di errore
-            return response()->json([
-                'success' => false,
-                'message' => 'Si è verificato un errore durante la ricerca degli appartamenti.',
-                'prova' => $wc,
-            ]);
-        }
+        };
     }
 
     //Variante con solo gli appartamenti in evidenza
@@ -207,5 +229,17 @@ public function allIndex(){
             ]);
         }
     }
+
+    public function recuperaServizi(){
+        $services = Service::all();
+
+        // Restituisci i dati come risposta JSON
+        return response()->json([
+            'success' => true,
+            'results' => $services,
+        ]);
+    }
+
+
     
 }
