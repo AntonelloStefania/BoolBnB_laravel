@@ -9,6 +9,7 @@ use Illuminate\Facades\Support\DB;
 
 use App\Models\Apartment;
 use App\Models\Service;
+use App\Models\Sponsor;
 
 class ApartmentController extends Controller
 {
@@ -17,7 +18,13 @@ class ApartmentController extends Controller
 
 public function index()
 {
-    $sponsorIds = [2, 3, 4]; 
+    $sponsorIds = []; 
+    $sponsors = Sponsor::where('name', '!=', 'free')->get();
+    $length = count($sponsors);
+    for($i=0; $i<$length; $i++){
+        $sponsor = $sponsors[$i];
+        $sponsorIds[] = $sponsor->id;
+    }
 
     $apartments = Apartment::where('visibility', 1)
         ->whereHas('sponsors', function ($query) use ($sponsorIds) {
@@ -90,8 +97,26 @@ public function allIndex(){
     //funzione recupero coordinate per marker su mappa
     public function recuperaCoordinate()
     {
+        $sponsorIds = []; 
+        $sponsors = Sponsor::where('name', '!=', 'free')->get();
+        $length = count($sponsors);
+        for($i=0; $i<$length; $i++){
+            $sponsor = $sponsors[$i];
+            $sponsorIds[] = $sponsor->id;
+        }
+
         // Recupera le coordinate lat e lon degli appartamenti dal tuo database
-        $coordinate = Apartment::select('lat', 'lon')->get();
+        $coordinate = Apartment::where('visibility', 1)
+        ->select('lat', 'lon')
+        ->whereHas('sponsors', function ($query) use ($sponsorIds) {
+            $query->whereIn('sponsor_id', $sponsorIds);
+        })
+        ->with(['type', 'sponsors' => function ($query) use ($sponsorIds) {
+            $query->whereIn('sponsor_id', $sponsorIds);
+        }])
+        ->get();
+
+        // $coordinate = Apartment::select('lat', 'lon')->get();
 
         // Restituisci i dati come risposta JSON
         return response()->json([
@@ -188,7 +213,13 @@ public function allIndex(){
         try {
             // Ottieni tutti i dati dalla richiesta
             $data = $request->all();
-            $sponsorIds = [2, 3, 4]; 
+            $sponsorIds = []; 
+            $sponsors = Sponsor::where('name', '!=', 'free')->get();
+            $length = count($sponsors);
+            for($i=0; $i<$length; $i++){
+                $sponsor = $sponsors[$i];
+                $sponsorIds[] = $sponsor->id;
+            }
     
             // Estrai i parametri di latitudine e longitudine dai dati
             $min_lat = $data['min_lat'];
