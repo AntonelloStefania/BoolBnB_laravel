@@ -579,7 +579,7 @@
     
     {{-- SPONSOR --}}
 
-<div class="container sponsor-container">
+{{-- <div class="container sponsor-container">
     <div class="row">
         <div class="col-12 text-center my-5">
             <h2 class="mb-3"><span class="brand">Sponsorizza</span> il tuo Annuncio!</h2>
@@ -604,7 +604,7 @@
         @error('sponsor')
         <span class="text-danger d-block">{{ $message }}</span>
         @enderror 
-    </div>
+    </div> --}}
 </div>
     {{-- FINE SPONSOR --}}
 

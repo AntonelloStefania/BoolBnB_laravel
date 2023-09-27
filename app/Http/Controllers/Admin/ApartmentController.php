@@ -59,11 +59,11 @@ class ApartmentController extends Controller
     {
         $types=Type::all();
         $services= Service::all();
-        $sponsors=Sponsor::all();
+        // $sponsors=Sponsor::all();
         $user=Auth::user();
        
 
-        return view('admin.apartments.create', compact('types','services','sponsors','user'));
+        return view('admin.apartments.create', compact('types','services','user'));
     }
 
     /**
@@ -76,7 +76,7 @@ class ApartmentController extends Controller
     {
         $form_data = $request->all();
         $apartment = new Apartment();
-        $sponsors = Sponsor::all();
+        // $sponsors = Sponsor::all();
 
         if($request->hasFile('cover')){
             $path=Storage::put('apartment_photos',$request->cover);
@@ -92,18 +92,18 @@ class ApartmentController extends Controller
         if($request->has('name')){
             $apartment->services()->attach($request->name);
         }
-        if($request->has('sponsor_id')){
-            $time= '';
-            $length= count($sponsors);
-            for($i=0; $i<$length;  $i++){
-                $sponsor= $sponsors[$i];
+        // if($request->has('sponsor_id')){
+        //     $time= '';
+        //     $length= count($sponsors);
+        //     for($i=0; $i<$length;  $i++){
+        //         $sponsor= $sponsors[$i];
 
-                if($sponsor->id == $request->sponsor_id){
-                    $time = intval($sponsor->time);
-                }
-            }
-            $apartment->sponsors()->attach($request->sponsor_id, ['start' => date("m-d-Y h:i:s"),'end' => date("m-d-Y h:i:s", mktime(date('h') + $time , date("i"), date("s"), date("m"), date("d"), date("Y")))]);
-        }
+        //         if($sponsor->id == $request->sponsor_id){
+        //             $time = intval($sponsor->time);
+        //         }
+        //     }
+        //     $apartment->sponsors()->attach($request->sponsor_id, ['start' => date("m-d-Y h:i:s"),'end' => date("m-d-Y h:i:s", mktime(date('h') + $time , date("i"), date("s"), date("m"), date("d"), date("Y")))]);
+        // }
         return redirect()->route('admin.apartments.index');
     }
 
