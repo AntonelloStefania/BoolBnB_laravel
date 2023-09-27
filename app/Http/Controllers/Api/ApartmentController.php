@@ -207,7 +207,5 @@ public function allIndex(){
             ]);
         }
     }
-
-
     
 }

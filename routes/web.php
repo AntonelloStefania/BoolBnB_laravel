@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\BraintreeController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SponsorController;
 use App\Http\Controllers\Admin\PhotoController;
+use App\Http\Controllers\Admin\MessageController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\DashboardController;
 
@@ -49,6 +50,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     // Route::any('/sponsor', [BraintreeController::class, 'processPayment'])->name('processPayment');
     Route::get('/apartments/{apartmentId}/payment', [ApartmentController::class, 'showPaymentForm'])->name('apartments.braintree');
     Route::post('/apartments/{apartmentId}/payment',[ApartmentController::class,'processPayment'])->name('braintree.processPayment');
+    Route::get('/apartments/{apartmentId}/messages', [MessageController::class, 'showApartmentMessages'])->name('messages.show');
 });
 
 Route::middleware('auth')->group(function () {
