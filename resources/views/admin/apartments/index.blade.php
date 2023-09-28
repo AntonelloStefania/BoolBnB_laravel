@@ -37,8 +37,15 @@
                     @foreach($apartments as $apartment)
                     <div class="card float-right">
                         <div class="row">
-                            <div class="col-12 col-lg-5 ">
+                            <div class="col-12 col-lg-5  ">
                                 <img class="d-block w-100 m-0 m-lg-3 card-img" height="350px" src="{{ asset('storage/'.$apartment->cover) }}" alt="">
+                                <div class="d-block d-lg-none ">
+                                    @foreach($apartment->sponsors as $sponsor)
+                                        @if($sponsor->pivot->sponsor_id > 1)
+                                        <span class="sponsor-label-absolute-img   {{ $sponsor->name === 'free' ? 'bg-c-blue' : ($sponsor->name === 'base' ? 'bg-c-green' : ($sponsor->name === 'avanzato' ? 'bg-c-yellow' : ($sponsor->name === 'pro' ? 'bg-c-pink' : ''))) }}" > Sponsor <span class="toUpperCase">{{$sponsor->name}}</span> <span class=""> fino al: <br> {{$sponsor->pivot->end}}</span></span>
+                                        @endif
+                                    @endforeach
+                                </div>
                             </div>
                           <div class="col-lg-7 col-12 text-center text-lg-start">
                                 <div class="card-block home-text ">
@@ -48,8 +55,17 @@
                                     <div>
                                         <h6 class="fw-bold me-2 d-inline"><i class="fa-solid fa-location-dot me-2 "></i>Località: </h6><span>{{$apartment->address}}</span>
                                     </div>
+                                   
                                     <div>
                                         <h6 class="d-inline fw-bold">Tipologia di alloggio: </h6><img src="{{$apartment->type->icons}}" width="17rem" class="me-2" alt=""><span>{{$apartment->type->name}}</span>
+                                    </div>
+                                    <div class="d-none d-lg-block">
+                                        @foreach($apartment->sponsors as $sponsor)
+                                        
+                                        @if($sponsor->pivot->sponsor_id > 1)
+                                        <span class="sponsor-label-absolute {{ $sponsor->name === 'free' ? 'bg-c-blue' : ($sponsor->name === 'base' ? 'bg-c-green' : ($sponsor->name === 'avanzato' ? 'bg-c-yellow' : ($sponsor->name === 'pro' ? 'bg-c-pink' : ''))) }}" >Sponsor <span class="toUpperCase">{{$sponsor->name}}</span> fino al: <br> {{$sponsor->pivot->end}}</span></span>
+                                        @endif
+                                        @endforeach
                                     </div>
                                     <div class="">
                                         <p><h6 class="d-inline fw-bold">Pubblicato il: </h6>{{$apartment->created_at}}</p>
@@ -194,7 +210,59 @@
     display: none; /* Nasconde la scrollbar in Webkit */
 }
 
+.sponsor-label-absolute{
+  position:absolute;
+  right:0px;
+  bottom:30px;
+  padding:5px 10px;
+  border-radius:0.755rem;
+  font-weight: bold;
+  color: rgb(36, 36, 90);
+  font-size: 12px;
+  width:165px 
+}
 
+.sponsor-label-absolute-img{
+    position:absolute;
+  right:20px;
+  top:30px;
+  padding:5px 10px;
+  border-radius:0.755rem;
+  font-weight: bold;
+  color: rgb(36, 36, 90);
+  font-size: 12px;
+  width: 165px
+}
+.bg-c-blue {
+    background: linear-gradient(45deg,#aed2fc,#73b4ff);
+}
+
+.c-blue{
+    color: #aed2fc
+}
+
+.bg-c-green {
+    background: linear-gradient(45deg,#9ff8e6,#73e0ca);
+}
+
+.c-green{
+    color:#9ff8e6
+}
+
+.bg-c-yellow {
+    background: linear-gradient(45deg,#fde5c3,#f5cc92);
+}
+
+.c-yellow{
+    color:#fde5c3
+}
+.bg-c-pink {
+    background: linear-gradient(45deg,#faccd4,#f895a5);
+}
+
+.c-pink{
+    color:#faccd4
+}
 
 </style>
 

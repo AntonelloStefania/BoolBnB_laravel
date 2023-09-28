@@ -28,9 +28,18 @@
                     <h2 class="my-3"><span class="brand">Visualizza</span> il Tuo Annuncio</h2>
                     <p class="text-center">Controlla il tuo annuncio su <span class="brand">BoolBnB</span> per assicurarti che sia completo e soddisfi tutte le tue esigenze. Qui puoi vedere ogni dettaglio e foto che hai aggiunto. Se hai dimenticato qualcosa o desideri apportare modifiche, è il momento giusto per farlo. Un annuncio accurato e completo attira più ospiti, quindi assicurati che il tuo annuncio su <span class="brand">BoolBnB</span> sia perfetto</p>
                 </div>
+                <div class=" mt-2 container-fluid px-0 d-flex text-center text-md-end ">
+                    @foreach($apartment->sponsors as $sponsor)
+                        @if($sponsor->pivot->sponsor_id > 1)
+                        <span class=" h-100 w-100 sponsor-label-absolute pe-5  py-3   {{ $sponsor->name === 'free' ? 'bg-c-blue' : ($sponsor->name === 'base' ? 'bg-c-green' : ($sponsor->name === 'avanzato' ? 'bg-c-yellow' : ($sponsor->name === 'pro' ? 'bg-c-pink' : ''))) }}" > Sponsor <span class="upper-case brand" >{{$sponsor->name}}</span> <span class=""> fino al: <span class="brand">{{$sponsor->pivot->end}}</span></span></span>
+                        
+                       
+                        @endif
+                    @endforeach
+                </div>
                 <div class="container-fluid bg-beige py-3 ">
                     <div class="container">
-                        <div class="col-12 text-center mt-2 mb-4">
+                        <div class="col-12 text-center  mb-4">
                             <h2>
                                 {{$apartment->title}}
                             </h2>
@@ -200,5 +209,54 @@
 }
 .apartment-list li{
     min-height: 2.5rem
+}
+
+
+/* sponsor */
+.sponsor-label-absolute{
+  
+
+  
+  
+  font-weight: bold;
+  color: rgb(62, 62, 125);
+  font-size: 18px
+  
+}
+
+
+.bg-c-blue {
+    background: linear-gradient(45deg,#aed2fc,#8abffb);
+}
+
+.c-blue{
+    color: #aed2fc
+}
+
+.bg-c-green {
+    background: linear-gradient(45deg,#d3fbf3,#8fe3d2b6);
+}
+
+.c-green{
+    color:#9ff8e6
+}
+
+.bg-c-yellow {
+    background: linear-gradient(45deg,#f6e2c6,#ffc26de9);
+}
+
+.c-yellow{
+    color:#fde5c3
+}
+.bg-c-pink {
+    background: linear-gradient(45deg,#ffe9ed,#ffafbdc3);
+}
+
+.c-pink{
+    color:#faccd4
+}
+
+.upper-case{
+    text-transform: uppercase
 }
 </style>
