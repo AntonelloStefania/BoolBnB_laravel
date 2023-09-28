@@ -32,24 +32,81 @@ class ApartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {   
+    // public function index()
+    // {   
         
-        if (Auth::check()){
-            $userId = Auth::id();
-            $apartments= Apartment::where('user_id', $userId)->get();
+    //     if (Auth::check()){
+    //         $userId = Auth::id();
+    //         $apartments= Apartment::where('user_id', $userId)->get();
 
-            if(!$apartments->isEmpty()){
-                return view('admin.apartments.index', compact('apartments'));
-            }else{
-                return view('home');
-            }
-        }
-            $apartments= Apartment::all();
-            return view('admin.apartments.index', compact('apartments','types'));
+    //         if(!$apartments->isEmpty()){
+    //             return view('admin.apartments.index', compact('apartments'));
+    //         }else{
+    //             return view('home');
+    //         }
+    //     }
+    //         $apartments= Apartment::all();
+            
+    //         return view('admin.apartments.index', compact('apartments','types'));
        
+    // }
+
+
+//PROVA PASSAGGIO SPONSORS <---------- con questa recupero tutti gli sponsor fatti di un appartamento UTILE PER LE STATS
+
+//     public function index()
+// {
+//     if (Auth::check()) {
+//         $userId = Auth::id();
+//         $apartments = Apartment::where('user_id', $userId)
+//             ->with('sponsors') // Carica gli sponsor per ogni appartamento
+//             ->get();
+
+//         if (!$apartments->isEmpty()) {
+//             return view('admin.apartments.index', compact('apartments'));
+//         } else {
+//             return view('home');
+//         }
+//     }
+
+//     $apartments = Apartment::with('sponsors') // Carica gli sponsor per ogni appartamento
+//         ->get();
+
+//     return view('admin.apartments.index', compact('apartments', 'types'));
+// }
+
+
+//FINE PROVA PASSAGGIO SPONSORS CHE PASSA TUTTE LE SPONSORIZZAZIONI
+
+
+//TERZA PROVA
+public function index()
+{$currentDateTime=now();
+    if (Auth::check()) {
+        $userId = Auth::id();
+        $apartments = Apartment::where('user_id', $userId)
+        ->with(['type', 'services', 'sponsors' => function ($query) use ($currentDateTime) {
+            $query->where('end', '>', $currentDateTime);
+        }])
+        ->get();
+
+   
+
+        // Ottieni l'ultimo sponsor valido
+       
+        
+        if (!$apartments->isEmpty()) {
+            return view('admin.apartments.index', compact('apartments'));
+        } else {
+            return view('home');
+        }
     }
 
+        
+    return view('admin.apartments.index', compact('apartments', 'types','sponsors'));
+}
+
+//FINE TERZA PROVA
     /**
      * Show the form for creating a new resource.
      *
@@ -114,9 +171,17 @@ class ApartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Apartment $apartment)
-    {   
+    {   $currentDateTime=now();
+        if (Auth::check()) {
+            $userId = Auth::id();
+            $apartments = Apartment::where('user_id', $userId)
+            ->with(['type', 'services', 'sponsors' => function ($query) use ($currentDateTime) {
+                $query->where('end', '>', $currentDateTime);
+            }])
+            ->get();}
         if($apartment->user_id === Auth::id()){
             $photos=Photo::all();
+            
             return view('admin.apartments.show', compact('apartment','photos'));
         } else {
             $message='NON TI PERMETTERE DI TOCCARE GLI APPARTAMENTI ALTRUI';
