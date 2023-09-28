@@ -251,13 +251,13 @@ public function processPayment(Request $request)
     // Recupera i dati del pagamento dal form inviato
     $form_data= $request->all();
    $nonce = $request->nonce;
-   
+
    
    $apartmentId = $request->input('apartmentId');; // Aggiungi questa riga per recuperare l'ID dell'appartamento
     // Recupera l'appartamento
     $sponsorId = $request->input('sponsor_id');
     $apartment = Apartment::find($apartmentId);
- 
+    
     // Esegui la transazione con Braintree utilizzando $nonce
     $gateway = new Gateway([
         'environment' => env('BRAINTREE_ENV'),
@@ -278,7 +278,7 @@ public function processPayment(Request $request)
             'submitForSettlement' => true
             ]
     ]);
-
+    
     if ($result->success) {
         // Pagamento avvenuto con successo
         $apartment->sponsors()->attach($sponsorId, ['start' => now(), 'end' => now()->addHours(24)]);
