@@ -168,7 +168,6 @@
         
         
     </div>
-    @include('admin.errors.delete-modal')
 @endsection
 
 <style lang="scss">
