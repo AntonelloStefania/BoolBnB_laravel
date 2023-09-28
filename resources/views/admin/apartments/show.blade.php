@@ -28,6 +28,15 @@
                     <h2 class="my-3"><span class="brand">Visualizza</span> il Tuo Annuncio</h2>
                     <p class="text-center">Controlla il tuo annuncio su <span class="brand">BoolBnB</span> per assicurarti che sia completo e soddisfi tutte le tue esigenze. Qui puoi vedere ogni dettaglio e foto che hai aggiunto. Se hai dimenticato qualcosa o desideri apportare modifiche, è il momento giusto per farlo. Un annuncio accurato e completo attira più ospiti, quindi assicurati che il tuo annuncio su <span class="brand">BoolBnB</span> sia perfetto</p>
                 </div>
+                @if ($apartment->sponsor->name === 'free')
+                    <p>
+                        Sei povero
+                    </p>
+                @else
+                    <p>
+                        Sei un fesso
+                    </p>
+                @endif
                 <div class="container-fluid bg-beige py-3 ">
                     <div class="container">
                         <div class="col-12 text-center mt-2 mb-4">
