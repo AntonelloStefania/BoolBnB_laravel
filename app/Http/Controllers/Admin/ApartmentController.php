@@ -115,8 +115,6 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {   
-        $id= $apartment->id;
-        $apartment= Apartment::where('id', $id)->with('sponsors')->first();
         if($apartment->user_id === Auth::id()){
             $photos=Photo::all();
             return view('admin.apartments.show', compact('apartment','photos'));
