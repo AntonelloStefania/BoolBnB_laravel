@@ -27,85 +27,85 @@
         </div>
     </div>
 </div>
+
+
+
 <div class="container-fluid">
-    <div class="row mb-5 home-text">
-        <div class="bg-beige">
-            <div class="col-12 text-center my-3 ">
-                <h2>Gestisci i Tuoi Annunci</h2>
-            </div>
-            <div class="col-8 offset-2 text-center fs-18 mb-5  ">
-                <p>
-                    Benvenuto nella nostra pagina dedicata alla gestione dei tuoi annunci su <span class="brand">BoolBnB</span>. Qui, hai il controllo totale sulla tua esperienza di pubblicazione. Puoi visualizzare, personalizzare e ottimizzare tutti i tuoi annunci a partire da un solo luogo. Che tu voglia apportare piccole modifiche, aggiornamenti dettagliati o rimuovere un annuncio, sei nel posto giusto per gestire tutto in modo semplice ed efficace. <span class="brand">BoolBnB</span> è qui per mettere il controllo nelle tue mani e rendere la gestione degli annunci un'esperienza senza stress.
-                </p>
-            </div>
+<div class="row mb-5 home-text">
+    <div class="bg-beige">
+        <div class="col-12 text-center my-3 ">
+            <h2>Gestisci i Tuoi Annunci</h2>
+        </div>
+        <div class="col-8 offset-2 text-center fs-18 mb-5  ">
+            <p>
+                Benvenuto nella nostra pagina dedicata alla gestione dei tuoi annunci su <span class="brand">BoolBnB</span>. Qui, hai il controllo totale sulla tua esperienza di pubblicazione. Puoi visualizzare, personalizzare e ottimizzare tutti i tuoi annunci a partire da un solo luogo. Che tu voglia apportare piccole modifiche, aggiornamenti dettagliati o rimuovere un annuncio, sei nel posto giusto per gestire tutto in modo semplice ed efficace. <span class="brand">BoolBnB</span> è qui per mettere il controllo nelle tue mani e rendere la gestione degli annunci un'esperienza senza stress.
+            </p>
         </div>
     </div>
-    <div class="card-container container ">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-10 col-xlg-4">
-                @foreach($apartments as $apartment)
-                <div class="card float-right">
-                    <div class="row">
-                        <div class="col-12 col-lg-5 align-items-center ">
-                            <img class="d-block w-100 m-0 m-lg-3 card-img" height="350px" src="{{ asset('storage/'.$apartment->cover) }}" alt="">
-                            <div class="d-block d-lg-none ">
+</div>
+<div class="card-container container ">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-xlg-4">
+            @foreach($apartments as $apartment)
+            <div class="card float-right">
+                <div class="row">
+                    <div class="col-12 col-lg-5 align-items-center ">
+                        <img class="d-block w-100 m-0 m-lg-3 card-img" height="350px" src="{{ asset('storage/'.$apartment->cover) }}" alt="">
+                        <div class="d-block d-lg-none ">
+                            @foreach($apartment->sponsors as $sponsor)
+                                @if($sponsor->pivot->name != 'free')
+                                <span class="sponsor-label-absolute-img   {{ $sponsor->name === 'free' ? 'bg-c-blue' : ($sponsor->name === 'base' ? 'bg-c-green' : ($sponsor->name === 'avanzato' ? 'bg-c-yellow' : ($sponsor->name === 'pro' ? 'bg-c-pink' : ''))) }}" > Sponsor <span class="toUpperCase">{{$sponsor->name}}</span> <span class=""> fino al: <br> {{$sponsor->pivot->end}}</span></span>
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-12 text-center text-lg-start">
+                        <div class="card-block home-text ">
+                            <div class="card-title">
+                                <h3 class="">{{$apartment->title}}</h3>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold me-2 d-inline"><i class="fa-solid fa-location-dot me-2 "></i>Località: </h6><span>{{$apartment->address}}</span>
+                            </div>
+                            
+                            <div>
+                                <h6 class="d-inline fw-bold">Tipologia di alloggio: </h6><img src="{{$apartment->type->icons}}" width="17rem" class="me-2" alt=""><span>{{$apartment->type->name}}</span>
+                            </div>
+                            <div class="d-none d-lg-block">
                                 @foreach($apartment->sponsors as $sponsor)
-                                    @if($sponsor->pivot->name != 'free')
-                                    <span class="sponsor-label-absolute-img   {{ $sponsor->name === 'free' ? 'bg-c-blue' : ($sponsor->name === 'base' ? 'bg-c-green' : ($sponsor->name === 'avanzato' ? 'bg-c-yellow' : ($sponsor->name === 'pro' ? 'bg-c-pink' : ''))) }}" > Sponsor <span class="toUpperCase">{{$sponsor->name}}</span> <span class=""> fino al: <br> {{$sponsor->pivot->end}}</span></span>
-                                    @endif
+                                
+                                @if($sponsor->pivot->name != 'free')
+                                <span class="sponsor-label-absolute {{ $sponsor->name === 'free' ? 'bg-c-blue' : ($sponsor->name === 'base' ? 'bg-c-green' : ($sponsor->name === 'avanzato' ? 'bg-c-yellow' : ($sponsor->name === 'pro' ? 'bg-c-pink' : ''))) }}" >Sponsor <span class="toUpperCase">{{$sponsor->name}}</span> fino al: <br> {{$sponsor->pivot->end}}</span></span>
+                                @endif
                                 @endforeach
                             </div>
-                        </div>
-                        <div class="col-lg-7 col-12 text-center text-lg-start">
-                            <div class="card-block home-text ">
-                                <div class="card-title">
-                                    <h3 class="">{{$apartment->title}}</h3>
+                            <div class="">
+                                <p><h6 class="d-inline fw-bold">Pubblicato il: </h6>{{$apartment->created_at}}</p>
+                            </div>
+                            <div class="d-flex flex-row flex-lg-column justify-content-md-center justify-content-around align-items-center">
+                                <div class="my-4 col-md-3 col-lg-12" >
+                                    <a href="{{route('admin.messages.show',  $apartment->id)}}" class="blue-btn"><i class="fa-solid fa-envelope" style="color: #d4e1f8;"></i><span class="d-none d-lg-inline ms-2">Messaggi</span></a>
                                 </div>
-                                <div>
-                                    <h6 class="fw-bold me-2 d-inline"><i class="fa-solid fa-location-dot me-2 "></i>Località: </h6><span>{{$apartment->address}}</span>
+                                <div class="col-md-3 col-lg-12" >
+                                    <a href="{{route('admin.apartments.show', $apartment->id)}}" class="blue-btn"><i class="fa-regular fa-eye me-0 me-lg-2" style="color: #d4e1f8;"></i><span class="d-none d-lg-inline">Dettagli</span></a>
                                 </div>
-                                
-                                <div>
-                                    <h6 class="d-inline fw-bold">Tipologia di alloggio: </h6><img src="{{$apartment->type->icons}}" width="17rem" class="me-2" alt=""><span>{{$apartment->type->name}}</span>
+                                <div class="my-4 col-md-3 col-lg-12">
+                                    <a href="{{route('admin.apartments.edit', $apartment->id)}}" class="blue-btn"><i class="fas fa-pencil me-0 me-lg-2" style="color: #d3e1f8;"></i><span class="d-none d-lg-inline">Modifica</span></a>
                                 </div>
-                                <div class="d-none d-lg-block">
-                                    @foreach($apartment->sponsors as $sponsor)
-                                    
-                                    @if($sponsor->pivot->name != 'free')
-                                    <span class="sponsor-label-absolute {{ $sponsor->name === 'free' ? 'bg-c-blue' : ($sponsor->name === 'base' ? 'bg-c-green' : ($sponsor->name === 'avanzato' ? 'bg-c-yellow' : ($sponsor->name === 'pro' ? 'bg-c-pink' : ''))) }}" >Sponsor <span class="toUpperCase">{{$sponsor->name}}</span> fino al: <br> {{$sponsor->pivot->end}}</span></span>
-                                    @endif
-                                    @endforeach
-                                </div>
-                                <div class="">
-                                    <p><h6 class="d-inline fw-bold">Pubblicato il: </h6>{{$apartment->created_at}}</p>
-                                </div>
-                                <div class="d-flex flex-row flex-lg-column justify-content-md-center justify-content-around align-items-center">
-                                    <div class="my-4 col-md-3 col-lg-12" >
-                                        <a href="{{route('admin.messages.show',  $apartment->id)}}" class="blue-btn"><i class="fa-solid fa-envelope" style="color: #d4e1f8;"></i><span class="d-none d-lg-inline ms-2">Messaggi</span></a>
-                                    </div>
-                                    <div class="col-md-3 col-lg-12" >
-                                        <a href="{{route('admin.apartments.show', $apartment->id)}}" class="blue-btn"><i class="fa-regular fa-eye me-0 me-lg-2" style="color: #d4e1f8;"></i><span class="d-none d-lg-inline">Dettagli</span></a>
-                                    </div>
-                                    <div class="my-4 col-md-3 col-lg-12">
-                                        <a href="{{route('admin.apartments.edit', $apartment->id)}}" class="blue-btn"><i class="fas fa-pencil me-0 me-lg-2" style="color: #d3e1f8;"></i><span class="d-none d-lg-inline">Modifica</span></a>
-                                    </div>
-                                    <div class="col-md-3 col-lg-12">
-                                        <form action="{{route('admin.apartments.destroy', $apartment->id)}}" onsubmit="return confirm('Press ok to confirm')" class="d-block" method="POST">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button class="beige-btn btn mt-3 mt-lg-0" type="submit"><i class="fas fa-trash me-0 me-lg-2" style="color: #3f3f41;"></i><span class="d-none d-lg-inline">Elimina</span></button>
-                                        </form>
-                                    </div>
+                                <div class="col-md-3 col-lg-12">
+                                    <form action="{{route('admin.apartments.destroy', $apartment->id)}}" onsubmit="return confirm('Press ok to confirm')" class="d-block" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button class="beige-btn btn mt-3 mt-lg-0" type="submit"><i class="fas fa-trash me-0 me-lg-2" style="color: #3f3f41;"></i><span class="d-none d-lg-inline">Elimina</span></button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                @endforeach
             </div>
+            @endforeach
         </div>
-    </div>
-</div>
         <div class="row bg-beige p-3">
             <div class="col-12 text-center mt-4">
                 <h2>Cos'è possibile fare qui:</h2>
