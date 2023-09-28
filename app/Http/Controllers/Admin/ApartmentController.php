@@ -120,7 +120,7 @@ class ApartmentController extends Controller
             return view('admin.apartments.show', compact('apartment','photos'));
         } else {
             $message='NON TI PERMETTERE DI TOCCARE GLI APPARTAMENTI ALTRUI';
-            return redirect()->route('admin.apartments.index', compact('message'));
+            return redirect()->route('admin.errors.error', compact('message'));
         }
 
        
@@ -142,7 +142,7 @@ class ApartmentController extends Controller
             return view('admin.apartments.edit', compact('apartment','types','services','sponsors','user'));
         } else {
             $message='NON TI PERMETTERE DI TOCCARE GLI APPARTAMENTI ALTRUI';
-            return redirect()->route('admin.apartments.index', compact('message'));
+            return redirect()->route('admin.errors.error', compact('message'));
         }
     }
 
@@ -228,22 +228,29 @@ class ApartmentController extends Controller
 {
     // Recupera l'appartamento in base all'ID
     $apartment = Apartment::find($apartmentId);
-    $sponsors = Sponsor::where('id', '>', 1)->get();
-    if (!$apartment) {
-        // Gestisci il caso in cui l'appartamento non esista
+    if($apartment->user_id === Auth::id()){
+
+        $sponsors = Sponsor::where('id', '>', 1)->get();
+        if (!$apartment) {
+            // Gestisci il caso in cui l'appartamento non esista
+        }
+
+        // Genera il token di pagamento da Braintree
+        $gateway = new Gateway([
+            'environment' => env('BRAINTREE_ENV'),
+            'merchantId' => env('BRAINTREE_MERCHANT_ID'),
+            'publicKey' => env('BRAINTREE_PUBLIC_KEY'),
+            'privateKey' => env('BRAINTREE_PRIVATE_KEY')
+        ]);
+
+        $clientToken = $gateway->clientToken()->generate();
+
+        return view('admin.apartments.braintree', ['apartment' => $apartment, 'clientToken' => $clientToken, 'sponsors' => $sponsors]);
+        } else {
+            $message='NON TI PERMETTERE DI TOCCARE GLI APPARTAMENTI ALTRUI';
+            return redirect()->route('admin.errors.error', compact('message'));
+        }
     }
-
-    // Genera il token di pagamento da Braintree
-    $gateway = new Gateway([
-        'environment' => env('BRAINTREE_ENV'),
-        'merchantId' => env('BRAINTREE_MERCHANT_ID'),
-        'publicKey' => env('BRAINTREE_PUBLIC_KEY'),
-        'privateKey' => env('BRAINTREE_PRIVATE_KEY')
-    ]);
-
-    $clientToken = $gateway->clientToken()->generate();
-
-    return view('admin.apartments.braintree', ['apartment' => $apartment, 'clientToken' => $clientToken, 'sponsors' => $sponsors]);}
    
 public function processPayment(Request $request)
 {
@@ -338,7 +345,9 @@ if($sponsorId == 4){
   
 }
 }
-
+    public function errors(){
+        return view('admin.errors.error');
+    }
 
 
 }

@@ -40,7 +40,7 @@ class PhotoController extends Controller
             return view('admin.photos.create', compact('apartment'));
         } else {
             $message='NON TI PERMETTERE DI TOCCARE GLI APPARTAMENTI ALTRUI';
-            return redirect()->route('admin.apartments.index', compact('message'));
+            return redirect()->route('admin.errors.error', compact('message'));
         }
     }
 
@@ -96,7 +96,7 @@ class PhotoController extends Controller
             return view('admin.photos.edit', compact('id','id_2'));
         } else {
             $message='NON TI PERMETTERE DI TOCCARE GLI APPARTAMENTI ALTRUI';
-            return redirect()->route('admin.apartments.index', compact('message'));
+            return redirect()->route('admin.errors.error', compact('message'));
         }
     }
 
