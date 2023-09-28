@@ -37,11 +37,11 @@
                     @foreach($apartments as $apartment)
                     <div class="card float-right">
                         <div class="row">
-                            <div class="col-12 col-lg-5  ">
+                            <div class="col-12 col-lg-5 align-items-center ">
                                 <img class="d-block w-100 m-0 m-lg-3 card-img" height="350px" src="{{ asset('storage/'.$apartment->cover) }}" alt="">
                                 <div class="d-block d-lg-none ">
                                     @foreach($apartment->sponsors as $sponsor)
-                                        @if($sponsor->pivot->sponsor_id > 1)
+                                        @if($sponsor->pivot->name != 'free')
                                         <span class="sponsor-label-absolute-img   {{ $sponsor->name === 'free' ? 'bg-c-blue' : ($sponsor->name === 'base' ? 'bg-c-green' : ($sponsor->name === 'avanzato' ? 'bg-c-yellow' : ($sponsor->name === 'pro' ? 'bg-c-pink' : ''))) }}" > Sponsor <span class="toUpperCase">{{$sponsor->name}}</span> <span class=""> fino al: <br> {{$sponsor->pivot->end}}</span></span>
                                         @endif
                                     @endforeach
@@ -62,7 +62,7 @@
                                     <div class="d-none d-lg-block">
                                         @foreach($apartment->sponsors as $sponsor)
                                         
-                                        @if($sponsor->pivot->sponsor_id > 1)
+                                        @if($sponsor->pivot->name != 'free')
                                         <span class="sponsor-label-absolute {{ $sponsor->name === 'free' ? 'bg-c-blue' : ($sponsor->name === 'base' ? 'bg-c-green' : ($sponsor->name === 'avanzato' ? 'bg-c-yellow' : ($sponsor->name === 'pro' ? 'bg-c-pink' : ''))) }}" >Sponsor <span class="toUpperCase">{{$sponsor->name}}</span> fino al: <br> {{$sponsor->pivot->end}}</span></span>
                                         @endif
                                         @endforeach
