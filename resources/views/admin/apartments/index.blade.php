@@ -90,10 +90,11 @@
                                             <a href="{{route('admin.apartments.edit', $apartment->id)}}" class="blue-btn"><i class="fas fa-pencil me-0 me-lg-2" style="color: #d3e1f8;"></i><span class="d-none d-lg-inline">Modifica</span></a>
                                         </div>
                                         <div class="col-md-3 col-lg-12">
-                                            <form action="{{route('admin.apartments.destroy', $apartment->id)}}" onsubmit="return confirm('Press ok to confirm')" class="d-block" method="POST">
+
+                                            <form action="{{route('admin.apartments.destroy', $apartment->id)}}" class="d-block" method="POST">
                                                 @method('DELETE')
                                                 @csrf
-                                                <button class="beige-btn btn mt-3 mt-lg-0" type="submit"><i class="fas fa-trash me-0 me-lg-2" style="color: #3f3f41;"></i><span class="d-none d-lg-inline">Elimina</span></button>
+                                                <button class="beige-btn btn mt-3 mt-lg-0" type="submit"><i class="fas fa-trash me-0 me-lg-2 apartment-delete-button" style="color: #3f3f41;" data-apartment-title={{$apartment->title}}></i><span class="d-none d-lg-inline">Elimina</span></button>
                                             </form>
                                         </div>
                                     </div>
@@ -148,6 +149,7 @@
         
         
     </div>
+    @include('admin.errors.delete-modal')
 @endsection
 
 <style lang="scss">
