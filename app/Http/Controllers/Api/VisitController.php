@@ -12,8 +12,7 @@ class VisitController extends Controller
 {
     public function store(Request $request) {
         $data = $request->all();
-        $newVisit= new Visit();
-        $newVisit->fill($data);
+        $newVisit = Visit::firstOrNew(['ip' => $data['ip'], 'apartment_id' => $data['apartment_id']], $data);
         $newVisit->save();
 
         return response()->json([
