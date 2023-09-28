@@ -1,17 +1,31 @@
 @extends('layouts.admin')
 
 @section('content')
+
 <div class="container-fluid navbar-container">
     <div class="row justify-content-between w-100">
-        <div class="d-flex col-6">
-            <div class="col-3 py-3 d-flex justify-content-end">
-                <a href="{{route('admin.apartments.index')}}"  class="" style="text-decoration:none; color:#3a537e;"><i class="fa-regular fa-circle-left" style="color: #3a537e;"></i> I tuoi Annunci  </a>
-            </div>
-            <div class="col-3 py-3 d-flex justify-content-end">
-                <a href="{{route('admin.apartments.show', $apartment->id)}}"  class="" style="text-decoration:none; color:#3a537e;"><i class="fa-regular fa-circle-left" style="color: #3a537e;"></i> Dettagli Annuncio  </a>
+        <div class="d-flex col-6 justify-content-center">
+            <div class="col-6  py-3 d-flex  justify-content-center">
+                <a href="{{route('admin.apartments.index')}}"  class=" d-flex align-items-center " style="text-decoration:none; color:#3a537e;">
+                    <div class="col-auto">
+                        <i class="fa-regular fa-circle-left me-2" style="color: #3a537e;"></i> 
+                    </div>
+                    <div class="col">
+                        <span>I tuoi Annunci</span>  
+                    </div>
+                </a>
             </div>
         </div>
-       
+        <div class="d-flex col-6 justify-content-center">
+            <a href="{{route('admin.apartments.show', $apartment->id)}}"  class=" d-flex align-items-center" style="text-decoration:none; color:#3a537e;"> 
+                <div class="col-auto">
+                    <span>Dettagli Annuncio</span>  
+                </div>
+                <div class="col">
+                    <i class="fa-regular fa-eye ms-2" style="color: #3a537e;"></i>
+                </div>
+            </a>
+        </div>
     </div>
 </div>
 <div class="container mt-5">

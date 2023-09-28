@@ -1,23 +1,40 @@
 @extends('layouts.admin')
 
 @section('content')
+
 <div class="container-fluid navbar-container">
     <div class="row justify-content-between w-100">
-        <div class="d-flex col-6">
-            <div class="col-6 col-lg-4 py-3 d-flex justify-content-end">
-                <a href="{{route('admin.apartments.index')}}"  class="" style="text-decoration:none; color:#3a537e;"><i class="fa-regular fa-circle-left" style="color: #3a537e;"></i> I tuoi Annunci  </a>
-            </div>
-            <div class="col-6 col-lg-4 py-3 d-flex justify-content-end">
-               
+        <div class="d-flex col-6 col-lg-4 justify-content-center">
+            <div class="col-6 col-lg-4  py-3 d-flex  justify-content-center">
+                <a href="{{route('admin.apartments.index')}}"  class=" d-flex align-items-center " style="text-decoration:none; color:#3a537e;">
+                    <div class="col-auto">
+                        <i class="fa-regular fa-circle-left me-2" style="color: #3a537e;"></i> 
+                    </div>
+                    <div class="col">
+                        <span>I tuoi Annunci</span>  
+                    </div>
+                </a>
             </div>
         </div>
-        <div class="d-flex col-6 justify-content-end">
-            <div class=" col-6 col-lg-4 py-3 d-lg-flex justify-content-start d-none">
-                <a href="#add-photos"  class="" style="text-decoration:none; color:#3a537e;">Aggiungi Foto  <i class="fa-regular fa-circle-down" style="color: #3a537e;"></i></a>
-            </div>
-            <div class=" col-4 py-3 d-flex justify-content-start">
-                <a href="{{route('admin.apartments.edit', $apartment->id)}}"  class="" style="text-decoration:none; color:#3a537e;">Modifica Annuncio  <i class="fa-regular fa-circle-right" style="color: #3a537e;"></i></a>
-            </div>
+        <div class=" col-4 d-none d-lg-flex justify-content-center">
+            <a href="#add-photos"  class=" d-flex align-items-center" style="text-decoration:none; color:#3a537e;"> 
+                <div class="col">
+                    <span>Aggiungi Foto</span>  
+                </div>
+                <div class="col-auto">
+                    <i class="fa-regular fa-circle-down ms-2" style="color: #3a537e;"></i>
+                </div>
+            </a>
+        </div>
+        <div class="d-flex col-6 col-lg-4 justify-content-center">
+            <a href="{{route('admin.apartments.edit', $apartment->id)}}"  class=" d-flex align-items-center" style="text-decoration:none; color:#3a537e;"> 
+                <div class="col-auto">
+                    <span>Modifica Annuncio</span>  
+                </div>
+                <div class="col">
+                    <i class="fas fa-pencil ms-2" style="color: #3a537e;"></i>
+                </div>
+            </a>
         </div>
     </div>
 </div>

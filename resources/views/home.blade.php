@@ -2,18 +2,29 @@
 @section('content')
 <div class="container-fluid navbar-container">
     <div class="row justify-content-between w-100">
-        <div class="d-flex col-6">
-            <div class="col-3 py-3 d-flex justify-content-end">
-                <a href="http://localhost:5174"  class="d-none d-lg-flex" style="text-decoration:none; color:#3a537e;"><i class="fa-regular fa-circle-left" style="color: #3a537e;"></i> Annunci in Evidenza  </a>
-            </div>
-            <div class="col-4  py-3 d-flex justify-content-end">
-                <a href="http://localhost:5174/apartments"  class="" style="text-decoration:none; color:#3a537e;"><i class="fa-regular fa-circle-left" style="color: #3a537e;"></i> Ricerca Avanzata  </a>
+        <div class="d-flex col-6 justify-content-center">
+            
+            <div class="col-6  py-3 d-flex  justify-content-center">
+                <a href="http://localhost:5174/apartments"  class=" d-flex align-items-center " style="text-decoration:none; color:#3a537e;">
+                    <div class="col-auto">
+                        <i class="fa-regular fa-circle-left me-2" style="color: #3a537e;"></i> 
+                    </div>
+                    <div class="col">
+                        <span>Ricerca Avanzata</span>  
+                    </div>
+                </a>
             </div>
         </div>
-        <div class="d-flex col-6 justify-content-end">
-            <div class=" col-4 py-3 d-flex justify-content-start">
-                <a href="{{route('admin.apartments.index')}}"  class="" style="text-decoration:none; color:#3a537e;">i Tuoi Annunci  <i class="fa-regular fa-circle-right" style="color: #3a537e;"></i></a>
-            </div>
+        <div class="d-flex col-6 justify-content-center">
+            <a href="{{route('admin.apartments.index')}}"  class=" d-flex align-items-center" style="text-decoration:none; color:#3a537e;"> 
+                <div class="col">
+                    <span>i Tuoi Annunci</span>  
+                </div>
+                <div class="col-auto">
+                    <i class="fa-regular fa-circle-right ms-2" style="color: #3a537e;"></i>
+                </div>
+            </a>
+           
         </div>
     </div>
 </div>
