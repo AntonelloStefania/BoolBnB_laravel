@@ -141,75 +141,80 @@ public function index() //<-----------------------------------------FUNZIONA, AG
 
 
 
-//METODO PER PASSARE TUTTI GLI ALLOGGI IN ORDINE DECRESCENTE DI SPONSORS.ID
-public function allIndex(){
+//METODO PER PASSARE TUTTI GLI ALLOGGI IN ORDINE DECRESCENTE DI ULTIMO SPONSOR ID, COMPRESO ID=1
+// public function allIndex(){
     
 
-    $apartments = Apartment::where('visibility', 1)
-     
-        ->with(['type', 'sponsors','services'])
-        ->get();
-
-    // Ordina l'array di appartamenti in base all'ID dello sponsor
-    $apartments = $apartments->sortByDesc(function ($apartment) {
-        return $apartment->sponsors->first()->id;
-    });
-
-    // Trasforma l'array ordinato in un array associativo
-    $apartments = $apartments->values()->all();
-
-    return response()->json([
-        'success' => true,
-        'results' => $apartments
-    ]);
-}
-
-
-//PROVA PASSAGGIO ALLOGGI IN BASE AD ULTIMO SPONSOR 
-// public function allIndex()
-// {
-//     // Recupera tutti gli sponsor tranne quello con nome 'free'
-//     $sponsors = Sponsor::where('name', '!=', 'free')->get();
-//     $sponsorIds = $sponsors->pluck('id')->toArray();
-
-//     $currentDateTime = now(); // Data e ora attuali
-
 //     $apartments = Apartment::where('visibility', 1)
-//         ->whereHas('sponsors', function ($query) use ($sponsorIds, $currentDateTime) {
-//             $query->whereIn('sponsor_id', $sponsorIds)
-//                 ->where('start', '<=', $currentDateTime);
-//         })
-//         ->with(['type', 'services', 'sponsors' => function ($query) use ($sponsorIds) {
-//             $query->whereIn('sponsor_id', $sponsorIds);
-//         }])
-//         ->get();
+    
+//     ->whereHas('sponsors', function ($query) use ($sponsorIds, $currentDateTime) {
+//         $query->whereIn('sponsor_id', $sponsorIds)
+//             ->where('start', '<=', $currentDateTime);
+//     })
+//     ->with(['type', 'services', 'sponsors']) // Assicurati che 'sponsors' sia incluso nelle relazioni da caricare
+//     ->get();
 
-//     $apartments->transform(function ($apartment) use ($currentDateTime) {
-//         // Filtra solo i sponsor con data di inizio <= data attuale
-//         $validSponsors = $apartment->sponsors->filter(function ($sponsor) use ($currentDateTime) {
-//             return $sponsor->pivot->start <= $currentDateTime;
-//         });
-
-//         // Ordina i sponsor filtrati per data di inizio in ordine decrescente
-//         $validSponsors = $validSponsors->sortByDesc(function ($sponsor) {
-//             return $sponsor->pivot->start;
-//         });
-
-//         // Ottieni l'ultimo sponsor valido
-//         $lastSponsor = $validSponsors->first();
-//         $apartment->lastSponsorId = $lastSponsor ? $lastSponsor->id : null;
-
-//         return $apartment;
+//     // Ordina l'array di appartamenti in base all'ID dello sponsor
+//     $apartments = $apartments->sortByDesc(function ($apartment) {
+//         return $apartment->sponsors->first()->id;
 //     });
 
-//     $apartments = $apartments->sortByDesc('lastSponsorId');
+//     // Trasforma l'array ordinato in un array associativo
+//     $apartments = $apartments->values()->all();
 
 //     return response()->json([
 //         'success' => true,
-//         'results' => $apartments->values()->all()
+//         'results' => $apartments
 //     ]);
 // }
 
+
+//PROVA PASSAGGIO ALLOGGI IN BASE AD ULTIMO SPONSOR 
+public function allIndex()
+{
+    $currentDateTime = now(); // Data e ora attuali
+
+    $apartments = Apartment::where('visibility', 1)
+        ->with(['type', 'services', 'sponsors' => function ($query) use ($currentDateTime) {
+            $query->where('start', '<=', $currentDateTime);
+        }])
+        ->get();
+
+    $apartments->transform(function ($apartment) use ($currentDateTime) {
+        // Filtra solo gli sponsor con data di inizio <= data attuale
+        $validSponsors = $apartment->sponsors->filter(function ($sponsor) use ($currentDateTime) {
+            return $sponsor->pivot->start <= $currentDateTime;
+        });
+
+        // Ordina gli sponsor filtrati per data di inizio in ordine decrescente
+        $validSponsors = $validSponsors->sortByDesc(function ($sponsor) {
+            return $sponsor->pivot->start;
+        });
+
+        // Ottieni l'ultimo sponsor valido
+        $lastSponsor = $validSponsors->first();
+        $apartment->lastSponsorId = $lastSponsor ? $lastSponsor->id : null;
+
+        return $apartment;
+    });
+
+    $apartments = $apartments->sortByDesc('lastSponsorId');
+
+    return response()->json([
+        'success' => true,
+        'results' => $apartments->values()->all()
+    ]);
+}
+// public function getSponsors($id)
+// {
+//     $apartment = Apartment::findOrFail($id);
+//     $sponsors = $apartment->sponsors;
+
+//     return response()->json([
+//         'success' => true,
+//         'results' => $sponsors,
+//     ]);
+// }
 
     public function show($slug){
         $apartment = Apartment::with(['type','services','photos'])->where('slug', $slug)->first();
