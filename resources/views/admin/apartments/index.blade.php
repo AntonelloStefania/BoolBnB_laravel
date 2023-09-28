@@ -27,9 +27,6 @@
         </div>
     </div>
 </div>
-
-
-
 <div class="container-fluid">
 <div class="row mb-5 home-text">
     <div class="bg-beige">
