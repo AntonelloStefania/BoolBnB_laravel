@@ -437,3 +437,5 @@ dropContainer.addEventListener("drop", (e) => {
   dropContainer.classList.remove("drag-active")
   fileInput.files = e.dataTransfer.files
 })
+
+

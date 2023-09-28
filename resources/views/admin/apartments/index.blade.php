@@ -90,11 +90,31 @@
                                             <a href="{{route('admin.apartments.edit', $apartment->id)}}" class="blue-btn"><i class="fas fa-pencil me-0 me-lg-2" style="color: #d3e1f8;"></i><span class="d-none d-lg-inline">Modifica</span></a>
                                         </div>
                                         <div class="col-md-3 col-lg-12">
-                                            <form action="{{route('admin.apartments.destroy', $apartment->id)}}" onsubmit="return confirm('Press ok to confirm')" class="d-block" method="POST">
-                                                @method('DELETE')
-                                                @csrf
-                                                <button class="beige-btn btn mt-3 mt-lg-0" type="submit"><i class="fas fa-trash me-0 me-lg-2" style="color: #3f3f41;"></i><span class="d-none d-lg-inline">Elimina</span></button>
-                                            </form>
+
+                                        
+                                            <button class="beige-btn btn mt-3 mt-lg-0" data-bs-toggle="modal" data-bs-target="#{{$apartment->id}}" type="submit"><i class="fas fa-trash me-0 me-lg-2 apartment-delete-button" style="color: #3f3f41;" data-apartment-title={{$apartment->title}}></i><span class="d-none d-lg-inline">Elimina</span></button>  
+                                            <div class="modal fade" id="{{$apartment->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Sei sicuro di voler <span class="brand">Eliminare</span> questo <span class="brand">Annuncio</span>?</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                       <span class="brand">{{$apartment->title}}</span><span> verrà Eliminato</span>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn blue-btn" data-bs-dismiss="modal">Annulla</button>
+                                                        <form action="{{route('admin.apartments.destroy', $apartment->id)}}" class="d-block" method="POST">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <button type="submit" class="btn beige-btn">Conferma</button>
+                                                        </form>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                              
                                         </div>
                                     </div>
                                 </div>
@@ -148,6 +168,7 @@
         
         
     </div>
+    @include('admin.errors.delete-modal')
 @endsection
 
 <style lang="scss">
