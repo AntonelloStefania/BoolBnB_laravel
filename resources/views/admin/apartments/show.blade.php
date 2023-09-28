@@ -58,20 +58,43 @@
                             <div class="col-12 m-0 col-lg-8  text-center order-2 order-md-2  justify-content-center mb-3 " >
                                 <div class="container gal-container ">
                                     <div class="gal-item d-flex flex-wrap justify-content-center">
-                                        @foreach($photos as $photo)
-                                        @if($photo->apartment_id === $apartment->id)
-                                        <div class="box col-12 col-md-5 m-2  img-container  " id="add-photos">
-                                            <img src=" {{ asset('storage/'.$photo->url) }} " class="col-6" style="border-radius:1.25rem" max-height="300px" >
                                         
-                                            <div class="btns">
-                                                {{-- <button type="button" class="btn blue-btn btn-sm ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="fas fa-pencil" style="color: #d4e1f8;"></i></button> --}}
-                                                <form action="{{route('admin.apartments.photos.destroy', [$apartment->id, $photo->id])}}" onsubmit="return confirm('Press ok to confirm')" class="d-block" method="POST">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <button class="beige-btn btn" type="submit"><i class="fas fa-trash" style="color: #3f3f41;"></i></button>
-                                                </form>
+                                        @foreach($apartment->photos as $photo)
+                                        @if($photo->apartment_id == $apartment->id)
+                                        
+                                            <div class="box col-12 col-md-5 m-2  img-container  " id="add-photos">
+                                                <img src=" {{ asset('storage/'.$photo->url) }} " class="col-6" style="border-radius:1.25rem" max-height="300px" >
+                                                <div class="btns d-flex align-items-center">
+                                                    <div>
+                                                        <button type="button" class="btn beige-btn" data-bs-toggle="modal" data-bs-target="#{{$photo->id}}">
+                                                            <i class="fas fa-trash" style="color: #292929;"></i></button>
+                                                          </button>
+                                                    </div>
+                                                    {{-- <button type="button" class="btn blue-btn btn-sm ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="fas fa-pencil" style="color: #d4e1f8;"></i></button> --}}
+                                                </div>
+                                                
+                                                <div class="modal fade" id="{{$photo->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Vuoi <span class="brand">Eliminare</span> questa <span class="brand">Foto</span>?</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                        <span>La Foto verrà <span class="brand">Eliminata</span> definitivamente</span>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="button" class="btn blue-btn" data-bs-dismiss="modal">Annulla</button>
+                                                        <form action="{{route('admin.apartments.photos.destroy', [$apartment->id, $photo->id])}}"  class="d-block" method="POST">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <button class="beige-btn btn" type="submit">Conferma</button>
+                                                        </form>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
                                         @endif
                                         @endforeach
                                     </div>
