@@ -8,7 +8,7 @@
                 <a href="{{route('admin.apartments.index')}}"  class="" style="text-decoration:none; color:#3a537e;"><i class="fa-regular fa-circle-left" style="color: #3a537e;"></i> I tuoi Annunci  </a>
             </div>
             <div class="col-6 col-lg-4 py-3 d-flex justify-content-end">
-                <a href="{{route('admin.apartments.braintree', $apartment->id)}}"  class="" style="text-decoration:none; color:#3a537e;"><i class="fa-regular fa-circle-left" style="color: #3a537e;"></i> Sponsor  </a>
+               
             </div>
         </div>
         <div class="d-flex col-6 justify-content-end">
@@ -30,12 +30,19 @@
                 </div>
                 <div class=" mt-2 container-fluid px-0 d-flex text-center text-md-end ">
                     @foreach($apartment->sponsors as $sponsor)
-                        @if($sponsor->pivot->sponsor_id > 1)
-                        <span class=" h-100 w-100 sponsor-label-absolute pe-5  py-3   {{ $sponsor->name === 'free' ? 'bg-c-blue' : ($sponsor->name === 'base' ? 'bg-c-green' : ($sponsor->name === 'avanzato' ? 'bg-c-yellow' : ($sponsor->name === 'pro' ? 'bg-c-pink' : ''))) }}" > Sponsor <span class="upper-case brand" >{{$sponsor->name}}</span> <span class=""> fino al: <span class="brand">{{$sponsor->pivot->end}}</span></span></span>
-                        
+                        @if($sponsor->pivot->end > now())
+                            <span class=" h-100 w-100 sponsor-label-absolute pe-5  py-3   {{ $sponsor->name === 'free' ? 'bg-c-blue' : ($sponsor->name === 'base' ? 'bg-c-green' : ($sponsor->name === 'avanzato' ? 'bg-c-yellow' : ($sponsor->name === 'pro' ? 'bg-c-pink' : ''))) }}" > Sponsor <span class="upper-case brand" >{{$sponsor->name}}</span> <span class=""> fino al: <span class="brand">{{$sponsor->pivot->end}}</span></span></span>
                        
                         @endif
                     @endforeach
+                </div>
+                <div class="  container-fluid px-0 d-flex text-center text-md-end ">
+                 @if($apartment->sponsors->isEmpty() || $sponsor->pivot->end < now() )
+                    <span class="h-100 w-100 sponsor-label-absolute pe-5  py-3">
+                        <a href="{{route('admin.apartments.braintree', $apartment->id)}}"  class="pink-btn" style="text-decoration:none; color:#3a537e;">Sponsorizza il tuo Annuncio  </a>
+                    </span>
+
+                    @endif
                 </div>
                 <div class="container-fluid bg-beige py-3 ">
                     <div class="container">

@@ -25,6 +25,24 @@
 
 }
 
+//pulsante rosa
+.pink-btn {
+    background-color: #ffafbdc3;
+    padding: 0.5rem;
+    border-radius: 2rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.pink-btn:hover {
+    background-color: #ffbcc7c3;
+    padding: 0.5rem;
+    border-radius: 2rem;
+    font-weight: bold;
+    text-decoration: none;
+
+}
+
 //pulsante BEIGE
 .beige-btn {
     background-color: #ffd465;
@@ -156,9 +174,10 @@ textarea::-webkit-scrollbar {
 }
 
 // Error page
-.w-100vm{
+.w-100vm {
     width: 100vm;
 }
-.h-100vh{
+
+.h-100vh {
     height: calc(100vh - 201.5px);
 }

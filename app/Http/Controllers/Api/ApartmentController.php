@@ -101,7 +101,7 @@ public function index() //<-----------------------------------------FUNZIONA, AG
     $apartments = Apartment::where('visibility', 1)
         ->whereHas('sponsors', function ($query) use ($sponsorIds, $currentDateTime) {
             $query->whereIn('sponsor_id', $sponsorIds)
-                ->where('start', '<=', $currentDateTime);
+                ->where('end', '>=', $currentDateTime);
         })
         ->with(['type', 'services', 'sponsors' => function ($query) use ($sponsorIds) {
             $query->whereIn('sponsor_id', $sponsorIds);
@@ -111,12 +111,12 @@ public function index() //<-----------------------------------------FUNZIONA, AG
     $apartments->transform(function ($apartment) use ($currentDateTime) {
         // Filtra solo gli sponsor con data di inizio <= data attuale
         $validSponsors = $apartment->sponsors->filter(function ($sponsor) use ($currentDateTime) {
-            return $sponsor->pivot->start <= $currentDateTime;
+            return $sponsor->pivot->end >= $currentDateTime;
         });
 
         // Ordina gli sponsor filtrati per data di inizio in ordine decrescente
         $validSponsors = $validSponsors->sortByDesc(function ($sponsor) {
-            return $sponsor->pivot->start;
+            return $sponsor->pivot->end;
         });
 
         // Ottieni l'ultimo sponsor valido
@@ -176,19 +176,19 @@ public function allIndex()
 
     $apartments = Apartment::where('visibility', 1)
         ->with(['type', 'services', 'sponsors' => function ($query) use ($currentDateTime) {
-            $query->where('start', '<=', $currentDateTime);
+            $query->where('end', '>=', $currentDateTime);
         }])
         ->get();
 
     $apartments->transform(function ($apartment) use ($currentDateTime) {
-        // Filtra solo gli sponsor con data di inizio <= data attuale
+        // Filtra solo gli sponsor con data di fine >= data attuale
         $validSponsors = $apartment->sponsors->filter(function ($sponsor) use ($currentDateTime) {
-            return $sponsor->pivot->start <= $currentDateTime;
+            return $sponsor->pivot->end >= $currentDateTime;
         });
 
         // Ordina gli sponsor filtrati per data di inizio in ordine decrescente
         $validSponsors = $validSponsors->sortByDesc(function ($sponsor) {
-            return $sponsor->pivot->start;
+            return $sponsor->pivot->end;
         });
 
         // Ottieni l'ultimo sponsor valido
@@ -272,6 +272,7 @@ public function allIndex()
     //funzione recupero indirizzo per filtro su appartamenti
     public function recuperaTuttiIndirizzi(Request $request)
     {
+        $currentDate=now();
         $data = $request->all();
         $validator= Validator::make($data,[
             'mq'=>'min:1|max:25',
@@ -300,6 +301,7 @@ public function allIndex()
         
                 // Esegui la query per recuperare gli appartamenti filtrati
                 $apartments = Apartment::where('visibility', 1)
+                
                     ->when($min_lon !== null && $max_lon !== null, function ($query) use ($min_lon, $max_lon) {
                         return $query->whereBetween('lon', [$min_lon, $max_lon]);
                     })
@@ -323,9 +325,17 @@ public function allIndex()
                             return $query->whereIn('service_id', $services);
                         }, '>=', count($services)); // aggiungi questo parametro
                     })
-                    ->with('type', 'services')
+                    ->with('type', 'services','sponsors')
+                    ->orderBy(function ($query) {
+                        $query->select('sponsor_id')
+                            ->from('apartment_sponsor')
+                            ->whereColumn('apartment_sponsor.apartment_id', 'apartments.id')
+                            ->latest()
+                            ->limit(1);
+                    }, 'desc')
                     ->get();
-        
+                    
+
                 // Verifica se ci sono risultati
                 if ($apartments->isEmpty()) {
                     return response()->json([
