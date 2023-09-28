@@ -154,3 +154,11 @@ input[type=number] {
 textarea::-webkit-scrollbar {
     display: none;
 }
+
+// Error page
+.w-100vm{
+    width: 100vm;
+}
+.h-100vh{
+    height: calc(100vh - 201.5px);
+}
