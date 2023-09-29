@@ -30,7 +30,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center my-5">
-                <h1>Statistiche dell'Alloggio <span class="brand">{{$apartment->title}}</span></h1>
+                <h1 class="text-center mb-2">Statistiche dell'Alloggio <span class="brand">{{$apartment->title}}</span></h1>
                 <p>
                     Benvenuto alle statistiche del tuo alloggio su <span class="brand">BoolBnB</span>! In questa sezione, puoi esplorare le performance del tuo annuncio e avere un'idea chiara dell'interazione degli utenti con la tua inserzione. Le statistiche ti aiutano a prendere decisioni informate e migliorare l'esperienza degli ospiti.
                 </p>
