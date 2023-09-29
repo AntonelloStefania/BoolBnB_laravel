@@ -40,14 +40,14 @@
                 </div>
             </div>
         </div>
-        <div class="card-container container ">
+        <div class=" container ">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10 col-xlg-4">
                     @foreach($apartments as $apartment)
                     <div class="card float-right">
                         <div class="row">
                             <div class="col-12 col-lg-5 align-items-center ">
-                                <img class="d-block w-100 m-0 m-lg-3 card-img" height="350px" src="{{ asset('storage/'.$apartment->cover) }}" alt="">
+                                <img class="d-block w-100 m-0 m-lg-3 card-img" style="object-fit: cover" height="350px" src="{{ asset('storage/'.$apartment->cover) }}" alt="">
                                 <div class="d-block d-lg-none ">
                                     @foreach($apartment->sponsors as $sponsor)
                                         @if($sponsor->pivot->name != 'free')
@@ -121,6 +121,7 @@
                           </div>
                         </div>
                     </div>
+                    <hr>
                     @endforeach
                 </div>
             </div>
