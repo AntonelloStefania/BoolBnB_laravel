@@ -17,7 +17,6 @@ use App\Models\Apartment;
 use App\Models\Service;
 use App\Models\Sponsor;
 use App\Models\Photo;
-use App\Models\Visit;
 use App\Models\Type;
 use App\Models\User;
 use App\Models\Message;
