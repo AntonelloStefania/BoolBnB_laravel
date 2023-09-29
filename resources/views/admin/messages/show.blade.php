@@ -44,6 +44,7 @@
                                 </div>
                             </div>
                             
+                            
                             <!-- Mail list-->
                             <div class="table-responsive">
                                 <table class="table email-table no-wrap table-hover v-middle mb-0 font-14">

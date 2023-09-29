@@ -20,6 +20,7 @@ use App\Models\Photo;
 use App\Models\Type;
 use App\Models\User;
 use App\Models\Message;
+use App\Models\Visit;
 use Braintree\Gateway as Gateway;
 use Braintree\Transaction as Transaction;
 use Braintree\ClientToken;
@@ -415,13 +416,99 @@ if($sponsorId == 4){
     }
 
 
+    //STATISTICHEZ
+    public function getStats($id)
+    {
+        // Recupera l'appartamento specifico
+        $apartment = Apartment::find($id);
+    
+        // Verifica se l'utente autenticato è il proprietario dell'appartamento
+        if ($apartment->user_id === Auth::id()) {
+            // Recupera tutti i messaggi relativi all'appartamento
+            $messages = $apartment->messages;
+    
+            // Recupera tutti gli sponsor relativi all'appartamento
+            $sponsors = $apartment->sponsors;
+
+            $visits = $apartment->visits;
+            $currentYearMessagesCount = DB::table('messages')
+            ->where('apartment_id', $apartment->id)
+            ->whereYear('created_at', now()->year)
+            ->count();
+
+                // Recupera il conteggio dei messaggi del mese corrente
+            $currentMonthMessagesCount = DB::table('messages')
+            ->where('apartment_id', $apartment->id)
+            ->whereYear('created_at', now()->year)
+            ->whereMonth('created_at', now()->month)
+            ->count();
+
+            // Recupera il conteggio dei messaggi dell'anno precedente
+            $lastYearMessagesCount = DB::table('messages')
+            ->where('apartment_id', $apartment->id)
+            ->whereYear('created_at', now()->subYear()->year)
+            ->count();
+
+
+
+             // Recupera il conteggio delle visite dell'anno corrente
+        $currentYearVisitsCount = DB::table('visits')
+        ->where('apartment_id', $apartment->id)
+        ->whereYear('created_at', now()->year)
+        ->count();
+
+        // Recupera il conteggio delle visite del mese corrente
+        $currentMonthVisitsCount = DB::table('visits')
+            ->where('apartment_id', $apartment->id)
+            ->whereYear('created_at', now()->year)
+            ->whereMonth('created_at', now()->month)
+            ->count();
+
+        // Recupera il conteggio delle visite dell'anno precedente
+        $lastYearVisitsCount = DB::table('visits')
+            ->where('apartment_id', $apartment->id)
+            ->whereYear('created_at', now()->subYear()->year)
+            ->count();
+
+
+             // Recupera gli sponsor dell'anno corrente con i loro nomi
+        $currentYearSponsors = DB::table('sponsors')
+        ->join('apartment_sponsor', 'sponsors.id', '=', 'apartment_sponsor.sponsor_id')
+        ->where('apartment_sponsor.apartment_id', $apartment->id)
+        ->whereYear('apartment_sponsor.end', now()->year)
+        ->count();
+
+    // Recupera gli sponsor del mese corrente con i loro nomi
+    $currentMonthSponsors = DB::table('sponsors')
+        ->join('apartment_sponsor', 'sponsors.id', '=', 'apartment_sponsor.sponsor_id')
+        ->where('apartment_sponsor.apartment_id', $apartment->id)
+        ->whereYear('apartment_sponsor.start', now()->year)
+        ->whereMonth('apartment_sponsor.start', now()->month)
+        ->count();
+
+    // Recupera gli sponsor dell'anno precedente con i loro nomi
+    $lastYearSponsors = DB::table('sponsors')
+        ->join('apartment_sponsor', 'sponsors.id', '=', 'apartment_sponsor.sponsor_id')
+        ->where('apartment_sponsor.apartment_id', $apartment->id)
+        ->whereYear('apartment_sponsor.end', now()->subYear()->year)
+        ->count();
+
+
+           
+    
+            // Ora puoi utilizzare $messages e $sponsors per le tue statistiche
+            // Ad esempio, puoi contare i messaggi o analizzare gli sponsor attivi, ecc.
+    
+            return view('admin.apartments.stats', compact('apartment', 'messages', 'sponsors','currentYearMessagesCount','currentMonthMessagesCount','lastYearMessagesCount','currentYearVisitsCount','currentMonthVisitsCount','lastYearVisitsCount','currentYearSponsors','currentMonthSponsors','lastYearSponsors'));
+        } else {
+            $message = 'NON TI PERMETTERE DI TOCCARE GLI APPARTAMENTI ALTRUI';
+            return redirect()->route('admin.errors.error', compact('message'));
+        }
+    }
+    
+    
+    //FINE STATISTICHEZ
 }
-
-//TERZA PROVA CON DATI SPONSOR
-
-
-
-//FINE TERZA PROVA
 
 
 

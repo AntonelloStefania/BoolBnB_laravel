@@ -38,6 +38,7 @@
         </div>
     </div>
 </div>
+
     <section class="mt-5">
         <div class="container-fluid">
             <div class="row ">
@@ -45,7 +46,10 @@
                     <h2 class="my-3"><span class="brand">Visualizza</span> il Tuo Annuncio</h2>
                     <p class="text-center">Controlla il tuo annuncio su <span class="brand">BoolBnB</span> per assicurarti che sia completo e soddisfi tutte le tue esigenze. Qui puoi vedere ogni dettaglio e foto che hai aggiunto. Se hai dimenticato qualcosa o desideri apportare modifiche, è il momento giusto per farlo. Un annuncio accurato e completo attira più ospiti, quindi assicurati che il tuo annuncio su <span class="brand">BoolBnB</span> sia perfetto</p>
                 </div>
-                <div class=" mt-2 container-fluid px-0 d-flex text-center text-md-end ">
+                <div class="col-11 d-flex  justify-content-end me-5">
+                    <a href="{{route('admin.apartments.stats', $apartment->id)}}" class="d-flex align-items-center bg-c-green p-3 fw-bold" style="text-decoration:none; border-radius:0.755rem"><span class="d-none d-lg-inline brand">Visualizza Statistiche</span><i class="fa-solid ms-3 fa-2xl fa-ranking-star" style="color: #8eaff1;"></i></a>
+                </div>
+                <div class="  container-fluid mt-4 px-0 d-flex text-center text-md-end ">
                     @foreach($apartment->sponsors as $sponsor)
                         @if($sponsor->pivot->end > now())
                             <span class=" h-100 w-100 sponsor-label-absolute pe-5  py-3   {{ $sponsor->name === 'free' ? 'bg-c-blue' : ($sponsor->name === 'base' ? 'bg-c-green' : ($sponsor->name === 'avanzato' ? 'bg-c-yellow' : ($sponsor->name === 'pro' ? 'bg-c-pink' : ''))) }}" > Sponsor <span class="upper-case brand" >{{$sponsor->name}}</span> <span class=""> fino al: <span class="brand">{{$sponsor->pivot->end}}</span></span></span>
