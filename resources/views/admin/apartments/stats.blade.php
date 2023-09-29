@@ -46,7 +46,7 @@
                 
             </div>
             <div class="col-12 col-lg-6 d-flex justify-content-center">
-                <canvas id="monthlySponsorsChart"></canvas>>
+                <canvas id="monthlySponsorsChart"></canvas>
             </div>
         </div>
     </div>

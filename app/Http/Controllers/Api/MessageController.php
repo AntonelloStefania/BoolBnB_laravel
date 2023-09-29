@@ -31,6 +31,7 @@ public function store(Request $request) {
     }else{
         $newMessage= new Message();
         $newMessage->fill($data);
+        $newMessage->read = false; 
         $newMessage->save();
         // Mail::to('contact@bnb.com')->send(new NewContact([
         //     'name' =>$newMessage->name,

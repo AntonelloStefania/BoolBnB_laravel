@@ -85,7 +85,22 @@
                                             <a href="{{route('admin.apartments.stats',  $apartment->id)}}"   class="d-flex align-items-center green-btn "><i class="fa-solid fa-ranking-star" style="color: #4c85e7;"></i><span class="d-none d-lg-inline ms-2">Statistiche</span></a>
                                         </div>
                                         <div class="my-4  col-auto" >
-                                            <a href="{{route('admin.messages.show',  $apartment->id)}}" class="blue-btn"><i class="fa-solid fa-envelope" style="color: #d4e1f8;"></i><span class="d-none d-lg-inline ms-2">Messaggi</span></a>
+                                            <a href="{{route('admin.messages.show',  $apartment->id)}}" class="blue-btn position-relative">
+                                                <i class="fa-solid fa-envelope" style="color: #d4e1f8;">
+                                                    @if($apartment->messages->where('read',false)->count() > 0)
+                                                    <span class=" text-center d-block d-lg-none  rounded-circle position-absolute mail-notification" >
+                                                        {{ $apartment->messages->where('read', false)->count() }}
+                                                    </span>
+                                                    @endif
+                                                </i>
+                                                
+                                                <span class="d-none d-lg-inline ms-2">Messaggi</span>
+                                                @if($apartment->messages->where('read',false)->count() > 0)
+                                                <span class=" text-center  rounded-circle position-absolute mail-notification" >
+                                                    {{ $apartment->messages->where('read', false)->count() }}
+                                                </span>
+                                                @endif
+                                            </a>
                                         </div>
                                         <div class=" col-auto" >
                                             <a href="{{route('admin.apartments.show', $apartment->id)}}" class="blue-btn"><i class="fa-regular fa-eye me-0 me-lg-2" style="color: #d4e1f8;"></i><span class="d-none d-lg-inline">Dettagli</span></a>
@@ -177,6 +192,12 @@
 @endsection
 
 <style lang="scss">
+    .mail-notification{
+        background-color: rgb(250, 129, 129);
+        top:-13px;
+        right:-10;
+        padding:0px 8px;
+    }
     .fake-btn{
         width: 7rem
     }
