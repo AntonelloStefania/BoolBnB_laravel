@@ -1,12 +1,11 @@
-@extends('layouts.admin')
 
+@extends('layouts.app')
 @section('content')
-
 <div class="container-fluid navbar-container">
     <div class="row justify-content-between w-100">
         <div class="d-flex col-6 col-lg-4 justify-content-center">
-            <div class="col-6 col-lg-4  py-3 d-flex  justify-content-center">
-                <a href="{{route('admin.apartments.index')}}"  class=" d-flex align-items-center " style="text-decoration:none; color:#3a537e;">
+            <div class="col-6 col-lg-4 py-3 d-flex justify-content-center">
+                <a href="{{route('admin.apartments.index')}}" class="d-flex align-items-center" style="text-decoration:none; color:#3a537e;">
                     <div class="col-auto">
                         <i class="fa-regular fa-circle-left me-2" style="color: #3a537e;"></i> 
                     </div>
@@ -16,8 +15,8 @@
                 </a>
             </div>
         </div>
-        <div class=" col-4 d-none d-lg-flex justify-content-center">
-            <a href="#add-photos"  class=" d-flex align-items-center" style="text-decoration:none; color:#3a537e;"> 
+        <div class="col-4 d-none d-lg-flex justify-content-center">
+            <a href="#add-photos" class="d-flex align-items-center" style="text-decoration:none; color:#3a537e;"> 
                 <div class="col">
                     <span>Aggiungi Foto</span>  
                 </div>
@@ -27,7 +26,7 @@
             </a>
         </div>
         <div class="d-flex col-6 col-lg-4 justify-content-center">
-            <a href="{{route('admin.apartments.edit', $apartment->id)}}"  class=" d-flex align-items-center" style="text-decoration:none; color:#3a537e;"> 
+            <a href="{{route('admin.apartments.edit', $apartment->id)}}" class="d-flex align-items-center" style="text-decoration:none; color:#3a537e;"> 
                 <div class="col-auto">
                     <span>Modifica Annuncio</span>  
                 </div>
@@ -39,127 +38,114 @@
     </div>
 </div>
 
-    <section class="mt-5">
-        <div class="container-fluid">
-            <div class="row ">
-                <div class="col-8 offset-2 text-center mb-5">
-                    <h2 class="my-3"><span class="brand">Visualizza</span> il Tuo Annuncio</h2>
-                    <p class="text-center">Controlla il tuo annuncio su <span class="brand">BoolBnB</span> per assicurarti che sia completo e soddisfi tutte le tue esigenze. Qui puoi vedere ogni dettaglio e foto che hai aggiunto. Se hai dimenticato qualcosa o desideri apportare modifiche, è il momento giusto per farlo. Un annuncio accurato e completo attira più ospiti, quindi assicurati che il tuo annuncio su <span class="brand">BoolBnB</span> sia perfetto</p>
-                </div>
-                <div class="col-11 d-flex  justify-content-end me-5">
-                    <a href="{{route('admin.apartments.stats', $apartment->id)}}" class="d-flex align-items-center bg-c-green p-3 fw-bold" style="text-decoration:none; border-radius:0.755rem"><span class="d-none d-lg-inline brand">Visualizza Statistiche</span><i class="fa-solid ms-3 fa-2xl fa-ranking-star" style="color: #8eaff1;"></i></a>
-                </div>
-                <div class="  container-fluid mt-4 px-0 d-flex text-center text-md-end ">
-                    @foreach($apartment->sponsors as $sponsor)
-                        @if($sponsor->pivot->end > now())
-                            <span class=" h-100 w-100 sponsor-label-absolute pe-5  py-3   {{ $sponsor->name === 'free' ? 'bg-c-blue' : ($sponsor->name === 'base' ? 'bg-c-green' : ($sponsor->name === 'avanzato' ? 'bg-c-yellow' : ($sponsor->name === 'pro' ? 'bg-c-pink' : ''))) }}" > Sponsor <span class="upper-case brand" >{{$sponsor->name}}</span> <span class=""> fino al: <span class="brand">{{$sponsor->pivot->end}}</span></span></span>
-                       
-                        @endif
-                    @endforeach
-                </div>
-                <div class="  container-fluid px-0 d-flex text-center text-md-end ">
-                 @if($apartment->sponsors->isEmpty() || $sponsor->pivot->end < now() )
-                    <span class="h-100 w-100 sponsor-label-absolute pe-5  py-3">
-                        <a href="{{route('admin.apartments.braintree', $apartment->id)}}"  class="pink-btn" style="text-decoration:none; color:#3a537e;">Sponsorizza il tuo Annuncio  </a>
-                    </span>
-
+<section class="mt-5">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-8 offset-2 text-center mb-5">
+                <h2 class="my-3"><span class="brand">Visualizza</span> il Tuo Annuncio</h2>
+                <p class="text-center">Controlla il tuo annuncio su <span class="brand">BoolBnB</span> per assicurarti che sia completo e soddisfi tutte le tue esigenze. Qui puoi vedere ogni dettaglio e foto che hai aggiunto. Se hai dimenticato qualcosa o desideri apportare modifiche, è il momento giusto per farlo. Un annuncio accurato e completo attira più ospiti, quindi assicurati che il tuo annuncio su <span class="brand">BoolBnB</span> sia perfetto</p>
+            </div>
+            <div class="col-11 d-flex justify-content-end me-5">
+                <a href="{{route('admin.apartments.stats', $apartment->id)}}" class="d-flex align-items-center bg-c-green p-3 fw-bold" style="text-decoration:none; border-radius:0.755rem"><span class="d-none d-lg-inline brand">Visualizza Statistiche</span><i class="fa-solid ms-3 fa-2xl fa-ranking-star" style="color: #8eaff1;"></i></a>
+            </div>
+            <div class="container-fluid mt-4 px-0 d-flex text-center text-md-end">
+                @foreach($apartment->sponsors as $sponsor)
+                    @if($sponsor->pivot->end > now())
+                        <span class="h-100 w-100 sponsor-label-absolute pe-5  py-3   {{ $sponsor->name === 'free' ? 'bg-c-blue' : ($sponsor->name === 'base' ? 'bg-c-green' : ($sponsor->name === 'avanzato' ? 'bg-c-yellow' : ($sponsor->name === 'pro' ? 'bg-c-pink' : ''))) }}" > Sponsor <span class="upper-case brand" >{{$sponsor->name}}</span> <span class=""> fino al: <span class="brand">{{$sponsor->pivot->end}}</span></span></span>
                     @endif
-                </div>
-                <div class="container-fluid bg-beige py-3 ">
-                    <div class="container">
-                        <div class="col-12 text-center  mb-4">
-                            <h2>
-                                {{$apartment->title}}
-                            </h2>
+                @endforeach
+            </div>
+            <div class="container-fluid px-0 d-flex text-center text-md-end">
+                @if($apartment->sponsors->isEmpty() || $sponsor->pivot->end < now())
+                    <span class="h-100 w-100 sponsor-label-absolute pe-5  py-3">
+                        <a href="{{route('admin.apartments.braintree', $apartment->id)}}" class="pink-btn" style="text-decoration:none; color:#3a537e;">Sponsorizza il tuo Annuncio  </a>
+                    </span>
+                @endif
+            </div>
+            <div class="container-fluid bg-beige py-3">
+                <div class="container">
+                    <div class="col-12 text-center  mb-4">
+                        <h2>
+                            {{$apartment->title}}
+                        </h2>
+                    </div>
+                    <div class="col-12 d-flex flex-column flex-lg-row">
+                        <div class="col-12  col-lg-4 d-flex align-items-center order-2 order-lg-1 mx-lg-3 mb-3">
+                            <img src=" {{ asset('storage/'.$apartment->cover) }}" style="border-radius:2rem; border:2px solid rgb(64, 64, 66)" width="100%" max-height="500px">
                         </div>
-                        <div class="col-12 d-flex flex-column flex-lg-row ">
-                            <div class="col-12  col-lg-4 d-flex align-items-center order-2 order-lg-1 mx-lg-3 mb-3">
-                                <img src=" {{ asset('storage/'.$apartment->cover) }}" style="border-radius:2rem; border:2px solid rgb(64, 64, 66)" width="100%" max-height="500px">
-                            </div>
-                            <div class="col-12 m-0 col-lg-8  text-center order-2 order-md-2  justify-content-center mb-3 " >
-                                <div class="container gal-container ">
-                                    <div class="gal-item d-flex flex-wrap justify-content-center">
-                                        
-                                        @foreach($apartment->photos as $photo)
+                        <div class="col-12 m-0 col-lg-8  text-center order-2 order-md-2  justify-content-center mb-3 " >
+                            <div class="container gal-container ">
+                                <div class="gal-item d-flex flex-wrap justify-content-center">
+                                    @foreach($apartment->photos as $photo)
                                         @if($photo->apartment_id == $apartment->id)
-                                        
                                             <div class="box col-12 col-md-5 m-2  img-container  " id="add-photos">
                                                 <img src=" {{ asset('storage/'.$photo->url) }} " class="col-6" style="border-radius:1.25rem" max-height="300px" >
                                                 <div class="btns d-flex align-items-center">
                                                     <div>
                                                         <button type="button" class="btn beige-btn" data-bs-toggle="modal" data-bs-target="#{{$photo->id}}">
-                                                            <i class="fas fa-trash" style="color: #292929;"></i></button>
-                                                          </button>
+                                                            <i class="fas fa-trash" style="color: #292929;"></i>
+                                                        </button>
                                                     </div>
-                                                    {{-- <button type="button" class="btn blue-btn btn-sm ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="fas fa-pencil" style="color: #d4e1f8;"></i></button> --}}
                                                 </div>
-                                                
                                                 <div class="modal fade" id="{{$photo->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Vuoi <span class="brand">Eliminare</span> questa <span class="brand">Foto</span>?</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Vuoi <span class="brand">Eliminare</span> questa <span class="brand">Foto</span>?</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <span>La Foto verrà <span class="brand">Eliminata</span> definitivamente</span>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn blue-btn" data-bs-dismiss="modal">Annulla</button>
+                                                                <form action="{{route('admin.apartments.photos.destroy', [$apartment->id, $photo->id])}}"  class="d-block" method="POST">
+                                                                    @method('DELETE')
+                                                                    @csrf
+                                                                    <button class="beige-btn btn" type="submit">Conferma</button>
+                                                                </form>
+                                                            </div>
                                                         </div>
-                                                        <div class="modal-body">
-                                                        <span>La Foto verrà <span class="brand">Eliminata</span> definitivamente</span>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                        <button type="button" class="btn blue-btn" data-bs-dismiss="modal">Annulla</button>
-                                                        <form action="{{route('admin.apartments.photos.destroy', [$apartment->id, $photo->id])}}"  class="d-block" method="POST">
-                                                            @method('DELETE')
-                                                            @csrf
-                                                            <button class="beige-btn btn" type="submit">Conferma</button>
-                                                        </form>
-                                                        </div>
-                                                    </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         @endif
-                                        @endforeach
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
                     </div>
-                   
-                    <div class="col-12 text-center mt-2 ">
-                        <span>Vuoi rendere il tuo annuncio ancora più <span class="brand">irresistibile?</span> Aggiungi alcune <span class="brand">foto</span> per mostrare tutti i dettagli che rendono il tuo alloggio speciale<button type="button" class="btn blue-btn btn-sm ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-plus "></i></button></span>
-                    </div>
-                    <div class="col-12 text-center mt-2 ">
-                        <span style="font-size:12px"><span class="brand">Aggiungi </span>Foto al tuo annuncio e <span class="brand">Muoviti su di loro</span> per altre funzionalità</span>
-                    </div>
-
                 </div>
-                
-     
+                <div class="col-12 text-center mt-2 ">
+                    <span>Vuoi rendere il tuo annuncio ancora più <span class="brand">irresistibile?</span> Aggiungi alcune <span class="brand">foto</span> per mostrare tutti i dettagli che rendono il tuo alloggio speciale<button type="button" class="btn blue-btn btn-sm ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-plus "></i></button></span>
+                </div>
+                <div class="col-12 text-center mt-2 ">
+                    <span style="font-size:12px"><span class="brand">Aggiungi </span>Foto al tuo annuncio e <span class="brand">Muoviti su di loro</span> per altre funzionalità</span>
+                </div>
             </div>
         </div>
-        {{-- FINE SEZIONE IMMAGINI --}}
         <div class="container my-5">
             <div class="row">
                 <div class="col-12 col-md-6 flex-column d-flex align-items-center d-md-block  col-lg-3 my-4 my-lg-0 text-lg-start">
                     <h5 class="mb-3 d-flex ">Il Tuo <span class="brand">Alloggio</span></h5>
-                        <ul class="list-unstyled ">
-                            <li class=" ">
-                              <img src="{{$apartment->type->icons}}" width="25rem" class="me-2" alt="">
-                              <span class="fw-bold brand">{{$apartment->type->name}}</span>
-                            </li>
-                            <li class="" >
-                                <span class="" ><span class="brand">Grandezza</span> alloggio: </span><span class="fw-bold " >{{$apartment->mq}} <span class="fs-5">&#x33A1;</span> </span>
-                            </li>
-                            <li class="">
-                                <span class="">Numero di <span class="brand">Stanze:</span> </span> <span class="ms-2 fw-bold ">{{$apartment->n_rooms}}<i class="fa-solid fa-building ms-2 align-self-center" style="color: #4f5153;"></i></span>
-                            </li>
-                            <li class="">
-                                <span class="">Numero di <span class="brand">Bagni:</span> </span> <span class="ms-2 fw-bold ">{{$apartment->n_wc}}<i class="fa-solid fa-toilet-paper ms-2" style="color: #4f5153;"></i></span>
-                            </li>
-                            <li class="">
-                                <span class="">Numero di <span class="brand">Letti:</span> </span> <span class="ms-2 fw-bold ">{{$apartment->n_beds}}<i class="fa-solid fa-bed ms-2 align-self-center" style="color: #4f5153;"></i></span>
-                            </li>
-                        </ul>
-                    
+                    <ul class="list-unstyled ">
+                        <li class=" ">
+                            <img src="{{$apartment->type->icons}}" width="25rem" class="me-2" alt="">
+                            <span class="fw-bold brand">{{$apartment->type->name}}</span>
+                        </li>
+                        <li class="" >
+                            <span class="" ><span class="brand">Grandezza</span> alloggio: </span><span class="fw-bold " >{{$apartment->mq}} <span class="fs-5">&#x33A1;</span> </span>
+                        </li>
+                        <li class="">
+                            <span class="">Numero di <span class="brand">Stanze:</span> </span> <span class="ms-2 fw-bold ">{{$apartment->n_rooms}}<i class="fa-solid fa-building ms-2 align-self-center" style="color: #4f5153;"></i></span>
+                        </li>
+                        <li class="">
+                            <span class="">Numero di <span class="brand">Bagni:</span> </span> <span class="ms-2 fw-bold ">{{$apartment->n_wc}}<i class="fa-solid fa-toilet-paper ms-2" style="color: #4f5153;"></i></span>
+                        </li>
+                        <li class="">
+                            <span class="">Numero di <span class="brand">Letti:</span> </span> <span class="ms-2 fw-bold ">{{$apartment->n_beds}}<i class="fa-solid fa-bed ms-2 align-self-center" style="color: #4f5153;"></i></span>
+                        </li>
+                    </ul>
                 </div>
                 <div class="col-12 col-md-6 flex-column d-flex align-items-center d-md-block  col-lg-3 my-4 my-lg-0 text-lg-start">
                     <h5 class="mb-3">I <span class="brand">Servizi</span> che Offri</h5>
@@ -174,30 +160,25 @@
                 </div>
                 <div class="col-12  col-lg-6 text-center my-4 my-lg-0 text-md-start">
                     <h5 class="mb-3">Il <span class="brand">Pernottamento</span> che Offri</h5>
-                   
-                        <ul class="list-unstyled apartment-list ">
-                            <li class="">
-                               <span><span class="brand">Prezzo</span> per Notte: </span><span class="ms-2 fw-bold">{{$apartment->price}}&euro;</span>
-                            </li>
-                            <li class="">
-                               <span><span class="brand">Indirizzo</span>: </span><span class="ms-2 ">{{$apartment->address}} <i class="fa-solid fa-location-dot ms-1" style="color: #4f5153;"></i></span>
-                            </li>
-                            <li class="">
-                                <span><span class="brand">Descrizione</span>: </span><span class="ms-2 w-break">{{$apartment->description}}</span>
-                             </li>
-                        </ul>
-                   
+                    <ul class="list-unstyled apartment-list ">
+                        <li class="">
+                            <span><span class="brand">Prezzo</span> per Notte: </span><span class="ms-2 fw-bold">{{$apartment->price}}&euro;</span>
+                        </li>
+                        <li class="">
+                            <span><span class="brand">Indirizzo</span>: </span><span class="ms-2 ">{{$apartment->address}} <i class="fa-solid fa-location-dot ms-1" style="color: #4f5153;"></i></span>
+                        </li>
+                        <li class="">
+                            <span><span class="brand">Descrizione</span>: </span><span class="ms-2 w-break">{{$apartment->description}}</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
         @include('admin.photos.create')
-        {{-- @include('admin.photos.edit') --}}
-    </section>
-    <script>
-        
-    </script>
-    
+    </div>
+</section>
 @endsection
+
 
 
 
