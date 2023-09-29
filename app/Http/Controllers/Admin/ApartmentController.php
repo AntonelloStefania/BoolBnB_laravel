@@ -429,6 +429,8 @@ if($sponsorId == 4){
     {
         // Recupera l'appartamento specifico
         $apartment = Apartment::find($id);
+        $currentYear = now()->year;
+        $currentMonth = now()->month;
     
         // Verifica se l'utente autenticato è il proprietario dell'appartamento
         if ($apartment->user_id === Auth::id()) {
@@ -439,24 +441,56 @@ if($sponsorId == 4){
             $sponsors = $apartment->sponsors;
 
             $visits = $apartment->visits;
-            $currentYearMessagesCount = DB::table('messages')
-            ->where('apartment_id', $apartment->id)
-            ->whereYear('created_at', now()->year)
-            ->count();
+           
 
-                // Recupera il conteggio dei messaggi del mese corrente
-            $currentMonthMessagesCount = DB::table('messages')
-            ->where('apartment_id', $apartment->id)
-            ->whereYear('created_at', now()->year)
-            ->whereMonth('created_at', now()->month)
-            ->count();
+           // Inizializza un array per i conteggi mensili dei messaggi
+                    $monthlyMessageCounts = [];
 
+            // Ciclo per ottenere il conteggio dei messaggi per ciascun mese dall'inizio dell'anno corrente fino ad oggi
+            for ($month = 1; $month <= $currentMonth; $month++) {
+                $count = DB::table('messages')
+                    ->where('apartment_id', $apartment->id)
+                    ->whereYear('created_at', $currentYear)
+                    ->whereMonth('created_at', $month)
+                    ->count();
+
+                // Aggiungi il conteggio all'array associativo
+                $monthlyMessageCounts[$month] = $count;
+            }
             // Recupera il conteggio dei messaggi dell'anno precedente
             $lastYearMessagesCount = DB::table('messages')
             ->where('apartment_id', $apartment->id)
             ->whereYear('created_at', now()->subYear()->year)
             ->count();
 
+
+
+            $currentYearMessagesCount = DB::table('messages')
+            ->where('apartment_id', $apartment->id)
+            ->whereYear('created_at', now()->year)
+            ->count();
+
+
+
+            //VISITE
+
+        // Inizializza un array per i conteggi mensili delle visite
+        $monthlyVisitCounts = [];
+
+    
+        
+
+        // Ciclo per ottenere il conteggio delle visite per ciascun mese dall'inizio dell'anno corrente fino ad oggi
+        for ($month = 1; $month <= $currentMonth; $month++) {
+            $count = DB::table('visits')
+                ->where('apartment_id', $apartment->id)
+                ->whereYear('created_at', $currentYear)
+                ->whereMonth('created_at', $month)
+                ->count();
+
+            // Aggiungi il conteggio all'array associativo
+            $monthlyVisitCounts[$month] = $count;
+        }
 
 
              // Recupera il conteggio delle visite dell'anno corrente
@@ -479,14 +513,39 @@ if($sponsorId == 4){
             ->count();
 
 
-             // Recupera gli sponsor dell'anno corrente con i loro nomi
+
+        //SPONSOR
+
+
+        // Inizializza un array per i conteggi mensili degli sponsor
+        $monthlySponsorCounts = [];
+
+        // Ottieni l'anno corrente e il mese corrente
+ 
+
+        // Ciclo per ottenere il conteggio degli sponsor per ciascun mese dall'inizio dell'anno corrente fino ad oggi
+        for ($month = 1; $month <= $currentMonth; $month++) {
+        $count = DB::table('sponsors')
+        ->join('apartment_sponsor', 'sponsors.id', '=', 'apartment_sponsor.sponsor_id')
+        ->where('apartment_sponsor.apartment_id', $apartment->id)
+        ->whereYear('apartment_sponsor.start', $currentYear)
+        ->whereMonth('apartment_sponsor.start', $month)
+        ->count();
+
+        // Aggiungi il conteggio all'array associativo
+        $monthlySponsorCounts[$month] = $count;
+        }
+
+
+
+    //          // Recupera gli sponsor dell'anno corrente con i loro nomi
         $currentYearSponsors = DB::table('sponsors')
         ->join('apartment_sponsor', 'sponsors.id', '=', 'apartment_sponsor.sponsor_id')
         ->where('apartment_sponsor.apartment_id', $apartment->id)
         ->whereYear('apartment_sponsor.end', now()->year)
         ->count();
 
-    // Recupera gli sponsor del mese corrente con i loro nomi
+    // // Recupera gli sponsor del mese corrente con i loro nomi
     $currentMonthSponsors = DB::table('sponsors')
         ->join('apartment_sponsor', 'sponsors.id', '=', 'apartment_sponsor.sponsor_id')
         ->where('apartment_sponsor.apartment_id', $apartment->id)
@@ -494,7 +553,7 @@ if($sponsorId == 4){
         ->whereMonth('apartment_sponsor.start', now()->month)
         ->count();
 
-    // Recupera gli sponsor dell'anno precedente con i loro nomi
+    // // Recupera gli sponsor dell'anno precedente con i loro nomi
     $lastYearSponsors = DB::table('sponsors')
         ->join('apartment_sponsor', 'sponsors.id', '=', 'apartment_sponsor.sponsor_id')
         ->where('apartment_sponsor.apartment_id', $apartment->id)
@@ -507,7 +566,7 @@ if($sponsorId == 4){
             // Ora puoi utilizzare $messages e $sponsors per le tue statistiche
             // Ad esempio, puoi contare i messaggi o analizzare gli sponsor attivi, ecc.
     
-            return view('admin.apartments.stats', compact('apartment', 'messages', 'sponsors','currentYearMessagesCount','currentMonthMessagesCount','lastYearMessagesCount','currentYearVisitsCount','currentMonthVisitsCount','lastYearVisitsCount','currentYearSponsors','currentMonthSponsors','lastYearSponsors'));
+            return view('admin.apartments.stats', compact('apartment', 'messages', 'sponsors','currentYearMessagesCount','monthlySponsorCounts','lastYearMessagesCount','currentYearVisitsCount','currentMonthVisitsCount','lastYearVisitsCount','currentYearSponsors','currentMonthSponsors','lastYearSponsors','monthlyVisitCounts','monthlyMessageCounts'));
         } else {
             $message = 'NON TI PERMETTERE DI TOCCARE GLI APPARTAMENTI ALTRUI';
             return redirect()->route('admin.errors.error', compact('message'));
