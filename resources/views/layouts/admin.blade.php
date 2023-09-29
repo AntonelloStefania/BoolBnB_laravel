@@ -94,6 +94,68 @@
             @yield('content')
           
         </main>
+                {{-- FOOTER --}}
+<footer id="footer-large">
+		
+	<div class="footer-container">
+		
+		<div class="footer-informazioni">
+		 <div>
+            <h2>BoolBnB</h2>
+        </div>
+			
+		  <p class="margin-bot-15px descrizione">I valori fondamentali di BoolBnB includono l'eccellenza nell'ospitalità, la soddisfazione del cliente e la trasparenza. BoolBnB si impegna a offrire servizi di alta qualità e alloggi ben curati per garantire un'esperienza memorabile ai suoi ospiti. La compagnia promuove la fiducia attraverso recensioni autentiche e una comunicazione aperta. Inoltre, BoolBnB abbraccia la diversità e promuove la connessione tra culture, offrendo alloggi unici in tutto il mondo per un'esperienza autentica e stimolante. 
+			</p>
+			
+		
+		</div>	
+		
+		<div class="footer-menu">
+		<div class="menu-footer descrizione"><ul id="menu-menu-footer" class="menu">
+    	<li><a href="#">Homepage</a></li>
+		<li><a href="#">Appartamenti</a></li>
+		<li><a href="#">Vetrina</a></li>
+		<li><a href="#">Sponsorizzazioni</a></li>
+		<li><a href="#">Profilo</a></li>
+		</ul></div> <!-- Footer Menu -->
+		</div>
+		
+		<div class="footer-contatti">
+			
+		<div class="descrizione color-secondary">Contatti</div>
+		<p class="descrizione">Tel: +39 0584 000000<br/>
+		Email: <a href="#">info@info.com</a><br/>
+		Indirizzo: via Roma 111, Pietrasanta (LU), Italia.<br/>
+        </p>
+			
+		<div class="social-cont">        
+		<ul class="social-list">
+
+		<li class="trans-color"><a target="_blank" href="#"><img src="https://www.chefstudio.it/img/facebook-icon.png"  title="facebook" alt="Facebook icon"><br></a></li>
+		<li class="trans-color"><a target="_blank" href="#"><img src="https://www.chefstudio.it/img/instagram-icon.png" title="Instagram" alt="Instagram icon"><br></a></li>
+		<li class="trans-color"><a target="_blank" href="#"><img src="https://www.chefstudio.it/img/pinterest-icon.png" title="pinterest" alt="Instagram icon"><br></a></li>
+
+		</ul>
+    	<div class="floatstop"></div>
+		</div><!--/fine social cont-->
+			
+		</div>
+		
+
+
+		<div class="floatstop"></div>
+		
+		<div class="avvertenze-legali">
+		<p>
+		Informazioni legali | I testi, le informazioni e gli altri dati pubblicati in questo sito nonché i link ad altri siti presenti sul web hanno esclusivamente scopo informativo e non assumono alcun carattere di ufficialità. Non assume alcuna responsabilità per eventuali errori od omissioni di qualsiasi tipo e per qualunque tipo di danno diretto, indiretto o accidentale derivante dalla lettura o dall'impiego delle informazioni pubblicate, o di qualsiasi forma di contenuto presente nel sito o per l'accesso o l'uso del materiale contenuto in altri siti.
+		</p>
+		</div>			
+		
+			
+	
+</div> <!--/fine footer container -->
+	
+</footer>
     </div>
 </body>
 
