@@ -15,7 +15,12 @@ class MessageController extends Controller
     {
         $apartment = Apartment::with('messages')->find($apartmentId);
         if($apartment->user_id === Auth::id()){
-
+            foreach ($apartment->messages as $message) {
+                if (!$message->read) {
+                    $message->read = true;
+                    $message->save();
+                }
+            }
     
         return view('admin.messages.show', compact('apartment'));
         } else {
