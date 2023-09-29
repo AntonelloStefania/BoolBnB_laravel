@@ -46,12 +46,12 @@
                     @foreach($apartments as $apartment)
                     <div class="card float-right">
                         <div class="row">
-                            <div class="col-12 col-lg-5 align-items-center ">
+                            <div class="col-12 col-lg-5 position-relative align-items-center ">
                                 <img class="d-block w-100 m-0 m-lg-3 card-img" style="object-fit: cover" height="350px" src="{{ asset('storage/'.$apartment->cover) }}" alt="">
-                                <div class="d-block d-lg-none ">
+                                <div class="d-block ">
                                     @foreach($apartment->sponsors as $sponsor)
                                         @if($sponsor->pivot->name != 'free')
-                                        <span class="sponsor-label-absolute-img   {{ $sponsor->name === 'free' ? 'bg-c-blue' : ($sponsor->name === 'base' ? 'bg-c-green' : ($sponsor->name === 'avanzato' ? 'bg-c-yellow' : ($sponsor->name === 'pro' ? 'bg-c-pink' : ''))) }}" > Sponsor <span class="toUpperCase">{{$sponsor->name}}</span> <span class=""> fino al: <br> {{$sponsor->pivot->end}}</span></span>
+                                        <span class="sponsor-label-absolute-img   {{ $sponsor->name === 'free' ? 'bg-c-blue' : ($sponsor->name === 'base' ? 'bg-c-green' : ($sponsor->name === 'avanzato' ? 'bg-c-yellow' : ($sponsor->name === 'pro' ? 'bg-c-pink' : ''))) }}" > Sponsor <span class="upper-case">{{$sponsor->name}}</span> <span class=""> fino al: <br> {{$sponsor->pivot->end}}</span></span>
                                         @endif
                                     @endforeach
                                 </div>
@@ -68,30 +68,34 @@
                                     <div>
                                         <h6 class="d-inline fw-bold">Tipologia di alloggio: </h6><img src="{{$apartment->type->icons}}" width="17rem" class="me-2" alt=""><span>{{$apartment->type->name}}</span>
                                     </div>
-                                    <div class="d-none d-lg-block">
+                                    {{-- <div class="d-none d-lg-block">
                                         @foreach($apartment->sponsors as $sponsor)
                                         
                                         @if($sponsor->pivot->name != 'free')
                                         <span class="sponsor-label-absolute {{ $sponsor->name === 'free' ? 'bg-c-blue' : ($sponsor->name === 'base' ? 'bg-c-green' : ($sponsor->name === 'avanzato' ? 'bg-c-yellow' : ($sponsor->name === 'pro' ? 'bg-c-pink' : ''))) }}" >Sponsor <span class="toUpperCase">{{$sponsor->name}}</span> fino al: <br> {{$sponsor->pivot->end}}</span></span>
                                         @endif
                                         @endforeach
-                                    </div>
+                                    </div> --}}
                                     <div class="">
                                         <p><h6 class="d-inline fw-bold">Pubblicato il: </h6>{{$apartment->created_at}}</p>
                                     </div>
-                                    <div class="d-flex flex-row flex-lg-column justify-content-md-center justify-content-around align-items-center">
-                                        <div class="my-4 col-md-3 col-lg-12" >
+                                  
+                                    <div class="d-flex  justify-content-around   align-items-center">
+                                        <div class="my-4  col-auto" >
+                                            <a href="{{route('admin.apartments.stats',  $apartment->id)}}"   class="d-flex align-items-center green-btn "><i class="fa-solid fa-ranking-star" style="color: #4c85e7;"></i><span class="d-none d-lg-inline ms-2">Statistiche</span></a>
+                                        </div>
+                                        <div class="my-4  col-auto" >
                                             <a href="{{route('admin.messages.show',  $apartment->id)}}" class="blue-btn"><i class="fa-solid fa-envelope" style="color: #d4e1f8;"></i><span class="d-none d-lg-inline ms-2">Messaggi</span></a>
                                         </div>
-                                        <div class="col-md-3 col-lg-12" >
+                                        <div class=" col-auto" >
                                             <a href="{{route('admin.apartments.show', $apartment->id)}}" class="blue-btn"><i class="fa-regular fa-eye me-0 me-lg-2" style="color: #d4e1f8;"></i><span class="d-none d-lg-inline">Dettagli</span></a>
                                         </div>
-                                        <div class="my-4 col-md-3 col-lg-12">
+                                        <div class="my-4  col-auto">
                                             <a href="{{route('admin.apartments.edit', $apartment->id)}}" class="blue-btn"><i class="fas fa-pencil me-0 me-lg-2" style="color: #d3e1f8;"></i><span class="d-none d-lg-inline">Modifica</span></a>
                                         </div>
-                                        <div class="col-md-3 col-lg-12">
-
-                                        
+                                    </div>
+                                    <div class="col-12 d-flex justify-content-center mt-5">
+                                        <div class="col-md-3 col-12 ">
                                             <button class="beige-btn btn mt-3 mt-lg-0" data-bs-toggle="modal" data-bs-target="#{{$apartment->id}}" type="submit"><i class="fas fa-trash me-0 me-lg-2 apartment-delete-button" style="color: #3f3f41;" data-apartment-title={{$apartment->title}}></i><span class="d-none d-lg-inline">Elimina</span></button>  
                                             <div class="modal fade" id="{{$apartment->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
@@ -117,6 +121,7 @@
                                               
                                         </div>
                                     </div>
+                                    
                                 </div>
                           </div>
                         </div>
@@ -177,6 +182,11 @@
     }
     body {
     background-color:  #eee;
+    }
+
+    .upper-case{
+        text-transform: uppercase;
+        font-weight: bolder;
     }
 
     .card-img{
@@ -240,7 +250,7 @@
     display: none; /* Nasconde la scrollbar in Webkit */
 }
 
-.sponsor-label-absolute{
+/* .sponsor-label-absolute{
   position:absolute;
   right:0px;
   bottom:30px;
@@ -250,12 +260,12 @@
   color: rgb(36, 36, 90);
   font-size: 12px;
   width:165px 
-}
+} */
 
 .sponsor-label-absolute-img{
     position:absolute;
-  right:20px;
-  top:30px;
+  right:10px;
+  bottom:50px;
   padding:5px 10px;
   border-radius:0.755rem;
   font-weight: bold;
@@ -273,6 +283,19 @@
 
 .bg-c-green {
     background: linear-gradient(45deg,#9ff8e6,#73e0ca);
+}
+
+.green-btn{
+    background: linear-gradient(45deg,#9ff8e6,#73e0ca);
+    color: #4294f2;
+    padding: 0.5rem;
+    border-radius: 2rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+.green-btn:hover{
+    background: linear-gradient(45deg,#9ff8e6,#25ae92);
+
 }
 
 .c-green{
