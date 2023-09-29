@@ -17,6 +17,7 @@ use App\Models\Apartment;
 use App\Models\Service;
 use App\Models\Sponsor;
 use App\Models\Photo;
+use App\Models\Visit;
 use App\Models\Type;
 use App\Models\User;
 use App\Models\Message;
@@ -260,13 +261,21 @@ public function index()
     {
         $photos= Photo::all();
         $messages= Message::all();
+        $visits= Visit::all();
         $length= count($photos);
         $lengthMessage= count($messages);
+        $lengthVisit= count($visits);
         for($i=0; $i<$length; $i++){
             $photo= $photos[$i];
             if($photo->apartment_id == $apartment->id){
                 Storage::delete($photo->url);
                 $photo->delete();
+            }
+        };
+        for($i=0; $i<$lengthVisit; $i++){
+            $visit= $visits[$i];
+            if($visit->apartment_id == $apartment->id){
+                $visit->delete();
             }
         };
         for($i=0; $i<$lengthMessage; $i++){
