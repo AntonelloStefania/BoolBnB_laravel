@@ -52,6 +52,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::post('/apartments/{apartmentId}/payment',[ApartmentController::class,'processPayment'])->name('braintree.processPayment');
     Route::get('/apartments/{apartmentId}/messages', [MessageController::class, 'showApartmentMessages'])->name('messages.show');
     Route::get('/errors', [ApartmentController::class, 'errors'])->name('errors.error');
+    Route::get('/apartments/{apartmentId}/stats', [ApartmentController::class,'getStats'])->name('apartments.stats');
 });
 
 Route::middleware('auth')->group(function () {
