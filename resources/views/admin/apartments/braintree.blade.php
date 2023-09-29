@@ -1,6 +1,32 @@
 @extends('layouts.admin')
 
 @section('content')
+<div class="container-fluid navbar-container">
+    <div class="row justify-content-between w-100">
+        <div class="d-flex col-6 justify-content-center">
+            <div class="col-6  py-3 d-flex  justify-content-center">
+                <a href="{{route('admin.apartments.index')}}"  class=" d-flex align-items-center " style="text-decoration:none; color:#3a537e;">
+                    <div class="col-auto">
+                        <i class="fa-regular fa-circle-left me-2" style="color: #3a537e;"></i> 
+                    </div>
+                    <div class="col">
+                        <span>I tuoi Annunci</span>  
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="d-flex col-6 justify-content-center">
+            <a href="{{route('admin.apartments.show', $apartment->id)}}"  class=" d-flex align-items-center" style="text-decoration:none; color:#3a537e;"> 
+                <div class="col-auto">
+                    <span>Dettagli Annuncio</span>  
+                </div>
+                <div class="col">
+                    <i class="fa-regular fa-eye ms-2" style="color: #3a537e;"></i>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
 {{-- <div class="py-12">
     @csrf
     <div id="dropin-container" style="display: flex;justify-content: center;align-items: center;"></div>
@@ -48,7 +74,7 @@
                             <div class="card-block">
                                 <h4 class="m-b-20 fw-bold text-capitalize  mb-4">{{$sponsor->name}}</h4>
                                 <h5 class="text-right mb-3"><i class="fa-regular fa-clock me-2" style="color: #5370a2;"></i><span class="fw-bold">{{$sponsor->time}} h</span></h5>
-                                <input type="radio" style="appearance: none"  name="sponsor_id" class="" value="{{$sponsor->id}}" class="sponsor-radio" {{ $sponsor->name === 'free' ? 'checked' : '' }} required> 
+                                <input type="radio" style="appearance: none"  name="sponsor_id" class="" value="{{$sponsor->id}}" class="sponsor-radio" {{ $sponsor->name === 'free' ? 'checked' : '' }} required>
                                 {{-- SE NELLA INPUT METTO NAME SPONSOR_ID E VALUE SPONSOR->ID MI RESTITUISCE L'ID SE METTO PRICE IL PREZZO, DEVO RIUSCIRE AD AVERLE ENTRAMBE --}}
                                 <p class="m-b-0">Prezzo:<span class="f-right fw-bold"  id="sponsor-price-{{$sponsor->id}}">{{$sponsor->price}}&euro;</span></p>
                             </div>

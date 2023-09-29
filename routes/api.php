@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\ApartmentController;
 use App\Http\Controllers\Api\MessageController;
+use App\Http\Controllers\Api\VisitController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,4 @@ Route::get('/all-filtered-apartments', [ApartmentController::class,'recuperaTutt
 Route::get('/filtered-apartments', [ApartmentController::class,'recuperaIndirizzo']); //<---ROTTA ADDRESS HOME
 Route::post('/messages',[MessageController::class,'store']); //<---ROTTA MESSAGES
 Route::get('/services', [ApartmentController::class,'recuperaServizi']); //<---ROTTA SERVIZI
+Route::get('/visits',[VisitController::class,'store']); //<---ROTTA IP

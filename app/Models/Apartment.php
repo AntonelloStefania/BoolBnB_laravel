@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Map;
 use App\Models\Photo;
 use App\Models\Service;
+use App\Models\Visit;
 
 class Apartment extends Model
 {
@@ -44,6 +45,11 @@ class Apartment extends Model
     public function messages()
     {
         return $this->hasMany(Message::class);
+    }
+
+    public function visits()
+    {
+        return $this->hasMany(Visit::class);
     }
 
     public static function generateSlug($title){

@@ -3,18 +3,27 @@
 @section('content')
 <div class="container-fluid navbar-container">
     <div class="row justify-content-between w-100">
-        <div class="d-flex col-6">
-            <div class="col-3 py-3 d-flex justify-content-end">
-                <a href="http://localhost:5174"  class="d-none d-lg-block" style="text-decoration:none; color:#3a537e;"><i class="fa-regular fa-circle-left" style="color: #3a537e;"></i> Annunci in Evidenza  </a>
-            </div>
-            <div class="col-3 py-3 d-flex justify-content-end">
-                <a href="http://localhost:5174/apartments"  class="" style="text-decoration:none; color:#3a537e;"><i class="fa-regular fa-circle-left" style="color: #3a537e;"></i> Ricerca Avanzata  </a>
+        <div class="d-flex col-6 justify-content-center">
+            <div class="col-6  py-3 d-flex  justify-content-center">
+                <a href="http://localhost:5174/apartments"  class=" d-flex align-items-center " style="text-decoration:none; color:#3a537e;">
+                    <div class="col-auto">
+                        <i class="fa-regular fa-circle-left me-2" style="color: #3a537e;"></i> 
+                    </div>
+                    <div class="col">
+                        <span>Ricerca Avanzata</span>  
+                    </div>
+                </a>
             </div>
         </div>
-        <div class="d-flex col-6 justify-content-end">
-            <div class=" col-4 py-3 d-flex justify-content-start">
-                <a href="{{route('admin.apartments.create')}}"  class="" style="text-decoration:none; color:#3a537e;">Aggiungi Annuncio  <i class="fa-regular fa-circle-right" style="color: #3a537e;"></i></a>
-            </div>
+        <div class="d-flex col-6 justify-content-center">
+            <a href="{{route('admin.apartments.create')}}"  class=" d-flex align-items-center" style="text-decoration:none; color:#3a537e;"> 
+                <div class="col-auto">
+                    <span>Aggiungi Annuncio</span>  
+                </div>
+                <div class="col">
+                    <i class="fa-regular fa-circle-right ms-2" style="color: #3a537e;"></i>
+                </div>
+            </a>
         </div>
     </div>
 </div>
@@ -81,11 +90,31 @@
                                             <a href="{{route('admin.apartments.edit', $apartment->id)}}" class="blue-btn"><i class="fas fa-pencil me-0 me-lg-2" style="color: #d3e1f8;"></i><span class="d-none d-lg-inline">Modifica</span></a>
                                         </div>
                                         <div class="col-md-3 col-lg-12">
-                                            <form action="{{route('admin.apartments.destroy', $apartment->id)}}" onsubmit="return confirm('Press ok to confirm')" class="d-block" method="POST">
-                                                @method('DELETE')
-                                                @csrf
-                                                <button class="beige-btn btn mt-3 mt-lg-0" type="submit"><i class="fas fa-trash me-0 me-lg-2" style="color: #3f3f41;"></i><span class="d-none d-lg-inline">Elimina</span></button>
-                                            </form>
+
+                                        
+                                            <button class="beige-btn btn mt-3 mt-lg-0" data-bs-toggle="modal" data-bs-target="#{{$apartment->id}}" type="submit"><i class="fas fa-trash me-0 me-lg-2 apartment-delete-button" style="color: #3f3f41;" data-apartment-title={{$apartment->title}}></i><span class="d-none d-lg-inline">Elimina</span></button>  
+                                            <div class="modal fade" id="{{$apartment->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Sei sicuro di voler <span class="brand">Eliminare</span> questo <span class="brand">Annuncio</span>?</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                       <span class="brand">{{$apartment->title}}</span><span> verrà Eliminato</span>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn blue-btn" data-bs-dismiss="modal">Annulla</button>
+                                                        <form action="{{route('admin.apartments.destroy', $apartment->id)}}" class="d-block" method="POST">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <button type="submit" class="btn beige-btn">Conferma</button>
+                                                        </form>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                              
                                         </div>
                                     </div>
                                 </div>
@@ -265,9 +294,3 @@
 }
 
 </style>
-
-
-
-
-
-

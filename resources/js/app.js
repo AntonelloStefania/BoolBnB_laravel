@@ -7,6 +7,7 @@ import.meta.glob([
   '../img/**'
 ]);
 
+
 // // Funzione per gestire l'invio della richiesta senza reindirizzamento
 // function inviaRichiesta() {
 //   // Esegui la richiesta HTTP usando Axios o un'altra libreria
@@ -437,3 +438,5 @@ dropContainer.addEventListener("drop", (e) => {
   dropContainer.classList.remove("drag-active")
   fileInput.files = e.dataTransfer.files
 })
+
+

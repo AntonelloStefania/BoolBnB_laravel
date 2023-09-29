@@ -1,26 +1,44 @@
 @extends('layouts.admin')
 
 @section('content')
+
 <div class="container-fluid navbar-container">
     <div class="row justify-content-between w-100">
-        <div class="d-flex col-6">
-            <div class="col-6 col-lg-4 py-3 d-flex justify-content-end">
-                <a href="{{route('admin.apartments.index')}}"  class="" style="text-decoration:none; color:#3a537e;"><i class="fa-regular fa-circle-left" style="color: #3a537e;"></i> I tuoi Annunci  </a>
-            </div>
-            <div class="col-6 col-lg-4 py-3 d-flex justify-content-end">
-               
+        <div class="d-flex col-6 col-lg-4 justify-content-center">
+            <div class="col-6 col-lg-4  py-3 d-flex  justify-content-center">
+                <a href="{{route('admin.apartments.index')}}"  class=" d-flex align-items-center " style="text-decoration:none; color:#3a537e;">
+                    <div class="col-auto">
+                        <i class="fa-regular fa-circle-left me-2" style="color: #3a537e;"></i> 
+                    </div>
+                    <div class="col">
+                        <span>I tuoi Annunci</span>  
+                    </div>
+                </a>
             </div>
         </div>
-        <div class="d-flex col-6 justify-content-end">
-            <div class=" col-6 col-lg-4 py-3 d-lg-flex justify-content-start d-none">
-                <a href="#add-photos"  class="" style="text-decoration:none; color:#3a537e;">Aggiungi Foto  <i class="fa-regular fa-circle-down" style="color: #3a537e;"></i></a>
-            </div>
-            <div class=" col-4 py-3 d-flex justify-content-start">
-                <a href="{{route('admin.apartments.edit', $apartment->id)}}"  class="" style="text-decoration:none; color:#3a537e;">Modifica Annuncio  <i class="fa-regular fa-circle-right" style="color: #3a537e;"></i></a>
-            </div>
+        <div class=" col-4 d-none d-lg-flex justify-content-center">
+            <a href="#add-photos"  class=" d-flex align-items-center" style="text-decoration:none; color:#3a537e;"> 
+                <div class="col">
+                    <span>Aggiungi Foto</span>  
+                </div>
+                <div class="col-auto">
+                    <i class="fa-regular fa-circle-down ms-2" style="color: #3a537e;"></i>
+                </div>
+            </a>
+        </div>
+        <div class="d-flex col-6 col-lg-4 justify-content-center">
+            <a href="{{route('admin.apartments.edit', $apartment->id)}}"  class=" d-flex align-items-center" style="text-decoration:none; color:#3a537e;"> 
+                <div class="col-auto">
+                    <span>Modifica Annuncio</span>  
+                </div>
+                <div class="col">
+                    <i class="fas fa-pencil ms-2" style="color: #3a537e;"></i>
+                </div>
+            </a>
         </div>
     </div>
 </div>
+
     <section class="mt-5">
         <div class="container-fluid">
             <div class="row ">
@@ -28,7 +46,10 @@
                     <h2 class="my-3"><span class="brand">Visualizza</span> il Tuo Annuncio</h2>
                     <p class="text-center">Controlla il tuo annuncio su <span class="brand">BoolBnB</span> per assicurarti che sia completo e soddisfi tutte le tue esigenze. Qui puoi vedere ogni dettaglio e foto che hai aggiunto. Se hai dimenticato qualcosa o desideri apportare modifiche, è il momento giusto per farlo. Un annuncio accurato e completo attira più ospiti, quindi assicurati che il tuo annuncio su <span class="brand">BoolBnB</span> sia perfetto</p>
                 </div>
-                <div class=" mt-2 container-fluid px-0 d-flex text-center text-md-end ">
+                <div class="col-11 d-flex  justify-content-end me-5">
+                    <a href="{{route('admin.apartments.stats', $apartment->id)}}" class="d-flex align-items-center bg-c-green p-3 fw-bold" style="text-decoration:none; border-radius:0.755rem"><span class="d-none d-lg-inline brand">Visualizza Statistiche</span><i class="fa-solid ms-3 fa-2xl fa-ranking-star" style="color: #8eaff1;"></i></a>
+                </div>
+                <div class="  container-fluid mt-4 px-0 d-flex text-center text-md-end ">
                     @foreach($apartment->sponsors as $sponsor)
                         @if($sponsor->pivot->end > now())
                             <span class=" h-100 w-100 sponsor-label-absolute pe-5  py-3   {{ $sponsor->name === 'free' ? 'bg-c-blue' : ($sponsor->name === 'base' ? 'bg-c-green' : ($sponsor->name === 'avanzato' ? 'bg-c-yellow' : ($sponsor->name === 'pro' ? 'bg-c-pink' : ''))) }}" > Sponsor <span class="upper-case brand" >{{$sponsor->name}}</span> <span class=""> fino al: <span class="brand">{{$sponsor->pivot->end}}</span></span></span>
@@ -58,20 +79,43 @@
                             <div class="col-12 m-0 col-lg-8  text-center order-2 order-md-2  justify-content-center mb-3 " >
                                 <div class="container gal-container ">
                                     <div class="gal-item d-flex flex-wrap justify-content-center">
-                                        @foreach($photos as $photo)
-                                        @if($photo->apartment_id === $apartment->id)
-                                        <div class="box col-12 col-md-5 m-2  img-container  " id="add-photos">
-                                            <img src=" {{ asset('storage/'.$photo->url) }} " class="col-6" style="border-radius:1.25rem" max-height="300px" >
                                         
-                                            <div class="btns">
-                                                {{-- <button type="button" class="btn blue-btn btn-sm ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="fas fa-pencil" style="color: #d4e1f8;"></i></button> --}}
-                                                <form action="{{route('admin.apartments.photos.destroy', [$apartment->id, $photo->id])}}" onsubmit="return confirm('Press ok to confirm')" class="d-block" method="POST">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <button class="beige-btn btn" type="submit"><i class="fas fa-trash" style="color: #3f3f41;"></i></button>
-                                                </form>
+                                        @foreach($apartment->photos as $photo)
+                                        @if($photo->apartment_id == $apartment->id)
+                                        
+                                            <div class="box col-12 col-md-5 m-2  img-container  " id="add-photos">
+                                                <img src=" {{ asset('storage/'.$photo->url) }} " class="col-6" style="border-radius:1.25rem" max-height="300px" >
+                                                <div class="btns d-flex align-items-center">
+                                                    <div>
+                                                        <button type="button" class="btn beige-btn" data-bs-toggle="modal" data-bs-target="#{{$photo->id}}">
+                                                            <i class="fas fa-trash" style="color: #292929;"></i></button>
+                                                          </button>
+                                                    </div>
+                                                    {{-- <button type="button" class="btn blue-btn btn-sm ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="fas fa-pencil" style="color: #d4e1f8;"></i></button> --}}
+                                                </div>
+                                                
+                                                <div class="modal fade" id="{{$photo->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Vuoi <span class="brand">Eliminare</span> questa <span class="brand">Foto</span>?</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                        <span>La Foto verrà <span class="brand">Eliminata</span> definitivamente</span>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="button" class="btn blue-btn" data-bs-dismiss="modal">Annulla</button>
+                                                        <form action="{{route('admin.apartments.photos.destroy', [$apartment->id, $photo->id])}}"  class="d-block" method="POST">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <button class="beige-btn btn" type="submit">Conferma</button>
+                                                        </form>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
                                         @endif
                                         @endforeach
                                     </div>
