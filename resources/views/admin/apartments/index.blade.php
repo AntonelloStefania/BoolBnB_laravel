@@ -174,6 +174,22 @@
                     <div  class="beige-btn fake-btn"><i class="fas fa-trash me-0 me-lg-2" style="color: #3f3f41;"></i><span class="">Elimina</span></div>
                 </div>
             </div>
+            <div class="col-8 offset-2 d-flex mt-3 mb-5">
+                <div class="col-12 col-md-8">
+                  <span class="fw-bold">4 - </span> Accedi ai Messaggi e Controlla le tue conversazioni con gli interessati direttamente su <span class="brand">BoolBnB</span>. Gestisci le richieste, rispondi ai messaggi e mantieni un'efficace comunicazione.
+                </div>
+                <div class="col-4 d-md-flex d-none  justify-content-center align-items-center">
+                    <div  class="blue-btn fake-btn"><i class="fa-solid fa-envelope me-0 me-lg-2" style="color: #c5dcf7;"></i><span class="">Messaggi</span></div>
+                </div>
+            </div>
+            <div class="col-8 offset-2 d-flex mt-3 mb-5">
+                <div class="col-12 col-md-8">
+                  <span class="fw-bold">5 - </span> Monitora le Statistiche dei tuoi annunci su <span class="brand">BoolBnB</span>. Visualizza le visualizzazioni, i click e altre metriche chiave per migliorare la tua strategia pubblicitaria.
+                </div>
+                <div class="col-4 d-md-flex d-none  justify-content-center align-items-center">
+                    <div  class="green-btn fake-btn"><i class="fa-solid fa-ranking-star me-0 me-lg-2" style="color: #4294F2;"></i><span class="fw-6">Stats</span></div>
+                </div>
+            </div>
         </div>
         <div class="col-8 offset-2 d-flex flex-column flex-lg-row my-5">
             <div class="col-lg-4 col-12 d-flex justify-content-center align-items-center">

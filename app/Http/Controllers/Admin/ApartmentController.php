@@ -424,7 +424,7 @@ if($sponsorId == 4){
     }
 
 
-    //STATISTICHEZ
+    //STATISTICHE
     public function getStats($id)
     {
         // Recupera l'appartamento specifico
@@ -520,7 +520,7 @@ if($sponsorId == 4){
         // Inizializza un array per i conteggi mensili degli sponsor
         $monthlySponsorCounts = [];
 
-        // Ottieni l'anno corrente e il mese corrente
+
  
 
         // Ciclo per ottenere il conteggio degli sponsor per ciascun mese dall'inizio dell'anno corrente fino ad oggi
@@ -574,7 +574,7 @@ if($sponsorId == 4){
     }
     
     
-    //FINE STATISTICHEZ
+    //FINE STATISTICHE
 }
 
 
