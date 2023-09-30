@@ -89,11 +89,11 @@
             
         </div>
         {{-- dropin pagamento --}}
-        <div id="dropin-container" style="display: flex;justify-content: center;align-items: center;"></div>
+        <div id="dropin-container" style="display: flex;justify-content: center;align-items: center;"  ></div>
         <input type="hidden" name="payment_method_nonce" id="payment-nonce">
         <input type="hidden" name="apartmentId" value="{{ $apartment->id }}">
         <div style="display: flex;justify-content: center;align-items: center; color: white">
-            <button type="submit" class="btn btn-sm btn-success" id="submit-button">Submit payment</button>
+            <button type="submit" class=" btn-sm  btn bg-c-yellow  p-2 border-radius-3 fw-bold border-0 mb-5"  id="submit-button">Conferma Pagamento</button>
         </div>
     </form>
     <script>

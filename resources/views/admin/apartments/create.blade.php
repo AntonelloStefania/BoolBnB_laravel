@@ -342,7 +342,7 @@
    <div class="row">
     {{-- TITOLO PAGINA --}}
       <div class="col-12 text-center mb-2">
-            <h1 class="titolo">Benvenuto su <span class="brand">BoolBnb</span> - Crea il Tuo Annuncio! </h1>
+            <h1 class="titolo text-center">Benvenuto su <span class="brand">BoolBnb</span> - Crea il Tuo Annuncio! </h1>
             <div class="col-12 my-3">
                 <p>
                     Sei a un passo dal condividere il tuo spazio con il mondo. Qui potrai personalizzare ogni dettaglio del tuo annuncio e renderlo unico. Rendilo attraente per i tuoi futuri ospiti fornendo tutte le informazioni necessarie e aggiungendo foto che mettano in risalto le caratteristiche del tuo spazio.                         

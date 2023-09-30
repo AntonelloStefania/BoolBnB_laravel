@@ -32,7 +32,7 @@
    <div class="row">
     {{-- TITOLO PAGINA --}}
       <div class="col-12 text-center mb-5">
-            <h1 class="titolo">Modifica il tuo annuncio su <span class="brand">BoolBnb</span> </h1>
+            <h1 class="titolo text-center">Modifica il tuo annuncio su <span class="brand">BoolBnb</span> </h1>
             <div class="col-12 my-3">
                 <p>
                     Benvenuto alla pagina di <span class="brand">modifica</span> dei tuoi annunci. Qui puoi apportare modifiche e aggiornamenti alle 

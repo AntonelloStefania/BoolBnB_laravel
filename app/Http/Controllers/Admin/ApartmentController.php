@@ -368,7 +368,7 @@ public function processPayment(Request $request)
         // Pagamento fallito, gestisci l'errore
         $errorMessage = $result->message;
         // Esegui il reindirizzamento a una pagina di errore
-        return redirect()->route('admin.home', ['errorMessage' => $errorMessage]);
+        return redirect()->route('admin.apartments.braintree', ['errorMessage' => $errorMessage]);
     }
     
     
@@ -391,7 +391,7 @@ if($sponsorId == 3){
     } else {
         $errorMessage = $result->message;
         // Esegui il reindirizzamento a una pagina di errore
-        return redirect()->route('admin.home', ['errorMessage' => $errorMessage]);
+        return redirect()->route('admin.apartments.braintree', ['errorMessage' => $errorMessage]);
     }
     
     
@@ -414,7 +414,7 @@ if($sponsorId == 4){
     } else {
         // Pagamento fallito, gestisci l'errore
         $errorMessage = $result->message;
-        return redirect()->route('admin.home', ['errorMessage' => $errorMessage]);
+        return redirect()->route('admin.apartments.braintree', ['errorMessage' => $errorMessage]);
     }
   
 }
