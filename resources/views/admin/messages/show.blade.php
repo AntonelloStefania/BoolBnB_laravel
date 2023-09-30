@@ -119,7 +119,24 @@
         </div>
     </div>
 </div>
-
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 vertical-align-center">
+            <h1 class="text-center mb-4">La Tua Casella dei Messaggi</h1>
+            <p>Benvenuto nella tua casella dei messaggi! Questo è il luogo dove puoi comunicare direttamente con gli utenti interessati ai tuoi alloggi in affitto. È il cuore delle interazioni tra host e ospiti.</p>
+            <p>Qui puoi leggere e rispondere a messaggi, rispondere alle domande degli ospiti e organizzare i dettagli del loro soggiorno. Tieni un occhio attento su questa sezione per garantire che le comunicazioni con i tuoi futuri ospiti siano chiare, cortesi e tempestive.</p>
+        </div>
+        <div class="col-md-6">
+            <img src="{{asset('mail.jpg')}}" alt="Immagine Messaggi" width="450px" class="img-fluid">
+        </div>
+    </div>
+    <div class="row my-5">
+        <div class="col-12 text-center">
+            <p>Se hai domande o hai bisogno di assistenza, siamo qui per aiutarti. Non esitare a contattare il nostro servizio clienti in qualsiasi momento.</p>
+            <p>Grazie per essere un host su [Nome della Piattaforma] e per rendere ogni soggiorno un'esperienza speciale per i tuoi ospiti!</p>
+        </div>
+    </div>
+</div>
 @endsection
 
 <style>

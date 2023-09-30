@@ -191,23 +191,15 @@ textarea::-webkit-scrollbar {
 
 
 /* -------------reset----------------*/
-html,
-body,
-div,
-span,
+
+
+
+
 applet,
 object,
 iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
 blockquote,
 pre,
-a,
 abbr,
 acronym,
 address,
@@ -218,7 +210,6 @@ del,
 dfn,
 em,
 font,
-img,
 ins,
 kbd,
 q,
@@ -276,31 +267,15 @@ a {
     text-decoration: none;
 }
 
-p {
-    margin-bottom: 12px;
-}
+
 
 ul li {
     list-style: none;
 }
 
-html,
-body {
-    color: #666
-        /*color-text*/
-    ;
-    height: 100%;
-    width: 100%;
-}
 
-h1 {
-    font-size: 1.5em;
-    text-align: left;
-    font-weight: bold;
-    color: #718dd8
-        /* primary color*/
-    ;
-}
+
+
 
 /* -----------------contenitore e contenuto ------------------ */
 

@@ -62,7 +62,7 @@
         <div class="container sponsor-container">
             <div class="row">
                 <div class="col-12 text-center my-5 ">
-                    <h2 class="mb-3"><span class="brand">Sponsorizza</span> il tuo Annuncio!</h2>
+                    <h2 class="mb-3 "><span class="brand">Sponsorizza</span> il tuo Annuncio!</h2>
                     <p>
                         Vuoi dare una marcia in più al tuo annuncio? Ora puoi farlo con la nostra sponsorizzazione! Oltre agli abbonamenti gratuiti, offriamo opzioni di sponsorizzazione per diverse durate: Abbonamento <span class="fw-bold">Free</span>, Abbonamento <span class="fw-bold">Base</span>, Abbonamento <span class="fw-bold">Avanzato</span> e Abbonamento <span class="fw-bold">Pro</span>. Scegli la sponsorizzazione che si adatta meglio alle tue esigenze e goditi una visibilità superiore per il tuo annuncio su <span class="brand">BoolBnB</span>. Promuovi il tuo spazio ora!
                     </p>
@@ -96,6 +96,19 @@
             <button type="submit" class=" btn-sm  btn bg-c-yellow  p-2 border-radius-3 fw-bold border-0 mb-5"  id="submit-button">Conferma Pagamento</button>
         </div>
     </form>
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-6 d-flex flex-column justify-content-center">
+                <p>Benvenuto nella sezione di sponsorizzazione di annunci su <span class="brand">BoolBnB</span>! Qui puoi incrementare la visibilità del tuo annuncio e raggiungere un pubblico più vasto.</p>
+                <p>Scegli tra una varietà di piani di sponsorizzazione per promuovere il tuo annuncio e ottenere risultati straordinari. Quando sponsorizzi il tuo annuncio su <span class="brand">BoolBnB</span>, hai l'opportunità di farlo apparire in evidenza tra le ricerche degli utenti e di ricevere una maggiore visibilità nella nostra community.</p>
+                <p>Ricorda che ogni sponsorizzazione aiuta a sostenere il nostro servizio e a garantire un'esperienza eccezionale per tutti gli utenti di <span class="brand">BoolBnB</span>.</p>
+            </div>
+            <div class="col-md-6">
+                <img src="{{asset('13-april.jpg')}}" width="550px" alt="">
+            </div>
+        </div>
+    </div>
+    
     <script>
 
 
