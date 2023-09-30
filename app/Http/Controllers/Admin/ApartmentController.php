@@ -363,13 +363,13 @@ public function processPayment(Request $request)
     if ($result->success) {
         // Pagamento avvenuto con successo
         $apartment->sponsors()->attach($sponsorId, ['start' => now(), 'end' => now()->addHours(24)]);
-        return redirect()->route('admin.apartments.index'); // Personalizza con la tua vista di successo
+        return redirect()->route('admin.payment_success'); // Personalizza con la tua vista di successo
     } else {
         // Pagamento fallito, gestisci l'errore
         $errorMessage = $result->message;
         // Esegui il reindirizzamento a una pagina di errore
-        return redirect()->route('admin.apartments.braintree', ['errorMessage' => $errorMessage]);
-    }
+        return redirect()->route('admin.payment_fail');
+        }
     
     
 }
@@ -383,16 +383,16 @@ if($sponsorId == 3){
             'submitForSettlement' => true
             ]
     ]);
-
+   
     if ($result->success) {
         // Pagamento avvenuto con successo
         $apartment->sponsors()->attach($sponsorId, ['start' => now(), 'end' => now()->addHours(72)]);
-        return redirect()->route('admin.apartments.index'); // Personalizza con la tua vista di successo
+        return redirect()->route('admin.payment_success'); // Personalizza con la tua vista di successo
     } else {
         $errorMessage = $result->message;
         // Esegui il reindirizzamento a una pagina di errore
-        return redirect()->route('admin.apartments.braintree', ['errorMessage' => $errorMessage]);
-    }
+        return redirect()->route('admin.payment_fail');
+        }
     
     
 }
@@ -410,11 +410,11 @@ if($sponsorId == 4){
 
     if ($result->success) {
         $apartment->sponsors()->attach($sponsorId, ['start' => now(), 'end' => now()->addHours(144)]);
-        return redirect()->route('admin.apartments.index'); // Personalizza con la tua vista di successo
+        return redirect()->route('admin.payment_success'); // Personalizza con la tua vista di successo
     } else {
         // Pagamento fallito, gestisci l'errore
         $errorMessage = $result->message;
-        return redirect()->route('admin.apartments.braintree', ['errorMessage' => $errorMessage]);
+        return redirect()->route('admin.payment_fail');
     }
   
 }

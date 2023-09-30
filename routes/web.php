@@ -53,6 +53,12 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::get('/apartments/{apartmentId}/messages', [MessageController::class, 'showApartmentMessages'])->name('messages.show');
     Route::get('/errors', [ApartmentController::class, 'errors'])->name('errors.error');
     Route::get('/apartments/{apartmentId}/stats', [ApartmentController::class,'getStats'])->name('apartments.stats');
+    Route::get('/payment_success', function () {
+        return view('admin/errors/payment_success'); 
+    })->name('payment_success');
+    Route::get('/payment_fail', function () {
+        return view('admin/errors/payment_fail'); 
+    })->name('payment_fail');
 });
 
 Route::middleware('auth')->group(function () {
