@@ -111,13 +111,14 @@
 		</div>	
 		
 		<div class="footer-menu">
-		<div class="menu-footer descrizione"><ul id="menu-menu-footer" class="menu">
-    	<li><a href="#">Homepage</a></li>
-		<li><a href="#">Appartamenti</a></li>
-		<li><a href="#">Vetrina</a></li>
-		<li><a href="#">Sponsorizzazioni</a></li>
-		<li><a href="#">Profilo</a></li>
-		</ul></div> <!-- Footer Menu -->
+            <div class="menu-footer descrizione"><ul id="menu-menu-footer" class="menu">
+                <li><a href="#">Homepage</a></li>
+                <li><a href="#">Appartamenti</a></li>
+                <li><a href="#">Vetrina</a></li>
+                <li><a href="#">Sponsorizzazioni</a></li>
+                <li><a href="#">Profilo</a></li>
+                </ul>
+            </div> <!-- Footer Menu -->
 		</div>
 		
 		<div class="footer-contatti">
