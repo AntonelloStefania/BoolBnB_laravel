@@ -78,7 +78,7 @@
                                 <div class="gal-item d-flex flex-wrap justify-content-center">
                                     @foreach($apartment->photos as $photo)
                                         @if($photo->apartment_id == $apartment->id)
-                                            <div class="box col-12 col-md-5 m-2  img-container  " id="add-photos">
+                                            <div class="box col-12 col-md-5 m-2  img-container  ">
                                                 <img src=" {{ asset('storage/'.$photo->url) }} " class="col-6" style="border-radius:1.25rem" max-height="300px" >
                                                 <div class="btns d-flex align-items-center">
                                                     <div>
@@ -117,7 +117,7 @@
                     </div>
                 </div>
                 <div class="col-12 text-center mt-2 ">
-                    <span>Vuoi rendere il tuo annuncio ancora più <span class="brand">irresistibile?</span> Aggiungi alcune <span class="brand">foto</span> per mostrare tutti i dettagli che rendono il tuo alloggio speciale<button type="button" class="btn blue-btn btn-sm ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-plus "></i></button></span>
+                    <span>Vuoi rendere il tuo annuncio ancora più <span class="brand">irresistibile?</span> Aggiungi alcune <span class="brand">foto</span> per mostrare tutti i dettagli che rendono il tuo alloggio speciale<button type="button"  id="add-photos" class="btn blue-btn btn-sm ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-plus "></i></button></span>
                 </div>
                 <div class="col-12 text-center mt-2 ">
                     <span style="font-size:12px"><span class="brand">Aggiungi </span>Foto al tuo annuncio e <span class="brand">Muoviti su di loro</span> per altre funzionalità</span>
