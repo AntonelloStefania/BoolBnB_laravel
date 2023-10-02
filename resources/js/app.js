@@ -84,8 +84,6 @@ import.meta.glob([
 // FINE PROVA MODAL
 
 
-
-
 //POPOVER INFO DESCRIZIONE APPARTAMENTO IN CREATE
 var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
 var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {

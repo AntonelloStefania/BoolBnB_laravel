@@ -51,7 +51,7 @@
             <div class="container-fluid mt-4 px-0 d-flex text-center text-md-end">
                 @foreach($apartment->sponsors as $sponsor)
                     @if($sponsor->pivot->end > now())
-                        <span class="h-100 w-100 sponsor-label-absolute pe-5  py-3   {{ $sponsor->name === 'free' ? 'bg-c-blue' : ($sponsor->name === 'base' ? 'bg-c-green' : ($sponsor->name === 'avanzato' ? 'bg-c-yellow' : ($sponsor->name === 'pro' ? 'bg-c-pink' : ''))) }}" > Sponsor <span class="upper-case brand" >{{$sponsor->name}}</span> <span class=""> fino al: <span class="brand">{{$sponsor->pivot->end}}</span></span></span>
+                        <span class="h-100 w-100 sponsor-label-absolute pe-5  py-3   {{ $sponsor->name === 'free' ? 'bg-c-blue' : ($sponsor->name === 'base' ? 'bg-c-green' : ($sponsor->name === 'avanzato' ? 'bg-c-yellow' : ($sponsor->name === 'pro' ? 'bg-c-pink' : ''))) }}" > Sponsor <span class="upper-case brand" >{{$sponsor->name}}</span> <span class=""> fino al: <span class="brand">{{date('d/m/Y H:i', strtotime($sponsor->pivot->end))}}</span></span></span>
                     @endif
                 @endforeach
             </div>
