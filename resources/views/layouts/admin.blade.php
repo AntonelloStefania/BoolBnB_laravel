@@ -71,14 +71,13 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{  route('admin.dashboard')  }}">{{__('Dashboard')}}</a>
                                 <a class="dropdown-item" href="{{ url('profile') }}">{{__('Profile')}}</a>
                                 <a class="dropdown-item" href="http://localhost:5174/" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     Logout
                                 </a>
-                                <a href="{{route('admin.apartments.create')}}" class="dropdown-item">Create</a>
-                                <a href="{{route('admin.apartments.index')}}" class="dropdown-item">index</a>
+                                <a href="{{route('admin.apartments.create')}}" class="dropdown-item">Aggiungi annuncio</a>
+                                <a href="{{route('admin.apartments.index')}}" class="dropdown-item">I tuoi Annunci</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
