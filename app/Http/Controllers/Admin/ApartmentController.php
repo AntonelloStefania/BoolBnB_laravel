@@ -185,7 +185,7 @@ public function index()
             
             return view('admin.apartments.show', compact('apartment','photos'));
         } else {
-            $message='NON TI PERMETTERE DI TOCCARE GLI APPARTAMENTI ALTRUI';
+            $message='Non è possibile effettuare questa azione';
             return redirect()->route('admin.errors.error', compact('message'));
         }
 
@@ -207,7 +207,7 @@ public function index()
             $user=Auth::user();
             return view('admin.apartments.edit', compact('apartment','types','services','sponsors','user'));
         } else {
-            $message='NON TI PERMETTERE DI TOCCARE GLI APPARTAMENTI ALTRUI';
+            $message='Non è possibile effettuare questa azione';
             return redirect()->route('admin.errors.error', compact('message'));
         }
     }
@@ -321,7 +321,7 @@ public function index()
 
         return view('admin.apartments.braintree', ['apartment' => $apartment, 'clientToken' => $clientToken, 'sponsors' => $sponsors]);
         } else {
-            $message='NON TI PERMETTERE DI TOCCARE GLI APPARTAMENTI ALTRUI';
+            $message="Non è possibile accedere a questa sezione";
             return redirect()->route('admin.errors.error', compact('message'));
         }
     }
@@ -568,7 +568,7 @@ if($sponsorId == 4){
     
             return view('admin.apartments.stats', compact('apartment', 'messages', 'sponsors','currentYearMessagesCount','monthlySponsorCounts','lastYearMessagesCount','currentYearVisitsCount','currentMonthVisitsCount','lastYearVisitsCount','currentYearSponsors','currentMonthSponsors','lastYearSponsors','monthlyVisitCounts','monthlyMessageCounts'));
         } else {
-            $message = 'NON TI PERMETTERE DI TOCCARE GLI APPARTAMENTI ALTRUI';
+            $message = 'Non è possibile effettuare questa azione';
             return redirect()->route('admin.errors.error', compact('message'));
         }
     }

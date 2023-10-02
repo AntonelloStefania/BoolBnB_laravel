@@ -133,7 +133,7 @@
     <div class="row my-5">
         <div class="col-12 text-center">
             <p>Se hai domande o hai bisogno di assistenza, siamo qui per aiutarti. Non esitare a contattare il nostro servizio clienti in qualsiasi momento.</p>
-            <p>Grazie per essere un host su [Nome della Piattaforma] e per rendere ogni soggiorno un'esperienza speciale per i tuoi ospiti!</p>
+            <p>Grazie per essere un host su BoolBnB e per rendere ogni soggiorno un'esperienza speciale per i tuoi ospiti!</p>
         </div>
     </div>
 </div>
