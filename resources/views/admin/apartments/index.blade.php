@@ -77,7 +77,7 @@
                                         @endforeach
                                     </div> --}}
                                     <div class="">
-                                        <p><h6 class="d-inline fw-bold">Pubblicato il: </h6>{{$apartment->created_at}}</p>
+                                        <p><h6 class="d-inline fw-bold">Pubblicato il: </h6>{{date('d/m/Y H:i', strtotime($apartment->created_at))}}</p>
                                     </div>
                                   
                                     <div class="d-flex  justify-content-around   align-items-center">
