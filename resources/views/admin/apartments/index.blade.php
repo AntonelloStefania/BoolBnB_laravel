@@ -51,7 +51,7 @@
                                 <div class="d-block ">
                                     @foreach($apartment->sponsors as $sponsor)
                                         @if($sponsor->pivot->name != 'free')
-                                        <span class="sponsor-label-absolute-img   {{ $sponsor->name === 'free' ? 'bg-c-blue' : ($sponsor->name === 'base' ? 'bg-c-green' : ($sponsor->name === 'avanzato' ? 'bg-c-yellow' : ($sponsor->name === 'pro' ? 'bg-c-pink' : ''))) }}" > Sponsor <span class="upper-case">{{$sponsor->name}}</span> <span class=""> fino al: <br> {{$sponsor->pivot->end}}</span></span>
+                                        <span class="sponsor-label-absolute-img   {{ $sponsor->name === 'free' ? 'bg-c-blue' : ($sponsor->name === 'base' ? 'bg-c-green' : ($sponsor->name === 'avanzato' ? 'bg-c-yellow' : ($sponsor->name === 'pro' ? 'bg-c-pink' : ''))) }}" > Sponsor <span class="upper-case">{{$sponsor->name}}</span> <span class=""> fino al: <br> {{date('d/m/Y H:i', strtotime($sponsor->pivot->end))}}</span></span>
                                         @endif
                                     @endforeach
                                 </div>
